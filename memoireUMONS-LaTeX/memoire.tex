@@ -158,7 +158,7 @@ Deux méthode :
 
 \begin{itemize}
 \item hard dewhitening. Considérer whitening et dewhitening similaire, différence c'est que le dernier prend une séquence blanchie et sort la séquence originale.
-\item sot dewhitening. 
+\item soft dewhitening. 
 \end{itemize}
 
 
@@ -199,7 +199,18 @@ Pour implémenter le codage de canal dans un SDR LoRa (Software-Defined Radio), 
 
 \section{simulation avec GNU radio}
 
+GNU Radio est un toolkit qui permet de créer des flux de traitement de signal en utilisant des blocs prédéfinis. Ces blocs peuvent être combinés pour créer des chaînes de traitement de signal pour simuler des modulations CSS, capturer des signaux et en extraire des séquences de chirp.
 
+\subsection{simulation d'un scénario de détection du modulation CSS}
+
+blocs nécessaires :
+\begin{itemize}
+\item Un générateur de signal (qui génère un signal CSS modulé)
+\item un éméteur
+\item un canal de transmission (avec du bruit)
+\item un récepteur, qui capture et démodule le signal
+\item un analyseur de séquence.
+\end{itemize}
 
 %ICI COMMENCE LE DERNIER CHAPITRE
 \chapter*{Conclusion}

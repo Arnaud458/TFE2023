@@ -1,0 +1,19 @@
+La base de données de séquences de chirp du laboratoire de recherche en communications sans fil (WiCom Lab)
+ de l'Université de Oulu, en Finlande. Cette base de données contient des séquences de chirp pour la
+ communication sans fil, la localisation et la détection d'objets.
+
+La base de données de séquences de chirp de l'Université de Technologie de Delft, aux Pays-Bas.
+ Cette base de données contient des séquences de chirp pour la télédétection,
+ la tomographie par impulsion et la communication optique.
+
+La base de données de séquences de chirp du laboratoire de recherche en communication et
+ en traitement de signal (CommSPy) de l'Université de Calgary, au Canada. Cette base de données contient
+ des séquences de chirp pour la communication sans fil, la télédétection et la surveillance
+ de la qualité de l'air.
+
+
+1 Le signal émis par le nœud émetteur est modulé en CSS en utilisant cette séquence de chirp
+2 Le signal est capturé à l'aide d'une radio logicielle
+3 Appliquer une analyse en temps-fréquence (ex la transformée de Fourier à court terme) pour extraire la séquence
+4 Spectrogramme du signal qui montre l'évolution de la fréquence en fonction du temps
+5 comparer avec base de donnée existante.
