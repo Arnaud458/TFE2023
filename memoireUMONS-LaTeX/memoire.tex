@@ -74,9 +74,7 @@ Nous remercions ...\\
 \newpage
 \pagenumbering{arabic}
 \renewcommand{\leftmark}{INTRODUCTION}
-\chapter{Introduction}
-
-\section{LoRa}
+\chapter*{Introduction}
 
 LoRa (Long Range) est une technologie de communication sans fil basée sur la modulation en fréquence chirp spread spectrum (CSS), qui permet de transmettre des données sur de longues distances avec une faible consommation d'énergie. Elle a été développée par la société française Cycleo et est maintenant gérée par la fondation LoRa Alliance, qui regroupe plusieurs entreprises et organisations du monde entier.
 
@@ -88,7 +86,7 @@ LoRa est conçue pour être utilisée dans des réseaux de communication à mail
 
 En plus de sa portée étendue et de sa faible consommation d'énergie, LoRa se distingue par sa sécurité de transmission, qui est assurée grâce à l'utilisation de codes de sécurité uniques et à la possibilité de chiffrer les données transmises. Elle est également compatible avec de nombreux protocoles de communication couramment utilisés dans l'IoT, tels que TCP/IP, HTTP et MQTT, ce qui facilite son intégration dans les systèmes existants.
 
-\section{Objectif du travail}
+\chapter{LoRa et LoRWAN}
 
 Dans le premier chapitre de ce travail se trouve une analyse de l'impementation de LoRa dans un SDR. Cette analyse a été faite en $reverse engeneering$. Le reverse engineering consiste à analyser un produit ou un système afin de comprendre comment il fonctionne ou d'identifier ses principes de conception. Dans le contexte de LoRa, le reverse engineering examine la technologie derrière LoRa afin de comprendre ses principes de base et sa conception. Les étapes de la conception de la couche physique de LoRa sont les suivantes :
 \begin{itemize}
@@ -107,9 +105,11 @@ dans le second chapitre ...
 
 \newpage
 
+\chapter{rappel traitement du signal}
+
 
 %ICI COMMENCE LE CHAPITRE 2
-\chapter{SDR implementation of LoRa}\label{ch:1}
+\chapter{décomposition couche physique LoRa}\label{ch:1}
 \renewcommand{\leftmark}{CHAPITRE \thechapter.~~Physical LoRa}
 
 La radio logicielle ($SDR$, pour $Software$-$Defined Radio$) est une technologie qui permet de mettre en œuvre des systèmes de radio à l'aide de logiciels plutôt que de matériel. Dans les systèmes de radio traditionnels, les différentes fonctions de la radio, comme l'accord sur une fréquence spécifique, la modulation et la démodulation du signal, et le filtrage du bruit, sont mises en œuvre à l'aide de composants matériels tels que des oscillateurs, des amplificateurs et des filtres.
@@ -190,7 +190,7 @@ L'utilisation de la modulation CSS a plusieurs avantage :
 \subsection{demodulation}
 
 %ICI COMMENCE LE CHAPITRE 3
-\chapter{Identification d'un signal}
+\chapter{Création d'un signal avec une radio logicielle}
 \renewcommand{\leftmark}{CHAPITRE \thechapter.~~Titre Expérimentation de LoRa sur un SDR}
 
 \section{équipement nécessaire}
@@ -201,7 +201,6 @@ Pour implémenter le codage de canal dans un SDR LoRa (Software-Defined Radio), 
 
 GNU Radio est un toolkit qui permet de créer des flux de traitement de signal en utilisant des blocs prédéfinis. Ces blocs peuvent être combinés pour créer des chaînes de traitement de signal pour simuler des modulations CSS, capturer des signaux et en extraire des séquences de chirp.
 
-\subsection{simulation d'un scénario de détection du modulation CSS}
 
 blocs nécessaires :
 \begin{itemize}
