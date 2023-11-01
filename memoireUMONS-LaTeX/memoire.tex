@@ -74,9 +74,33 @@ Nous remercions ...\\
 \newpage
 \pagenumbering{arabic}
 \renewcommand{\leftmark}{INTRODUCTION}
+
 \chapter*{Introduction}
 
-LoRa (Long Range) est une technologie de communication sans fil basée sur la modulation en fréquence chirp spread spectrum (CSS), qui permet de transmettre des données sur de longues distances avec une faible consommation d'énergie. Elle a été développée par la société française Cycleo et est maintenant gérée par la fondation LoRa Alliance, qui regroupe plusieurs entreprises et organisations du monde entier.
+
+\chapter{Rappels et nomination des technologies}
+
+\section{Traitement du signal et signal radio}
+
+Un signal est une variation dans l'espace ou dans le temps d'une quantité physique contenant de l'informations. Un signal peut incarner diverses formes d'informations comme du son ou une image. 
+
+En télécommunication, les signaux sont associés aux ondes radios, ainsi appelé $radio signal$ ou signal radio. Un signal radio ou onde radio possède différents attributs dont les principaux sont: 
+
+\begin{itemize}
+\item la largeur de spectre,
+\item la frécquence,
+\item la modulation,
+\item la puissance (en db),
+\item le SNR (signal to noise ratio),
+\item le bitrate,
+
+\end{itemize}
+
+Un signal a également besoin de divers composantes physiques comme un éméteur et un recepteur.
+
+\section{LoRa}
+
+$LoRa$ (Long Range) est une technologie de communication sans fil basée sur la modulation en fréquence chirp spread spectrum (CSS), qui permet de transmettre des données sur de longues distances avec une faible consommation d'énergie. Elle a été développée par la société française Cycleo et est maintenant gérée par la fondation LoRa Alliance, qui regroupe plusieurs entreprises et organisations du monde entier.
 
 LoRa est utilisée dans de nombreux domaines, tels que l'Internet des objets (IoT), la télématique, la météorologie, la surveillance environnementale, la gestion de l'énergie, la sécurité et la santé. Elle se distingue par sa portée étendue, qui peut atteindre plusieurs kilomètres en milieu urbain et plusieurs dizaines de kilomètres en milieu rural, ainsi que par sa faible consommation d'énergie, qui permet de prolonger la durée de vie des appareils connectés.
 
@@ -86,7 +110,64 @@ LoRa est conçue pour être utilisée dans des réseaux de communication à mail
 
 En plus de sa portée étendue et de sa faible consommation d'énergie, LoRa se distingue par sa sécurité de transmission, qui est assurée grâce à l'utilisation de codes de sécurité uniques et à la possibilité de chiffrer les données transmises. Elle est également compatible avec de nombreux protocoles de communication couramment utilisés dans l'IoT, tels que TCP/IP, HTTP et MQTT, ce qui facilite son intégration dans les systèmes existants.
 
-\chapter{LoRa et LoRWAN}
+\subsection{couche physique LoRa}
+
+Le codage de canal est une technique utilisée dans les systèmes de communication sans fil pour améliorer la robustesse et la fiabilité de la transmission des données. Dans le cas de LoRa, le codage de canal est une étape importante pour s'assurer que les données transmises sont correctement reçues et décodées par le récepteur en utilisant de la redondance.
+
+Cette redondance est générée par un paramètre de débit de codage.
+
+
+formule mathématique.
+
+
+Deux méthode :
+
+\begin{itemize}
+\item hard deconding
+\item sot decoding
+\end{itemize}
+
+
+
+Le blanchiment de canal (en anglais "channel whitening") est une méthode d'amélioration de la robustesse et de fiabilité de la transmission des données. Le blanchiment de canal est également une étape importante pour s'assurer que les données transmises sont correctement reçues et décodées par le récepteur.
+
+Cette technique consiste à utiliser une transformation aléatoire ou pseudo-aléatoire des données avant de les transmettre, de manière à répartir le spectre des fréquences de la transmission sur une large gamme de fréquences. Cela permet d'obtenir une meilleure résistance aux interférences et aux bruit de fond, ainsi qu'une meilleure robustesse face aux erreurs de transmission. En effet la transformation de la séquence assure une corrélation faible entre les bits de cette dernière.
+
+
+
+ajout d'une séquence pseudo random à l'output de l'encodeur.
+
+
+codeword associé à tout les bloc 0 est le codeword des bloc 0, donc b = 0. La séquence whiteneed bw = w.
+
+Deux méthode :
+
+\begin{itemize}
+\item hard dewhitening. Considérer whitening et dewhitening similaire, différence c'est que le dernier prend une séquence blanchie et sort la séquence originale.
+\item soft dewhitening. 
+\end{itemize}
+
+
+
+Le mélange de canal (en anglais "channel interleaving") est la dernirèe des méthode d'amélioration de la robustesse de la tranmission des données. 
+
+Cette technique consiste à réarranger les données avant de les transmettre, en les intercalant entre elles de manière à les disperser sur le spectre des fréquences de la transmission. Cela permet de réduire l'impact des erreurs de transmission sur la qualité de la réception, en évitant que des erreurs consécutives ne se propagent et ne perturbent la décodage des données.
+
+
+La modulation CSS est l'étape la plus importante pour le sujet de ce travail. En effet, le signal modulé permet d'obtenir une séquence de $chirp$ ou un signal $chirp$. Cette séquence est unique et permettrait l'identification du noeud éméteur. 
+
+L'utilisation de la modulation CSS a plusieurs avantage :
+
+\begin{itemize}
+\item peut gourmande, pratique pour l'IOT,
+\item idéal pour les débit faible,
+\item idéal pour les appareils longue portée,
+\item il est difficile a détecter et à intercepter, gain pour sécurité.
+\end{itemize}
+
+
+\subsection{LoRaWAN}
+
 
 Dans le premier chapitre de ce travail se trouve une analyse de l'impementation de LoRa dans un SDR. Cette analyse a été faite en $reverse engeneering$. Le reverse engineering consiste à analyser un produit ou un système afin de comprendre comment il fonctionne ou d'identifier ses principes de conception. Dans le contexte de LoRa, le reverse engineering examine la technologie derrière LoRa afin de comprendre ses principes de base et sa conception. Les étapes de la conception de la couche physique de LoRa sont les suivantes :
 \begin{itemize}
@@ -100,104 +181,19 @@ Dans le premier chapitre de ce travail se trouve une analyse de l'impementation 
 \item decoding
 \end{itemize} 
 
-dans le second chapitre ... 
 
 
 \newpage
 
-\chapter{rappel traitement du signal}
+\chapter{Expérimentations}
 
+\section{Ressources}
 
-%ICI COMMENCE LE CHAPITRE 2
-\chapter{décomposition couche physique LoRa}\label{ch:1}
-\renewcommand{\leftmark}{CHAPITRE \thechapter.~~Physical LoRa}
-
-La radio logicielle ($SDR$, pour $Software$-$Defined Radio$) est une technologie qui permet de mettre en œuvre des systèmes de radio à l'aide de logiciels plutôt que de matériel. Dans les systèmes de radio traditionnels, les différentes fonctions de la radio, comme l'accord sur une fréquence spécifique, la modulation et la démodulation du signal, et le filtrage du bruit, sont mises en œuvre à l'aide de composants matériels tels que des oscillateurs, des amplificateurs et des filtres.
-
-En revanche, les systèmes SDR utilisent des logiciels pour effectuer ces fonctions, ce qui permet une plus grande souplesse et adaptabilité. Les systèmes SDR peuvent être facilement reconfigurés pour prendre en charge différents types de systèmes de radio et de protocoles en modifiant le logiciel qui les contrôle. Cela rend les systèmes SDR particulièrement utiles pour les applications qui nécessitent la possibilité de prendre en charge plusieurs systèmes de radio ou qui doivent être reconfigurées pour prendre en charge de nouveaux types.
-
-Les systèmes SDR sont utilisés dans une variété de domaines comme  la télécommunication, la radiodiffusion ou encore la défense.
-
-
-
-\section{channel coding}
-
-Le codage de canal est une technique utilisée dans les systèmes de communication sans fil pour améliorer la robustesse et la fiabilité de la transmission des données. Dans le cas de LoRa, le codage de canal est une étape importante pour s'assurer que les données transmises sont correctement reçues et décodées par le récepteur en utilisant de la redondance.
-
-Cette redondance est générée par un paramètre de débit de codage.
-
-
-\subsection{coding}
-
-formule mathématique.
-
-\subsection{deconding}
-
-Deux méthode :
-
-\begin{itemize}
-\item hard deconding
-\item sot decoding
-\end{itemize}
-
-\section{channel whitening}
-
-Le blanchiment de canal (en anglais "channel whitening") est une méthode d'amélioration de la robustesse et de fiabilité de la transmission des données. Le blanchiment de canal est également une étape importante pour s'assurer que les données transmises sont correctement reçues et décodées par le récepteur.
-
-Cette technique consiste à utiliser une transformation aléatoire ou pseudo-aléatoire des données avant de les transmettre, de manière à répartir le spectre des fréquences de la transmission sur une large gamme de fréquences. Cela permet d'obtenir une meilleure résistance aux interférences et aux bruit de fond, ainsi qu'une meilleure robustesse face aux erreurs de transmission. En effet la transformation de la séquence assure une corrélation faible entre les bits de cette dernière.
-
-\subsection{whitening}
-
-ajout d'une séquence pseudo random à l'output de l'encodeur.
-
-\subsection{dewithening}
-
-codeword associé à tout les bloc 0 est le codeword des bloc 0, donc b = 0. La séquence whiteneed bw = w.
-
-Deux méthode :
-
-\begin{itemize}
-\item hard dewhitening. Considérer whitening et dewhitening similaire, différence c'est que le dernier prend une séquence blanchie et sort la séquence originale.
-\item soft dewhitening. 
-\end{itemize}
-
-
-\section{channel interleaving}
-
-Le mélange de canal (en anglais "channel interleaving") est la dernirèe des méthode d'amélioration de la robustesse de la tranmission des données. 
-
-Cette technique consiste à réarranger les données avant de les transmettre, en les intercalant entre elles de manière à les disperser sur le spectre des fréquences de la transmission. Cela permet de réduire l'impact des erreurs de transmission sur la qualité de la réception, en évitant que des erreurs consécutives ne se propagent et ne perturbent la décodage des données.
-
-\subsection{interleaving}
-
-\subsection{deinterleaving}
-
-\section{CSS modulation}
-
-La modulation CSS est l'étape la plus importante pour le sujet de ce travail. En effet, le signal modulé permet d'obtenir une séquence de $chirp$ ou un signal $chirp$. Cette séquence est unique et permettrait l'identification du noeud éméteur. 
-
-L'utilisation de la modulation CSS a plusieurs avantage :
-
-\begin{itemize}
-\item peut gourmande, pratique pour l'IOT,
-\item idéal pour les débit faible,
-\item idéal pour les appareils longue portée,
-\item il est difficile a détecter et à intercepter, gain pour sécurité.
-\end{itemize}
-
-\subsection{modulation}
-
-\subsection{demodulation}
-
-%ICI COMMENCE LE CHAPITRE 3
-\chapter{Création d'un signal avec une radio logicielle}
-\renewcommand{\leftmark}{CHAPITRE \thechapter.~~Titre Expérimentation de LoRa sur un SDR}
-
-\section{équipement nécessaire}
+\subsection{Matériel}
 
 Pour implémenter le codage de canal dans un SDR LoRa (Software-Defined Radio), il est généralement nécessaire de disposer d'un logiciel de définition de radio qui prend en charge la fonctionnalité de codage de canal. Cela peut être un logiciel open source comme GNU Radio ou SDRangel, ou un logiciel propriétaire fourni par le fabricant de l'équipement SDR
 
-\section{simulation avec GNU radio}
+\subsection{logiciel}
 
 GNU Radio est un toolkit qui permet de créer des flux de traitement de signal en utilisant des blocs prédéfinis. Ces blocs peuvent être combinés pour créer des chaînes de traitement de signal pour simuler des modulations CSS, capturer des signaux et en extraire des séquences de chirp.
 
@@ -211,7 +207,18 @@ blocs nécessaires :
 \item un analyseur de séquence.
 \end{itemize}
 
-%ICI COMMENCE LE DERNIER CHAPITRE
+\section{Méthode "Constellation traces"}
+
+\chapter{Résultats}
+
+
+La radio logicielle ($SDR$, pour $Software$-$Defined Radio$) est une technologie qui permet de mettre en œuvre des systèmes de radio à l'aide de logiciels plutôt que de matériel. Dans les systèmes de radio traditionnels, les différentes fonctions de la radio, comme l'accord sur une fréquence spécifique, la modulation et la démodulation du signal, et le filtrage du bruit, sont mises en œuvre à l'aide de composants matériels tels que des oscillateurs, des amplificateurs et des filtres.
+
+En revanche, les systèmes SDR utilisent des logiciels pour effectuer ces fonctions, ce qui permet une plus grande souplesse et adaptabilité. Les systèmes SDR peuvent être facilement reconfigurés pour prendre en charge différents types de systèmes de radio et de protocoles en modifiant le logiciel qui les contrôle. Cela rend les systèmes SDR particulièrement utiles pour les applications qui nécessitent la possibilité de prendre en charge plusieurs systèmes de radio ou qui doivent être reconfigurées pour prendre en charge de nouveaux types.
+
+Les systèmes SDR sont utilisés dans une variété de domaines comme  la télécommunication, la radiodiffusion ou encore la défense.
+
+
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}
 \renewcommand{\leftmark}{CONCLUSION}
