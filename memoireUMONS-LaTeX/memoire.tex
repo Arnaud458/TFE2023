@@ -95,21 +95,31 @@ La dernière partie du travail présentera une présentation des résultats obte
 
 \section{Traitement du signal et signal radio}
 
-Un signal est une variation dans l'espace ou dans le temps d'une quantité physique contenant de l'informations. Un signal peut incarner diverses formes d'informations comme du son ou une image. 
+Un signal est une variation dans l'espace ou dans le temps d'une quantité physique contenant de l'informations. Un signal peut être continu ou discret, on le nomme alors respectivement analogique ou numérique. Le type de signal dépent notamment de l'information qu'il contient. Un signal analogique peut contenir par exemple du son, là où un signal numérique contient généralement un nombre fini de valeur (par exemple des 0 et 1).
+Les deux catégories ne sont pas incompatible car il est souvent nécessaire en télécommication de pouvoir passer de l'un à l'autre.
 
-En télécommunication, les signaux sont associés aux ondes radios, ainsi appelé $radio signal$ ou signal radio. Un signal radio ou onde radio possède différents attributs dont les principaux sont: 
+L'utilisation de signaux radio en télécomunication confère de nombreux avanages, comme la portée, la vitesse de transmisison , la résistance aux interférence ou encore le coût de propagation. Tout ces avantages sont possible car un signal peut être modulé. La modulation est un technique permettant de modifier les propriétés du signal lui permettant de transporter de l'information.
+
+En télécommunication, les signaux sont associés aux ondes radios, ainsi appelé $radio signal$ ou signal radio. Voici les principals attributs d'un signal radio: 
 
 \begin{itemize}
-\item la largeur de spectre,
-\item la frécquence,
-\item la modulation,
-\item la puissance (en db),
-\item le SNR (signal to noise ratio),
-\item le bitrate,
+
+\item la frécquence, mesurée en Hertz. Elle détermine le combre de cycle qu'accomplie le signal par seconde.
+\item La largeur de spectre, elle dépent de la fréquence car c'est l'écart entre la plus haute fréquence et la plus basse du signal. Une plus grande parleur permets de transmettre plus d'information.
+\item L'amplitude. Selon le type de signal l'attribut possède différentes fonctions. Dans le cas d'un signal analogique l'amplitude est l'une des caractéristique principale d'identification du signal mesurant l'ampleur du signal. dans un signal numérique l'amplitude set plutot demarge entre les différentes états du signal. 
+\item la puissance, mesurée en décibel (dB). C'est la force du signal, un attribut important pour la réception du signal notamment.
+\item le $signal$ $to$ $noise$ $ratio$ ou SNR. Cet attribut mesure la qualité du du signal. une valeur élevée indique que le pourcentage de bruit est faible.
+\item le $bit$ $rate$,ou le taux de transmission mesure la quantité de donnée transmise en bit par seconde. cet attribut est exclusif aux signaux numériques. On parle de $Baud$ $rate$ pour les signaux analogiques. Ce n'est pas excatement l'équivalent du bit rate car c'est le nombre de symbole modifié par seconde, et un symbole peut contenir plusieurs bit pour un signal numérique.
 
 \end{itemize}
 
-Un signal a également besoin de divers composantes physiques comme un éméteur et un recepteur.
+Parmis ces différents attributs, certains sont utilisés pour effectuer une modulation. Les deux modulations les plus utilisés sont basées sur les attributs de la frécquence et de l'amplitude. La modulation en fréquence (ou $FM$ pour $frequency$ $modulation$) consiste à encoder l'information en faisant varier la frécquence en maitenant l'amplitude constance. La modulation en amplitude ($AM$) est le procédé inverse, c'est à dire encoder l'informatino en faisant varier l'amplitude tout en gardant la frécquence constante. Les deux méthodes de modulation ont leurs points forts et sont choisies en fonction des besoins spécifiques et des considérations de chaque diffusion.
+
+\textcolor{red}{plus loin dans la technique de modulation ?}
+
+L'un des attributs cités concerne le bruit. Le bruit en télécommunication se définit par l'altération non souhaité de l'intégrité d'un signal. Il peut prendre différente formes, les plus courantes étant les interferences électriques ou le bruit thermique. Le bruit dégrade le signal, pouvant provoquer de l'incertitude. 
+
+\textcolor{red}{plus loin dans l'impact du bruit ?}
 
 \section{LoRa}
 
@@ -125,75 +135,37 @@ En plus de sa portée étendue et de sa faible consommation d'énergie, LoRa se 
 
 \subsection{couche physique LoRa}
 
-Le codage de canal est une technique utilisée dans les systèmes de communication sans fil pour améliorer la robustesse et la fiabilité de la transmission des données. Dans le cas de LoRa, le codage de canal est une étape importante pour s'assurer que les données transmises sont correctement reçues et décodées par le récepteur en utilisant de la redondance.
-
-Cette redondance est générée par un paramètre de débit de codage.
-
-
-formule mathématique.
-
-
-Deux méthode :
-
+Dans le premier chapitre de ce travail se trouve une analyse de l'impementation de LoRa dans un SDR. Cette analyse a été faite en $reverse engeneering$. Le reverse engineering consiste à analyser un produit ou un système afin de comprendre comment il fonctionne ou d'identifier ses principes de conception. Dans le contexte de LoRa, le reverse engineering examine la technologie derrière LoRa afin de comprendre ses principes de base et sa conception. Les étapes de la conception de la couche physique de LoRa sont les suivantes :
 \begin{itemize}
-\item hard deconding
-\item sot decoding
-\end{itemize}
-
-
-
-Le blanchiment de canal (en anglais "channel whitening") est une méthode d'amélioration de la robustesse et de fiabilité de la transmission des données. Le blanchiment de canal est également une étape importante pour s'assurer que les données transmises sont correctement reçues et décodées par le récepteur.
-
-Cette technique consiste à utiliser une transformation aléatoire ou pseudo-aléatoire des données avant de les transmettre, de manière à répartir le spectre des fréquences de la transmission sur une large gamme de fréquences. Cela permet d'obtenir une meilleure résistance aux interférences et aux bruit de fond, ainsi qu'une meilleure robustesse face aux erreurs de transmission. En effet la transformation de la séquence assure une corrélation faible entre les bits de cette dernière.
-
-
-
-ajout d'une séquence pseudo random à l'output de l'encodeur.
-
-
-codeword associé à tout les bloc 0 est le codeword des bloc 0, donc b = 0. La séquence whiteneed bw = w.
-
-Deux méthode :
-
-\begin{itemize}
-\item hard dewhitening. Considérer whitening et dewhitening similaire, différence c'est que le dernier prend une séquence blanchie et sort la séquence originale.
-\item soft dewhitening. 
-\end{itemize}
-
-
-
-Le mélange de canal (en anglais "channel interleaving") est la dernirèe des méthode d'amélioration de la robustesse de la tranmission des données. 
-
+\item Le codage de canal est une technique utilisée dans les systèmes de communication sans fil pour améliorer la robustesse et la fiabilité de la transmission des données. Dans le cas de LoRa, le codage de canal est une étape importante pour s'assurer que les données transmises sont correctement reçues et décodées par le récepteur en utilisant de la redondance.
+\item Le mélange de canal (en anglais "channel interleaving") est la dernirèe des méthode d'amélioration de la robustesse de la tranmission des données. 
 Cette technique consiste à réarranger les données avant de les transmettre, en les intercalant entre elles de manière à les disperser sur le spectre des fréquences de la transmission. Cela permet de réduire l'impact des erreurs de transmission sur la qualité de la réception, en évitant que des erreurs consécutives ne se propagent et ne perturbent la décodage des données.
-
-
-La modulation CSS est l'étape la plus importante pour le sujet de ce travail. En effet, le signal modulé permet d'obtenir une séquence de $chirp$ ou un signal $chirp$. Cette séquence est unique et permettrait l'identification du noeud éméteur. 
-
-L'utilisation de la modulation CSS a plusieurs avantage :
-
-\begin{itemize}
-\item peut gourmande, pratique pour l'IOT,
-\item idéal pour les débit faible,
-\item idéal pour les appareils longue portée,
-\item il est difficile a détecter et à intercepter, gain pour sécurité.
+\item Le blanchiment de canal (en anglais "channel whitening") est une méthode d'amélioration de la robustesse et de fiabilité de la transmission des données. Le blanchiment de canal est également une étape importante pour s'assurer que les données transmises sont correctement reçues et décodées par le récepteur.
+Cette technique consiste à utiliser une transformation aléatoire ou pseudo-aléatoire des données avant de les transmettre, de manière à répartir le spectre des fréquences de la transmission sur une large gamme de fréquences. Cela permet d'obtenir une meilleure résistance aux interférences et aux bruit de fond, ainsi qu'une meilleure robustesse face aux erreurs de transmission. En effet la transformation de la séquence assure une corrélation faible entre les bits de cette dernière.
+\item La modulation CSS est l'étape la plus importante pour le sujet de ce travail. En effet, le signal modulé permet d'obtenir une séquence de $chirp$ ou un signal $chirp$. Cette séquence est unique et permettrait l'identification du noeud éméteur. 
+\item demodulation CSS
+\item dewhitening
+\item deineterleaving
+\item decoding
 \end{itemize}
+
+
+
+\subsection{modulation CSS}
+
+
+
+
 
 
 \subsection{LoRaWAN}
 
 
-Dans le premier chapitre de ce travail se trouve une analyse de l'impementation de LoRa dans un SDR. Cette analyse a été faite en $reverse engeneering$. Le reverse engineering consiste à analyser un produit ou un système afin de comprendre comment il fonctionne ou d'identifier ses principes de conception. Dans le contexte de LoRa, le reverse engineering examine la technologie derrière LoRa afin de comprendre ses principes de base et sa conception. Les étapes de la conception de la couche physique de LoRa sont les suivantes :
-\begin{itemize}
-\item coding
-\item ineterleaving
-\item whitening
-\item modulation CSS
-\item demodulation CSS
-\item dewhitening
-\item deineterleaving
-\item decoding
-\end{itemize} 
 
+
+\newpage
+
+\chapter{Travaux similaires et autres contributions}
 
 
 \newpage
@@ -204,32 +176,25 @@ Dans le premier chapitre de ce travail se trouve une analyse de l'impementation 
 
 \subsection{Matériel}
 
-Pour implémenter le codage de canal dans un SDR LoRa (Software-Defined Radio), il est généralement nécessaire de disposer d'un logiciel de définition de radio qui prend en charge la fonctionnalité de codage de canal. Cela peut être un logiciel open source comme GNU Radio ou SDRangel, ou un logiciel propriétaire fourni par le fabricant de l'équipement SDR
+La radio logicielle ($SDR$, pour $Software$-$Defined Radio$) est une technologie qui permet de mettre en œuvre des systèmes de radio à l'aide de logiciels plutôt que de matériel. Dans les systèmes de radio traditionnels, les différentes fonctions de la radio, comme l'accord sur une fréquence spécifique, la modulation et la démodulation du signal, et le filtrage du bruit, sont mises en œuvre à l'aide de composants matériels tels que des oscillateurs, des amplificateurs et des filtres.
+
+En revanche, les systèmes SDR utilisent des logiciels pour effectuer ces fonctions, ce qui permet une plus grande souplesse et adaptabilité. Les systèmes SDR peuvent être facilement reconfigurés pour prendre en charge différents types de systèmes de radio et de protocoles en modifiant le logiciel qui les contrôle. Cela rend les systèmes SDR particulièrement utiles pour les applications qui nécessitent la possibilité de prendre en charge plusieurs systèmes de radio ou qui doivent être reconfigurées pour prendre en charge de nouveaux types.
+
+Les systèmes SDR sont utilisés dans une variété de domaines comme  la télécommunication, la radiodiffusion ou encore la défense.
+
 
 \subsection{logiciel}
 
 GNU Radio est un toolkit qui permet de créer des flux de traitement de signal en utilisant des blocs prédéfinis. Ces blocs peuvent être combinés pour créer des chaînes de traitement de signal pour simuler des modulations CSS, capturer des signaux et en extraire des séquences de chirp.
 
-
-blocs nécessaires :
-\begin{itemize}
-\item Un générateur de signal (qui génère un signal CSS modulé)
-\item un éméteur
-\item un canal de transmission (avec du bruit)
-\item un récepteur, qui capture et démodule le signal
-\item un analyseur de séquence.
-\end{itemize}
+\section{mise en place d'un scénario}
 
 \section{Méthode "Constellation traces"}
 
 \chapter{Résultats}
 
 
-La radio logicielle ($SDR$, pour $Software$-$Defined Radio$) est une technologie qui permet de mettre en œuvre des systèmes de radio à l'aide de logiciels plutôt que de matériel. Dans les systèmes de radio traditionnels, les différentes fonctions de la radio, comme l'accord sur une fréquence spécifique, la modulation et la démodulation du signal, et le filtrage du bruit, sont mises en œuvre à l'aide de composants matériels tels que des oscillateurs, des amplificateurs et des filtres.
 
-En revanche, les systèmes SDR utilisent des logiciels pour effectuer ces fonctions, ce qui permet une plus grande souplesse et adaptabilité. Les systèmes SDR peuvent être facilement reconfigurés pour prendre en charge différents types de systèmes de radio et de protocoles en modifiant le logiciel qui les contrôle. Cela rend les systèmes SDR particulièrement utiles pour les applications qui nécessitent la possibilité de prendre en charge plusieurs systèmes de radio ou qui doivent être reconfigurées pour prendre en charge de nouveaux types.
-
-Les systèmes SDR sont utilisés dans une variété de domaines comme  la télécommunication, la radiodiffusion ou encore la défense.
 
 
 \chapter*{Conclusion}
