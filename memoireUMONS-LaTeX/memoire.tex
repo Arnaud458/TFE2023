@@ -146,7 +146,7 @@ En plus de sa portée étendue et de sa faible consommation d'énergie, LoRa se 
 
 Toutes ces  particularités font de LoRa une technologie complémentaire à celles déja existente plutot que rivale.
 
-LoRa est la couche physique de la technologie tandis que LoRaWAN est la couche MAC (media access control), une sous couche de la couche liaison de données. la couche physique de LoRa gère la frécquence radio ainsi que la modulation. LoRaWAN gère les aspect réseau (sécurité, propagation, adressage, etc).
+LoRa se compose de deux éléments principaux : la couche physique de la technologie et LoRaWAN, la couche MAC (media access control), une sous couche de la couche liaison de données. la couche physique de LoRa gère la fréquence radio ainsi que la modulation. LoRaWAN gère les aspects réseau (sécurité, propagation, adressage et sécurité).
 
 \subsection{couche physique LoRa}
 
@@ -175,6 +175,8 @@ spreading factor ? augmenter le spreading factor augmente le temps pour evoyer u
 
 faible spreading factor permet une consomation réduite mais réduit également la portée du signal.
 
+Ajuster le spreading factor permet également de réduire l'impact des interference
+
 ccl : tradeoff
 
 \subsection{modulation CSS}
@@ -191,6 +193,8 @@ les end devices peuvent faire la demodulation également
 
 
 \subsection{LoRaWAN}
+
+LoRaWAN est un protocol de type $low$ $power$, $wide$ $area$ $network$ (LPWAN) désigné pour la communication longue portée. Ce protocole opère avec la technologie LoRa et lui fournit une infrastructure capable de maintenir une communication à longue portée et à faible cout dans l'$IoT$.
 
 \subsubsection{avantage}
 
@@ -219,6 +223,17 @@ controle smart cities
 approvisionnement chaine logistique
 gestion installations diverses
 
+\subsubsection{limitations}
+
+payload limité (entre 51 et 241 octets)
+
+data rate faible (maximum 5.5 kbps sur une bande de 125Hz)
+
+restrictions liées aux régions (US, EU)
+
+communication asynchrone 
+
+
 \subsubsection{topologie}
 
 \textcolor{red}{image network lorawan}
@@ -232,6 +247,55 @@ LoRaWAN peut adapter le data rate en focntion de la topologie. par exemple ajust
 
 possibilité de mesurer la qualité du canal de communication (SNR). ex ajuster le datarate si bcp de bruit
 
+Device class :
+A end nodes (most common), 
+B beacon (deep sleep),
+C continuous downlink.
+
+\subsubsection{securité}
+
+Autentification : qui communique avec qui
+
+intégrité : les données ne sont pas altéré entre émteur et récepteur
+
+confidentialité : le réseau ne peut pas voir les données.
+
+chiffrage en AES
+deux types de clefs
+
+$root$ $key$ : clé partagé entre un end device et le serveur réseau. Utilisée pour l'authentification initiale et l'établissement d'une communication entre les deux éléments du réseau. Cette clé n'est jamais transmise par els air et est stockée dans un $join$ $server$
+
+$session$ $keys$ : clé générée dynamiquement et utilisé durant l'échnage de donnée pendant une session. Il y a deux session key différente, la AppSKEY pour le chiffrage des payload d'application, et la nwkSKEY pour les fonctionalité du réseau (chifrage à la couche MAC, integrity checks, etc).
+
+un join server est un server dédié au contenu sensible à l'activation du matériel dans un réseau LoRaWAN. Il autentifie le réseau et les aplication du servers. Il gère les $root$ $keys$. il génère les $session$ $keys$ et les distribue.
+
+Taille de clé de 128 bits,.
+pk aes et cette taille de clés ? pas trop de ressources donc taille minimale standard en terme de sécurité
+
+\subsubsection{session}
+
+deux types de sessions :
+
+1 network session:
+
+adresse du devices, la session key, MAC state et frame counters
+
+2 application session:
+
+la session key, frame counters
+
+la $frame$ $counter$ est une stratégie de défense servant à éviter les $replay$ $attacks$, en rejttant les données dépassée ou retransmise. 
+
+
+comment établir une session ?
+
+de manière dynamique en rejoigant un réseau (Over the air Activation $OTAA$) ou hardcodé (activation personalisée $ABP$)
+OTAA:
+procedure entre end devices et serveur réseau
+les clés sont regénérées à chaque nouvelle session
+ABP (moins safe mais moins contraignant en terme de ressources):
+pas de procédure
+clé hardcodé
 
 
 \newpage
