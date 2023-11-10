@@ -121,21 +121,38 @@ L'un des attributs cités concerne le bruit. Le bruit en télécommunication se 
 
 \textcolor{red}{plus loin dans l'impact du bruit ?}
 
+\newpage
+
 \section{LoRa}
 
-$LoRa$ (Long Range) est une technologie de communication sans fil basée sur la modulation en fréquence chirp spread spectrum (CSS), qui permet de transmettre des données sur de longues distances avec une faible consommation d'énergie. Elle a été développée par la société française Cycleo et est maintenant gérée par la fondation LoRa Alliance, qui regroupe plusieurs entreprises et organisations du monde entier.
+$LoRa$ (Long Range) est une technologie de communication sans fil qui permet de transmettre des données sur de longues distances avec une faible consommation d'énergie. Elle a été développée par la société française Cycleo et est maintenant gérée par la fondation LoRa Alliance, qui regroupe plusieurs entreprises et organisations du monde entier.
 
-LoRa est utilisée dans de nombreux domaines, tels que l'Internet des objets (IoT), la télématique, la météorologie, la surveillance environnementale, la gestion de l'énergie, la sécurité et la santé. Elle se distingue par sa portée étendue, qui peut atteindre plusieurs kilomètres en milieu urbain et plusieurs dizaines de kilomètres en milieu rural, ainsi que par sa faible consommation d'énergie, qui permet de prolonger la durée de vie des appareils connectés.
+LoRa est principalement utilisée dans l'$Iot$. Elle se distingue par sa portée étendue, qui peut atteindre plusieurs kilomètres en milieu urbain et plusieurs dizaines de kilomètres en milieu rural, ainsi que par sa faible consommation d'énergie, qui permet de prolonger la durée de vie des appareils connectés. Une longue portée avec un puissance limitée induit une plus faible bande passante que les autres technologies sans fil (le Wifi, la 4G, Bluetooth etc).
 
-LoRa utilise une bande de fréquences dédiée, qui varie selon les régions du monde. En Europe, par exemple, la bande de fréquences autorisée est comprise entre 863 et 870 MHz, tandis qu'aux États-Unis, elle se situe entre 902 et 928 MHz. La technologie LoRa utilise également une technique de multiplexage en temps partagé (TDMA) pour permettre à plusieurs appareils de partager la même bande de fréquences de manière à maximiser l'utilisation de la capacité de transmission.
 
-LoRa est conçue pour être utilisée dans des réseaux de communication à mailles (mesh networks), où chaque appareil peut agir en tant que nœud de transmission et de réception, ce qui permet de créer des réseaux étendus et robustes. Elle utilise également une technique de diffusion de données (multicast) pour envoyer les mêmes données à plusieurs appareils simultanément, ce qui permet de réaliser des économies de bande passante et d'énergie.
+LoRa utilise une bande de fréquences qui varie selon les régions du monde où LoRa est déployée :
+\begin{itemize}
+\item en Europe, la bande de fréquences autorisée est comprise entre 863 et 870 MHz,
+\item aux États-Unis, elle se situe entre 902 et 928 MHz,
+\item en Chine, la fréquence autorisée varie entre 779 et 787 MHz,
+\item les régions restantes ont elles aussi une fourchette unique.
+\end{itemize}
+
+La technologie LoRa utilise la modulation en fréquence chirp spread spectrum (CSS). la modulation CSS utilise un signal chirp, c'est à dire un signal modulé en fréquence linéaire. Ce signal a une amplitude constante mais balaie tout le spectre de la bande passante de manière liénaire dans une période de temps définie. Cette technique de modulation sera détaillé plus loin dans le chapitre.
+
+La technologie LoRa utilise également une technique de multiplexage en temps partagé (TDMA) pour permettre à plusieurs appareils de partager la même bande de fréquences de manière à maximiser l'utilisation de la capacité de transmission. Elle utilise également une technique de diffusion de données (multicast) pour envoyer les mêmes données à plusieurs appareils simultanément, ce qui permet de réaliser des économies de bande passante et d'énergie.
 
 En plus de sa portée étendue et de sa faible consommation d'énergie, LoRa se distingue par sa sécurité de transmission, qui est assurée grâce à l'utilisation de codes de sécurité uniques et à la possibilité de chiffrer les données transmises. Elle est également compatible avec de nombreux protocoles de communication couramment utilisés dans l'IoT, tels que TCP/IP, HTTP et MQTT, ce qui facilite son intégration dans les systèmes existants.
 
+Toutes ces  particularités font de LoRa une technologie complémentaire à celles déja existente plutot que rivale.
+
+LoRa est la couche physique de la technologie tandis que LoRaWAN est la couche MAC (media access control), une sous couche de la couche liaison de données. la couche physique de LoRa gère la frécquence radio ainsi que la modulation. LoRaWAN gère les aspect réseau (sécurité, propagation, adressage, etc).
+
 \subsection{couche physique LoRa}
 
-Dans le premier chapitre de ce travail se trouve une analyse de l'impementation de LoRa dans un SDR. Cette analyse a été faite en $reverse engeneering$. Le reverse engineering consiste à analyser un produit ou un système afin de comprendre comment il fonctionne ou d'identifier ses principes de conception. Dans le contexte de LoRa, le reverse engineering examine la technologie derrière LoRa afin de comprendre ses principes de base et sa conception. Les étapes de la conception de la couche physique de LoRa sont les suivantes :
+\subsubsection{découpage de la couche physique}
+
+Les étapes de la conception de la couche physique de LoRa sont les suivantes :
 \begin{itemize}
 \item Le codage de canal est une technique utilisée dans les systèmes de communication sans fil pour améliorer la robustesse et la fiabilité de la transmission des données. Dans le cas de LoRa, le codage de canal est une étape importante pour s'assurer que les données transmises sont correctement reçues et décodées par le récepteur en utilisant de la redondance.
 \item Le mélange de canal (en anglais "channel interleaving") est la dernirèe des méthode d'amélioration de la robustesse de la tranmission des données. 
@@ -150,9 +167,24 @@ Cette technique consiste à utiliser une transformation aléatoire ou pseudo-al�
 \end{itemize}
 
 
+Cette analyse a été faite en $reverse engeneering$. Le reverse engineering consiste à analyser un produit ou un système afin de comprendre comment il fonctionne ou d'identifier ses principes de conception. Dans le contexte de LoRa, le reverse engineering examine la technologie derrière LoRa afin de comprendre ses principes de base et sa conception.
+
+\subsubsection{spreading factor}
+
+spreading factor ? augmenter le spreading factor augmente le temps pour evoyer un message.
+
+faible spreading factor permet une consomation réduite mais réduit également la portée du signal.
+
+ccl : tradeoff
 
 \subsection{modulation CSS}
 
+quand un end devices envoie de l'information:
+8 upchirps : preambule
+2 down chirp : synchro
+5 up chirp: data
+
+les end devices peuvent faire la demodulation également
 
 
 
@@ -160,6 +192,45 @@ Cette technique consiste à utiliser une transformation aléatoire ou pseudo-al�
 
 \subsection{LoRaWAN}
 
+\subsubsection{avantage}
+
+pourquoi s'en servir ?,
+faible puissance, 
+portée accrue, 
+pénétration efficace de l'environement,
+déploiment ne nécessite pas de license,
+géolocalisable (le réseau peut détecter les devices),
+réseau public et privé,
+sécurité en end to end,
+mise à jour des micrologicielle par les air,
+programme de certification,
+vaste ecosystème,
+
+\subsubsection{use case}
+
+use case:
+aspect environemental 
+catastophe naturelle prevention,
+agriculture intelligente et supervision animale,
+protection des expèces menacées
+
+axpect inductrielle
+controle smart cities
+approvisionnement chaine logistique
+gestion installations diverses
+
+\subsubsection{topologie}
+
+\textcolor{red}{image network lorawan}
+
+lora devices et lora gateway. gateway écoute plusieurs fréquence simultanément (multichanneling) tant qu'un end devices écoute une seule fréquence à la fois. transport entre end devices et gateway : uplink. sens inverse downlink.
+
+
+end nodes connecté a des gateway. pas de lien direct le gateway écoute les end devices. les gateway forward les message jusqu'à un server réseau. les serveur indentifie le end devices. il gère la partie sécurité, l'information arrive à l'application.
+
+LoRaWAN peut adapter le data rate en focntion de la topologie. par exemple ajuster le spreading factor en fonction de la distance entre les devices et les gateway. (ex : longue distance = grand spreading factor, lower data rate)
+
+possibilité de mesurer la qualité du canal de communication (SNR). ex ajuster le datarate si bcp de bruit
 
 
 
