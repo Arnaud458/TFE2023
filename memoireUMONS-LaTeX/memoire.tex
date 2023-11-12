@@ -295,7 +295,7 @@ procedure entre end devices et serveur réseau
 les clés sont regénérées à chaque nouvelle session
 ABP (moins safe mais moins contraignant en terme de ressources):
 pas de procédure
-clé hardcodé
+les clés sont hardcodés
 
 
 \newpage
@@ -311,14 +311,29 @@ clé hardcodé
 
 \subsection{Matériel}
 
-La radio logicielle ($SDR$, pour $Software$-$Defined Radio$) est une technologie qui permet de mettre en œuvre des systèmes de radio à l'aide de logiciels plutôt que de matériel. Dans les systèmes de radio traditionnels, les différentes fonctions de la radio, comme l'accord sur une fréquence spécifique, la modulation et la démodulation du signal, et le filtrage du bruit, sont mises en œuvre à l'aide de composants matériels tels que des oscillateurs, des amplificateurs et des filtres.
+\subsubsection{radio logicielle}
 
-En revanche, les systèmes SDR utilisent des logiciels pour effectuer ces fonctions, ce qui permet une plus grande souplesse et adaptabilité. Les systèmes SDR peuvent être facilement reconfigurés pour prendre en charge différents types de systèmes de radio et de protocoles en modifiant le logiciel qui les contrôle. Cela rend les systèmes SDR particulièrement utiles pour les applications qui nécessitent la possibilité de prendre en charge plusieurs systèmes de radio ou qui doivent être reconfigurées pour prendre en charge de nouveaux types.
+La radio logicielle ($SDR$, pour $Software$-$Defined Radio$) est une technologie qui permet de mettre en œuvre des systèmes de radio à l'aide de logiciels plutôt que de matériel. 
 
-Les systèmes SDR sont utilisés dans une variété de domaines comme  la télécommunication, la radiodiffusion ou encore la défense.
+Dans les systèmes de radio traditionnels, les différentes fonctions de la radio, comme l'accord sur une fréquence spécifique, la modulation et la démodulation du signal, et le filtrage du bruit, sont mises en œuvre à l'aide de composants matériels tels que des oscillateurs, des amplificateurs et des filtres. En revanche, les systèmes SDR utilisent des logiciels pour effectuer ces fonctions, ce qui les rends beaucoup plus flexible car chaque composante est reconfigurable. Les radios logicielle sotn capable d'opérer sur une large portée de fréquence, aussi bien très basse fréquence comme haute fréquence.
+Les $SDR$ peuvent jouer le role d'éméteur ou de récepteur voir les deux.
+
+\subsubsection{module RN2483}
+
+Le microchip RN2483 est un module de technologie spécifique à LoRa. Cet appareil permet de communiquer à longue portée et à faible coup grêve à l'utilisation de la modulation basé sur LoRa.
+
+quelques spécificités du module :
+
+technologie LoRa
+faible puissance (ideale pour de l'iot car faible consommation)
+fréquence à 433, 868 et 915MHz (regarder la régions adéquate)
+AT command : configurable via un set de commande
+compatible avec le protocole LoRaWAN pour établir ou rejoindre ce type de réseau.
 
 
 \subsection{logiciel}
+
+\subsubsection{GNU radio}
 
 GNU Radio est un toolkit qui permet de créer des flux de traitement de signal en utilisant des blocs prédéfinis. Ces blocs peuvent être combinés pour créer des chaînes de traitement de signal pour simuler des modulations CSS, capturer des signaux et en extraire des séquences de chirp.
 
