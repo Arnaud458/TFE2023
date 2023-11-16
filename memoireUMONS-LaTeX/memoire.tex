@@ -307,16 +307,20 @@ les clés sont hardcodés
 
 \chapter{Expérimentations}
 
-\section{Ressources}
+\section{Matériel}
 
-\subsection{Matériel}
-
-\subsubsection{radio logicielle}
+\subsection{radio logicielle}
 
 La radio logicielle ($SDR$, pour $Software$-$Defined Radio$) est une technologie qui permet de mettre en œuvre des systèmes de radio à l'aide de logiciels plutôt que de matériel. 
 
 Dans les systèmes de radio traditionnels, les différentes fonctions de la radio, comme l'accord sur une fréquence spécifique, la modulation et la démodulation du signal, et le filtrage du bruit, sont mises en œuvre à l'aide de composants matériels tels que des oscillateurs, des amplificateurs et des filtres. En revanche, les systèmes SDR utilisent des logiciels pour effectuer ces fonctions, ce qui les rends beaucoup plus flexible car chaque composante est reconfigurable. Les radios logicielle sotn capable d'opérer sur une large portée de fréquence, aussi bien très basse fréquence comme haute fréquence.
 Les $SDR$ peuvent jouer le role d'éméteur ou de récepteur voir les deux.
+
+\subsubsection{RTL-SDR}
+
+deux radios logicielles
+
+\subsubsection{hackRf}
 
 \subsubsection{module RN2483}
 
@@ -330,6 +334,7 @@ fréquence à 433, 868 et 915MHz (regarder la régions adéquate)
 AT command : configurable via un set de commande
 compatible avec le protocole LoRaWAN pour établir ou rejoindre ce type de réseau.
 
+\subsubsection{pycom fipy}
 
 \subsection{logiciel}
 
@@ -337,7 +342,33 @@ compatible avec le protocole LoRaWAN pour établir ou rejoindre ce type de rése
 
 GNU Radio est un toolkit qui permet de créer des flux de traitement de signal en utilisant des blocs prédéfinis. Ces blocs peuvent être combinés pour créer des chaînes de traitement de signal pour simuler des modulations CSS, capturer des signaux et en extraire des séquences de chirp.
 
-\section{mise en place d'un scénario}
+\subsubsection{gqrx}
+
+logiciel open source d'analyse de fréquence radio pour les SDR.
+
+\subsubsection{Universal radio hacker, URH}
+
+logiciel open
+
+\section{Géneration et réception d'un signal LoRa}
+
+script pour module RN2483
+
+set up parametre signal
+
+lancer gqrx/urh
+
+sélectionner rtl-sdr ou hackrf comme récepteur
+
+configurer parem (frequence, sample rate, largeur de bande)
+
+exec script (radio tx)
+
+signal capturer dans le software
+
+\section{analyse du signal}
+
+preambule identifié ? up chirp (x10) down chirp ?(x2)
 
 \section{Méthode "Constellation traces"}
 

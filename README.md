@@ -1,4 +1,4 @@
 # TFE2023
-Dépot pour le TFE Umons 2022/2023
+Dépot pour le TFE Umons 2023/2024
 
-Tutoriel GNU radio : https://wiki.gnuradio.org/index.php/Tutorials
+Site The Thing Network : https://www.thethingsnetwork.org/docs/lorawan/
