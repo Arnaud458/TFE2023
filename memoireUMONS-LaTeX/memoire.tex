@@ -183,8 +183,21 @@ Cette technique consiste à utiliser une transformation aléatoire ou pseudo-al�
 
 Cette analyse a été faite en $reverse engeneering$. Le reverse engineering consiste à analyser un produit ou un système afin de comprendre comment il fonctionne ou d'identifier ses principes de conception. Dans le contexte de LoRa, le reverse engineering examine la technologie derrière LoRa afin de comprendre ses principes de base et sa conception.
 
+\subsubsection{modulation CSS}
+
+principe de base : the signal est modulé en sweepant sur un large bande de fréquence en utilisant des signaux "chirp". deux type de chirp "upchirp" et "downchirp".
+
+upchirp : la fréquence augmente avec le temps
+downchirp: la fréquence diminue avec le temps
+
+le signal est séparé sur une large bande de fréquence, permettant par exmeple plusieurs transmission sans causer d'interférence. la modulation CSS étale sur une bande plus large que les autres technoqies de modulation.
+
+l'une des principale contribution au fait que LoRa est low power et long range. car peu d'interférence et très bien intégré aux appareils a faible puissance utilisé par les technologies LoRa.
+les end devices peuvent faire la demodulation.
+
 \subsubsection{spreading factor}
 
+détermine le taux de variation de fréquence pour le signal modulé.
 spreading factor ? augmenter le spreading factor augmente le temps pour evoyer un message.
 
 faible spreading factor permet une consomation réduite mais réduit également la portée du signal.
@@ -192,15 +205,6 @@ faible spreading factor permet une consomation réduite mais réduit également 
 Ajuster le spreading factor permet également de réduire l'impact des interference
 
 ccl : tradeoff
-
-\subsection{modulation CSS}
-
-quand un end devices envoie de l'information:
-8 upchirps : preambule
-2 down chirp : synchro
-5 up chirp: data
-
-les end devices peuvent faire la demodulation également
 
 
 
