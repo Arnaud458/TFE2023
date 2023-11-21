@@ -318,7 +318,13 @@ Les $SDR$ peuvent jouer le role d'éméteur ou de récepteur voir les deux.
 
 \subsubsection{RTL-SDR}
 
-deux radios logicielles
+\textcolor{red}{image rtl sdr}
+
+La première radio utilisée comme récepteur. possède différente composante :
+
+rtl2832U: digitalise les signaux RF et les evnoie à l'ordinateur.
+Tuner chip : le tuner permet d'ajuster la fréquence. Grace à ça la sdr peut couvrir une larger portée.
+port usb : pour raccorder la sdr à l'ordinateur.
 
 \subsubsection{hackRf}
 
@@ -345,6 +351,38 @@ GNU Radio est un toolkit qui permet de créer des flux de traitement de signal e
 \subsubsection{gqrx}
 
 logiciel open source d'analyse de fréquence radio pour les SDR.
+
+installer gqrx via apt. (ubuntu)
+
+sélectionner le périphérique pour analyse
+
+\textcolor{red}{image choix périphérique}
+
+visualisation du spectre
+
+deux forme d'affichage,en spectre et en cascade.
+
+L'affichage du spectre fournit une représentation graphique en temps réel du spectre RF sur une gamme de fréquences.
+Il montre la puissance du signal de différentes fréquences sur une plage de fréquences spécifiée.
+L'axe des x représente la fréquence, tandis que l'axe des y affiche la force du signal (mesurée en dB).
+
+L'affichage en cascade est un spectrogramme qui visualise la force du signal au fil du temps.
+Il montre une série d'instantanés de spectre empilés les uns sur les autres, où l'intensité de la couleur représente la force du signal.
+Chaque ligne horizontale du tracé en cascade représente une vue du spectre capturée à un moment précis, créant ainsi un enregistrement historique de l'activité du signal.
+L'axe vertical représente la fréquence et l'axe horizontal représente le temps.
+
+\textcolor{red}{image affichage spectre}
+
+configuration de la réception :
+
+imput control (pas trop touché)
+
+FFt settings : très important règle la ff size, le raffraichissemetn d'image. le laps de temps. l'averaging
+
+Le paramètre Panadapter dB fait référence à l'échelle verticale dans la vue du spectre. Il représente la force du signal des fréquences radio reçues affichées sur l'axe vertical du graphique du spectre. Le réglage du paramètre Panadapter dB modifie l’échelle verticale de la force du signal affichée dans la vue du spectre.
+
+Le paramètre Waterfall dB concerne l'intensité de la couleur ou l'ombrage des fréquences affichées dans le tracé en cascade.Le réglage du paramètre Waterfall dB modifie l'intensité utilisée pour afficher la force du signal dans le tracé en cascade, permettant ainsi d'ajuster le contraste ou la visibilité des signaux plus faibles ou plus forts.
+
 
 \subsubsection{Universal radio hacker, URH}
 
