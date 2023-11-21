@@ -93,7 +93,7 @@ La dernière partie du travail présentera une présentation des résultats obte
 
 \chapter{Rappels et nomination des technologies}
 
-\section{Traitement du signal et signal radio}
+\section{signal radio}
 
 Un signal est une variation dans l'espace ou dans le temps d'une quantité physique contenant de l'informations. Un signal peut être continu ou discret, on le nomme alors respectivement analogique ou numérique. Le type de signal dépent notamment de l'information qu'il contient. Un signal analogique peut contenir par exemple du son, là où un signal numérique contient généralement un nombre fini de valeur (par exemple des 0 et 1).
 Les deux catégories ne sont pas incompatible car il est souvent nécessaire en télécommication de pouvoir passer de l'un à l'autre.
@@ -113,13 +113,27 @@ En télécommunication, les signaux sont associés aux ondes radios, ainsi appel
 
 \end{itemize}
 
+\section{traitement du signal}
+
+\subsubsection{modulation}
+
 Parmis ces différents attributs, certains sont utilisés pour effectuer une modulation. Les deux modulations les plus utilisés sont basées sur les attributs de la frécquence et de l'amplitude. La modulation en fréquence (ou $FM$ pour $frequency$ $modulation$) consiste à encoder l'information en faisant varier la frécquence en maitenant l'amplitude constance. La modulation en amplitude ($AM$) est le procédé inverse, c'est à dire encoder l'informatino en faisant varier l'amplitude tout en gardant la frécquence constante. Les deux méthodes de modulation ont leurs points forts et sont choisies en fonction des besoins spécifiques et des considérations de chaque diffusion.
 
 \textcolor{red}{plus loin dans la technique de modulation ?}
 
+\subsubsection{gestion du bruit}
+
 L'un des attributs cités concerne le bruit. Le bruit en télécommunication se définit par l'altération non souhaité de l'intégrité d'un signal. Il peut prendre différente formes, les plus courantes étant les interferences électriques ou le bruit thermique. Le bruit dégrade le signal, pouvant provoquer de l'incertitude. 
 
 \textcolor{red}{plus loin dans l'impact du bruit ?}
+
+\subsubsection{transformée de Fourier}
+
+La transformée de Fourier est un outil fondamental utilisé pour analyser et décomposer des signaux complexes en composantes fréquentielles. En transformant un signal dans le domaine temporel en sa représentation dans le domaine fréquentiel, la transformée de Fourier révèle les différentes composantes fréquentielles présentes dans le signal. En fonction du type de signal, la transformée de Fourier est adaptée.
+
+Pour les signaux continus, la CFT (Transformée de Fourier continue) convertit une fonction du temps en fonction de la fréquence en intégrant le signal par rapport aux sinusoïdes de toutes les fréquences possibles. Cette transformation fournit les informations d'amplitude et de phase pour chaque composante de fréquence présente dans le signal.
+
+pour les signaux discrets et échantillonnés, la DFT (Transformée de Fourier discrète) calcule un ensemble fini de composantes de fréquence. Il est calculé à l’aide d’un nombre fini d’échantillons, ce qui donne des composantes de fréquence discrètes. Il existe un méthode simplifiée pour les signaux discret appelé FFT (Fast Fourier Transform). Il s'agit d'un moyen plus rapide de calculer la transformée de Fourier, en particulier pour les signaux numériques comportant un grand nombre de points de données. L'avantage principal de cet algorithme permet de réduire le temps de calcul en divisant la DFT en sous problèmes. La FFT est une méthode très utilisée pour l'analyse de signaux.
 
 \newpage
 
