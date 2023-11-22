@@ -117,21 +117,59 @@ En télécommunication, les signaux sont associés aux ondes radios, ainsi appel
 
 \subsubsection{modulation}
 
-Parmis ces différents attributs, certains sont utilisés pour effectuer une modulation. Les deux modulations les plus utilisés sont basées sur les attributs de la frécquence et de l'amplitude. La modulation en fréquence (ou $FM$ pour $frequency$ $modulation$) consiste à encoder l'information en faisant varier la frécquence en maitenant l'amplitude constance. La modulation en amplitude ($AM$) est le procédé inverse, c'est à dire encoder l'informatino en faisant varier l'amplitude tout en gardant la frécquence constante. Les deux méthodes de modulation ont leurs points forts et sont choisies en fonction des besoins spécifiques et des considérations de chaque diffusion.
+La réception d'un signal nécessite des antennes dont les dimensions dépendent de la longueur d'onde du signal. un signal a haute fréquence à l'avantage d'être facilement transmissible sur une grand portée. Cependant les signaux originaux appelé $baseband$ $signal$ sont en basse fréquence. La modulation d'un signal permet de transformer le signal en haute fréquence, devenant ainsi le signal modulé.
 
-\textcolor{red}{plus loin dans la technique de modulation ?}
+Parmis ces différents attributs, certains sont utilisés pour effectuer une modulation. Les deux modulations les plus utilisés sont basées sur les attributs de la frécquence et de l'amplitude. La modulation en fréquence (ou $FM$ pour $frequency$ $modulation$) consiste à encoder l'information en faisant varier la frécquence en maitenant l'amplitude constance. La modulation en amplitude ($AM$) est le procédé inverse, c'est à dire encoder l'information en faisant varier l'amplitude tout en gardant la fréquence constante. 
+
+
+La modulation en amplitude est plus ancienne et est encore utilisé dans beaucoup de systèmes. Cette technique possède moins de contrainte car elle plus simple à implémenter. Elle requiert le signal modulant et un signal haute fréquence appelé $carrier$  $signal$
+
+Soient un signal modulant $u(t)$ et un sigal porteur (ou $carrier$ $signal$) $v(t)$, la modulation en fréquence s'effectue en multipliant les deux signaux pour obtenir le signal modulé $s(t)$ = $u(t)$ . $v(t)$
+
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=1]{../images/AM_mod.PNG}
+\caption{Exemple de modulation en amplitude}\label{term4}
+\end{figure}
+
+
+La modulation en fréquence permet d'obtenir des transmission de meilleur qualité plus résistante à leur environement tout en gardent une puissance d'émission constante. 
+
+Soient un signal modulant $u(t)$ et un signal porteur sinuosidal $v_{p}(t)$ = $A_{p}cos(2\pi f_{p}t)$ où
+
+$f_{p}$ est la fréquence de la porteuse,
+$A_{p}$ est l'amplitude de la porteuse,
+
+alors le signal modulé $s(t)$ = $A_{p}cos(2\pi \int_{0}^{t}f(\tau)d\tau)$ où
+
+$f$ est la fréquence instantanée. Elle s'exprime en fonction de la dérivation de fréquence $f_{\Delta}$, c'est à dire la dérivation maximale par rapport à la fréquence de la porteuse $f_{p}$. $f(t)$ = $f_{p}$ + $f_{\Delta} u(t)$
+
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=1]{../images/FM_mod.PNG}
+\caption{Exemple de modulation en fréquence}\label{term4}
+\end{figure}
+
+
 
 \subsubsection{gestion du bruit}
 
-L'un des attributs cités concerne le bruit. Le bruit en télécommunication se définit par l'altération non souhaité de l'intégrité d'un signal. Il peut prendre différente formes, les plus courantes étant les interferences électriques ou le bruit thermique. Le bruit dégrade le signal, pouvant provoquer de l'incertitude. 
 
-\textcolor{red}{plus loin dans l'impact du bruit ?}
+
+L'un des attributs cités concerne le bruit. Un signal est toujours affecté de petites fluctuations plus ou moins importantes, et sont les origines peuvent être diverses. Ces perturbations, appelée $bruit$ en télécommunication se définissent par l'altération non souhaité de l'intégrité d'un signal. Le bruit peut prendre différente formes, des perturbations de type essentiellement impulsionnel engendrées par des commutations de courants ou alors du bruit de fond généré dans les câbles et les composants électroniques en raison
+des mécanismes statistiques de la conduction électrique. Il est possible de réduire voir élimier l'influence des perturbations impulsionelles. En revanche, le bruit de fond est lui irreductible. Tout signal sans bruit n'existe pas, même à l'emission. Il est cependant possible que le bruit devienne invisible si son niveau est très faible. L'attribut SNR est donc un critère de la qualité du signal.
+
 
 \subsubsection{transformée de Fourier}
 
+Pour effectuer une analyse de signal, sa représentation est capitale. Les Figure 1 et 2 représente des signaux en fonction du temps écoulé. Il est possible de représenter des signaux selon une autre composante, la fréquence.
+
+
 La transformée de Fourier est un outil fondamental utilisé pour analyser et décomposer des signaux complexes en composantes fréquentielles. En transformant un signal dans le domaine temporel en sa représentation dans le domaine fréquentiel, la transformée de Fourier révèle les différentes composantes fréquentielles présentes dans le signal. En fonction du type de signal, la transformée de Fourier est adaptée.
 
-Pour les signaux continus, la CFT (Transformée de Fourier continue) convertit une fonction du temps en fonction de la fréquence en intégrant le signal par rapport aux sinusoïdes de toutes les fréquences possibles. Cette transformation fournit les informations d'amplitude et de phase pour chaque composante de fréquence présente dans le signal.
+Pour les signaux continus, la $CFT$ (Transformée de Fourier continue) convertit une fonction du temps en fonction de la fréquence en intégrant le signal par rapport aux sinusoïdes de toutes les fréquences possibles. Cette transformation fournit les informations d'amplitude et de phase pour chaque composante de fréquence présente dans le signal.
 
 pour les signaux discrets et échantillonnés, la DFT (Transformée de Fourier discrète) calcule un ensemble fini de composantes de fréquence. Il est calculé à l’aide d’un nombre fini d’échantillons, ce qui donne des composantes de fréquence discrètes. Il existe un méthode simplifiée pour les signaux discret appelé FFT (Fast Fourier Transform). Il s'agit d'un moyen plus rapide de calculer la transformée de Fourier, en particulier pour les signaux numériques comportant un grand nombre de points de données. L'avantage principal de cet algorithme permet de réduire le temps de calcul en divisant la DFT en sous problèmes. La FFT est une méthode très utilisée pour l'analyse de signaux.
 
