@@ -204,46 +204,66 @@ LoRa se compose de deux éléments principaux : la couche physique de la technol
 
 \subsubsection{découpage de la couche physique}
 
-Les étapes de la conception de la couche physique de LoRa sont les suivantes :
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=1]{../images/physical_lora_rx.PNG}
+\caption{Etapes de la transformation des données dans un éméteur LoRa}\label{term4}
+\end{figure}
+
+
+Les étapes de la conception de l'envoie de donnée dans la couche physique de LoRa sont les suivantes :
 \begin{itemize}
-\item Le codage de canal est une technique utilisée dans les systèmes de communication sans fil pour améliorer la robustesse et la fiabilité de la transmission des données. Dans le cas de LoRa, le codage de canal est une étape importante pour s'assurer que les données transmises sont correctement reçues et décodées par le récepteur en utilisant de la redondance.
-\item Le mélange de canal (en anglais "channel interleaving") est la dernirèe des méthode d'amélioration de la robustesse de la tranmission des données. 
-Cette technique consiste à réarranger les données avant de les transmettre, en les intercalant entre elles de manière à les disperser sur le spectre des fréquences de la transmission. Cela permet de réduire l'impact des erreurs de transmission sur la qualité de la réception, en évitant que des erreurs consécutives ne se propagent et ne perturbent la décodage des données.
-\item Le blanchiment de canal (en anglais "channel whitening") est une méthode d'amélioration de la robustesse et de fiabilité de la transmission des données. Le blanchiment de canal est également une étape importante pour s'assurer que les données transmises sont correctement reçues et décodées par le récepteur.
-Cette technique consiste à utiliser une transformation aléatoire ou pseudo-aléatoire des données avant de les transmettre, de manière à répartir le spectre des fréquences de la transmission sur une large gamme de fréquences. Cela permet d'obtenir une meilleure résistance aux interférences et aux bruit de fond, ainsi qu'une meilleure robustesse face aux erreurs de transmission. En effet la transformation de la séquence assure une corrélation faible entre les bits de cette dernière.
-\item La modulation CSS est l'étape la plus importante pour le sujet de ce travail. En effet, le signal modulé permet d'obtenir une séquence de $chirp$ ou un signal $chirp$. Cette séquence est unique et permettrait l'identification du noeud éméteur. 
-\item demodulation CSS
-\item dewhitening
-\item deineterleaving
-\item decoding
+\item Le codage de canal est une technique utilisée dans les systèmes de communication sans fil pour améliorer la robustesse et la fiabilité de la transmission des données. Dans le cas de LoRa, le codage de canal utilise la méthode $FEC$ (Forward error correction) pour corriger les erreurs causée par du bruit. La méthode FEC ajoute de l'information redondante sur les données.
+\item Le mélange de canal (ou $channel$ $interleaving$) suit la codage de canal.  
+Cette technique consiste à réarranger les bits de dataavant de les transmettre, en les intercalant entre elles de manière à les disperser sur le spectre des fréquences de la transmission. Cela permet de réduire l'impact des erreurs consécutives ($burst$ $error$).
+\item Le blanchiment de canal (en anglais $channel$ $whitening$) est la dernière étape avant la modulation du signal.
+Cette technique consiste à utiliser une transformation aléatoire ou pseudo-aléatoire des données avant de les transmettre, de manière à répartir le spectre des fréquences de la transmission sur une large gamme de fréquences. Cela permet également la récupération d'horloge pour le récepteur.
+\item La modulation CSS est l'étape principale de LoRa. En effet, les étapes précédantes sont comunes à de nombreuse technologie, mais la particularité de LoRa provient de la modulation. Cette étape est détaillée dans la section suivante du chapitre.
 \end{itemize}
 
+Chacune des étapes décrites doit être inversément réalisé pour le récepteur. Ainsi pour la récupération de donnée à l'arrivée, l'appareil récepteur gère la démodulation, le déblanchiment, le démellemnt et de décodage.
 
-Cette analyse a été faite en $reverse engeneering$. Le reverse engineering consiste à analyser un produit ou un système afin de comprendre comment il fonctionne ou d'identifier ses principes de conception. Dans le contexte de LoRa, le reverse engineering examine la technologie derrière LoRa afin de comprendre ses principes de base et sa conception.
+
+Cette analyse a été faite en $reverse$ $engeneering$ (\textcolor{red}{citer article}). Le reverse engineering consiste à analyser un produit ou un système afin de comprendre comment il fonctionne ou d'identifier ses principes de conception. Dans le contexte de LoRa, le reverse engineering examine la technologie derrière LoRa afin de comprendre ses principes de base et sa conception.
+
 
 \subsubsection{modulation CSS}
 
-principe de base : the signal est modulé en sweepant sur un large bande de fréquence en utilisant des signaux "chirp". deux type de chirp "upchirp" et "downchirp".
+Contrairement aux modulation classique en amplitude ou en fréquence, la modulation CSS étale le singal sur une large bande de fréquence. La modulation en fréquence est linéaire et utilise des chirps. un chirp est un signal dont la fréquence change en continue tout en conservant une amlitude constante. Il existe deux type de chirps : des $upchirp$ et $downchirp$.
 
-upchirp : la fréquence augmente avec le temps
-downchirp: la fréquence diminue avec le temps
+Dans un upchirp la fréquence augmente avec le temps tandis que dans un downchirp la fréquence diminue.
 
-le signal est séparé sur une large bande de fréquence, permettant par exmeple plusieurs transmission sans causer d'interférence. la modulation CSS étale sur une bande plus large que les autres technoqies de modulation.
+le signal est donc séparé sur une large bande de fréquence, permettant par exmeple plusieurs transmission sans causer d'interférence.
 
-l'une des principale contribution au fait que LoRa est low power et long range. car peu d'interférence et très bien intégré aux appareils a faible puissance utilisé par les technologies LoRa.
-les end devices peuvent faire la demodulation.
+La modulation CSS est l'une des principale contribution au fait que LoRa possède une faible consommation et une longue portée. Cette technioque est très bien intégrée aux appareils a faible puissance utilisé par les technologies LoRa.
 
 \subsubsection{spreading factor}
 
-détermine le taux de variation de fréquence pour le signal modulé.
-spreading factor ? augmenter le spreading factor augmente le temps pour evoyer un message.
+LoRa permet d'envoyer des paquets sur un longue distance à faible puissance. Selon l'environement dans lequel les appareils LoRa sont présents, il peut être utile de pouvoir ajuster certaines capacités.
 
-faible spreading factor permet une consomation réduite mais réduit également la portée du signal.
+L'étalement, ou $spreading$ $factor$ permet de déterminer le taux de variation de fréquence pour un signal. Modifier le spreading factor ajuste différentes propriété de la communications. Par exemple, si on augmente le spreading factor, les quatre conséquence principales sont :
 
-Ajuster le spreading factor permet également de réduire l'impact des interference
+\begin{itemize}
+\item l'augmentation de la portée. Comme la largeur de bande est plus large, la communication peut atteindre une portée supérieure.
+\item Augmentation de la résistance aux interférences. Comme le signal est étalé sur une bande plus largeur, il y a moins de risque de subit des interférences.
+\item Plus petit débit de donnée. Comme la bande est large, dans un temps défini moins de données sont transmises.
+\item Plus faible consommation. Les donnée transmise à un taux plus faible consomme moins d'énergie, ce qui prolonge la durée de vie des appareils dont l'économie d'énergie est une priorité.
+\end{itemize}
 
-ccl : tradeoff
+Diminuer le spreading factor engendre l'effet inverse.
 
+\subsubsection{structure d'un paquet LoRa}
+
+un paquet LoRa est structuré en 5 parties différentes :
+
+\begin{itemize}
+\item Le préambule : la première partie du paquet, composée d'un nombre variable d'upchirps. La valeur par défaut est fixée à 8 upchirps.
+\item L'identificateur réseau : après le préambule, le paquet contient deux symbole modulé pour l'indentification réseau.
+\item Des symboles de synchronization de fréquence. Après l'identificateur réseau, il y a des downchirps pour fair ela dinstinction entre les offsets d'échantillionage de temps ou de fréquence.
+\item La tête ($header$) du paquet. Elle contient les informations relatives à la taille du paquet, le code rate, la présence ou non d'un CRC ($cyclique$ $redundancy$ $check$) et une checksum.
+\item le payload. La dernière partie du paquet contient le payload d'une taille maximale de 255 bits et l'éventuelle CRC de 16 bits.
+\end{itemize}
 
 
 
