@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Read the data from the file
-data = np.fromfile('onechirp.complex', dtype=np.complex64)
+data = np.fromfile('../sample_data/onechirp.complex', dtype=np.complex64)
 total_data = len(data)
 
 # Separate the I/Q components from the original data
