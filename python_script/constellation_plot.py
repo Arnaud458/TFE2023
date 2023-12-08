@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-data = np.fromfile('../sample_data/mini.complex16s', dtype=np.complex64)
+data = np.fromfile('../sample_data/received_signal.complex', dtype=np.complex64)
 total_data = len(data)
 #print(total_data)
 #for i in range(200):
