@@ -1,0 +1,107 @@
+\chapter{Expérimentations}
+
+
+\renewcommand{\leftmark}{EXPERIMENTATIONS}
+
+\section{Matériel}
+
+\subsection{radio logicielle}
+
+La radio logicielle ($SDR$, pour $Software$-$Defined Radio$) est une technologie qui permet de mettre en œuvre des systèmes de radio à l'aide de logiciels plutôt que de matériel. 
+
+Dans les systèmes de radio traditionnels, les différentes fonctions de la radio, comme l'accord sur une fréquence spécifique, la modulation et la démodulation du signal, et le filtrage du bruit, sont mises en œuvre à l'aide de composants matériels tels que des oscillateurs, des amplificateurs et des filtres. En revanche, les systèmes SDR utilisent des logiciels pour effectuer ces fonctions, ce qui les rends beaucoup plus flexible car chaque composante est reconfigurable. Les radios logicielle sotn capable d'opérer sur une large portée de fréquence, aussi bien très basse fréquence comme haute fréquence.
+Les $SDR$ peuvent jouer le role d'éméteur ou de récepteur voir les deux.
+
+\subsubsection{RTL-SDR}
+
+\textcolor{red}{image rtl sdr}
+
+La première radio utilisée comme récepteur. possède différente composante :
+
+rtl2832U: digitalise les signaux RF et les evnoie à l'ordinateur.
+Tuner chip : le tuner permet d'ajuster la fréquence. Grace à ça la sdr peut couvrir une larger portée.
+port usb : pour raccorder la sdr à l'ordinateur.
+
+\subsubsection{hackRf}
+
+\subsubsection{module RN2483}
+
+Le microchip RN2483 est un module de technologie spécifique à LoRa. Cet appareil permet de communiquer à longue portée et à faible coup grêve à l'utilisation de la modulation basé sur LoRa.
+
+quelques spécificités du module :
+
+technologie LoRa
+faible puissance (ideale pour de l'iot car faible consommation)
+fréquence à 433, 868 et 915MHz (regarder la régions adéquate)
+AT command : configurable via un set de commande
+compatible avec le protocole LoRaWAN pour établir ou rejoindre ce type de réseau.
+
+\subsubsection{pycom fipy}
+
+\subsection{logiciel}
+
+\subsubsection{GNU radio}
+
+GNU Radio est un toolkit qui permet de créer des flux de traitement de signal en utilisant des blocs prédéfinis. Ces blocs peuvent être combinés pour créer des chaînes de traitement de signal pour simuler des modulations CSS, capturer des signaux et en extraire des séquences de chirp.
+
+\subsubsection{gqrx}
+
+logiciel open source d'analyse de fréquence radio pour les SDR.
+
+installer gqrx via apt. (ubuntu)
+
+sélectionner le périphérique pour analyse
+
+\textcolor{red}{image choix périphérique}
+
+visualisation du spectre
+
+deux forme d'affichage,en spectre et en cascade.
+
+L'affichage du spectre fournit une représentation graphique en temps réel du spectre RF sur une gamme de fréquences.
+Il montre la puissance du signal de différentes fréquences sur une plage de fréquences spécifiée.
+L'axe des x représente la fréquence, tandis que l'axe des y affiche la force du signal (mesurée en dB).
+
+L'affichage en cascade est un spectrogramme qui visualise la force du signal au fil du temps.
+Il montre une série d'instantanés de spectre empilés les uns sur les autres, où l'intensité de la couleur représente la force du signal.
+Chaque ligne horizontale du tracé en cascade représente une vue du spectre capturée à un moment précis, créant ainsi un enregistrement historique de l'activité du signal.
+L'axe vertical représente la fréquence et l'axe horizontal représente le temps.
+
+\textcolor{red}{image affichage spectre}
+
+configuration de la réception :
+
+imput control (pas trop touché)
+
+FFt settings : très important règle la ff size, le raffraichissemetn d'image. le laps de temps. l'averaging
+
+Le paramètre Panadapter dB fait référence à l'échelle verticale dans la vue du spectre. Il représente la force du signal des fréquences radio reçues affichées sur l'axe vertical du graphique du spectre. Le réglage du paramètre Panadapter dB modifie l’échelle verticale de la force du signal affichée dans la vue du spectre.
+
+Le paramètre Waterfall dB concerne l'intensité de la couleur ou l'ombrage des fréquences affichées dans le tracé en cascade.Le réglage du paramètre Waterfall dB modifie l'intensité utilisée pour afficher la force du signal dans le tracé en cascade, permettant ainsi d'ajuster le contraste ou la visibilité des signaux plus faibles ou plus forts.
+
+
+\subsubsection{Universal radio hacker, URH}
+
+logiciel open
+
+\section{Géneration et réception d'un signal LoRa}
+
+script pour module RN2483
+
+set up parametre signal
+
+lancer gqrx/urh
+
+sélectionner rtl-sdr ou hackrf comme récepteur
+
+configurer parem (frequence, sample rate, largeur de bande)
+
+exec script (radio tx)
+
+signal capturer dans le software
+
+\section{analyse du signal}
+
+preambule identifié ? up chirp (x10) down chirp ?(x2)
+
+\section{Méthode "Constellation traces"}
