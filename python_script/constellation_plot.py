@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from file_analysis import read_file
 
 data = np.fromfile('../sample_data/onechirp.complex', dtype=np.complex64)
 data16 = np.fromfile('../sample_data/received_signal.complex16s', dtype=np.complex_)
@@ -22,4 +23,4 @@ plt.xlabel('In-phase')
 plt.ylabel('Quadrature')
 plt.title('I/Q Samples')
 plt.grid(True)
-#plt.show()
+plt.show()
