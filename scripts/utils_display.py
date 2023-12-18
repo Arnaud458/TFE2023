@@ -2,7 +2,7 @@ from typing import List, Tuple
 
 import numpy as np
 import matplotlib.pyplot as plt
-from utils import load_signal
+from utils import load_signal , compute_differential
 
 
 def display_quadrature(*signals: List[Tuple[np.ndarray, str]]) -> None:
@@ -35,4 +35,4 @@ def display(data) -> None:
 
 
 if __name__ == "__main__":
-    display(load_signal('sample_data/test_64.npz', np.complex64))
+    display(load_signal('sample_data/test_64', np.complex64))

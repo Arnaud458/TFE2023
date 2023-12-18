@@ -1,7 +1,7 @@
 import math
 import numpy as np
 from rtlsdr import RtlSdr
-from utils import cut_signal, save_signal
+from utils import cut_signal, save_signal, save_signal_old
 
 
 def capture_signal():
@@ -28,7 +28,7 @@ if __name__ == "__main__":
     TRESHOLD = 0.01
     SIGNAL = cut_signal(capture_signal(), TRESHOLD)
     if len(SIGNAL) > 0:
-        save_signal(SIGNAL,'sample_data/test_64', np.complex64)
-        #save_signal(SIGNAL,'sample_data/test_128', np.complex128)
+        save_signal_old(SIGNAL,'sample_data/test_64', np.complex64)
+        #save_signal_old(SIGNAL,'sample_data/test_128', np.complex128)
     else:
         print("no signal found")

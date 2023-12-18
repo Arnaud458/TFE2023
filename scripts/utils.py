@@ -1,8 +1,8 @@
 import numpy as np
 
 
-DIFFERENTIAL_INTERVAL = 1
-FREQUENCY_OFFSET = 1
+DIFFERENTIAL_INTERVAL = 15
+FREQUENCY_OFFSET = -62500
 
 
 def compute_differential(

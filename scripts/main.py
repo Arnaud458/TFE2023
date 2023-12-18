@@ -1,21 +1,26 @@
 import numpy as np
-from utils import cut_signal, save_signal
+import matplotlib.pyplot as plt
+from utils import cut_signal, save_signal, compute_differential, load_signal
 
 
 if __name__ == "__main__":
-    # DATA = np.fromfile('sample_data/test_128', dtype=np.complex128)
-    # print(type(DATA))
-    # DATA = cut_signal(DATA[500:], 0.01)
-    # print(type(DATA))
+    
+    DATA = load_signal('sample_data/test_128', dtype=np.complex128)
 
-    # save_signal(DATA, "sample_data/test_128_cut_numpy_savez_compressed", dtype=np.complex128)
+    n = 15000
+    delta_f = -62500
+    differential_data = np.zeros_like(DATA)  # Create an array to store differential data
+    for i in range(n, len(DATA)):
+        differential_data[i] = DATA[i] * np.conj(DATA[i - n]) * np.exp(-1j * 2 * np.pi * delta_f * n)
 
-    # save_signal(DATA, 'sample_data/test_64_cut', dtype=np.complex64)
 
-    DATA = np.load('sample_data/test_128_cut_numpy_savez_compressed.npz')
+    differential_i = np.real(differential_data)
+    differential_q = np.imag(differential_data)
 
-    print(type(DATA))
-
-    print(type(DATA['arr_0']))
-
-    print(type(DATA['arr_0'][0]))
+    plt.figure(figsize=(8, 6))
+    plt.scatter(differential_i, differential_q, s=1, c='red', alpha=0.5)
+    plt.xlabel('Differential In-phase')
+    plt.ylabel('Differential Quadrature')
+    plt.title('Differential I/Q Samples')
+    plt.grid(True)
+    plt.show()
