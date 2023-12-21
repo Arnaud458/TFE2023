@@ -5,11 +5,11 @@ from utils import cut_signal, save_signal, compute_differential, load_signal
 
 if __name__ == "__main__":
     
-    DATA = load_signal('sample_data/test_128', dtype=np.complex128)
+    DATA = load_signal('sample_data/test_64_misc', dtype=np.complex64)
 
-    n = 15000
+    n = 1
     delta_f = -62500
-    differential_data = np.zeros_like(DATA)  # Create an array to store differential data
+    differential_data = np.zeros_like(DATA)
     for i in range(n, len(DATA)):
         differential_data[i] = DATA[i] * np.conj(DATA[i - n]) * np.exp(-1j * 2 * np.pi * delta_f * n)
 

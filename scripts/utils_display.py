@@ -35,4 +35,5 @@ def display(data) -> None:
 
 
 if __name__ == "__main__":
-    display(load_signal('sample_data/test_64', np.complex64))
+    display(load_signal('sample_data/test_64_misc', np.complex64))
+    #display_quadrature((load_signal('sample_data/test_64_1MHz', dtype=np.complex64)),'data')
