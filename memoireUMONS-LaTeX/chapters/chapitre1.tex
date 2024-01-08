@@ -53,7 +53,7 @@ $s(t)$ = $u(t)$ . $v(t)$
 \begin{figure}[h]
 \centering
 
-\includegraphics[scale=1]{../images/AM_mod.PNG}
+\includegraphics[scale=1]{images/AM_mod.PNG}
 \caption{Exemple de modulation en amplitude}\label{term4}
 \end{figure}
 
@@ -81,7 +81,7 @@ $f_{p}$. $f(t)$ = $f_{p}$ + $f_{\Delta} u(t)$
 \begin{figure}[h]
 \centering
 
-\includegraphics[scale=1]{../images/FM_mod.PNG}
+\includegraphics[scale=1]{images/FM_mod.PNG}
 \caption{Exemple de modulation en fréquence}\label{term4}
 \end{figure}
 
@@ -159,7 +159,7 @@ LoRa se compose de deux éléments principaux : la couche physique de la technol
 \begin{figure}[h]
 \centering
 
-\includegraphics[scale=1]{../images/physical_lora_rx.PNG}
+\includegraphics[scale=1]{images/physical_lora_rx.PNG}
 \caption{Etapes de la transformation des données dans un éméteur LoRa}\label{term4}
 \end{figure}
 
@@ -234,21 +234,36 @@ un paquet LoRa est structuré en 5 parties différentes :
 
 LoRaWAN est un protocol de type $low$ $power$, $wide$ $area$ $network$ (LPWAN) désigné pour la communication longue portée. Ce protocole opère avec la technologie LoRa et lui fournit une infrastructure capable de maintenir une communication à longue portée et à faible cout dans l'$IoT$.
 
-\textcolor{red}{FIN REDACTION}
+\subsubsection{aspets généreux de la technologie}
 
-\subsubsection{avantage}
+LoraWan bénéficie donc d'une faible puissance de consomation et d'une portée accrue. Elle est également efficace dans différents environement. Le signal est capable de pénétrer diverse terrains et structures.
+Le déploiment d'un infrastructure LoRa ne nécessite pas de license, et son réseau peut être public ou privé. 
 
-pourquoi s'en servir ?,
-faible puissance, 
-portée accrue, 
-pénétration efficace de l'environement,
-déploiment ne nécessite pas de license,
-géolocalisable (le réseau peut détecter les devices),
-réseau public et privé,
-sécurité en end to end,
-mise à jour des micrologicielle par les air,
-programme de certification,
-vaste ecosystème,
+\vspace{0.1cm}
+
+Le coeur de LoRaWAN réside sur la gestion de l'énergie, permettant aux appareils de fonctionner avec une consommation d'énergie minimale, prolongeant leur durée de vie tout en garantissant une fonctionnalité à long terme. A cette caractéristique de faible consommation d'énergie s'ajoute ses capacités en termes de portée, capable de pénéter diverses environements. Cela rend la technologie efficace aussi bien milieu rurale qu'urbain. LoRaWAN opère sur une bande de fréquence qui ne nécessite pas de license d'émition, par exemple sur la bande ISM pour \textit{Industrial, Scientific, and Medical}.Les bandes ISM, (868 MHz en Europe ou 915 MHz aux USA) sont disponible pour l'utilisation de différentae technologie, incluant LoraWAN.
+
+\vspace{0.1cm}
+
+LoRaWAN possède des capacités de géolocalisation, permettant au réseau de détecter et de localiser précisément les appareils au sein de son domaine. LoraWAn utilise différente méthodes pour localiser ses appareils comme \textbf{Received signal strengh indication} ou RSSI, \textit{Time difference on Arrival} ou TDOA, une triangulation ou alors une combinaison de plusieurs des méthodes.
+
+\vspace{0.1cm}
+
+LoRaWAN utilise des protocoles de sécurité end-to-end, aussi bien dans un réseau public intégré que dans un réseau privé.L'architecture LoraWan (décrite en détails dans la section 1.3.2.2) contient plusieurs couche de sécurité. Au niveau des \textit{end devices}, une routine d'identification est imposée avant l'accès au réseau. seul les appareils de confiance son donc autorisé à communiquer. Ensuite, une fois la communication commencée, les données sont chiffrées avant d'être transmise dans le réseau. Le framework sécuritaire de Lora ne se limite pas à l'autentification et au chiffrage. LoraWan gère également les mise à jour en continue par les airs, ainsi qu'une supervision continue sur d'éventuelles intrusions.
+
+\vspace{0.1cm}
+
+Avec toutes ces caractéristiques, LoraWan s'est développé dans de nombreux domaines aussi bien environementaux qu'industriels. Les principales utilisations de LoraWan actuelles sont les suivantes :
+
+\begin{itemize}
+
+\item la surveillance environementale en général. Lorawan peut être déployé pour surveiller des niveaux de températures, d'humidité, de bruits ou encore d'autres paramètres dans n'importe quel milieu. Une compagnie Hollandaise, Sensoterra, utilise notamment LoraWan pour surveiller la qualité des sols.
+\item Les \textit{smart cities}. LoraWan est actif sur différents aspects comme la gestion intelligent de l'éclairage, la gestion des déchets, la surveillance, etc.
+\item l'embarqué industriel. La maintenance et la surveillance de matériel et de l'équipement peut être gérée par Lorawan? TataSteel, une compagnie indienne utilise LoraWan pour ces équipements industriels
+
+\item la prévention de catastrophe naturelle. Que ce soit en prévision, pendant ou après d'éventuelles catastrophes naturelles, la longue portée et la surveillance en temps réel sont des atoux cruciaux pour ce genre d'évènement.
+\end{itemize}
+
 
 \subsubsection{use case}
 
