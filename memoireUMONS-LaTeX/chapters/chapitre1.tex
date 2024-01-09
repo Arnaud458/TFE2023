@@ -54,7 +54,7 @@ $s(t)$ = $u(t)$ . $v(t)$
 \centering
 
 \includegraphics[scale=1]{images/AM_mod.PNG}
-\caption{Exemple de modulation en amplitude}\label{term4}
+\caption{Exemple de modulation en amplitude}\label{term1}
 \end{figure}
 
 
@@ -82,7 +82,7 @@ $f_{p}$. $f(t)$ = $f_{p}$ + $f_{\Delta} u(t)$
 \centering
 
 \includegraphics[scale=1]{images/FM_mod.PNG}
-\caption{Exemple de modulation en fréquence}\label{term4}
+\caption{Exemple de modulation en fréquence}\label{term2}
 \end{figure}
 
 
@@ -160,7 +160,7 @@ LoRa se compose de deux éléments principaux : la couche physique de la technol
 \centering
 
 \includegraphics[scale=1]{images/physical_lora_rx.PNG}
-\caption{Etapes de la transformation des données dans un éméteur LoRa}\label{term4}
+\caption{Etapes de la transformation des données dans un éméteur LoRa}\label{term3}
 \end{figure}
 
 
@@ -219,6 +219,8 @@ Diminuer le spreading factor engendre l'effet inverse.
 
 un paquet LoRa est structuré en 5 parties différentes :
 
+\vspace{0.1cm}
+
 \begin{itemize}
 \item Le préambule : la première partie du paquet, composée d'un nombre variable d'upchirps. La valeur par défaut est fixée à 8 upchirps.
 \item L'identificateur réseau : après le préambule, le paquet contient deux symbole modulé pour l'indentification réseau.
@@ -234,7 +236,7 @@ un paquet LoRa est structuré en 5 parties différentes :
 
 LoRaWAN est un protocol de type $low$ $power$, $wide$ $area$ $network$ (LPWAN) désigné pour la communication longue portée. Ce protocole opère avec la technologie LoRa et lui fournit une infrastructure capable de maintenir une communication à longue portée et à faible cout dans l'$IoT$.
 
-\subsubsection{aspets généreux de la technologie}
+\subsubsection{aspets généraux de la technologie}
 
 LoraWan bénéficie donc d'une faible puissance de consomation et d'une portée accrue. Elle est également efficace dans différents environement. Le signal est capable de pénétrer diverse terrains et structures.
 Le déploiment d'un infrastructure LoRa ne nécessite pas de license, et son réseau peut être public ou privé. 
@@ -255,99 +257,125 @@ LoRaWAN utilise des protocoles de sécurité end-to-end, aussi bien dans un rés
 
 Avec toutes ces caractéristiques, LoraWan s'est développé dans de nombreux domaines aussi bien environementaux qu'industriels. Les principales utilisations de LoraWan actuelles sont les suivantes :
 
+\vspace{0.1cm}
+
 \begin{itemize}
 
 \item la surveillance environementale en général. Lorawan peut être déployé pour surveiller des niveaux de températures, d'humidité, de bruits ou encore d'autres paramètres dans n'importe quel milieu. Une compagnie Hollandaise, Sensoterra, utilise notamment LoraWan pour surveiller la qualité des sols.
 \item Les \textit{smart cities}. LoraWan est actif sur différents aspects comme la gestion intelligent de l'éclairage, la gestion des déchets, la surveillance, etc.
-\item l'embarqué industriel. La maintenance et la surveillance de matériel et de l'équipement peut être gérée par Lorawan? TataSteel, une compagnie indienne utilise LoraWan pour ces équipements industriels
-
+\item l'embarqué industriel. La maintenance et la surveillance de matériel et de l'équipement peut être gérée par Lorawan? TataSteel, une compagnie indienne, utilise LoraWan pour ces équipements industriels.
 \item la prévention de catastrophe naturelle. Que ce soit en prévision, pendant ou après d'éventuelles catastrophes naturelles, la longue portée et la surveillance en temps réel sont des atoux cruciaux pour ce genre d'évènement.
 \end{itemize}
 
+\vspace{0.1cm}
 
-\subsubsection{use case}
+Cependant, toutes ses caractéristiques entrainent un certain nombre de limitations. La restriction de la fréquence en fonction de la région peut rendre le déploiment d'une même infrastructure à différent endroit dans le monde plus difficile. Cela peut aussi entrainer des problèmes de compatibilité entre régions, notament pour des chaines logistique ou d'approvisionement qui traverse plusieurs régions.
 
-use case:
-aspect environemental 
-catastophe naturelle prevention,
-agriculture intelligente et supervision animale,
-protection des expèces menacées
+\vspace{0.1cm}
 
-axpect inductrielle
-controle smart cities
-approvisionnement chaine logistique
-gestion installations diverses
+Une faible consomation de puissance avec une grande portée a un impact sur la taille et la vitesse de l'information. La taille du payload d'un message est limitée entre 51 et 241 octets. La vitesse de transmission est également peu élevée, atteignant un maximum de 5.5kbps sur une largeur de bande de 125hz.
 
-\subsubsection{limitations}
+\vspace{0.1cm}
 
-payload limité (entre 51 et 241 octets)
+la communication au sein d'un réseau LoraWan se fait en grande partie de manière asynchrone. La synchronisation dépend de la classe de l'appareils, qui est détaillé dans la section topologie. C'est un avantage pour maintenir une grande autonomie de batterei pour les appareils. LoraWan possède un système pour limiter les colision entre message si plusieurs appareils communiquent simultanénent. Ce système est basé sur une combinaison entre \textit{Listen before talk} LBT et des delais aléatoires (citer papier). Il est néamoins possible que dans un environement très dense des collisions puisse encore se produire. La comunications asynchrone et le système d'évitement de collision entraine une augmentation du temps entre les envois et la réception de message.
 
-data rate faible (maximum 5.5 kbps sur une bande de 125Hz)
+\subsubsection{Topologie de Lorawan}
 
-restrictions liées aux régions (US, EU)
+\begin{figure}[h]
+\centering
 
-communication asynchrone 
+\includegraphics[scale=0.1]{images/architecture.png}
+\caption{Tolpologie de l'infrastructure LoraWan}\label{term4}
+\end{figure}
 
+La figure 4 montre les 4 types d'appareils qui composent la topologie d'un infrastrucure LoraWan. 
 
-\subsubsection{topologie}
+Les end devices sont les noeuds qui collectent les informations a envoyer à travers le réseau. Ils sont catégorisés en trois sous classes : A, B et C. Les apareils de classe A sont les plus économe en énergie. Ils ont été créé pour conserver leur énergie et comunique exclusivement en comunication asynchrone. Les appareils de classe A écoute les message provenant des serveur uniquement après avoir eux même transmis un message. la classe A regroupe les appareils les moins énergivore. Les appareils de classe B sont assez similaires avec ceux de classe A, mais sont occationellement synchronisés avec les servers du réseau. Ils possèdent des capacités supérieur de reception leur permettant de se synchroniser avec le schedule des serveurs, ce qui augmente considérablement l'efficacité du temps de réponses dans le réseau. Finalement, les appareils de classe C sont en écoute permanente de message provenant des serveur. Ils sont plus les plus réactif mais également les plus énergivores. Les end devices sont donc classés selon deux paramètres : leur réactivité et leur consomation d'énergie. En fonction de eur classe, ils ont également la possibilité de recevoir des message server après avoir transmis de l'information. L'envoie d'un message d'un end devices vers les serveurs est appelé \textit{uplink message} et l'envoie d'un message depuis les serveur vers les end devices est appelée \textit{downlink message}.
 
-\textcolor{red}{image network lorawan}
+Les gateways font le role d'intermédiaire entre les end devices et le serveur réseau. Ils recoivent les transmissions depuis les end devices dans leur zone de couverture
+et forward les messages vers le serveur réseau. Les gateways peuvent écouter plusieurs fréquence simultanénent (\textit{multichanneling}) là où les end devices n'écoutent qu'une seule fréquence. Les gateway gèrent la communication radio avec les end devices en utilisation la modulation de LoRa.
 
-lora devices et lora gateway. gateway écoute plusieurs fréquence simultanément (multichanneling) tant qu'un end devices écoute une seule fréquence à la fois. transport entre end devices et gateway : uplink. sens inverse downlink.
+Le serveur réseau est la composante centrale de l'infrastructure. Il gère tout le réseau, que ce soit les données reçu des gateays, l'identification et l'activation des end devices dans le réseau, le routing ou encore l'adapation du data rate. Le serveur réseau supervise également l'aspect sécurité au sein du réseau en gèrant les clefs de chiffrage et les protocoles de sécurité.
 
+Le serveur application de LoraWan reçoit les données forwardés depuis le serveur réseau. C'est l'interface entre le réseau de LoraWan et les différents service ou application d'utilisaturs finaux. Les utilisateurs intéragissent avec le serveur d'application pour n'importe quelle action a effectuer sur le réseau ou pour la récupération de données du réseau. Les données reçues par le serveur réseau sont traduite par le server d'application avant d'être interprétée par l'utilisateur final.
 
-end nodes connecté a des gateway. pas de lien direct le gateway écoute les end devices. les gateway forward les message jusqu'à un server réseau. les serveur indentifie le end devices. il gère la partie sécurité, l'information arrive à l'application.
+\subsubsection{Sécurité}
 
-LoRaWAN peut adapter le data rate en focntion de la topologie. par exemple ajuster le spreading factor en fonction de la distance entre les devices et les gateway. (ex : longue distance = grand spreading factor, lower data rate)
+La sécurité dans l'architecture LoraWan se concentre sur trois axe principaux :
 
-possibilité de mesurer la qualité du canal de communication (SNR). ex ajuster le datarate si bcp de bruit
+\begin{itemize}
+\item l'authentification : qui communique avec qui.
+\item L'intégrité : les données ne sont pas altérées entre l'émetteur et le recepteur.
+\item La confidentialité : les données ne sont visible par personne au sein du réseau hormi l'émetteur et le récepteur. 
+\end{itemize}
 
-Device class :
-A end nodes (most common), 
-B beacon (deep sleep),
-C continuous downlink.
+La sécurité repose sur le chiffrage des données. Les données sont chiffrés en utilisant l'algorithme de cryptographie AES (\textit{advanced encryption standart}).La taille des clefs est de 128 bits. Ce choix est motivés par un équilibre entre une sécurité suffisante et une consomation réduire de ressources.
 
-\subsubsection{securité}
+Il y a deux types de clefs utilisée dans LoraWan. La \textit{root key} est la clé partagée entre un end device et le serveur réseau. Cette cle est utilisée pour l'authentification initiale et l'établissement d'une communication entre les deux éléments du réseau. Cette clé n'est jamais transmise par les air, elle est stockée dans un \textit{join server}. Un join server est un server dédié au contenu sensible à l'activation du matériel dans un réseau LoRaWAN. Il autentifie le réseau et les application du servers. Il gère les root keys. il génère également le second type de clés de LoraWan, les \textit{session keys}.
 
-Autentification : qui communique avec qui
+Les session keys sont des clé générée dynamiquement par le join server et utilisé durant l'échnage de donnée pendant une session. Il y a deux session key différente, la \textit{AppSKEY} pour le chiffrage des payload d'application, et la \textit{nwkSKEY} pour les fonctionalités du réseau (le chifrage à la couche MAC, les vérification d'integrité, etc).
 
-intégrité : les données ne sont pas altéré entre émteur et récepteur
+\subsubsection{Session}
 
-confidentialité : le réseau ne peut pas voir les données.
+L'établissement d'une session entre un end devices et le réseau LoraWan peut se faire de deux façons différentes.
 
-chiffrage en AES
-deux types de clefs
+La première méthode est une méthode dynamique appelée \textit{Over the Air Activation} ou OTAA et se déroule de la façon suivante: 
+\begin{itemize}
+\item 
+\end{itemize}
 
-$root$ $key$ : clé partagé entre un end device et le serveur réseau. Utilisée pour l'authentification initiale et l'établissement d'une communication entre les deux éléments du réseau. Cette clé n'est jamais transmise par els air et est stockée dans un $join$ $server$
+    Device Initialization:
+        The end device has a unique DevEUI (Device EUI) and AppEUI (Application EUI) assigned to it. These identifiers are used during the join process.
 
-$session$ $keys$ : clé générée dynamiquement et utilisé durant l'échnage de donnée pendant une session. Il y a deux session key différente, la AppSKEY pour le chiffrage des payload d'application, et la nwkSKEY pour les fonctionalité du réseau (chifrage à la couche MAC, integrity checks, etc).
+    Join Request:
+        The end device initiates the join process by sending a join request message to the LoRaWAN network server.
+        The join request includes the DevEUI, AppEUI, and a nonce (random number) generated by the device.
 
-un join server est un server dédié au contenu sensible à l'activation du matériel dans un réseau LoRaWAN. Il autentifie le réseau et les aplication du servers. Il gère les $root$ $keys$. il génère les $session$ $keys$ et les distribue.
+    Network Server Response:
+        Upon receiving the join request, the network server validates the request and checks its records for the DevEUI and AppEUI.
+        The server generates a random number called a DevNonce (Device Nonce) and creates a join accept message for the specific device.
+        The join accept message includes the DevAddr (Device Address), NwkSKey (Network Session Key), AppSKey (Application Session Key), and the DevNonce.
 
-Taille de clé de 128 bits,.
-pk aes et cette taille de clés ? pas trop de ressources donc taille minimale standard en terme de sécurité
+    Device Activation:
+        The end device receives the join accept message from the network server.
+        It extracts the NwkSKey, AppSKey, DevAddr, and DevNonce from the join accept message.
+        The device uses these parameters to calculate its own session keys (NwkSKey and AppSKey) and activates itself on the LoRaWAN network.
 
-\subsubsection{session}
+    Secure Communication Established:
+        The end device and the network server now share a common set of keys (NwkSKey and AppSKey), allowing secure communication between them.
+        Subsequent messages exchanged between the device and the server are encrypted using these session keys to ensure data integrity and confidentiality.
 
-deux types de sessions :
+    Device Integration:
+        Once activated, the end device is integrated into the LoRaWAN network and can start transmitting sensor data or other information securely to the network server.
+        
+La seconde éthode est hardcodé et permet à un end devices de rejoindre directement le réseau sans passer par l'indentification. cette méthode est appelée \textit{activation by personalisation} ou ABP. Voici la procédure de la session :
+\begin{itemize}
+\item
+\end{itemize}
 
-1 network session:
+Pre-Configuration of Keys:
 
-adresse du devices, la session key, MAC state et frame counters
+    The end device is pre-configured with its unique DevAddr (Device Address), NwkSKey (Network Session Key), and AppSKey (Application Session Key) before deployment.
 
-2 application session:
+Device Deployment:
 
-la session key, frame counters
+    The pre-configured end device is deployed within the LoRaWAN network's coverage area.
 
-la $frame$ $counter$ est une stratégie de défense servant à éviter les $replay$ $attacks$, en rejttant les données dépassée ou retransmise. 
+Direct Communication:
 
+    Without initiating a join procedure, the device directly starts transmitting data to the network server using the pre-configured keys (DevAddr, NwkSKey, AppSKey).
+    Since the keys are already programmed into the device, it can communicate with the network server without the need for negotiation or dynamic key exchange.
 
-comment établir une session ?
+Secure Communication:
 
-de manière dynamique en rejoigant un réseau (Over the air Activation $OTAA$) ou hardcodé (activation personalisée $ABP$)
-OTAA:
-procedure entre end devices et serveur réseau
-les clés sont regénérées à chaque nouvelle session
+    The device sends data to the network server, which decrypts the messages using the pre-configured NwkSKey and AppSKey.
+    The network server encrypts downlink messages using the same keys before sending them to the device.
+
+Operation:
+
+    The device operates within the LoRaWAN network using the pre-set keys for communication.
+    It continuously transmits and receives data without needing to perform the join procedure or exchange keys during operation.
+
 ABP (moins safe mais moins contraignant en terme de ressources):
 pas de procédure
 les clés sont hardcodés
