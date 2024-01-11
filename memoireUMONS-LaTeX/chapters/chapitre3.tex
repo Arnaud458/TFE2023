@@ -14,8 +14,6 @@ Les $SDR$ peuvent jouer le role d'éméteur ou de récepteur voir les deux.
 
 \subsubsection{RTL-SDR}
 
-\textcolor{red}{image rtl sdr}
-
 La première radio utilisée comme récepteur. possède différente composante :
 
 rtl2832U: digitalise les signaux RF et les evnoie à l'ordinateur.
@@ -23,6 +21,8 @@ Tuner chip : le tuner permet d'ajuster la fréquence. Grace à ça la sdr peut c
 port usb : pour raccorder la sdr à l'ordinateur.
 
 \subsubsection{hackRf}
+
+autre radio logicielle. plus (cher et) complète. meilleure qualité de signal que les rtl-sdr "classiques".
 
 \subsubsection{module RN2483}
 
@@ -36,7 +36,16 @@ fréquence à 433, 868 et 915MHz (regarder la régions adéquate)
 AT command : configurable via un set de commande
 compatible avec le protocole LoRaWAN pour établir ou rejoindre ce type de réseau.
 
+fonctionne par entrée de commande (aucun retour écran donc aucune faute possible)
+
+différentes commandes/ utilisation :
+
+sys get ver : demande la verion du module, reçoit en réponse 
+radio set (param) (value) : ajuste le paramètre pour l'adapter a la valeur souhaitée.
+
 \subsubsection{pycom fipy}
+
+besoin  d'un environement python , qqs configuration nécessaire.
 
 \subsection{logiciel}
 
@@ -82,7 +91,7 @@ Le paramètre Waterfall dB concerne l'intensité de la couleur ou l'ombrage des 
 
 \subsubsection{Universal radio hacker, URH}
 
-logiciel open
+logiciel open source. similaire à gqrx pour fonction d'analyse du signal. Mais possibilité de sauvegarder des signaux enregistré dans des fichier au format \textit{.complex}. 
 
 \section{Géneration et réception d'un signal LoRa}
 
@@ -105,3 +114,15 @@ signal capturer dans le software
 preambule identifié ? up chirp (x10) down chirp ?(x2)
 
 \section{Méthode "Constellation traces"}
+
+objectif, identification du device via son frequecy offset.
+
+selon l'article (citer article), possible de performer la méthode soit uniquement sur le  préambule, soit sur l'intégralité du singal. 
+
+idée: le received singal contient le baseband singal ainsi qu'un rotation factor instable. pour pouvoir recover cette partie du signal, besoin d'effctuer une opération différentielle suivante : $$ x(t) . x(t+n) e -j2\pi on $$
+apparation d'un nouveau rotation factor, mais stable. Besoin de trouver deux inconnue, \\textit{delta f} et \textit{n}. n est le differential interval. il se calcule de la manière suivante : $$ Rs = BW / 2sf $$ 
+$$ N = fs / Rs $$
+
+delta f est la difference entre le transmitter carrier frequency et le receiver carrier frequecy.
+
+application : récupérer les samples I/Q du signal n ayant au préalable "clean" le signal. plot des échantillons dans le plan carthésien. besoin de faire du clustering : calculer la valeur de density maximale. ensuite conserver 0.95 de cette valeur avec dégradé de couleur. 
