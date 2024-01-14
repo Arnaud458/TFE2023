@@ -1,33 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import mpl_scatter_density # adds projection='scatter_density'
-import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 from utils import cut_signal, save_signal, compute_differential, load_signal
-import datashader as ds
-from datashader.mpl_ext import dsshow
-import pandas as pd
-def using_hist2d(ax, x, y, bins=(1000, 1000)):
-        
-    ax.hist2d(x, y, bins, cmap=plt.cm.jet)
 
-
-
-def using_datashader(ax, x, y):
-
-    df = pd.DataFrame(dict(x=x, y=y))
-    dsartist = dsshow(
-        df,
-        ds.Point("x", "y"),
-        ds.count(),
-        vmin=0,
-        vmax=20,
-        norm="linear",
-        aspect="auto",
-        ax=ax,
-    )
-
-    plt.colorbar(dsartist)
 
 if __name__ == "__main__":
     
@@ -44,19 +20,28 @@ if __name__ == "__main__":
     differential_i = np.real(differential_data)
     differential_q = np.imag(differential_data)
 
-    
+    white_viridis = LinearSegmentedColormap.from_list('white_viridis', [
+        (0, '#ff0000'),
+        (1e-20, '#440053'),
+        (0.2, '#404388'),
+        (0.4, '#2a788e'),
+        (0.6, '#21a784'),
+        (0.8, '#78d151'),
+        (1, '#fde624'),
+    ], N=256)
 
-  
+    def using_mpl_scatter_density(fig, x, y):
+        ax = fig.add_subplot(1, 1, 1, projection='scatter_density')
+        density = ax.scatter_density(x, y, cmap=white_viridis)
+        fig.colorbar(density, label='Number of points per pixel')
 
-    fig, ax = plt.subplots()
-    #fig = plt.figure(figsize=(8, 6))
-    #ax = fig.add_subplot(1, 1, 1, projection='scatter_density')
 
-    using_datashader(ax, differential_i, differential_q)
-    #using_hist2d(ax, differential_i, differential_q)
+
+    fig = plt.figure(figsize=(8, 6))
+    using_mpl_scatter_density(fig, differential_i, differential_q)
     #plt.scatter(differential_i, differential_q, s=1, c='red', alpha=0.5)
     plt.xlabel('Differential In-phase')
     plt.ylabel('Differential Quadrature')
     plt.title('Differential I/Q Samples')
-    #plt.grid(True)
+    plt.grid(True)
     plt.show()
