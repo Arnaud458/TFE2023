@@ -21,7 +21,7 @@ def using_datashader(ax, x, y):
         ds.Point("x", "y"),
         ds.count(),
         vmin=0,
-        vmax=20,
+        vmax=100,
         norm="linear",
         aspect="auto",
         ax=ax,
@@ -31,10 +31,11 @@ def using_datashader(ax, x, y):
 
 if __name__ == "__main__":
     
-    DATA = load_signal('sample_data/test_64_misc', dtype=np.complex64)
+    DATA = load_signal('sample_urh/preamble.complex', dtype=np.complex64)
+    #DATA = load_signal('sample_data/pretest_64_misc', dtype=np.complex64)
     print(len(DATA))
 
-    n = 5000
+    n = 65536
     delta_f = -62500
     differential_data = np.zeros_like(DATA)
     for i in range(n, len(DATA)):

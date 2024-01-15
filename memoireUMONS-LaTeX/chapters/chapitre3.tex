@@ -125,4 +125,8 @@ $$ N = fs / Rs $$
 
 delta f est la difference entre le transmitter carrier frequency et le receiver carrier frequecy.
 
-application : récupérer les samples I/Q du signal n ayant au préalable "clean" le signal. plot des échantillons dans le plan carthésien. besoin de faire du clustering : calculer la valeur de density maximale. ensuite conserver 0.95 de cette valeur avec dégradé de couleur. 
+application : récupérer les samples I/Q du signal n ayant au préalable "clean" le signal. utilisation d'un gradiant pour observer la dentsité sur le plot. noramlement des zones plus denses apparaissent.
+coloration : utilisation de la librairie data shader. 
+
+
+clustering, le but de conserver les parties les plus dense (95pourcent du point le plus dense) plot avec les différents appareils.
