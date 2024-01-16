@@ -7,6 +7,32 @@ trois partie,une partie générique comprenant certaines approche pour identifie
 
 avant de s'intéresser à l'identification de device lora, besoin de regarder plus largement dans l'iot et de voir si l'identification de devices est étendue à l'iot en général (oui), et comment l'indentification est acomplie.
 
+\subsection{historique et évolution des préoccupation de sécurité dans l'iot}
+
+Overview de l'évolution des priorité dans l'identification de devices dans l'iot :
+
+première année (2000)
+Dans les première année de l'iot, l'intérêt se portait plus sur la connectivité entre devices et la communications entre eux. les préoccupations sécuritaire était secondaires. Première méthode de chiffrage, les protocole utilisé plus orienté sur la qualité de la communication que la sécurité.
+
+Première préoccupation sécuritaire (2010s)
+augemntation du nombre d'appareils connectés, la securité devient un paramètre prioritaire. L'intégrité des données, la confidentialité et les accès réseau deviennent le centre de l'attetion. Méthodes cmme authentification PKI-based. Certificats X.509 pour identification des appareils. première recherche pour introdure les failles dans les protocols Iot.
+
+avènement du edge computing(année 2010-2020).
+besoin d'authentification secure plus proche des sources de données pour réduire la latence. Méthoode authtification "edge centric"
+
+blockchain for security(fin année 2010)
+Nouvelles préoccupation sur des points centralisé à risque, permet de créer des nouvelles approche sécuritaire décentralisée.
+utilisation blockchain pour device authentification.
+
+zero trust model(2020) les ménaces de sécurité de plus en plus sophistiquée, apparition d'un modèle basé sur l'absence totale de confiance. méchanisme d'authentification basé sur ce principes ont été exploré.
+
+considération de calcul quantique(futur?)
+les méthodes de chiffrage mathématiques seront inefficaces à l'arrivée des ordinateurs quantique, besoin de nouvelle solutions sur des algo quantique.
+
+\subsection{approches d'identification dans l'iot}
+
+résultats des préoccupations citées, méthodes qui en sont ressortis et qui ont été utilisée ou le sont encore.
+
 piste : RSSI, TCP finguerprinting, taffic related patterns (behaviour, power consumption, packet timing) 
 
 \section{analyse de signaux lora}
