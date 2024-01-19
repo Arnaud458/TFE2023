@@ -31,11 +31,11 @@ def using_datashader(ax, x, y):
 
 if __name__ == "__main__":
     
-    DATA = load_signal('sample_urh/preamble.complex', dtype=np.complex64)
+    DATA = load_signal('preambules/SF7M1.complex', dtype=np.complex64)
     #DATA = load_signal('sample_data/pretest_64_misc', dtype=np.complex64)
     print(len(DATA))
 
-    n = 65536
+    n = 2048
     delta_f = -62500
     differential_data = np.zeros_like(DATA)
     for i in range(n, len(DATA)):

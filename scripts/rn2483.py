@@ -12,7 +12,7 @@ commands = [
     "radio set mod lora\r\n",
     "radio set freq 868000000\r\n",
     "radio set pwr 14\r\n",
-    "radio set sf sf12\r\n",
+    "radio set sf sf7\r\n",
     "radio set cr 4/8\r\n",
     "radio set bw 125\r\n",
     "radio tx 1589CCf\r\n"
