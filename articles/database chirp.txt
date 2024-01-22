@@ -4,3 +4,10 @@ Performance Analysis of LoRa Modulation with Residual Frequency Offset
 Performance Analysis of Preamble Detection of LoRa System
 Analysis of RSSI Fingerprinting in LoRa Networks
 A Review of Radio Frequency Fingerprinting Techniques
+A Qualitative Survey of Active TCP/IP Fingerprinting Tools and Techniques for Operating Systems Identification
+
+article pour chapitre 2 section 1:
+
+A survey of blockchain from security perspective
+Future Industry Internet of Things with Zero-trust Security
+A Note on Quantum Security for Post-Quantum Cryptography

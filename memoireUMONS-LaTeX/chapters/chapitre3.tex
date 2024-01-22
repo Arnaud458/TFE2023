@@ -24,6 +24,8 @@ port usb : pour raccorder la sdr à l'ordinateur.
 
 autre radio logicielle. plus (cher et) complète. meilleure qualité de signal que les rtl-sdr "classiques".
 
+\subsection{Module d'émission Lora}
+
 \subsubsection{module RN2483}
 
 Le microchip RN2483 est un module de technologie spécifique à LoRa. Cet appareil permet de communiquer à longue portée et à faible coup grêve à l'utilisation de la modulation basé sur LoRa.
@@ -46,6 +48,10 @@ radio set (param) (value) : ajuste le paramètre pour l'adapter a la valeur souh
 \subsubsection{pycom fipy}
 
 besoin  d'un environement python , qqs configuration nécessaire.
+
+\subsubsection{module arduino}
+
+besoin d'un IDE arduino, possibilité de configurer une largeur de bande bien plus faible que pour les autre module, très pratique pour analyser le signal en détail.
 
 \subsection{logiciel}
 
@@ -91,27 +97,55 @@ Le paramètre Waterfall dB concerne l'intensité de la couleur ou l'ombrage des 
 
 \subsubsection{Universal radio hacker, URH}
 
-logiciel open source. similaire à gqrx pour fonction d'analyse du signal. Mais possibilité de sauvegarder des signaux enregistré dans des fichier au format \textit{.complex}. 
+logiciel open source. similaire à gqrx pour fonction d'analyse du signal. Il est possible de visualiser les signaux de manières analogique, démodulé, en spectrogramme ou en vue I/Q. Il est possible de découper les signaux, notamment pour supprimer les parties "vides" dans les enregistrements. Possibilité de sauvegarder des signaux enregistré dans des fichier. Urh supporte différents formats pour les signaux :
+
+ \textit{.complex} files with complex64 samples (32 Bit float for I and Q, respectively). This is the default signal file format.
+ 
+\textit{.complex16u} using two unsigned 8 Bit integers for I and Q
+
+\textit{.complex16s} using two signed 8 Bit integers for I and Q
+
+\textit{.complex32u} using two unsigned 16 Bit integers for I and Q (since v2.7)
+
+\textit{.complex32s} using two signed 16 Bit integers for I and Q (since v2.7).
+
+Il est également possible de lire des fichiers de données qui n'ont pas été enregistré avec URH tant qu'ils sont dans les formats supportés.
+
+\section{Librairie python}
+
+utilisation de python : pourquoi ?
+librairie très utile dans le domaine comme NumPy, Pandas, Scikit-learn, PyCM et FiPy. librairie compatible avec la sauvegarde et l'utilisation des données. Bonne documentation notament sur les formats des nombres complexes.
+Capacités pour le machine learning. Utilisation de diverses algorithmes comme kmeans déja implémenté dans des librairies.
+Intégration avec des modules, la librairie fipy gère l'un es modules utilisé pour les éxpérimentations.
+
+numpy : pour complexe conjugué
+matplotlib : pour les plot des diagrammes
+datashader : pour la coloration du diagramme de constellations
+
 
 \section{Géneration et réception d'un signal LoRa}
 
-script pour module RN2483
+dans un premier temps les signaux sont généré manuellement sans automatisation, le but étant de reconnaitre et d'analyser la structure d'un signal Lora.
 
-set up parametre signal
+script pour générer un signal depuis un module (soir rn, soit fipy, soit arduino)
+Il faut paramètrer la largeur de bande, le CR, le spreading factor, la fréquence d'émission (fixé à 868Mhz dans la région europe), le type de modulation (Lora ...)
 
-lancer gqrx/urh
+Ensuite pour la réception, lancer un logiciel d'écoute comme gqrx ou urh. Sélectionner la sdr connecté à l'ordinateur (rtl sdr ou hackrf). Il faut configurer également l'échantillonage, soit la quantité d'échantillons qui vont être lu chaque seconde. Il faut ajuster la fréquence d'écoute.
 
-sélectionner rtl-sdr ou hackrf comme récepteur
+\subsection{analyse du signal}
 
-configurer parem (frequence, sample rate, largeur de bande)
+affichage du signal capturé, d'abords sous forme analogique, puis en spectrogramme.
+Décomposition du signal, on observe des "chirps". En analogique, augmentation de la fréquence (unchirp) et diminution de la fréquence (downchirp). En spectrogramme, augmentation est plus visuelle encore, on voit de manière net les chirps.
 
-exec script (radio tx)
+Dans le signal, on reconnait donc le préambule du signal composé de 10 upchirps et 2 downchirps (selon la théorie).
+Attention, la fréquence d'écoute des sdr ne doit pas être exactement à 868Mhz. En effet, voilà à quoi ressemble si la fréquence d'écout est la même que la fréquence d'émission. Il faut prendre en compte la largeur de bande du signal, dans le cas ou le singal a une largeur de bande de 125KHz, il faut décaler la fréquence d'écoute pour recentrer le signal, ainsi on évite d'avoir des fréquence qui sont interprétée comme "négatives" par URH. Dans la figure, la fréquence est décalé de 125/2 soit 867,935Mhz.
 
-signal capturer dans le software
+\subsection{automatisation du signal}
 
-\section{analyse du signal}
+Dans un second temps, besoin d'automatiser la génération et l'enregistrement des signaux, car il va falloir en générer un grand nombre pour les méthodes d'indentifications. La première étape consiste a éditer le script pour que la configuration des paramètres soit faite au préalable. 
+Ensuite, sans devoir passer par un logiciel d'écoute, il faut sauvegarder le signal. La librairie RTL-SDR de python permet de configurer la rtl sdr sans devoir passer gqrx ou URH. Il est alors possible avec juste un script python d'écouter et d'enregistrer un signal radio. 
+Il faut ajouter au script une méthode qui supprime dans la partie sauvegardée la section ne comportant pas le signal.
 
-preambule identifié ? up chirp (x10) down chirp ?(x2)
 
 \section{Méthode "Constellation traces"}
 
