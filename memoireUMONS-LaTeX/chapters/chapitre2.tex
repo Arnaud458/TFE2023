@@ -1,28 +1,30 @@
 \chapter{Travaux similaires et autres contributions}
 
-trois partie,une partie générique comprenant certaines approche pour identifier des devices dans l'iot en général. Une seconde partie reprenant des approce d'analse de signaux lora. Finalement une section joigant les deux première partie pour atteindre l'objectif du travail, l'identification de devices spécifique à lora via l'analyse de leur signaux radio.
+Ce chapitre a pour but d'éablir un état de l'art dans le domaine de l'internet of things. Comme l'iot est très vaste, seulement certains aspects seront présentés. Tout d'abords, il est important de comprendre que la sécurité dans ce domaine a évoluer autan bien par ces méthodes que par son importance, ainsi un historique est présenté dans la première section du chapitre. Ensuite, la seconde section se concentre uniquement sur la technologie Lora. Cette section donne une approche analytique de signaux. Finalement, la dernière partie de ce chapitre se consacre aux approches existante pour l'identification d'appareils utilisant Lora. Cette section présentera les travaux qui sont au centre des expérimentations de ce travail.
 
 
 \section{identification de device dans l'iot}
 
-avant de s'intéresser à l'identification de device lora, besoin de regarder plus largement dans l'iot et de voir si l'identification de devices est étendue à l'iot en général (oui), et comment l'indentification est acomplie.
+Avante de s'intéresser à l'identification d'appareil Lora, il est nécessaire d'étendre ce concept à l'iot. L'internet of things a connu une forte évolution depuis les début des années 2000, avec des priorités dans son évolution qui ont également changé au fil du temps.
 
 \subsection{historique et évolution des préoccupation de sécurité dans l'iot}
 
-Overview de l'évolution des priorité dans l'identification de devices dans l'iot :
+Afin de bien comprendre les enjeux des différentes époque, voici une petit historique des deux décénnies précedantes. Les technologie mais également le concept même d'internet of thing ont évolué.
 
-première année (2000)
-Dans les première année de l'iot, l'intérêt se portait plus sur la connectivité entre devices et la communications entre eux. les préoccupations sécuritaire était secondaires. Première méthode de chiffrage, les protocole utilisé plus orienté sur la qualité de la communication que la sécurité.
+Les premières années de l'iot (2000)
+Bien que le concept d'appareils connecté remonte aux années 70, l'avènement de l'internet of thing arrive en fin de milénaire. Ce concept est associé à la technologie RFID \textit{Radio Frequency Identification}, qui permet d'utiliser les ondes radios afin d'identifier des objets ou des personnes. Le but initial était de rendre tout object dans le monde identifiable par un code EPC ou \textit{Electronic Product Code}, un peu comme le code barre. Durant ses années, plusieurs entreprises lancent leur première appareils connectés. Tout cet enthousiame pour la connectivité met au second plan les questions de sécurité. Ainsi la première partie du développemnt de l'iot se concentre surtout sur la qualité de communication entre les objets plutot que sur leur sécurité.
 
-Première préoccupation sécuritaire (2010s)
-augemntation du nombre d'appareils connectés, la securité devient un paramètre prioritaire. L'intégrité des données, la confidentialité et les accès réseau deviennent le centre de l'attetion. Méthodes cmme authentification PKI-based. Certificats X.509 pour identification des appareils. première recherche pour introdure les failles dans les protocols Iot.
+Les premières préoccupations sécuritaire (2010s)
+Vers la fin des années 2000, l'augmentation du nombre d'appareils est si grande qu'elle a atteint tous les domaines de la société. Certains domaines étant plus critique que d'autre d'un point de vue sécurité (l'énergie, les transports, la santé, etc),l'intégrité des données, la confidentialité et les accès réseaux deviennent le centre de l'attetion. 
+Le concept de certificats x.509, initalement développé pour le world wide web avant les années 2000, a un regain d'attention dans cette période. Plus largement la structure de la technologie PKI (\textit{Public Key infrastructure}, qui utilise les certificats x.509) a été adaptée pour s'intégrer aux problématiques de l'embarqué.Un certificat est un document digital permettent de vérifier d'identité d'une entité, comme d'un appareil, un utilisteur ou une organisation. Il se base sur la liaison d'une clé public à l'entité établie par une \textit{Certificate Authority} ou CA. La CA agit en temps de tier de confiance et assure la légitimité de l'information grâce au certificat. Ainsi, les trois axes principaux de la sécurité dans l'iot émergent : l'autentification, l'intégrité des données et la confidentialité.
 
-avènement du edge computing(année 2010-2020).
-besoin d'authentification secure plus proche des sources de données pour réduire la latence. Méthoode authtification "edge centric"
 
-blockchain for security(fin année 2010)
-Nouvelles préoccupation sur des points centralisé à risque, permet de créer des nouvelles approche sécuritaire décentralisée.
-utilisation blockchain pour device authentification.
+L'avènement du \textit{edge computing}(année 2010-2020).
+Le nombre d'appareils connecté  dépassé le nombre d'humains, forçant une transition vers l'ipv6 tant le nombre d'appareils est évelé et continue d'augmenter. L'information a pris de la valeur, et de l'ampleur. Ainsi, viens se gréffer de nouveau enjeux économiques en plus des enjeux sécuritaires. La quantité de donnée générée nécessitent de revoir le stockage de l'information. C'est ainsi que va apparaitre le Edge computing, qui est un réponse directe aux besoin des architecture de gérer autan de données en périphérie de réseau. Le concept du edge computing vise à effectuer des calculs et des analyses des données directement sur les appareils connectés, plutôt que de les envoyer vers un centre de données centralisé. Cela réduit la latence, améliore l'efficacité du réseau et permet des analyses en temps réel. Le premier malware spécialemnt centré sur l'iot fait son apparition. Mirai exploite une faille lui permettant de récupérer le mots de passe d'appareils afin de s'en servir pour lancer des attacks DDoS \textit{distributed denial of service} à grande échelle. En quelque année l'iot est passé d'un gadget d'entreprise à un vériable enjeux économique et sécuritaire, centré autour de l'information. Les seules perspectives de législation concernant la sécurité de l'internet of thing n'apparaitront de tradivement en fin de décennies avec La loi européenne sur le \textit{Réglément générale sur la protection des données}. cette loi ne couvre pas la sécurité des appareils mais plutot l'utilisation des données sur internet en général.
+
+
+L'apparition de la \textit{blockchain}(fin année 2010)
+De nouvelles préoccupation apparaissent dans l'iot et certaines sont encore renforcées par les menaces toujours plus sofistiquées. Le stockage et la transmission de données, l'authentification d'appareils ou encore la confidentialité sont au centre des préoccupations. Une technologie initialement utilisé pour les cryptomonaie va se développer dans l'iot, la blockchain. 
 
 zero trust model(2020) les ménaces de sécurité de plus en plus sophistiquée, apparition d'un modèle basé sur l'absence totale de confiance. méchanisme d'authentification basé sur ce principes ont été exploré.
 

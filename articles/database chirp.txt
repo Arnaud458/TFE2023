@@ -5,6 +5,7 @@ Performance Analysis of Preamble Detection of LoRa System
 Analysis of RSSI Fingerprinting in LoRa Networks
 A Review of Radio Frequency Fingerprinting Techniques
 A Qualitative Survey of Active TCP/IP Fingerprinting Tools and Techniques for Operating Systems Identification
+Universally Composable Authentication and Key-Exchange with Global PKI
 
 article pour chapitre 2 section 1:
 
