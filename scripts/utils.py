@@ -39,7 +39,7 @@ def load_signal(filepath: str, dtype) -> np.ndarray:
     return np.fromfile(filepath, dtype=dtype)
 
 
-def cut_signal(signal, treshold):
+def old_cut_signal(signal, treshold):
     start_index = 0
     end_index = len(signal) - 1
     consecutive_start = 0
@@ -62,3 +62,19 @@ def cut_signal(signal, treshold):
         return []
 
     return signal[start_index:end_index]
+
+
+def cut_preamble(signal, treshold, preamble_size):
+    start_index = 0
+    consecutive_start = 0
+    while start_index < len(signal) and consecutive_start <3:
+        if abs(np.real(signal[start_index])) > treshold or abs(np.imag(signal[start_index])) > treshold:
+            consecutive_start += 1
+        else :
+            consecutive_start = 0
+        start_index += 1
+
+    if start_index + preamble_size > len(signal) -1:
+        return []
+
+    return signal[start_index:start_index+preamble_size]

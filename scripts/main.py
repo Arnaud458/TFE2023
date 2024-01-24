@@ -3,10 +3,15 @@ import matplotlib.pyplot as plt
 import mpl_scatter_density # adds projection='scatter_density'
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
-from utils import cut_signal, save_signal, compute_differential, load_signal
+from utils import save_signal, compute_differential, load_signal
 import datashader as ds
 from datashader.mpl_ext import dsshow
 import pandas as pd
+from capture_signal import SAMPLE_RATE
+
+SPREADING_FACTOR = 7
+RS = 125_000 / (2**SPREADING_FACTOR)
+
 def using_hist2d(ax, x, y, bins=(1000, 1000)):
         
     ax.hist2d(x, y, bins, cmap=plt.cm.jet)
@@ -34,8 +39,9 @@ if __name__ == "__main__":
     DATA = load_signal('preambules/SF7M1.complex', dtype=np.complex64)
     #DATA = load_signal('sample_data/pretest_64_misc', dtype=np.complex64)
     print(len(DATA))
-
-    n = 2048
+    n = int(SAMPLE_RATE / RS)
+    print("real value= 2048")
+    print("n= ",n)
     delta_f = -62500
     differential_data = np.zeros_like(DATA)
     for i in range(n, len(DATA)):
