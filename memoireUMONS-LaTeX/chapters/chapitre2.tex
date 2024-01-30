@@ -24,12 +24,25 @@ Le nombre d'appareils connecté  dépassé le nombre d'humains, forçant une tra
 
 
 L'apparition de la \textit{blockchain}(fin année 2010)
-De nouvelles préoccupation apparaissent dans l'iot et certaines sont encore renforcées par les menaces toujours plus sofistiquées. Le stockage et la transmission de données, l'authentification d'appareils ou encore la confidentialité sont au centre des préoccupations. Une technologie initialement utilisé pour les cryptomonaie va se développer dans l'iot, la blockchain. 
+Le stockage et la transmission de données, l'authentification d'appareils ou encore la confidentialité sont au centre des préoccupations. Initialement technologie utilisée dans les cryptomonnaie, la technologie Blockchain est un mécanisme de base de données qui permet un partage transparent des informations au sein d'un réseau. Une base de données Blockchain stocke les données dans des blocs qui sont reliés entre eux dans une chaîne. Les données sont chronologiquement cohérentes, car il n'est pas possible de supprimer ou modifier la chaîne sans le consensus du réseau. Par conséquent,la technologie Blockchain peur servir de livre inaltérable ou immuable pour le suivi des ordres, des paiements, des comptes et d'autres transactions. Le système dispose de mécanismes intégrés qui empêchent les entrées de transactions non autorisées et créent une cohérence dans la vue partagée de ces transactions. L'implémentation de la blockchain pour l'iot confère les avantages suivant : 
+\begin{itemize}
+\item l'immuabilité. la blockchain permet de créer un enregistrement immuable de toutes les interactions et communications des appareils. Cet enregistrement peut être utilisé pour détecter et empêcher l'accès non autorisé ou la modification des appareils ou des données dans l'IoT.
+\item La décentralisation. il est possible de créer un système décentralisé pour l’authentification et la communication des appareils. Chaque appareil IoT se connecte au réseau blockchain et se voir attribuer une identité numérique unique, qui est vérifiée grâce à l'utilisation de signatures numériques ou de contrats intelligents. Cela élimine le besoin d’une autorité centrale pour authentifier les appareils et annule ainsi les risques de \textit{single point of failure}.
+\item La confidentialité.La technologie Blockchain peut sécuriser la communication entre les appareils IoT grâce à l'utilisation de la cryptographie à clé publique ou asymétrique. Cela permet l’échange sécurisé d’informations entre appareils sans avoir recours à des intermédiaires.
+\end{itemize}
 
-zero trust model(2020) les ménaces de sécurité de plus en plus sophistiquée, apparition d'un modèle basé sur l'absence totale de confiance. méchanisme d'authentification basé sur ce principes ont été exploré.
+Le \textit{Zero Trust Model}(2020) 
+les menaces de sécurité sont de plus en plus sophistiquées. Comment faire encore confiance aux infrastructures qui doivent gérer autan d'appareils ? La réponse est de ne plus leur faire confiance. Le zero Trust model est donc un modèle basé sur l'absence totale de confiance et une vérification constante, que la demande d'accès provienne de l'intérieur ou de l'extérieur du réseau. Dans un modèle de sécurité classique, une fois qu'un utilisateur ou un appareil accède au réseau interne, on lui fait souvent implicitement confiance, ce qui lui permet une grande liberté d'actions au sein du réseau. Le Zero Trust model suppose cependant que des menaces peuvent exister à la fois à l’intérieur et à l’extérieur du périmètre du réseau et nécessite donc une vérification continue de la confiance. Un modèle qui s'applique sur ce principe devrait en principe contenir les éléments suivants :
+\begin{itemize}
+\item La vérification d'identité. Les utilisateur et les appareils doivent subir une authentification avant d'accèder à n'immporte quel services ou ressources du réseau.
+\item Le \textit{Least privilege acces}. les permissions sont accordées de manières limités selon le besoin de l'utilisateur ou de l'appareil.
+\item La micro segmentation. Diviser le réseau en segment pour limiter son accès par les appareils.
+\item La surveillance en continue. L'analyse du traffic, du comportement et des activitées des appareils.
+\item le chiffrage des données.
+\end{itemize}
 
-considération de calcul quantique(futur?)
-les méthodes de chiffrage mathématiques seront inefficaces à l'arrivée des ordinateurs quantique, besoin de nouvelle solutions sur des algo quantique.
+Le \textit{quantum computing}(futur?)
+les méthodes de chiffrage classiques seront inefficaces à l'arrivée des ordinateurs quantiques.
 
 \subsection{approches d'identification dans l'iot}
 
@@ -37,12 +50,23 @@ résultats des préoccupations citées, méthodes qui en sont ressortis et qui o
 
 piste : RSSI, TCP finguerprinting, taffic related patterns (behaviour, power consumption, packet timing) 
 
-\section{analyse de signaux lora}
+\section{analyse de la technologie lora}
 
-differente travaux sur comment interpréter un signal. des analyses des différent composantes du signal 
+\subsection{analyse de la couche physique lora}
+
+des travaux ont été réalisé pour permettre l'analyse de la couche physique de lora (article)
+fait en reverse engeneering. 
+
+\subsection{analyse de la modulation CSS de Lora}
+
+papier belgique sur la modulation Css
 
 \section{identification de device lora}
 
-radio frequency finguerprinting identification (RFFI). trouver des charactéristique hardware pour identifier des devices.
+radio frequency finguerprinting identification (RFFI). trouver des charactéristiques hardware pour identifier des devices.
+
+\subsection{RFFI avec DCTFs}
 article sur les méthode de constellations traces
+
+\subsection{RFFI avec spectrogrammes}
 article sur les spectogrammes.

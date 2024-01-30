@@ -36,10 +36,11 @@ def using_datashader(ax, x, y):
 
 if __name__ == "__main__":
     
-    DATA = load_signal('preambules/SF7M1.complex', dtype=np.complex64)
+    DATA = load_signal('preambules/notp2.complex', dtype=np.complex64)
     #DATA = load_signal('sample_data/pretest_64_misc', dtype=np.complex64)
     print(len(DATA))
-    n = int(SAMPLE_RATE / RS)
+    #n = int(SAMPLE_RATE / RS)
+    n = 2048
     print("real value= 2048")
     print("n= ",n)
     delta_f = -62500

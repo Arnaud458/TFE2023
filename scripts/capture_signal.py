@@ -11,10 +11,10 @@ def capture_signal():
     sdr.sample_rate = SAMPLE_RATE
     #sdr.bandwitdh = 250000
     sdr.center_freq = 867937500
-    sdr.gain = 0
+    sdr.gain = 5
 
     # Start signal capture
-    capture_duration = 3  # in seconds
+    capture_duration = 4  # in seconds
 
     print(f"Capturing signal for {capture_duration} seconds...")
     nb_samples = math.ceil(capture_duration * sdr.sample_rate /16384)*16384
@@ -33,7 +33,7 @@ if __name__ == "__main__":
     SIGNAL = cut_preamble(capture_signal(), TRESHOLD, int(PREAMBLE_DURATION*SAMPLE_RATE))
     #SIGNAL = capture_signal()
     if len(SIGNAL) > 0:
-        save_signal_old(SIGNAL,'sample_data/test_64_supprime', np.complex64)
+        save_signal_old(SIGNAL,'preambules/1rn3', np.complex64)
         #save_signal(SIGNAL,'sample_data/test_64_misc', np.complex64)
         #save_signal_old(SIGNAL,'sample_data/test_256_1MHz', np.complex256)
     else:

@@ -15,7 +15,7 @@ commands = [
     "radio set sf sf7\r\n",
     "radio set cr 4/8\r\n",
     "radio set bw 125\r\n",
-    "radio tx 1589CCf\r\n"
+    "radio tx 1509ACf\r\n"
 ]
 
 # Send commands and read responses

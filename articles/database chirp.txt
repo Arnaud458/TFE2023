@@ -11,5 +11,6 @@ article pour chapitre 2 section 1:
 
 A survey of blockchain from security perspective
 Future Industry Internet of Things with Zero-trust Security
+Zero-Trust Hierarchical Management in IoT
 A Note on Quantum Security for Post-Quantum Cryptography
 A survey of edge computing-based designs for IoT security
