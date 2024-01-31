@@ -14,7 +14,7 @@ Afin de bien comprendre les enjeux des différentes époque, voici une petit his
 Les premières années de l'iot (2000)
 Bien que le concept d'appareils connecté remonte aux années 70, l'avènement de l'internet of thing arrive en fin de milénaire. Ce concept est associé à la technologie RFID \textit{Radio Frequency Identification}, qui permet d'utiliser les ondes radios afin d'identifier des objets ou des personnes. Le but initial était de rendre tout object dans le monde identifiable par un code EPC ou \textit{Electronic Product Code}, un peu comme le code barre. Durant ses années, plusieurs entreprises lancent leur première appareils connectés. Tout cet enthousiame pour la connectivité met au second plan les questions de sécurité. Ainsi la première partie du développemnt de l'iot se concentre surtout sur la qualité de communication entre les objets plutot que sur leur sécurité.
 
-Les premières préoccupations sécuritaire (2010s)
+Les premières préoccupations sécuritaires (2010s)
 Vers la fin des années 2000, l'augmentation du nombre d'appareils est si grande qu'elle a atteint tous les domaines de la société. Certains domaines étant plus critique que d'autre d'un point de vue sécurité (l'énergie, les transports, la santé, etc),l'intégrité des données, la confidentialité et les accès réseaux deviennent le centre de l'attetion. 
 Le concept de certificats x.509, initalement développé pour le world wide web avant les années 2000, a un regain d'attention dans cette période. Plus largement la structure de la technologie PKI (\textit{Public Key infrastructure}, qui utilise les certificats x.509) a été adaptée pour s'intégrer aux problématiques de l'embarqué.Un certificat est un document digital permettent de vérifier d'identité d'une entité, comme d'un appareil, un utilisteur ou une organisation. Il se base sur la liaison d'une clé public à l'entité établie par une \textit{Certificate Authority} ou CA. La CA agit en temps de tier de confiance et assure la légitimité de l'information grâce au certificat. Ainsi, les trois axes principaux de la sécurité dans l'iot émergent : l'autentification, l'intégrité des données et la confidentialité.
 
@@ -42,7 +42,8 @@ les menaces de sécurité sont de plus en plus sophistiquées. Comment faire enc
 \end{itemize}
 
 Le \textit{quantum computing}(futur?)
-les méthodes de chiffrage classiques seront inefficaces à l'arrivée des ordinateurs quantiques.
+
+Avec la future arrivée des ordniateurs quantiques, les méchanismes de chiffrage basé sur la comlxité mathématique comme RSA ou ECC sont voués à disparaitre. La puissance de calcul des ordinateurs quantique est déja considérée comme une véritable menace pour la sécurité informatique. Fort heureusement, c'est également un nouveau champ de possibilité qui s'ouvre pour la sécurité, avec le développement du \textit{post quantum cryptography}. Un premier protocol résistant au menances quantiques, \textit{Quantum Key Distribution} permet d'établir des canaux de communications entre différents appareils dand l'iot. Ce protol n'est pas encore en service dans l'iot, mais les premiers est réalisé en laboratoire sont très prometteurs (cite article).
 
 \subsection{approches d'identification dans l'iot}
 
