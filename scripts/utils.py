@@ -5,6 +5,14 @@ DIFFERENTIAL_INTERVAL = 15
 FREQUENCY_OFFSET = -62500
 
 
+def read_file(filename: str):
+    with open(filename, 'r',encoding='utf8') as reader:
+        return reader.readlines()
+
+def write_file(filename: str, content: str):
+    with open(filename, 'w',encoding='utf8') as writer:
+        writer.write(content)
+
 def compute_differential(
         data: np.ndarray,
         differential_interval: int=DIFFERENTIAL_INTERVAL,
