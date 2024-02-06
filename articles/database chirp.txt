@@ -6,7 +6,7 @@ Analysis of RSSI Fingerprinting in LoRa Networks
 A Review of Radio Frequency Fingerprinting Techniques
 A Qualitative Survey of Active TCP/IP Fingerprinting Tools and Techniques for Operating Systems Identification
 Universally Composable Authentication and Key-Exchange with Global PKI
-
+radio frequency fingerprint identification
 article pour chapitre 2 section 1:
 
 A survey of blockchain from security perspective

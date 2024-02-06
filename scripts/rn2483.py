@@ -11,7 +11,7 @@ config_commands = [
     "radio set mod lora\r\n",
     "radio set freq 868000000\r\n",
     "radio set pwr 14\r\n",
-    "radio set sf sf7\r\n",
+    "radio set sf sf8\r\n",
     "radio set cr 4/8\r\n",
     "radio set bw 125\r\n"
 ]
@@ -40,10 +40,13 @@ def write_command(ser: serial.Serial, command: str):
 if __name__ == '__main__':
     SER = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1)
     config(SER)
-    write_file('tmp.txt','0')
+    time.sleep(2)
+    send_signal(SER)
+    """write_file('tmp.txt','0')
     for i in range(3):
-        time.sleep(2)
+        time.sleep(1)
         print("FIN DU SLEEP")
+        config(SER)
         send_signal(SER)
         while True:
             x = read_file('tmp.txt')[0]
@@ -51,5 +54,5 @@ if __name__ == '__main__':
             if x == '1':
                 write_file('tmp.txt', '0')
                 break
-            time.sleep(0.1)
+            time.sleep(1)"""
     SER.close()

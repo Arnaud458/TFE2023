@@ -16,7 +16,7 @@ def capture_signal():
     sdr.gain = 0
 
     # Start signal capture
-    capture_duration = 4  # in seconds
+    capture_duration = 2  # in seconds
 
     print(f"Capturing signal for {capture_duration} seconds...")
     nb_samples = math.ceil(capture_duration * sdr.sample_rate /16384)*16384
@@ -38,7 +38,7 @@ if __name__ == "__main__":
             print('recepteur:', x)
             if x == '0':
                 break
-            time.sleep(0.1)
+            time.sleep(1)
 
 
         SIGNAL = capture_signal()

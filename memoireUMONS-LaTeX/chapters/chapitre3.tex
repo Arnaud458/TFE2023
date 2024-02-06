@@ -138,6 +138,7 @@ affichage du signal capturé, d'abords sous forme analogique, puis en spectrogra
 Décomposition du signal, on observe des "chirps". En analogique, augmentation de la fréquence (unchirp) et diminution de la fréquence (downchirp). En spectrogramme, augmentation est plus visuelle encore, on voit de manière net les chirps.
 
 Dans le signal, on reconnait donc le préambule du signal composé de 10 upchirps et 2 downchirps (selon la théorie).
+
 Attention, la fréquence d'écoute des sdr ne doit pas être exactement à 868Mhz. En effet, voilà à quoi ressemble si la fréquence d'écout est la même que la fréquence d'émission. Il faut prendre en compte la largeur de bande du signal, dans le cas ou le singal a une largeur de bande de 125KHz, il faut décaler la fréquence d'écoute pour recentrer le signal, ainsi on évite d'avoir des fréquence qui sont interprétée comme "négatives" par URH. Dans la figure, la fréquence est décalé de 125/2 soit 867,935Mhz.
 
 \subsection{automatisation du signal}
@@ -164,3 +165,4 @@ coloration : utilisation de la librairie data shader.
 
 
 clustering, le but de conserver les parties les plus dense (95pourcent du point le plus dense) plot avec les différents appareils.
+librairie panda et numpy. découpage en zones (bins?) sous forme d'une grille, calcul de nobre de points dans chaque zone, la zone avec le plus grand nombre de point sers de maximum. 
