@@ -36,6 +36,7 @@
 \newenvironment{demonstration}{\begin{proof}[\textnormal{\textbf{Preuve.}}]}{\end{proof}}
 \definecolor{gris}{gray}{0.45}
 \setlength{\parindent}{1cm}
+
 \newcommand{\textcalli}[1]{{\small{\textbf{$\negmedspace$\calligra #1}}}}
 
 \renewcommand{\chaptermark}[1]{\markright{\thechapter\ #1}}
@@ -53,6 +54,47 @@
 }
 
 \begin{document}
+
+\begin{titlepage}
+\vspace*{0.95cm}
+\begin{center}
+\textnormal{\Large{Universit\'e de Mons}}\\[0.3em]
+\textnormal{\Large{Facult\'e des Sciences}}\\[0.3em]
+\textnormal{\Large{D\'epartement d'Informatique}}\\[0.3em]
+\textnormal{\Large{NOM DU SERVICE (optionnel)}}
+\end{center}
+\vspace*{4cm}
+\begin{center}
+\fbox{
+\begin{minipage}{16cm}
+\center
+\vspace*{0.5cm}\textbf{\LARGE{Intitul\'e du m\'emoire}}\\[0.5em]
+\textbf{\LARGE{suite de l'intitul\'e}}\vspace*{0.5cm}
+\end{minipage}
+}
+\end{center}
+\vspace*{3cm}
+
+\large{
+\begin{center}
+\begin{tabular*}{16.7cm}{@{\extracolsep{\fill}}lr}
+Directeur : M\textsuperscript{me} Pr\'enom \textsc{Nom} & M\'emoire r\'ealis\'e par\\
+& Pr\'enom \textsc{Nom}\\[1em]
+Rapporteurs : M\textsuperscript{r} Pr\'enom \textsc{NOM} & en vue de l'obtention du grade de\\
+\hspace{26.4mm}M\textsuperscript{r} Pr\'enom \textsc{Nom} & Master en Sciences Informatiques
+\end{tabular*}
+\end{center}}
+
+\vspace*{4cm}
+\begin{center}
+\includegraphics[height=2cm]{UMONS-logo.jpg}
+\hspace{3cm}
+\includegraphics[height=1.7cm]{FS-logo.jpg}
+\\[1em]
+Ann\'ee acad\'emique 2019-2020
+\end{center}
+
+\end{titlepage}
 
 %newpage
 %\thispagestyle{empty}
@@ -84,10 +126,7 @@ Nous remercions ...\\
 \include{chapters/coclusion}
 
 
-%Le style bibliographique utilis
 \bibliographystyle{latex8}
-
-%Le fichier .bib uitilis
 \bibliography{biblio}
 
 \newpage

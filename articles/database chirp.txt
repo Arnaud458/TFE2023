@@ -2,11 +2,12 @@ différent article intéressant :
 
 Performance Analysis of LoRa Modulation with Residual Frequency Offset
 Performance Analysis of Preamble Detection of LoRa System
-Analysis of RSSI Fingerprinting in LoRa Networks
+
 A Review of Radio Frequency Fingerprinting Techniques
-A Qualitative Survey of Active TCP/IP Fingerprinting Tools and Techniques for Operating Systems Identification
+
 Universally Composable Authentication and Key-Exchange with Global PKI
 radio frequency fingerprint identification
+
 article pour chapitre 2 section 1:
 
 A survey of blockchain from security perspective
@@ -15,3 +16,9 @@ Zero-Trust Hierarchical Management in IoT
 A Note on Quantum Security for Post-Quantum Cryptography
 A survey of edge computing-based designs for IoT security
 The evolution of quantum key distribution networks: On the road to the qinternet
+
+chapitre 2 section 2:
+Analysis of RSSI Fingerprinting in LoRa Networks
+LoRaWAN Physical Layer-Based Attacks and Countermeasures, A Review
+Identification of communication devices from analysis of traffic patterns
+A Qualitative Survey of Active TCP/IP Fingerprinting Tools and Techniques for Operating Systems Identification

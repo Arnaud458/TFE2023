@@ -47,9 +47,13 @@ Avec la future arrivée des ordniateurs quantiques, les méchanismes de chiffrag
 
 \subsection{approches d'identification dans l'iot}
 
-résultats des préoccupations citées, méthodes qui en sont ressortis et qui ont été utilisée ou le sont encore.
+Comme tout appareil au sein d'un réseau, un appareil connecté dans l'iot possède de base différent moyen d'authentification. Son adresse MAC, son adresse IP, des informations relatives à sa manufacturation comme un numéro de série par example. De manière plus spécifiques, les noeuds au sein d'un réseau LoraWAN possède un DevEUI, un numéro unique accordé par le réseau à l'appareil. Cependant ses informations peuvent être compromises si appareils sont victimes de \textit{devices spoofing}, c'est à dire qu'un appareil malveillant usurpe l'indentité de sa cible, afin d'accéder au sein du réseau. D'autres attaques comme \textit{Man in The Middle} ou \textit{Replay attacks} peuvent également compromettre l'identité d'un appareil si on se base uniquement sur ses identifiant classiques. Il faut donc pouvoir identifier les appareils mais sans se fier à leur informations. Il éxiste diverse méthodes basée sur différentes approches pour pouvoir indentifier un appareil. 
 
-piste : RSSI, TCP finguerprinting, taffic related patterns (behaviour, power consumption, packet timing) 
+La première approche possible est de fier non pas à l'appareil directement ni aux données qu'il reçoit car celles ci pourraient également être compromises, mais à la routine sur sa communicatio. Cette approche, appelée \textit{Traffic related pattern} où s'intéresse au comportement d'un appareil au sein d'un réseau. 
+
+Une autre approche s'intéresse à la position géographique d'un appareil. en effet il est possible de mesure la qualité de la réception d'un signal, le \textit{Received Signal strengh Indicator} ou RSSI.
+
+piste : RSSI,RFFI TCP finguerprinting, taffic related patterns (behaviour, power consumption, packet timing) 
 
 \section{analyse de la technologie lora}
 
