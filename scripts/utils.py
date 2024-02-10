@@ -10,8 +10,8 @@ def read_file(filename: str):
         return reader.readlines()
 
 def write_file(filename: str, content: str):
-    with open(filename, 'w',encoding='utf8') as writer:
-        writer.write(content)
+    with open(filename, 'a',encoding='utf8') as writer:
+        writer.write('\n' +content)
 
 def compute_differential(
         data: np.ndarray,

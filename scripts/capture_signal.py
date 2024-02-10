@@ -33,12 +33,9 @@ if __name__ == "__main__":
     PREAMBLE_DURATION = 0.01225
 
     for i in range(3):
-        while True:
-            x = read_file('tmp.txt')[0]
-            print('recepteur:', x)
-            if x == '0':
-                break
-            time.sleep(1)
+        while read_file('tmp.txt')[-1] != '0':
+            print('recepteur is waiting')
+            time.sleep(0.2)
 
 
         SIGNAL = capture_signal()
