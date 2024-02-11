@@ -1,59 +1,101 @@
 \renewcommand{\leftmark}{NOMINATION DES TECHNOLOGIES}
 
-\chapter{Rappels et nomination des technologies}
+
+\chapter{Rappels et nomination des technologies}\label{chap1}
 
 \section{Signal radio}
 
-Un signal est une variation dans l'espace ou dans le temps d'une quantité physique contenant de l'information. Un signal peut être continu ou discret, on le nomme alors respectivement analogique ou numérique. Le type de signal dépent notamment de l'information qu'il contient. Un signal analogique peut contenir par exemple du son, là où un signal numérique contient généralement un nombre fini de valeur (par exemple des 0 et 1).
+Un signal est une variation dans l'espace ou dans le temps d'une quantité physique contenant de l'information. Un signal peut être continu ou discret, on le nomme alors respectivement analogique ou numérique. Le type de signal dépend notamment de l'information qu'il contient. Un signal analogique est continue en amplitude, ce qui veut dire qu'il peut contenir un nombre infini de valeur, ainsi que prendre toutes les valeurs possibles, là où un signal numérique contient généralement un nombre fini de valeur (par exemple des 0 et 1).
 Les deux catégories ne sont pas incompatible car il est souvent nécessaire en télécommication de pouvoir passer de l'un à l'autre.\cite{test}
 
 \vspace{0.1cm}
 
-L'utilisation de signaux radio en télécomunication confère de nombreux avantages, comme la portée, la vitesse de transmission , la résistance aux interférence ou encore le coût de propagation. Tout ces avantages sont possibles car un signal peut être modulé. La modulation est une technique permettant de modifier les propriétés du signal lui permettant de transporter de l'information.
+L'utilisation de signaux radio en télécomunication confère de nombreux avantages, comme la portée, la vitesse de transmission  ou encore le coût de propagation. Pouvoir transporter de l'information sans avoir recours à du support matériel complet (pas besoin de cable, le signal passe dans l'air) réduit\\ considérablement le cout de la transmission. Ajouté à cela, il est possible d'adapter un signal pour le rendre compatible avec diverse canaux de transmission et de réception, grâce à la modulation. La modulation est une technique permettant de modifier les propriétés du signal lui permettant de transporter de l'information.
 
 \newpage
 
-En télécommunication, les signaux sont associés aux ondes radios, ainsi appelé $radio$ $signal$ ou signal radio. Voici les principaux attributs d'un signal radio: 
+En télécommunication, les signaux sont des ondes électromagnétiques appelées signal radio. Les signaux comportent de nombreuses caractéristiques qui les déterminent: 
 
 \vspace{0.1cm}
 
-\begin{itemize}
 
-\item la fréquence, mesurée en Hertz ($Hz$). Elle détermine le nombre de cycle qu'accomplie le signal par seconde.
-\item La largeur de spectre, elle dépent de la fréquence car c'est l'écart entre la plus haute et la plus basse fréquence du signal. Une plus grande largeur permet de transmettre plus d'informations.
-\item L'amplitude. Selon le type de signal l'attribut possède différentes fonctions. Dans le cas d'un signal analogique l'amplitude est l'une des caractéristiques principales d'identification du signal mesurant l'ampleur du signal. Dans un signal numérique l'amplitude sert plutot de marge entre les différentes états du signal. 
-\item la puissance, mesurée en Décibel ($dB$). C'est la force du signal, un attribut important pour la réception du signal notamment.
-\item le $signal$ $to$ $noise$ $ratio$ ou $SNR$. Cet attribut mesure la qualité du du signal. une valeur élevée indique que le pourcentage de bruit est faible.
-\item le $bit$ $rate$, ou le taux de transmission mesure la quantité de donnée transmise en bit par seconde. Cet attribut est exclusif aux signaux numériques. On parle de $Baud$ $rate$ pour les signaux analogiques. Ce n'est pas excatement l'équivalent du bit rate car c'est le nombre de symboles modifiés par seconde, et un symbole peut contenir plusieurs bit pour un signal numérique.
 
-\end{itemize}
+la fréquence, mesurée en Hertz ($Hz$). Elle détermine le nombre de cycle qu'accomplit le signal par seconde. Une onde radio possède une fréquence entre 9kHz et 300GHz.
+
+\vspace{0.1cm}
+
+La largeur de spectre, elle dépent de la fréquence car c'est l'écart entre la plus haute et la plus basse fréquence du signal. Une plus grande largeur permet de transmettre plus d'informations, mais consomme plus d'énergie.
+
+\vspace{0.1cm}
+
+L'amplitude. Selon le type de signal l'attribut possède différentes fonctions. Dans le cas d'un signal analogique l'amplitude détermine la magnitude de l'onde pour n'importe quel point dans le temps. Dans un signal numérique l'amplitude est interprétée différemment. Les signaux numériques sont encodés avec des valeurs discrètes, où chaque valeurs repésente un niveau (par exemple 0 ou 1). L'amplitude permet de faire la disctinction entre ses niveaux.
+
+\vspace{0.1cm}
+
+la puissance, mesurée en Watt (W). C'est la force du signal, un attribut important pour la réception du signal notamment. Bien que le Watt soit utilisé pour décrire la puissance à l'émission ou la réception, les variations de puissances sont généralement exprimées en décibels (dB). Le décibel est une unité logarithmique permettant de mesurer plus facilement les realtions entre les différents niveaux de puissance.
+
+\vspace{0.1cm}
+
+le \textit{Signal to Noise Ratio} (SNR). Cet attribut mesure la qualité du signal. une valeur élevée indique que le pourcentage de bruit est faible.
+
+\vspace{0.1cm}
+
+le \textit{Bit rate}, ou le taux de transmission mesure la quantité de donnée transmise en bit par seconde. Cet attribut est exclusif aux signaux numériques. On parle de \textit{Baud rate} pour mesurer la quantité de symboles transmise par seconde. Ce n'est pas excatement l'équivalent du bit rate car un symbole peut contenit plusieurs bits, mais le Baud rate est utilisé pour les signaux numériques et analogiques.
+
+
 
 \section{Traitement du signal}
 
-\subsubsection{Modulation}
+\subsection{Modulation}
 
-La réception d'un signal nécessite des antennes dont les dimensions dépendent de la longueur d'onde du signal. Un signal à haute fréquence a l'avantage d'être facilement transmissible sur une grand portée. Cependant les signaux originaux (appelés $baseband$ $signals$) sont en basse fréquence. La modulation d'un signal permet de transformer le signal en haute fréquence, devenant ainsi le signal modulé.
+La réception d'un signal radio nécessite une antenne dont les dimensions dépendent de la longueur d'onde du signal. La longueur d'onde d'un signal représente la distance entre deux points consécutifs de même phase dans l'onde. La longueur d'onde s'obtient par la formule suivante :
 
-\vspace{0.1cm}
+\begin{equation}\label{eq1}
+c = f * \lambda
+\end{equation}
 
-Parmis ces différents attributs, certains sont utilisés pour effectuer une modulation. Les deux modulations les plus utilisés sont basées sur les attributs de la fréquence et de l'amplitude. La modulation en fréquence (ou $FM$ pour $frequency$ $modulation$) consiste à encoder l'information en faisant varier la fréquence en maitenant l'amplitude constante. La modulation en amplitude ($AM$) est le procédé inverse, c'est à dire encoder l'information en faisant varier l'amplitude tout en gardant la fréquence constante. 
+où $c$ est la vitesse de la lumière,
 
-\vspace{0.1cm}
+$f$ est la fréquence,
 
-La modulation en amplitude est plus ancienne et est encore utilisée dans beaucoup de systèmes. Cette technique possède moins de contrainte et est notamment plus simple à implémenter. Elle requiert le signal modulant et un signal haute fréquence appelé $carrier$ $signal$.
-
-\vspace{0.1cm}
-
-Soient un signal modulant $u(t)$ et un sigal porteur (ou $carrier$ $signal$) $v(t)$, la modulation en amplitude s'effectue en multipliant les deux signaux pour obtenir le signal modulé 
+$\lambda$ est la longueur d'onde.
 
 \vspace{0.1cm}
 
-$s(t)$ = $u(t)$ . $v(t)$
+Il est donc possible d'adapter les charactéristiques d'un signal pour le rendre compatible à différentes antennes, via la modulation. La modulation est le procédé par lequel un ou plusieurs attributs du \textit{baseband signal} (le signal modulant, contenant l'information à transmettre) vont être altéré par le \textit{carrier signal} (un signal porteur, utilisé pour être combiné avec le signal modulant) pour devenir un signal modulé, le \textit{modulated signal}.
+
+En plus de sa compatiblité, un signal modulé a l'avantage d'être facilement transmissible sur une grand portée sans perdre en puissance.
+
+\vspace{0.1cm}
+
+Parmis ces différents attributs, certains sont utilisés pour effectuer une modulation. Les trois modulations les plus utilisés sont basées sur les attributs de la fréquence, l'amplitude et la phase. La modulation en fréquence (\textit{Frequency modulation, FM}) consiste à encoder l'information en faisant varier la fréquence en maitenant l'amplitude constante. La modulation en amplitude (\textit{Amplitude modulation,AM}) est le procédé inverse, c'est à dire encoder l'information en faisant varier l'amplitude tout en gardant la fréquence constante. La modulation en phase (\textit{Phase Modulation, PM)} fait varier la phase de la porteuse proportionellement à l'amplitude instantannée du baseband signal.
+
+\vspace{0.1cm}
+
+La modulation en amplitude est plus ancienne et est encore utilisée dans beaucoup de systèmes. Cette technique possède moins de contrainte et est notamment plus simple à implémenter.
+
+\vspace{0.1cm}
+
+Soient $u(t)$ un baseband signal et $v(t)$ un carrier signal, la modulation en amplitude s'effectue en multipliant les deux signaux pour obtenir le signal modulé 
+
+\begin{equation}\label{eq2}
+s(t) = u(t) . v(t)
+\end{equation}
+
+Prenons par exemple 
+
+$u(t)$ = $sin(2\pi f_{u}t)$ avec $f_{u}t$ = 5 Hz,
+
+$v(t)$ = $cos(2\pi f_{c}t)$ où $f_{c}t$ = 50 Hz.
+
+La Figure \ref{term1} montre le signal modulé $s(t)$ via la modulation en amplitude.
+
+\newpage
 
 \begin{figure}[h]
 \centering
 
-\includegraphics[scale=1]{images/AM_mod.PNG}
+\includegraphics[scale=0.5]{images/AM_mod.PNG}
 \caption{Exemple de modulation en amplitude}\label{term1}
 \end{figure}
 
@@ -62,43 +104,79 @@ La modulation en fréquence permet d'obtenir des transmissions de meilleures qua
 
 \vspace{0.1cm}
 
-Soient un signal modulant $u(t)$ et un signal porteur sinuosidal
+Soient $u(t)$ un baseband signal et $v(t)$ un carrier signal, le signal modulé en fréquence $s_{fm}(t)$ est le résultat suivant :
+
+\begin{align}
+    u(t) &= \sin(2\pi f_{u}t) \\
+    v(t) &= \cos(2\pi f_{c}t + \phi_{c}) \\
+    s_{fm}(t) &= \cos\left(2\pi f_{c}t + \Delta f \cdot u(t) \cdot t + \phi_{c}\right)
+\end{align}
 
 \vspace{0.1cm}
 
-$v_{p}(t)$ = $A_{p}cos(2\pi f_{p}t)$ où
+Prenons par exemple
 
-$f_{p}$ est la fréquence de la porteuse,
+\vspace{0.1cm}
 
-$A_{p}$ est l'amplitude de la porteuse,
+$u(t)$ = $sin(2\pi f_{u}t)$ avec $f_{u}t$ = 5 Hz,
 
-alors le signal modulé $s(t)$ = $A_{p}cos(2\pi \int_{0}^{t}f(\tau)d\tau)$ où $f$ est la fréquence instantanée. Elle s'exprime en fonction de la dérivation de fréquence $f_{\Delta}$, c'est à dire la dérivation maximale par rapport à la fréquence de la porteuse.
+$v(t)$ = $cos(2\pi f_{c}t + \phi_{c})$ où $f_{c}t$ = 50 Hz.
+
+\vspace{0.1cm}
+
+La Figure \ref{term2} montre le signal modulé $s_{fm}(t)$ via la modulation en fréquence pour une phase initale ddu carrier signal $\phi_{c}$ = 0 avec une dérivation en fréquence $\Delta f$ = 10Hz.
 
 \newpage
-
-$f_{p}$. $f(t)$ = $f_{p}$ + $f_{\Delta} u(t)$
 
 \begin{figure}[h]
 \centering
 
-\includegraphics[scale=1]{images/FM_mod.PNG}
+\includegraphics[scale=0.5]{images/FM_mod.PNG}
 \caption{Exemple de modulation en fréquence}\label{term2}
 \end{figure}
 
+La modulation en phase permet généralement d'obtenir une meilleur utilisation de la bande passante que les autres modulations car les variations de phase peut encoder plus d'informations, ce qui augmente la quantité de données transmises.
 
+Soient $u(t)$ un baseband signal et $v(t)$ un carrier signal, le signal modulé en phase $s_{pm}(t)$ est le résultat suivant :
 
-\subsubsection{Gestion du bruit}
+\begin{align}
+    u(t) &= \sin(2\pi f_{u}t) \\
+    v(t) &= \cos(2\pi f_{c}t + \phi_{c}) \\
+    s_{pm}(t) &= \cos\left(2\pi f_{c}t + K_{p} \cdot u(t)\right)
+\end{align}
 
+\vspace{0.1cm}
 
+Prenons par exemple
 
-L'un des attributs cités concerne le bruit. Un signal est toujours affecté de petites fluctuations plus ou moins importantes, et dont les origines peuvent être diverses. Ces perturbations, appelée bruit ou $noise$ en télécommunication se définissent par l'altération non souhaitée de l'intégrité d'un signal. Le bruit peut prendre différentes formes, des perturbations essentiellement impulsionnelles engendrées par des commutations de courants ou alors du bruit de fond généré dans les câbles et les composants électroniques en raison
-des mécanismes statistiques de la conduction électrique. Il est possible de réduire voir élimier l'influence des perturbations impulsionelles. En revanche, le bruit de fond est lui irreductible. Tout signal sans bruit n'existe pas, même à l'émission. Il est cependant possible que le bruit devienne invisible si son niveau est très faible. L'attribut SNR est donc un critère de la qualité du signal.
+\vspace{0.1cm}
+
+$u(t)$ = $sin(2\pi f_{u}t)$ avec $f_{u}t$ = 5 Hz,
+
+$v(t)$ = $cos(2\pi f_{c}t + \phi_{c})$ où $f_{c}t$ = 50 Hz.
+
+\vspace{0.1cm}
+
+La Figure \ref{term3} montre le signal modulé $s_{pm}(t)$ en phase pour une phase initale ddu carrier signal $\phi_{c}$ = 0 avec un index de modulation de phase $K_{p}$ = 8.
 
 \newpage
 
-\subsubsection{transformée de Fourier}
+\begin{figure}[h]
+\centering
 
-Pour effectuer une analyse de signal, sa représentation est capitale. Les Figure 1 et 2 représentent des signaux en fonction du temps écoulé. Il est possible de représenter des signaux selon une autre composante, la fréquence par exemple.
+\includegraphics[scale=0.5]{images/PM_mod.PNG}
+\caption{Exemple de modulation en phase}\label{term3}
+\end{figure}
+
+\subsection{Gestion du bruit}
+
+L'un des attributs cités concerne le bruit. Un signal est toujours affecté de petites fluctuations plus ou moins importantes, et dont les origines peuvent être diverses. Ces perturbations, appelée bruit ou \textit{noise} en télécommunication se définissent par l'altération non souhaitée de l'intégrité d'un signal. Le bruit peut prendre différentes formes, des perturbations essentiellement impulsionnelles engendrées par des commutations de courants ou alors du bruit de fond généré dans les câbles et les composants électroniques en raison
+des mécanismes statistiques de la conduction électrique. Il est possible de réduire voir éliminer l'influence des perturbations impulsionelles. En revanche, le bruit de fond est lui irreductible. Tout signal sans bruit n'existe pas, même à l'émission. Il est cependant possible que le bruit devienne invisible si son niveau est très faible. L'attribut SNR est donc un critère de la qualité du signal.
+
+
+\subsection{Transformée de Fourier}
+
+Pour effectuer une analyse de signal, sa représentation est capitale. Les Figure 1 et 2 représentent des signaux en fonction du temps écoulé. Il est possible de représenter des signaux selon une autre composante, la fréquence.
 
 \vspace{0.1cm}
 
@@ -106,21 +184,21 @@ La transformée de Fourier est un outil fondamental utilisé pour analyser et d�
 
 \vspace{0.1cm}
 
-Pour les signaux continus, la $CFT$ (Transformée de Fourier continue) convertit une fonction du temps en fonction de la fréquence en intégrant le signal par rapport aux sinusoïdes de toutes les fréquences possibles. Cette transformation fournit les informations d'amplitude et de phase pour chaque composante de fréquence présente dans le signal.
+Pour les signaux continus, la \textit{CFT} (Transformée de Fourier continue) convertit une fonction du temps en fonction de la fréquence en intégrant le signal par rapport aux sinusoïdes de toutes les fréquences possibles. Cette transformation fournit les informations d'amplitude et de phase pour chaque composante de fréquence présente dans le signal.
 
 \vspace{0.1cm}
 
-Pour les signaux discrets et échantillonnés, la $DFT$ (Transformée de Fourier discrète) calcule un ensemble fini de composantes de fréquence. Il est calculé à l’aide d’un nombre fini d’échantillons, ce qui donne des composantes de fréquence discrètes. Il existe un méthode simplifiée pour les signaux discrets appelé $FFT$ (Fast Fourier Transform). Il s'agit d'un moyen plus rapide de calculer la transformée de Fourier, en particulier pour les signaux numériques comportant un grand nombre de points de données. L'avantage principal de cet algorithme permet de réduire le temps de calcul en divisant la DFT en sous problèmes. La FFT est une méthode très utilisée pour l'analyse de signaux.
+Pour les signaux discrets et échantillonnés, la \textit{DFT} (Transformée de Fourier discrète) calcule un ensemble fini de composantes de fréquence. Il est calculé à l’aide d’un nombre fini d’échantillons, ce qui donne des composantes de fréquence discrètes. Il existe un méthode simplifiée pour les signaux discrets appelé \textit{FFT} (Fast Fourier Transform). Il s'agit d'un moyen plus rapide de calculer la transformée de Fourier, en particulier pour les signaux numériques comportant un grand nombre de points de données. L'avantage principal de cet algorithme permet de réduire le temps de calcul en divisant la DFT en sous problèmes. La FFT est une méthode très utilisée pour l'analyse de signaux.
 
 \newpage
 
 \section{LoRa}
 
-$LoRa$ (Long Range) est une technologie de communication sans fil qui permet de transmettre des données sur de longues distances avec une faible consommation d'énergie. Elle a été développée par la société française Cycleo et est maintenant gérée par la fondation LoRa Alliance, qui regroupe plusieurs entreprises et organisations du monde entier.
+\textit{LoRa} (Long Range) est une technologie de communication sans fil qui permet de transmettre des données sur de longues distances avec une faible consommation d'énergie. Elle a été développée par la société française Cycleo et est maintenant gérée par la fondation LoRa Alliance, qui regroupe plusieurs entreprises et organisations du monde entier.
 
 \vspace{0.1cm}
 
-LoRa est principalement utilisée dans l'$Iot$. Elle se distingue par sa portée étendue, qui peut atteindre plusieurs kilomètres en milieu urbain et plusieurs dizaines de kilomètres en milieu rural, ainsi que par sa faible consommation d'énergie, qui permet de prolonger la durée de vie des appareils connectés. Une longue portée avec un puissance limitée induit une plus faible bande passante que les autres technologies sans fil (le Wifi, la 4G, Bluetooth etc).
+LoRa est principalement utilisée dans l'IoT. Elle se distingue par sa portée étendue, qui peut atteindre plusieurs kilomètres en milieu urbain et plusieurs dizaines de kilomètres en milieu rural, ainsi que par sa faible consommation d'énergie, qui permet de prolonger la durée de vie des appareils connectés. Une longue portée avec un puissance limitée induit une plus faible bande passante que les autres technologies sans fil (le Wifi, la 4G, Bluetooth etc).
 
 \vspace{0.1cm}
 
@@ -129,7 +207,7 @@ LoRa utilise une bande de fréquences qui varie selon les régions du monde où 
 \vspace{0.1cm}
 
 \begin{itemize}
-\item en Europe, la bande de fréquences autorisée est comprise entre 863 et 870 MHz,
+\item en Europe, la bande de fréquences autorisée est comprise entre 863 et 870 MHz, ce qui correspond à l'\textit{ISM radio band}, un bande dédié aux recherches qui ne nécessite pas de license d'émission.
 \item aux États-Unis, elle se situe entre 902 et 928 MHz,
 \item en Chine, la fréquence autorisée varie entre 779 et 787 MHz,
 \item les régions restantes ont elles aussi une fourchette unique.
@@ -137,20 +215,20 @@ LoRa utilise une bande de fréquences qui varie selon les régions du monde où 
 
 \vspace{0.1cm}
 
-La technologie LoRa utilise la modulation en fréquence chirp spread spectrum ($CSS$ $modulation$). La modulation CSS utilise un signal chirp, c'est à dire un signal modulé en fréquence linéaire. Ce signal a une amplitude constante mais balaie tout le spectre de la bande passante de manière liénaire dans une période de temps définie. Cette technique de modulation sera détaillé plus loin dans le chapitre.
+La technologie LoRa utilise la modulation appelé \textit{Chirp Spread Spectrum Modulation} (CSS). La modulation CSS utilise un signal chirp, c'est à dire un signal modulé en fréquence linéaire. Ce signal a une amplitude constante mais balaie tout le spectre de la bande passante de manière linéaire dans une période de temps définie. Cette technique de modulation sera détaillée à la section \ref{css}
 
 \vspace{0.1cm}
 
-La technologie LoRa utilise également une technique de multiplexage en temps partagé ($TDMA$) pour permettre à plusieurs appareils de partager la même bande de fréquences de manière à maximiser l'utilisation de la capacité de transmission. Elle utilise également une technique de diffusion de données ($multicast$) pour envoyer les mêmes données à plusieurs appareils simultanément, ce qui permet de réaliser des économies de bande passante et d'énergie.
+La technologie LoRa utilise également une technique de multiplexage en temps partagé (\textit{Time Division Multiple Access}) pour permettre à plusieurs appareils de partager la même bande de fréquences de manière à maximiser l'utilisation de la capacité de transmission. Elle utilise également une technique de diffusion de données (\textit{multicast}) pour envoyer les mêmes données à plusieurs appareils simultanément, ce qui permet de réaliser des économies de bande passante et d'énergie (source : \href{https://resources.lora-alliance.org/technical-trainings/lorawan-device-to-device-multicast-communications}{LoRa Alliance})
 
 \vspace{0.1cm}
 
-En plus de sa portée étendue et de sa faible consommation d'énergie, LoRa se distingue par sa sécurité de transmission, qui est assurée grâce à l'utilisation de codes de sécurité uniques et à la possibilité de chiffrer les données transmises. Elle est également compatible avec de nombreux protocoles de communication couramment utilisés dans l'IoT, tels que TCP/IP, HTTP et MQTT, ce qui facilite son intégration dans les systèmes existants.
+En plus de sa portée étendue et de sa faible consommation d'énergie, LoRa se distingue par sa sécurité de transmission, qui est assurée grâce à l'utilisation de codes de sécurité uniques et à la possibilité de chiffrer les données transmises. Lora n'est pas exclusivement lié au protocole LoraWan. Ce protocol sera décrit en détails à la section \ref{lorawan}. Si LoRa opère à un niveau plus bas que la plupart des protocoles réseau, LoRaWan via son infrastructure (notament les \textit{gateway} permet entre autre aux appareils LoRa de pouvoir utiliser différents protocoles et d'être compatibles avec un grand nombre de protocoles de communications comme \textit{TCP/IP (transport layer protocol), HTTP (hypertext transfer protocol ou MQTT(message queuing telmetry transport)}.
 
 \vspace{0.1cm}
 
-Toutes ces  particularités font de LoRa une technologie complémentaire à celles déja existente plutot que rivale.
-LoRa se compose de deux éléments principaux : la couche physique de la technologie et LoRaWAN, la couche MAC ($media$ $access$ $control$), une sous couche de la couche liaison de données dans le modèle $OSI$. la couche physique de LoRa gère la fréquence radio ainsi que la modulation. LoRaWAN gère les aspects réseaux comme la sécurité, la propagation, l'adressage et la sécurité).
+Toutes ces  particularités font de LoRa une technologie complémentaire à celles déja existantes plutot que rivale.
+LoRa se compose de deux éléments principaux : la couche physique de la technologie et LoRaWAN, la couche MAC (\textit{Media Access Control}, une sous couche de la couche liaison de données dans le modèle OSI \textit{Open Systems Interconnection}. la couche physique de LoRa gère la fréquence radio ainsi que la modulation. LoRaWAN gère les aspects réseaux comme la sécurité, la propagation, l'adressage et la sécurité.
 
 \subsection{couche physique LoRa}
 
@@ -160,7 +238,7 @@ LoRa se compose de deux éléments principaux : la couche physique de la technol
 \centering
 
 \includegraphics[scale=1]{images/physical_lora_rx.PNG}
-\caption{Etapes de la transformation des données dans un éméteur LoRa}\label{term3}
+\caption{Etapes de la transformation des données dans un éméteur LoRa}\label{term4}
 \end{figure}
 
 
@@ -186,7 +264,7 @@ Chacune des étapes décrites doit être inversément réalisée pour le récept
 Cette analyse a été faite en $reverse$ $engeneering$ (\textcolor{red}{citer article}). Le reverse engineering consiste à analyser un produit ou un système afin de comprendre comment il fonctionne ou d'identifier ses principes de conception. Dans le contexte de LoRa, le reverse engineering examine la technologie derrière LoRa afin de comprendre ses principes de base et sa conception.
 
 
-\subsubsection{Modulation CSS}
+\subsubsection{Modulation CSS}\label{css}
 
 Contrairement aux modulation classique en amplitude ou en fréquence, la modulation CSS étale le signal sur une large bande de fréquence. La modulation en fréquence est linéaire et utilise des chirps. un chirp est un signal dont la fréquence change en continue tout en conservant une amlitude constante. Il existe deux types de chirps : les $upchirp$ et $downchirp$.
 Dans un upchirp la fréquence augmente avec le temps tandis que dans un downchirp la fréquence diminue.
@@ -232,7 +310,7 @@ un paquet LoRa est structuré en 5 parties différentes :
 
 
 
-\subsection{LoRaWAN}
+\subsection{LoRaWAN}\label{lorawan}
 
 LoRaWAN est un protocol de type $low$ $power$, $wide$ $area$ $network$ (LPWAN) désigné pour la communication longue portée. Ce protocole opère avec la technologie LoRa et lui fournit une infrastructure capable de maintenir une communication à longue portée et à faible cout dans l'$IoT$.
 
@@ -285,7 +363,7 @@ la communication au sein d'un réseau LoraWan se fait en grande partie de maniè
 \centering
 
 \includegraphics[scale=0.1]{images/architecture.png}
-\caption{Tolpologie de l'infrastructure LoraWan}\label{term4}
+\caption{Tolpologie de l'infrastructure LoraWan}\label{term5}
 \end{figure}
 
 La figure 4 montre les 4 types d'appareils qui composent la topologie d'un infrastrucure LoraWan. 

@@ -8,6 +8,12 @@ A Review of Radio Frequency Fingerprinting Techniques
 Universally Composable Authentication and Key-Exchange with Global PKI
 radio frequency fingerprint identification
 
+article pour chapitre 1 section lora:
+
+A TDMA-Based Access Protocol for Dense Networks with
+Moving Nodes for IoT Applications
+
+
 article pour chapitre 2 section 1:
 
 A survey of blockchain from security perspective
