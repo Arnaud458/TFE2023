@@ -1,0 +1,9 @@
+digraph {
+	preamble [label=Preamble]
+	syncword [label=SyncWord]
+	payload [label=Payload]
+	crc [label=CRC]
+	preamble -> syncword
+	syncword -> payload
+	payload -> crc
+}

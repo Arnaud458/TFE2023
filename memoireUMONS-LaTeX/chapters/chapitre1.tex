@@ -238,21 +238,21 @@ LoRa se compose de deux éléments principaux : la couche physique de la technol
 \centering
 
 \includegraphics[scale=1]{images/physical_lora_rx.PNG}
-\caption{Etapes de la transformation des données dans un éméteur LoRa}\label{term4}
+\caption{Etapes de la transformation des données dans un émetteur LoRa\cite{loraphy}}\label{term4}
 \end{figure}
 
 
-Les étapes de la conception de l'envoie de données dans la couche physique de LoRa sont les suivantes :
+Les étapes de la conception de l'envoi de données dans la couche physique de LoRa sont montrés dans la figure \ref{term4} :
 
 \vspace{0.1cm}
 
 \begin{itemize}
-\item Le codage de canal est une technique utilisée dans les systèmes de communication sans fil pour améliorer la robustesse et la fiabilité de la transmission des données. Dans le cas de LoRa, le codage de canal utilise la méthode $FEC$ ($Forward$ $error$ $correction$) pour corriger les erreurs causées par du bruit. La méthode FEC ajoute de l'information redondante sur les données.
-\item Le mélange de canal (ou $channel$ $interleaving$) suit la codage de canal.  
-Cette technique consiste à réarranger les bits de data avant de les transmettre, en les intercalant entre eux de manière à les disperser sur le spectre des fréquences de la transmission. Cela permet de réduire l'impact des erreurs consécutives ($burst$ $error$).
-\item Le blanchiment de canal (ou $channel$ $whitening$) est la dernière étape avant la modulation du signal.
-Cette technique consiste à utiliser une transformation aléatoire ou pseudo-aléatoire des données avant de les transmettre, de manière à répartir le spectre des fréquences de la transmission sur une large gamme de fréquences. Cela permet également la récupération d'horloge pour le récepteur.
-\item La modulation CSS est l'étape principale de LoRa. En effet, les étapes précédantes sont communes à de nombreuses technologies, mais la particularité de LoRa provient de la modulation. Cette étape est détaillée dans la section suivante du chapitre.
+\item Le codage de canal (\textit{channel coding}) est une technique utilisée dans les systèmes de communication sans fil pour améliorer la robustesse et la fiabilité de la transmission des données. Dans le cas de LoRa, le codage de canal utilise le \textit{Forward Error Correction (FEC)} pour corriger les erreurs causées par du bruit. La méthode FEC ajoute de l'information redondante sur les données.
+\item Le mélange de canal (\textit{channel interleaving}) suit le codage de canal.  
+Cette technique consiste à réarranger les bits ou les symboles de données en les dispersant sur plusieurs canaux (ici on fait référence à des streams ou a des bandes de fréquences spécifiques plutôt qu'à des canaux physiques). Cela permet de réduire l'impact de \textit{burst errors}, des erreurs consécutives.
+\item Le blanchiment de canal (\textit{channel withening)} est la dernière étape avant la modulation du signal.
+Cette technique consiste à utiliser une transformation aléatoire ou pseudo-aléatoire des données avant de les transmettre, de manière à répartir le spectre des fréquences de la transmission sur une large gamme de fréquences. C'est une technique mathématique qui consiste a effectuer une transformation linéaire des données avec un matrice de covariance en un nouveau set de données dans la covariance est la matrice d'identitée. Le du blanchiment est de réduire la corrélation entre les différentes composante fréquencielles et assurer que le signal possède une puissance similaire tout le long de son spectre.
+\item La modulation CSS est l'étape principale de LoRa. En effet, les étapes précédentes sont communes à de nombreuses technologies, mais la particularité de LoRa provient de la modulation. Cette étape est détaillée dans la section \ref{css}.
 \end{itemize}
 
 \vspace{0.1cm}
@@ -261,71 +261,90 @@ Chacune des étapes décrites doit être inversément réalisée pour le récept
 
 \vspace{0.1cm}
 
-Cette analyse a été faite en $reverse$ $engeneering$ (\textcolor{red}{citer article}). Le reverse engineering consiste à analyser un produit ou un système afin de comprendre comment il fonctionne ou d'identifier ses principes de conception. Dans le contexte de LoRa, le reverse engineering examine la technologie derrière LoRa afin de comprendre ses principes de base et sa conception.
+Cette analyse a été faite en \textit{Reverse Engeneering} par Alexandre Marquet, Nicolas Montavont et Georgios Z. Papadopoulos \cite{lorareverse}. Le reverse engineering consiste à analyser un produit ou un système afin de comprendre comment il fonctionne ou d'identifier ses principes de conception. Dans le contexte de LoRa, le reverse engineering examine la technologie derrière LoRa afin de comprendre ses principes de base et sa conception.
 
 
 \subsubsection{Modulation CSS}\label{css}
 
 Contrairement aux modulation classique en amplitude ou en fréquence, la modulation CSS étale le signal sur une large bande de fréquence. La modulation en fréquence est linéaire et utilise des chirps. un chirp est un signal dont la fréquence change en continue tout en conservant une amlitude constante. Il existe deux types de chirps : les $upchirp$ et $downchirp$.
-Dans un upchirp la fréquence augmente avec le temps tandis que dans un downchirp la fréquence diminue.
+Dans un upchirp la fréquence augmente avec le temps tandis que dans un downchirp la fréquence diminue. Soit $s_{chirp}(t)$ un signal chirp avec
+
+\begin{equation}\label{eq3}
+s_{chirp}(t) = sin(2\pi(f_0 + (\frac{f_1 - f_0}{T})t)t)
+\end{equation}
+
+alors la figure \ref{term5} montre $s_{chirp}$ en fonction du temps où $f_0$ = 10Hz, $f_1$ = 100Hz et $T$ = 1 seconde. On observe que le signal oscille de plus en vite plus vite au fur et à mesure que le temps augmente.
+
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=0.18]{images/CSSupchirp.png}
+\caption{Example d'un signal modulé en upchirp en fonction du temps}\label{term5}
+\end{figure}
 
 \vspace{0.1cm}
 
-le signal est donc séparé sur une large bande de fréquence, permettant par exmeple plusieurs transmission sans causer d'interférence.
-La modulation CSS est l'une des principale contribution au fait que LoRa possède une faible consommation et une longue portée. Cette technioque est très bien intégrée aux appareils a faible puissance utilisé par les technologies LoRa.
+Le signal est donc séparé sur une large bande de fréquence, permettant par exemple plusieurs transmissions sans causer d'interférence.
+La modulation CSS est l'une des principales contributions au fait que LoRa possède une faible consommation et une longue portée. Cette technioque est très bien intégrée aux appareils a faible puissance utilisé par LoRa.
 
 \subsubsection{Spreading factor}
 
-LoRa permet d'envoyer des paquets sur un longue distance à faible puissance. Selon l'environement dans lequel les appareils LoRa sont présents, il peut être utile de pouvoir ajuster certaines capacités.
+LoRa permet d'envoyer des paquets sur une longue distance à faible puissance. Selon l'environement dans lequel les appareils LoRa sont présents, il peut être utile de pouvoir ajuster certaines capacités.
 
 \vspace{0.1cm}
 
-L'étalement, ou $spreading$ $factor$ permet de déterminer le taux de variation de fréquence pour un signal. Modifier le spreading factor ajuste différentes propriétés de la communications. Par exemple, si on augmente le spreading factor, les quatre conséquences principales sont :
+Le facteur d'étalement (\textit{Spreading Factor, SF}) permet de déterminer le taux de variation de fréquence pour un signal. Modifier le spreading factor ajuste différentes propriétés de la communications \cite{thethingsnetworkSF}. Par exemple, si on augmente le spreading factor, les quatre conséquences principales sont :
 
 \vspace{0.1cm}
 
 \begin{itemize}
-\item l'augmentation de la portée. Comme la largeur de bande est plus large, la communication peut atteindre une portée supérieure.
+\item l'augmentation de la portée. En effet augmenter le SF réduit le bitrate et augmente le \textit{processing gain} (l'augmentation de la puissance du signal atteint en l'étalant sur une plus large bande).
 \item Augmentation de la résistance aux interférences. Comme le signal est étalé sur une bande plus largeur, il y a moins de risque de subit des interférences.
-\item Plus petit débit de données. Comme la bande est large, dans un temps défini moins de données sont transmises.
+\item Plus petit débit de données. Le spreading factor controle le taux de chirp, et du coup la vitesse de transmission de donnée. Augmenter le speading factor signifie ralentir la vitesse d'émission des chirps. Pour chaque augmentation du spreading factor, le taux de transmission de donnée est réduit de moitié.
 \item Plus faible consommation. Les données transmises à un taux plus faible consomment moins d'énergie, ce qui prolonge la durée de vie des appareils dont l'économie d'énergie est une priorité.
 \end{itemize}
 
-Diminuer le spreading factor engendre l'effet inverse.
+Diminuer le spreading factor engendre l'effet inverse \cite{thethingsnetworkSF}.
+
+\newpage
 
 \subsubsection{Structure d'un paquet LoRa}
 
-un paquet LoRa est structuré en 5 parties différentes :
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=0.4]{images/lorapacket.png}
+\caption{Structure d'un paquet Lora\cite{lorapacket}}\label{term6}
+\end{figure}
+
+
+La figure \ref{term6} montre la structure d'un paquet Lora. Un paquet LoRa contient 3 parties différentes \cite{loraphy} :
 
 \vspace{0.1cm}
 
 \begin{itemize}
-\item Le préambule : la première partie du paquet, composée d'un nombre variable d'upchirps. La valeur par défaut est fixée à 8 upchirps.
-\item L'identificateur réseau : après le préambule, le paquet contient deux symbole modulé pour l'indentification réseau.
-\item Des symboles de synchronization de fréquence. Après l'identificateur réseau, il y a des downchirps pour faire la dinstinction entre les offsets d'échantillionage de temps ou de fréquence.
-\item La tête ($header$) du paquet. Elle contient les informations relatives à la taille du paquet, le code rate, la présence ou non d'un CRC ($cyclique$ $redundancy$ $check$) et une checksum.
-\item Le payload. La dernière partie du paquet contient le payload d'une taille maximale de 255 bits et l'éventuelle CRC de 16 bits.
+\item Le \textit{preamble}. La première partie du paquet, composée d'un nombre variable d'upchirps. La valeur par défaut est fixée à 8 upchirps minimum. L'émetteur radio ajoute à cela un peu plus de 4 symboles (4.25), qui contiennet l'identificateur réseau ainsi que deux downchirps de synchronisation de fréquence. Ceci fixe le préambule à 12 symboles.
+\item Le \textit{header} du paquet. Les informations sur la taille du paquet, le code rate, la présence d'un CRC (\textit{cyclique redundancy check}) et la checksum sont incluses dans l'en-tête.
+\item Le \textit{payload}. La dernière partie du paquet qui contient les données à transmettre. La taille maximale du payload est de 255 octets. En plus des données, le payload peut également contenir un CRC pour la détection d'erreurs. La longueur du CRC est généralement de 16 bits.
 \end{itemize}
-
-
 
 
 \subsection{LoRaWAN}\label{lorawan}
 
-LoRaWAN est un protocol de type $low$ $power$, $wide$ $area$ $network$ (LPWAN) désigné pour la communication longue portée. Ce protocole opère avec la technologie LoRa et lui fournit une infrastructure capable de maintenir une communication à longue portée et à faible cout dans l'$IoT$.
+LoRaWAN est un protocol de type \textit{Low Power Wide Area Network (LPWAN)} désigné pour la communication longue portée. Ce protocole opère avec la technologie LoRa et lui fournit une infrastructure capable de maintenir une communication à longue portée et à faible cout dans l'IoT.
 
 \subsubsection{aspets généraux de la technologie}
 
 LoraWan bénéficie donc d'une faible puissance de consomation et d'une portée accrue. Elle est également efficace dans différents environement. Le signal est capable de pénétrer diverse terrains et structures.
-Le déploiment d'un infrastructure LoRa ne nécessite pas de license, et son réseau peut être public ou privé. 
+Le déploiment d'une infrastructure LoRa ne nécessite pas de license, et son réseau peut être public ou privé. Les caractéristiques générale de LoraWan sont disponibles sur le site \href{https://www.thethingsnetwork.org/docs/lorawan/}{The Thing Network}.
 
 \vspace{0.1cm}
 
-Le coeur de LoRaWAN réside sur la gestion de l'énergie, permettant aux appareils de fonctionner avec une consommation d'énergie minimale, prolongeant leur durée de vie tout en garantissant une fonctionnalité à long terme. A cette caractéristique de faible consommation d'énergie s'ajoute ses capacités en termes de portée, capable de pénéter diverses environements. Cela rend la technologie efficace aussi bien milieu rurale qu'urbain. LoRaWAN opère sur une bande de fréquence qui ne nécessite pas de license d'émition, par exemple sur la bande ISM pour \textit{Industrial, Scientific, and Medical}.Les bandes ISM, (868 MHz en Europe ou 915 MHz aux USA) sont disponible pour l'utilisation de différentae technologie, incluant LoraWAN.
+Le coeur de LoRaWAN réside sur la gestion de l'énergie, permettant aux appareils de fonctionner avec une consommation d'énergie minimale, prolongeant leur durée de vie tout en garantissant une fonctionnalité à long terme. A cette caractéristique de faible consommation d'énergie s'ajoute ses capacités en termes de portée, capable de pénéter diverses environements. Cela rend la technologie efficace aussi bien milieu rurale qu'urbain. LoRaWAN opère sur une bande de fréquence qui ne nécessite pas de license d'émition, par exemple sur la bande ISM pour \textit{Industrial, Scientific, and Medical}. Les bandes ISM, (868 MHz en Europe ou 915 MHz aux USA) sont disponibles pour l'utilisation de différentes technologies, incluant LoraWAN.
 
 \vspace{0.1cm}
 
-LoRaWAN possède des capacités de géolocalisation, permettant au réseau de détecter et de localiser précisément les appareils au sein de son domaine. LoraWAn utilise différente méthodes pour localiser ses appareils comme \textbf{Received signal strengh indication} ou RSSI, \textit{Time difference on Arrival} ou TDOA, une triangulation ou alors une combinaison de plusieurs des méthodes.
+LoRaWAN possède des capacités de géolocalisation, permettant au réseau de détecter et de localiser précisément les appareils au sein de son domaine. LoraWAn utilise différente méthodes pour localiser ses appareils comme \textit{Received signal strengh indication (RSSI)}, \textit{Time difference on Arrival (TDOA)}, une triangulation ou alors une combinaison de plusieurs des méthodes.
 
 \vspace{0.1cm}
 
@@ -363,7 +382,7 @@ la communication au sein d'un réseau LoraWan se fait en grande partie de maniè
 \centering
 
 \includegraphics[scale=0.1]{images/architecture.png}
-\caption{Tolpologie de l'infrastructure LoraWan}\label{term5}
+\caption{Tolpologie de l'infrastructure LoraWan}\label{term7}
 \end{figure}
 
 La figure 4 montre les 4 types d'appareils qui composent la topologie d'un infrastrucure LoraWan. 
