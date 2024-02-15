@@ -1,4 +1,6 @@
 import numpy as np
+import json
+import os
 import matplotlib.pyplot as plt
 import mpl_scatter_density # adds projection='scatter_density'
 import matplotlib.pyplot as plt
@@ -11,6 +13,7 @@ from capture_signal import SAMPLE_RATE
 
 SPREADING_FACTOR = 7
 RS = 125_000 / (2**SPREADING_FACTOR)
+filename = "centers.json"
 
 def using_hist2d(ax, x, y, bins=(300, 300)):
     ax.hist2d(x, y, bins, cmap=plt.cm.jet)
@@ -78,7 +81,21 @@ if __name__ == "__main__":
         markedx.append(x)
         markedy.append(y)
 
+    file_data = {}
+    folder_path = 'preambles/'
+    files = os.listdir(folder_path)
+    num_files = len(files)
+    print(num_files)
 
+    for i in range(num_files):
+        file_data[f"file number {i+1}"] = {
+        "centerX": np.mean(markedx),
+        "centerY": np.mean(markedy)
+        }
+    with open(filename, 'w') as file:
+        json.dump(file_data, file,indent=4)
+
+    #compure center marked x marked y, sauvegarder ça
     #highest_density_points = np.column_stack((differential_i[highest_density_points_mask], differential_q[highest_density_points_mask]))
 
     print("--------------------------")

@@ -48,4 +48,8 @@ if __name__ == '__main__':
         while read_file('tmp.txt')[-1] != '1':
             print('emmeteur is waiting')
             time.sleep(1)
+    #config(SER)
+    #send_signal(SER)
     SER.close()
+
+    
