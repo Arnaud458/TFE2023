@@ -4,14 +4,14 @@ from utils import read_file, write_file
 
 SERIAL_PORT = '/dev/ttyUSB0'
 BAUD_RATE = 57600
-
+SPREADING_FACTOR = 7
 
 config_commands = [
     "sys get ver\r\n",
     "radio set mod lora\r\n",
     "radio set freq 868000000\r\n",
     "radio set pwr 14\r\n",
-    "radio set sf sf7\r\n",
+    f"radio set sf sf{SPREADING_FACTOR}\r\n",
     "radio set cr 4/8\r\n",
     "radio set bw 125\r\n"
 ]
@@ -39,7 +39,7 @@ def write_command(ser: serial.Serial, command: str):
 
 if __name__ == '__main__':
     SER = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1)
-    for i in range(3):
+    for i in range(15):
         #time.sleep(1)
         config(SER)
         write_file('tmp.txt','0')

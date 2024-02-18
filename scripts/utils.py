@@ -24,6 +24,7 @@ def compute_differential(
     for i in range(differential_interval, len(data)):
         phase_rotation = np.exp(-2j * np.pi * frequency_offset * differential_interval)
         differential_data[i] = data[i] * np.conj(data[i - differential_interval]) * phase_rotation
+        # differential_data[i] = DATA[i] * np.conj(DATA[i - n]) * np.exp(-1j * 2 * np.pi * delta_f * n)
 
     return differential_data
 

@@ -2,6 +2,9 @@ from typing import List, Tuple
 
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
+import datashader as ds
+from datashader.mpl_ext import dsshow
 from utils import load_signal , compute_differential
 
 
@@ -20,20 +23,55 @@ def display_quadrature(*signals: List[Tuple[np.ndarray, str]]) -> None:
 
 
 def display(data) -> None:
-    i = np.real(data)
-    q = np.imag(data)
+    """
+    Display the real part of the signal in orange and the imaginary part in blue
+    """
+    i = np.real(data) # in-phase
+    q = np.imag(data) # quadrature
 
     plt.figure(figsize=(8, 6))
-    plt.scatter(range(len(i)), i, s=5, c='orange', alpha=0.5)
-    plt.scatter(range(len(i)), q, s=5, c='blue', alpha=0.5)
+    plt.scatter(range(len(i)), i, s=5, c='orange', alpha=0.5, label='in-phase')
+    plt.scatter(range(len(i)), q, s=5, c='blue', alpha=0.5, label='quadrature')
     plt.xlabel('Sample index')
-    plt.ylabel('Quadrature')
     plt.title('I/Q Samples')
     plt.legend()
     plt.grid(True)
     plt.show()
 
 
+def using_hist2d(ax, x, y, bins=(300, 300)):
+    ax.hist2d(x, y, bins, cmap=plt.cm.jet)
+
+
+def using_datashader(ax, x, y):
+    df = pd.DataFrame(dict(x=x, y=y))
+    dsartist = dsshow(
+        df,
+        ds.Point("x", "y"),
+        ds.count(),
+        vmin=0,
+        vmax=100,
+        norm="linear",
+        aspect="auto",
+        ax=ax,
+    )
+
+    plt.colorbar(dsartist)
+
+
 if __name__ == "__main__":
     display(load_signal('sample_data/test_64_supprime4', np.complex64))
     #display_quadrature((load_signal('sample_data/test_64_1MHz', dtype=np.complex64)),'data')
+
+    """fig, ax = plt.subplots()
+    #fig = plt.figure(figsize=(8, 6))
+    #ax = fig.add_subplot(1, 1, 1, projection='scatter_density')
+
+    #using_datashader(ax, differential_i, differential_q)
+    using_hist2d(ax, differential_i, differential_q)
+    #plt.scatter(differential_i, differential_q, s=1, c='red', alpha=0.5)
+    plt.xlabel('Differential In-phase')
+    plt.ylabel('Differential Quadrature')
+    plt.title('Differential I/Q Samples')
+    #plt.grid(True)
+    plt.show()"""
