@@ -4,20 +4,34 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 from utils import compute_differential, load_signal
-
+from utils_display import using_datashader
 from rn2483 import SPREADING_FACTOR
 
 RS = 125_000 / (2**SPREADING_FACTOR)
 JSON_FILENAME = "centers.json"
 DENSITY_THRESHOLD = 0.8
 
-MODULE = "RN2"
+MODULE = "RN1"
 SAMPLES_FOLDER = f'preambles/{MODULE}/'
 
 
 def not_close_to_zero(arr: np.array):
     return np.sqrt(np.real(arr) ** 2 + np.imag(arr) ** 2) > 0.001
 
+
+def display_density(i,q, filename):
+    fig, ax = plt.subplots()
+    #fig = plt.figure(figsize=(8, 6))
+    #ax = fig.add_subplot(1, 1, 1, projection='scatter_density')
+
+    using_datashader(ax, i, q)
+    #using_hist2d(ax, differential_i, differential_q)
+    #plt.scatter(differential_i, differential_q, s=1, c='red', alpha=0.5)
+    plt.xlabel('Differential In-phase')
+    plt.ylabel('Differential Quadrature')
+    plt.title('Differential I/Q Samples'+ filename)
+    #plt.grid(True)
+    plt.show()
 
 def display_preamble(density, x_edges, y_edges, differential_i, differential_q, markedx, markedy, filename):
     max_density_x_index, max_density_y_index = np.unravel_index(np.argmax(density), density.shape)
@@ -39,7 +53,7 @@ def display_preamble(density, x_edges, y_edges, differential_i, differential_q, 
 
 def find_preamble_center(data: np.array, filename: str="") -> Tuple[int, int]:
     n = 4096
-    delta_f = -62500
+    delta_f = 0.5
     differential_data = compute_differential(data, n, delta_f)
     
     differential_data = differential_data[not_close_to_zero(differential_data)]
@@ -55,7 +69,8 @@ def find_preamble_center(data: np.array, filename: str="") -> Tuple[int, int]:
     markedx = [(x_edges[p[0]] + x_edges[p[0] + 1]) / 2 for p in marked_points]
     markedy = [(y_edges[p[1]] + y_edges[p[1] + 1]) / 2 for p in marked_points]
 
-    display_preamble(density, x_edges, y_edges, differential_i, differential_q, markedx, markedy, filename)
+    display_density(differential_i, differential_q, filename)
+    #display_preamble(density, x_edges, y_edges, differential_i, differential_q, markedx, markedy, filename)
     return np.mean(markedx), np.mean(markedy)
 
 

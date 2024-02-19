@@ -4,7 +4,7 @@ from utils import read_file, write_file
 
 SERIAL_PORT = '/dev/ttyUSB0'
 BAUD_RATE = 57600
-SPREADING_FACTOR = 7
+SPREADING_FACTOR = 8
 
 config_commands = [
     "sys get ver\r\n",
@@ -39,11 +39,11 @@ def write_command(ser: serial.Serial, command: str):
 
 if __name__ == '__main__':
     SER = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1)
-    for i in range(15):
+    for i in range(25):
         #time.sleep(1)
         config(SER)
         write_file('tmp.txt','0')
-        time.sleep(1)
+        time.sleep(1.5)
         send_signal(SER)
         while read_file('tmp.txt')[-1] != '1':
             print('emmeteur is waiting')

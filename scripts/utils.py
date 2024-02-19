@@ -1,8 +1,8 @@
 import numpy as np
 
 
-DIFFERENTIAL_INTERVAL = 15
-FREQUENCY_OFFSET = -62500
+DIFFERENTIAL_INTERVAL = 2048
+FREQUENCY_OFFSET = -0.5
 
 
 def read_file(filename: str):
@@ -22,8 +22,8 @@ def compute_differential(
     differential_data = np.zeros_like(data)
 
     for i in range(differential_interval, len(data)):
-        phase_rotation = np.exp(-2j * np.pi * frequency_offset * differential_interval)
-        differential_data[i] = data[i] * np.conj(data[i - differential_interval]) * phase_rotation
+        rotation_factor = np.exp(-2j * np.pi * frequency_offset * differential_interval)
+        differential_data[i] = data[i] * np.conj(data[i - differential_interval]) * rotation_factor
         # differential_data[i] = DATA[i] * np.conj(DATA[i - n]) * np.exp(-1j * 2 * np.pi * delta_f * n)
 
     return differential_data

@@ -15,10 +15,10 @@ def capture_signal():
     sdr.sample_rate = SAMPLE_RATE
     #sdr.bandwitdh = 250000
     sdr.center_freq = 867937500
-    sdr.gain = 2
+    sdr.gain = 5
 
     # Start signal capture
-    capture_duration = 2  # in seconds
+    capture_duration = 2.5  # in seconds
 
     print(f"Capturing signal for {capture_duration} seconds...")
     nb_samples = math.ceil(capture_duration * sdr.sample_rate /16384)*16384
@@ -31,9 +31,9 @@ def capture_signal():
 
 
 if __name__ == "__main__":
-    PREAMBLE_DURATION = 0.01225
+    PREAMBLE_DURATION = 0.0245
 
-    for i in range(15):
+    for i in range(25):
         while read_file('tmp.txt')[-1] != '0':
             print('recepteur is waiting')
             time.sleep(0.2)

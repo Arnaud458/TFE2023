@@ -60,18 +60,5 @@ def using_datashader(ax, x, y):
 
 
 if __name__ == "__main__":
-    display(load_signal('sample_data/test_64_supprime4', np.complex64))
+    display(load_signal('preambules/sf7sf812.complex', np.complex64))
     #display_quadrature((load_signal('sample_data/test_64_1MHz', dtype=np.complex64)),'data')
-
-    """fig, ax = plt.subplots()
-    #fig = plt.figure(figsize=(8, 6))
-    #ax = fig.add_subplot(1, 1, 1, projection='scatter_density')
-
-    #using_datashader(ax, differential_i, differential_q)
-    using_hist2d(ax, differential_i, differential_q)
-    #plt.scatter(differential_i, differential_q, s=1, c='red', alpha=0.5)
-    plt.xlabel('Differential In-phase')
-    plt.ylabel('Differential Quadrature')
-    plt.title('Differential I/Q Samples')
-    #plt.grid(True)
-    plt.show()"""
