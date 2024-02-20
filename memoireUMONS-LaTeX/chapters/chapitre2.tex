@@ -72,23 +72,27 @@ La dernière approche se concentre sur l'analyse des charactéristiques uniques 
 
 \textcolor{red}{FIN DE LA REDACTION}
 
-\section{analyse de la technologie lora}
+\section{Analyse de la technologie lora}
 
-\subsection{analyse de la couche physique lora}
 
-des travaux ont été réalisé pour permettre l'analyse de la couche physique de lora (article)
-fait en reverse engeneering. 
-
-\subsection{analyse de la modulation CSS de Lora}
-
-papier belgique sur la modulation Css
 
 \section{identification de device lora}
 
 radio frequency finguerprinting identification (RFFI). trouver des charactéristiques hardware pour identifier des devices.
 
 \subsection{RFFI avec DCTFs}
-article sur les méthode de constellations traces
+
+L'analyse suivante est basé sur l'article publié par Yu Jiang, Linning Peng, Aiqun Hu, Sheng Wang, Yi Huang et Lu Zhang \cite{loraDCTF}. L'objectif de cette analyse est de pouvoir identifier un appareil LoRa uniquement en se fiant à l'analyse des signaux générés par ce dernier. 
+
+Cette analyse est séparée en plusieurs étapes. 
+
+aquisition des données. On s'intéresse uniquement au préambule du singal car cette partie est fixe peu importe le signal envoyé. Ensuite, on extrait les échantillons IQ du preambule lora.
+
+Preprocessing des données. Si on plot les échantillons tel quel, on n'observe un cercle mais on en apprend pas plus. A cause du CFO (carrier frequency offset), les données dévies et couvre l'information importante sur le graphe. Il faut appliquer une méthode différentielle pour recalculer les données (equation dt).
+
+Une fois que les donnés sont recaculée, on observe via un gradient coloré une zone dense dans le cercle. On calcule le centre de la manière suivante. On calcule le ploint le plus dense ainsi que les points au moins 90 pourcent aussi dense. Ensuite, on calcul le centre euclidien  entre tout les point éligibles. On répète cette opération pour chaque échantillons.
+
+Une fois qu'on a obtenu le centre pour chaque échantillons, on plot pour chaque module le cluster de point, permettant ainsi d'utiliser une méthode classification. La méthode kmeans convient pour cette nalyse car on connait à l'avance la valeur de k (le nombre de module).
 
 \subsection{RFFI avec spectrogrammes}
 article sur les spectogrammes.
