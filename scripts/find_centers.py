@@ -55,6 +55,7 @@ def find_preamble_center(data: np.array, filename: str="") -> Tuple[int, int]:
     n = 4096
     delta_f = 0.5
     differential_data = compute_differential(data, n, delta_f)
+    #differential_data = data
     
     differential_data = differential_data[not_close_to_zero(differential_data)]
     differential_i = np.real(differential_data)

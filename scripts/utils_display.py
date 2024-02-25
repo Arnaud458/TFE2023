@@ -21,6 +21,24 @@ def display_quadrature(*signals: List[Tuple[np.ndarray, str]]) -> None:
     plt.legend()
     plt.show()
 
+def fft(data) -> None:
+    fft_result = np.fft.fft(data)
+
+    # Calculate the frequencies corresponding to FFT result
+    sampling_rate = 2000000 
+    freqs = np.fft.fftfreq(len(fft_result), 1 / sampling_rate)
+
+    # Plot the frequency-domain data
+    """plt.specgram(data, Fs=2000000)
+    plt.xlabel('Time (s)')
+    plt.ylabel('Frequency (Hz)')
+    plt.title('Spectrogram')
+    plt.colorbar(label='Magnitude (dB)')"""
+    plt.plot(freqs, np.abs(fft_result))
+    plt.xlabel('Frequency (Hz)')
+    plt.ylabel('Magnitude')
+    plt.title('Frequency Domain Plot')
+    plt.show()
 
 def display(data) -> None:
     """
@@ -60,5 +78,6 @@ def using_datashader(ax, x, y):
 
 
 if __name__ == "__main__":
-    display(load_signal('preambules/sf7sf812.complex', np.complex64))
+    #display(load_signal('preambles/RN1/sample_1', np.complex64))
     #display_quadrature((load_signal('sample_data/test_64_1MHz', dtype=np.complex64)),'data')
+    fft(load_signal('preambles/RN1/sample_1', np.complex64))

@@ -39,7 +39,7 @@ def write_command(ser: serial.Serial, command: str):
 
 if __name__ == '__main__':
     SER = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1)
-    for i in range(25):
+    for i in range(2):
         #time.sleep(1)
         config(SER)
         write_file('tmp.txt','0')
