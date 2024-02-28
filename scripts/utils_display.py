@@ -78,6 +78,6 @@ def using_datashader(ax, x, y):
 
 
 if __name__ == "__main__":
-    #display(load_signal('preambles/RN1/sample_1', np.complex64))
+    display(load_signal('preambles/RN1_norm/sample_1_normalized', np.complex64))
     #display_quadrature((load_signal('sample_data/test_64_1MHz', dtype=np.complex64)),'data')
-    fft(load_signal('preambles/RN1/sample_1', np.complex64))
+    #fft(load_signal('preambles/RN1_norm/sample_1_normalized', np.complex64))

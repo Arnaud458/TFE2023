@@ -87,3 +87,8 @@ def cut_preamble(signal, treshold, preamble_size):
         return []
 
     return signal[start_index:start_index+preamble_size]
+
+def rms_normalize(samples: np.ndarray) -> np.ndarray:
+    rms_values = np.sqrt(np.mean(np.abs(samples)**2, axis=0))  # Compute RMS values
+    normalized_samples = samples / rms_values  # Normalize samples
+    return normalized_samples

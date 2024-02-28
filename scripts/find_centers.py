@@ -11,7 +11,7 @@ RS = 125_000 / (2**SPREADING_FACTOR)
 JSON_FILENAME = "centers.json"
 DENSITY_THRESHOLD = 0.8
 
-MODULE = "Fipy"
+MODULE = "RN1_norm"
 SAMPLES_FOLDER = f'preambles/{MODULE}/'
 
 

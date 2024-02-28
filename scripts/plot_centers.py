@@ -13,9 +13,9 @@ def plot_centers(data: dict) -> None:
         # Extract center coordinates
         center_x = np.array([entry['centerX'] for entry in data[module].values()])
         center_y = np.array([entry['centerY'] for entry in data[module].values()])
-        v = np.sqrt((center_x ** 2 + center_y ** 2) / 2) # RMS
+        #v = np.sqrt((center_x ** 2 + center_y ** 2) / 2) # RMS
         # Plot points
-        plt.scatter(center_x / v, center_y / v, label=module)
+        plt.scatter(center_x, center_y, label=module)
 
     # Add labels and title
     plt.xlabel('Center X')
