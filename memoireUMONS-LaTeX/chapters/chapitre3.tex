@@ -12,13 +12,21 @@ La radio logicielle ($SDR$, pour $Software$-$Defined Radio$) est une technologie
 Dans les systèmes de radio traditionnels, les différentes fonctions de la radio, comme l'accord sur une fréquence spécifique, la modulation et la démodulation du signal, et le filtrage du bruit, sont mises en œuvre à l'aide de composants matériels tels que des oscillateurs, des amplificateurs et des filtres. En revanche, les systèmes SDR utilisent des logiciels pour effectuer ces fonctions, ce qui les rends beaucoup plus flexible car chaque composante est reconfigurable. Les radios logicielle sotn capable d'opérer sur une large portée de fréquence, aussi bien très basse fréquence comme haute fréquence.
 Les $SDR$ peuvent jouer le role d'éméteur ou de récepteur voir les deux.
 
-\subsubsection{RTL-SDR}
+\subsubsection{RTL SDR dvb T}
 
 La première radio utilisée comme récepteur. possède différente composante :
 
 rtl2832U: digitalise les signaux RF et les evnoie à l'ordinateur.
 Tuner chip : le tuner permet d'ajuster la fréquence. Grace à ça la sdr peut couvrir une larger portée.
 port usb : pour raccorder la sdr à l'ordinateur.
+
+\subsubsection{RTL-SDR R820T2}
+
+
+
+meilleure qualitée
+
+
 
 \subsubsection{hackRf}
 
@@ -45,7 +53,7 @@ différentes commandes/ utilisation :
 sys get ver : demande la verion du module, reçoit en réponse 
 radio set (param) (value) : ajuste le paramètre pour l'adapter a la valeur souhaitée.
 
-\subsubsection{pycom fipy}
+\subsubsection{pycom lopy}
 
 besoin  d'un environement python , qqs configuration nécessaire.
 
