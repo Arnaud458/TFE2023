@@ -70,8 +70,8 @@ def find_preamble_center(data: np.array, filename: str="") -> Tuple[int, int]:
     markedx = [(x_edges[p[0]] + x_edges[p[0] + 1]) / 2 for p in marked_points]
     markedy = [(y_edges[p[1]] + y_edges[p[1] + 1]) / 2 for p in marked_points]
 
-    display_density(differential_i, differential_q, filename)
-    #display_preamble(density, x_edges, y_edges, differential_i, differential_q, markedx, markedy, filename)
+    #display_density(differential_i, differential_q, filename)
+    display_preamble(density, x_edges, y_edges, differential_i, differential_q, markedx, markedy, filename)
     return np.mean(markedx), np.mean(markedy)
 
 
