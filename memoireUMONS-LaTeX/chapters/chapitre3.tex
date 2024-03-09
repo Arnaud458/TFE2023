@@ -9,53 +9,102 @@
 
 La radio logicielle ($SDR$, pour $Software$-$Defined Radio$) est une technologie qui permet de mettre en œuvre des systèmes de radio à l'aide de logiciels plutôt que de matériel. 
 
-Dans les systèmes de radio traditionnels, les différentes fonctions de la radio, comme l'accord sur une fréquence spécifique, la modulation et la démodulation du signal, et le filtrage du bruit, sont mises en œuvre à l'aide de composants matériels tels que des oscillateurs, des amplificateurs et des filtres. En revanche, les systèmes SDR utilisent des logiciels pour effectuer ces fonctions, ce qui les rends beaucoup plus flexible car chaque composante est reconfigurable. Les radios logicielle sotn capable d'opérer sur une large portée de fréquence, aussi bien très basse fréquence comme haute fréquence.
-Les $SDR$ peuvent jouer le role d'éméteur ou de récepteur voir les deux.
+Dans les systèmes de radio traditionnels, les différentes fonctions de la radio, comme l'accord sur une fréquence spécifique, la modulation et la démodulation du signal, et le filtrage du bruit, sont mises en œuvre à l'aide de composants matériels tels que des oscillateurs, des amplificateurs et des filtres. En revanche, les systèmes SDR utilisent des logiciels pour effectuer ces fonctions, ce qui les rends beaucoup plus flexible car chaque composante est reconfigurable. Les radios logicielle sont capables d'opérer sur une large portée de fréquence, aussi bien très basse fréquence comme haute fréquence.
+Les $SDR$ peuvent jouer le role d'éméteur ou de récepteur voir les deux. Différentes radios logicielles sont testées pour ce travail, ce qui est motivé pour plusieurs raisons. Tout d'abords cela permets d'observer certaines variations (qualité du signal, distance, etc) entre les différents récepteurs pour une même expérience et ainsi définir la SDR la plus adéquate. Ensuite, la diversité de radios logicielles permet d'approfondir l'apprentissage de cette technologie et de comprendre plus aisément le fonctionnement d'une radio logicielle. Une version plus simple permet d'assimiler les bases de la pratique avec une radio, mais pouvoir utiliser des version plus abouties permets d'expérimenter de manières plus précise les expériences.
+
+\newpage
 
 \subsubsection{RTL SDR dvb T}
 
-La première radio utilisée comme récepteur. possède différente composante :
+La RTL SDR dvb T est la version la plus low cost des radios utilisées. Cette radio est initialemnt utilisée pour recevoir des signaux dvb t (\textit{Digital video broadcasting Terrestrial} télévisés. La figure \ref{term31} montre la radio, qui est essentiellement un device USB qui inclu un \textit{chipset RTL2832U} et un \textit{RF tuner chip}. Le chipset RTL2832U digitalise les signaux RF et les evnoie à l'ordinateur. Le tuner permet d'ajuster la fréquence pour couvrir une larger portée.
+La radio est raccordé à l'ordianteur via le port USB.
 
-rtl2832U: digitalise les signaux RF et les evnoie à l'ordinateur.
-Tuner chip : le tuner permet d'ajuster la fréquence. Grace à ça la sdr peut couvrir une larger portée.
-port usb : pour raccorder la sdr à l'ordinateur.
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=0.08]{images/dvbt.png}
+\caption{RTL SDR Dvb-T dongle}\label{term31}
+\end{figure}
+
+\newpage
 
 \subsubsection{RTL-SDR R820T2}
 
+La deuxième radio logicielle utilisée est la RTL SDR R820T2. Il y a deux différence majeures avec la radio dvb-t. L'antenne de cette radio logicielle est de meilleure qualité. Le tuner chip de cette sdr est un r820t2 tuner. Cette version est une version améliorée du tuner qui se trouve dans la dvb-t, ce qui a pour impact une réduction du bruit, une meilleur sensibilité et une couverturee de fréquence plus large. La figure \ref{term32} montre la sdr utilisée.
 
 
-meilleure qualitée
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=0.08]{images/r820t2.png}
+\caption{RTL SDR R820T2}\label{term32}
+\end{figure}
+
+\newpage
 
 
+\subsubsection{HackRf One}
 
-\subsubsection{hackRf}
+La dernière radio logicielle utilisée est la HackRf one. Au dela du prix, cette dernière radio est différente des deux autres. Elle est notament capable de gérer la transmission et la réception de signaux, là ou les deux autres sont uniquement des récepteurs. Si la rtl sdr r820t2 offrait déja une qualité de signal supérieureà la dvb-t, celui de la hack rf est encore plus net. La figure \ref{fig:both_images} montre la sdr hackRf avec l'antenne utilisée posée sur un trepied.
 
-autre radio logicielle. plus (cher et) complète. meilleure qualité de signal que les rtl-sdr "classiques".
+\begin{figure}[h]
+\centering
+\begin{subfigure}{0.4\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/hackrf.png}
+  \caption{SDR HackRF One}
+  \label{term330}
+\end{subfigure}
+\hspace{0.5cm} % Adjust the horizontal space between the subfigures
+\begin{subfigure}{0.4\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/pied.png}
+  \caption{Antenne}
+  \label{term340}
+\end{subfigure}
+\caption{SDR HackRf One avec son antenne}
+\label{fig:both_images}
+\end{figure}
+
+\newpage
+
+\newpage
 
 \subsection{Module d'émission Lora}
 
 \subsubsection{module RN2483}
 
-Le microchip RN2483 est un module de technologie spécifique à LoRa. Cet appareil permet de communiquer à longue portée et à faible coup grêve à l'utilisation de la modulation basé sur LoRa.
+\begin{figure}[h]
+\centering
 
-quelques spécificités du module :
+\includegraphics[scale=0.08]{images/rn2483.png}
+\caption{3 modules RN2483}\label{term34}
+\end{figure}
 
-technologie LoRa
-faible puissance (ideale pour de l'iot car faible consommation)
-fréquence à 433, 868 et 915MHz (regarder la régions adéquate)
-AT command : configurable via un set de commande
-compatible avec le protocole LoRaWAN pour établir ou rejoindre ce type de réseau.
 
-fonctionne par entrée de commande (aucun retour écran donc aucune faute possible)
+Le microchip RN2483 est un module de technologie spécifique à LoRa. Bien que Microchip soit une compagnie qui produit de nombreux microcontrolleur, cet appareil n'en est pas un. Le module rn2483 de la figure \ref{term34} est un simple \textit{transceiver (transmitter and receiver)} radio permetant de communiquer à longue portée et à faible coup. La documentation sur cet appareil est disponible au lien suivant : (lien). 
 
-différentes commandes/ utilisation :
+Voici quelques spécificités sur le module:
+\begin{itemize}
+\item Il comprend la technologie de modulation LoRa, ce qui lui donne son atout de faibles consomation et longue portée. Il gère également les modulations \textit{FSK (frequency shift keying)} et \textit{GFSK (Gaussian frequency shift keying)}.
+\item Une faible consomation induit une faible puissance, le module possède un amplificateur de puissance maximale de 14dBm.
+\item Les bande de fréquences disponibles sont compatible avec la bande ISM. Le module couvre de 863Mhz à 870Mhz pour la région Européenne.
+\item La data rate maximum en modulant avec LoRa est de 10937 bps (bit par seconde).
+\item tous les paramètres TX sont configurables.
+\end{itemize}
 
-sys get ver : demande la verion du module, reçoit en réponse 
-radio set (param) (value) : ajuste le paramètre pour l'adapter a la valeur souhaitée.
+L'utilisation du module RN2483 est détaillée dans la section \ref{signallora}.
 
 \subsubsection{pycom lopy}
 
-besoin  d'un environement python , qqs configuration nécessaire.
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=0.08]{images/lopy.png}
+\caption{Un module Pycom Lopy avec une antenne}\label{term35}
+\end{figure}
+
+Ce module pycom est est appareil programmable en micro python, comprenant un microcontrolleur ainsi qu'une série de pins digitaux input/output,  des composantes de connectivité sans fil et un port micro USB. La figure \ref{term35} montre le module pycom connecté à une antenne.
 
 \subsubsection{module arduino}
 
@@ -129,9 +178,9 @@ matplotlib : pour les plot des diagrammes
 datashader : pour la coloration du diagramme de constellations
 
 
-\section{Géneration et réception d'un signal LoRa}
+\section{Géneration et réception d'un signal LoRa} \label{signallora}
 
-dans un premier temps les signaux sont généré manuellement sans automatisation, le but étant de reconnaitre et d'analyser la structure d'un signal Lora. le premier signal est généra via le module rn2483. La documentation est disponible au lien suivant (lien). Via python, il est possible d'utiliser la librairie \textit{Serial} pour se connecter au port usb reliant le module à l'ordinateur. Ensuite, via les différentes commandes, on configure le module en modifiant les paramètres suivant : 
+dans un premier temps les signaux sont généré manuellement sans automatisation, le but étant de reconnaitre et d'analyser la structure d'un signal Lora. le premier signal est généra via le module rn2483. Via python, il est possible d'utiliser la librairie \textit{Serial} pour se connecter au port usb reliant le module à l'ordinateur. Ensuite, via les différentes commandes, on configure le module en modifiant les paramètres suivant : 
 
 \begin{itemize}
 \item la modulation, en LoRa.
