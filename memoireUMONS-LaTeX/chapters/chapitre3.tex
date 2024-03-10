@@ -117,21 +117,62 @@ Ce module pycom est est appareil programmable en micro python, comprenant un mic
 
 Sur la figure \ref{term36}, on peut voir que le module contient x. L'avantage principal de cet module est qu'il est possible de configurer une largeur de bande bien plus faible que les autres modules. Les modules rn2483 ou lopy ont une largeur de bande minimal de 125KHz, tanidis qu'avec l'arduino il possible de descendre jusqu'à x Khz. Pour rappel, une largeur de bande plus fiable permet un time on air plus grand, ce qui être utile pour analyser les signaux. 
 
-\subsection{logiciel}
+\subsection{Logiciels}
 
-\subsubsection{gqrx}
+Une fois les différents appareils choisis, il faut les accompagner avec les softwares adéquats. Ainsi il faut des logiciel d'analyse de signaux compatible avec les différents modules et radio logicielles.
 
-logiciel open source d'analyse de fréquence radio pour les SDR.
+\subsubsection{GQRX}
 
-installer gqrx via apt. (ubuntu)
+Le premier logiciel choisi est \textit{GQRX}. c'est un logiciel open source d'analyse de fréquence radio pour les SDR. Le fonctionnement du logiciel est assez direct, la figure \ref{term37} montre comment configurer simplement le logiciel. LA figure \ref{term331} demande de compléter les paramètres suivants:
 
-sélectionner le périphérique pour analyse
+\begin{itemize}
+\item device. Il faut sélectionner la SDR dans la liste des appareils. Le \textit{Device String} fait référence à cet appareil dans gqrx.
+\item Input rate. Le taux d'échantillonage capturé par la SDR, il apparait plus bas comme \textit{sample rate}.
+\item Decimation. C'est un procédé qui permet de réduire le nombre d'échantillons géré par le logiciel, pour économiser des ressources.
+\item Bandwidth. La largeur de bande supplémentaire que peut gérer la SDR.
+\item \textit{Low Noise Block Local Oscillator (LNB LO)}. ce paramètre est spécifique à la réception satéllite et répresénte le frequency offset aplliqué par l'oscillateur locale dans un LNB downconverter.
+\item l'audio output concerne la sortie sonnore du signal.
+\end{itemize}
 
-\textcolor{red}{image choix périphérique}
+La figure \ref{term341} ajoute des paramètes pour le récepteur, c'est à dire pour l'interface de GQRX :
 
-visualisation du spectre
+\begin{itemize}
+\item frequency. La fréquence que l'on souhaite écouter.
+\item Filter Width. Ce paramètre permet de changer la taille de la largeur de bande du filtre appliqué au signal.
+\item Filter Shape. Contrairement au Filter Width ce n'est pas la taille mais la forme du filtre que l'on peut modifier.
+\item Mode. Le mode de démodulation.
+\item Automatic Gain Control (ACG). l'ACG ajuste le gain du récepteur pour maintenir un signal constant.
+\item Squelch. C'est un trashold qui coupe la sortie sonore si il est franchi.
+\item Noise blanker. C'est une fonctionnalité qui permet de rédure l'impact des interférence sur le signal.
+\end{itemize}
 
-deux forme d'affichage,en spectre et en cascade.
+\begin{figure}[h]
+\centering
+\begin{subfigure}{0.4\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/gqrx2.png}
+  \caption{SDR input}
+  \label{term331}
+\end{subfigure}
+\hspace{0.5cm} % Adjust the horizontal space between the subfigures
+\begin{subfigure}{0.4\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/gqrx3.png}
+  \caption{Receiver option}
+  \label{term341}
+\end{subfigure}
+\caption{Configuration GQRX}
+\label{term37}
+\end{figure}
+
+La figure montre un exemple de ce qu'on observe quand on écoute la fréquence radio de Classic21. GQRX affiche le signal reçu sous deux formes différentes : en spectre et en cascade.
+
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=0.2]{images/gqrx1.png}
+\caption{Réception de la station radio Classic21}\label{term38}
+\end{figure}
 
 L'affichage du spectre fournit une représentation graphique en temps réel du spectre RF sur une gamme de fréquences.
 Il montre la puissance du signal de différentes fréquences sur une plage de fréquences spécifiée.
@@ -142,13 +183,7 @@ Il montre une série d'instantanés de spectre empilés les uns sur les autres, 
 Chaque ligne horizontale du tracé en cascade représente une vue du spectre capturée à un moment précis, créant ainsi un enregistrement historique de l'activité du signal.
 L'axe vertical représente la fréquence et l'axe horizontal représente le temps.
 
-\textcolor{red}{image affichage spectre}
-
-configuration de la réception :
-
-imput control (pas trop touché)
-
-FFt settings : très important règle la ff size, le raffraichissemetn d'image. le laps de temps. l'averaging
+Durant la réception du signal, il est possible de modifier l'affichage en cascde. A droite de l'affichage en spectre et en casace sur la figure \ref{term38}, il y a différent paramètres :
 
 Le paramètre Panadapter dB fait référence à l'échelle verticale dans la vue du spectre. Il représente la force du signal des fréquences radio reçues affichées sur l'axe vertical du graphique du spectre. Le réglage du paramètre Panadapter dB modifie l’échelle verticale de la force du signal affichée dans la vue du spectre.
 
@@ -170,6 +205,15 @@ logiciel open source. similaire à gqrx pour fonction d'analyse du signal. Il es
 \textit{.complex32s} using two signed 16 Bit integers for I and Q (since v2.7).
 
 Il est également possible de lire des fichiers de données qui n'ont pas été enregistré avec URH tant qu'ils sont dans les formats supportés.
+
+\subsubsection{Visual Studio Code}
+
+Extension Pymakr pour le module pycom lopy.
+
+
+\subsubsection{IDE Arduino}
+
+pour le module arduino.
 
 \section{Librairie python}
 
