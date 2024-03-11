@@ -106,7 +106,7 @@ L'utilisation du module RN2483 est détaillée dans la section \ref{signallora}.
 
 Ce module pycom est est appareil programmable en micro python, comprenant un microcontrolleur ainsi qu'une série de pins digitaux input/output,  des composantes de connectivité sans fil et un port micro USB. La figure \ref{term35} montre le module pycom connecté à une antenne.
 
-\subsubsection{module arduino}
+\subsubsection{module arduino}\label{arduino}
 
 \begin{figure}[h]
 \centering
@@ -183,50 +183,69 @@ Il montre une série d'instantanés de spectre empilés les uns sur les autres, 
 Chaque ligne horizontale du tracé en cascade représente une vue du spectre capturée à un moment précis, créant ainsi un enregistrement historique de l'activité du signal.
 L'axe vertical représente la fréquence et l'axe horizontal représente le temps.
 
-Durant la réception du signal, il est possible de modifier l'affichage en cascde. A droite de l'affichage en spectre et en casace sur la figure \ref{term38}, il y a différent paramètres :
+Durant la réception du signal, il est possible de modifier l'affichage. A droite de l'affichage en spectre et en cascade sur la figure \ref{term38}, il y a différent paramètres :
 
-Le paramètre Panadapter dB fait référence à l'échelle verticale dans la vue du spectre. Il représente la force du signal des fréquences radio reçues affichées sur l'axe vertical du graphique du spectre. Le réglage du paramètre Panadapter dB modifie l’échelle verticale de la force du signal affichée dans la vue du spectre.
+Pour l'affichage en spectre, le paramètre \textit{Panadapter dB} fait référence à l'échelle verticale dans la vue du spectre. Il représente la force du signal des fréquences radio reçues affichées sur l'axe vertical du graphique du spectre. Le réglage du paramètre Panadapter dB modifie l’échelle verticale de la force du signal affichée dans la vue du spectre.
 
-Le paramètre Waterfall dB concerne l'intensité de la couleur ou l'ombrage des fréquences affichées dans le tracé en cascade.Le réglage du paramètre Waterfall dB modifie l'intensité utilisée pour afficher la force du signal dans le tracé en cascade, permettant ainsi d'ajuster le contraste ou la visibilité des signaux plus faibles ou plus forts.
+Pour l'affichage en cascade, le paramètre \textit{Waterfall dB} concerne l'intensité de la couleur ou l'ombrage des fréquences affichées dans le tracé en cascade.Le réglage du paramètre Waterfall dB modifie l'intensité utilisée pour afficher la force du signal dans le tracé en cascade, permettant ainsi d'ajuster le contraste ou la visibilité des signaux plus faibles ou plus forts.
+
+Les paramètres suivants sont communs et affectes les deux affichages :
+
+Le paramètres \textit{FFT size} détermine le nombre d'échantillons utilisé dans chaque calcul de FFT. Une valeur plus large donne un meilleure résolution, mais consome plus de ressources. La valeur est une puissance de deux pour des raisons d'éfficacité de calculs.
+
+Le paramètre \textit{rate} détermine le taux de rafraichissement de l'affichage. Un taux relativement faible avec une taille de frame FFT élevé induit un effet d'overlap, c'est à dire que des frames consécutives partagent des échantillons, ce qui donne un affichage plus lisse du spectre.
 
 
 \subsubsection{Universal radio hacker, URH}
 
-logiciel open source. similaire à gqrx pour fonction d'analyse du signal. Il est possible de visualiser les signaux de manières analogique, démodulé, en spectrogramme ou en vue I/Q. Il est possible de découper les signaux, notamment pour supprimer les parties "vides" dans les enregistrements. Possibilité de sauvegarder des signaux enregistré dans des fichier. Urh supporte différents formats pour les signaux :
+Universal Radio Hacker est un logiciel open source similaire à GQRX. Son role principal est l'analyse de signaux radio. Au dela de l'écoute en temps réel, URH peut sauvegarder des signaux et lire des enregistrements à partir de fichiers. Les fichiers qu'URH peut interpréter ou enregistrer sont au format \textit{.complex}.  Ce format est utilisé pour pour sauvegarder les signaux sous forme d'échantillons \textit{I/Q (In phase / Quadrature)} Il existe plusieurs variantes de ce format supporté par URH :
 
- \textit{.complex} files with complex64 samples (32 Bit float for I and Q, respectively). This is the default signal file format.
+\begin{itemize}
+\item \textit{.complex (ou .complex64)}: c'est le format par défaut. LEs échantillons sont représenté par des float de 32bits pour les symboles I et Q respectivement (donc 64 bits au total)
  
-\textit{.complex16u} using two unsigned 8 Bit integers for I and Q
+\item  \textit{.complex16u}: la représentation en utilisant 2  entiers de 8 bits non signés pour I et Q.
 
-\textit{.complex16s} using two signed 8 Bit integers for I and Q
+\item  \textit{.complex16s}: la représentation en utilisant 2  entiers de 8 bits signés pour I et Q.
 
-\textit{.complex32u} using two unsigned 16 Bit integers for I and Q (since v2.7)
+\item  \textit{.complex32u}: la représentation en utilisant 2  entiers de 16 bits non signés pour I et Q. 
 
-\textit{.complex32s} using two signed 16 Bit integers for I and Q (since v2.7).
+\item  \textit{.complex32s}: la représentation en utilisant 2 entiers de 16 bits signés pour I et Q.
+\end{itemize}
 
-Il est également possible de lire des fichiers de données qui n'ont pas été enregistré avec URH tant qu'ils sont dans les formats supportés.
+La figure \ref{term39} montre comment enregistrer un signal. Les paramètres à configurer sont similaires à GQRX (choix de la SDR, fréquence, taux d'échantillonage, largeur de bande et gain). Comme URH est le principal outils d'analyse pour ce travail, les analyse avec ce dernier sont détaillées dans la section \ref{signallora}.
+
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=0.2]{images/urh1.png}
+\caption{Enregistrement d'un signal avec URH}\label{term39}
+\end{figure}
+
 
 \subsubsection{Visual Studio Code}
 
-Extension Pymakr pour le module pycom lopy.
+L'environement de travail utilisé est Visual Studio Code (version 1.87.1). Cet IDE est open source et largement populaire ce qui permet un apprentissage pour des travaux spécifique très rapide via Internet. 
 
+L'utilisiation de VSCode est motivé par son système d'extension, qui contient plusieurs extension qui permettent de manipuler directement les modules d'émission LoRa. Le module Lopy de Pycom est compatible avec VSCode via l'extension PyMakr.
+
+GitHub est également intégré dans VSCode, ce qui permet de simplifier la mise en ligne du travail.
 
 \subsubsection{IDE Arduino}
 
-pour le module arduino.
+L'utilisation de l'IDE Arduino 2.2.1 est nécessaire pour la configuration du module Arduino décrit dans la section \ref{arduino}. L'IDE permet d'uploader le code  dans le module. Le code est disponible dans l'annexe.
 
 \section{Librairie python}
 
-utilisation de python : pourquoi ?
-librairie très utile dans le domaine comme NumPy, Pandas, Scikit-learn, PyCM et FiPy.
-Librairie disponible pour les radio logiciel hackrf et rtlSDR.
-Librairie compatible avec la sauvegarde et l'utilisation des données. Bonne documentation notament sur les formats des nombres complexes.
-Capacités pour le machine learning. Utilisation de diverses algorithmes comme kmeans déja implémenté dans des librairies.
-Intégration avec des modules, la librairie fipy gère l'un es modules utilisé pour les éxpérimentations.
+Le choix du langage pour l'implémentation du travail est Python (version 3.11.4). Python donne l'accès à plusieurs librairie très pertinente pour le signal processing. Voici les principales librairies utilisées :
 
-numpy : pour complexe conjugué
-matplotlib : pour les plot des diagrammes
-datashader : pour la coloration du diagramme de constellations
+\begin{itemize}
+\item Numpy. Cette librairie est fondamentale pour la gestion d'array. Elle contient également de nombreuse fonction et format mathématique utile au projet.
+\item Matplotlib. Cette librairie permet d'effectuer des plots des données de manières simple et efficace.
+\item Pyrtlsdr. La librairie PyRTLSDR est essentielle pour pouvoir manipuler la SDR R820T2. Il est possible de configurer la SDR sans devoir passer par un software tier comme GQRX ou URH grâce à cette librairie.
+\item HackRf. L'équivalent de PyRTLSDR mais pour la SDR HackrF One.
+\item datashader. Cette librairie permet la visualisation améliorée de grande quantité de données via l'ajout de gradient coloré.
+\item serial. La manipulation des modules rn2483 est possible grave à la librairie serial.
+\end{itemize}
 
 
 \section{Géneration et réception d'un signal LoRa} \label{signallora}
@@ -253,11 +272,7 @@ Une fois que le module est configurer, il faut paramètrer le recpeteur, la radi
 
 Une fois l'émetteur et le récepteur configuré, il est maintenant possible de visualiser des signaux Lora.
 
-\subsection{analyse avec gqrx}
-
-
-
-\subsection{analyse avec urh}
+\subsection{analyse du signal}
 
 affichage du signal capturé, d'abords sous forme analogique, puis en spectrogramme.
 Décomposition du signal, on observe des "chirps". En analogique, augmentation de la fréquence (unchirp) et diminution de la fréquence (downchirp). En spectrogramme, augmentation est plus visuelle encore, on voit de manière net les chirps.
