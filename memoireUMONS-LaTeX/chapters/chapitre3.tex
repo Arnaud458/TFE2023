@@ -212,7 +212,7 @@ Universal Radio Hacker est un logiciel open source similaire à GQRX. Son role p
 \item  \textit{.complex32s}: la représentation en utilisant 2 entiers de 16 bits signés pour I et Q.
 \end{itemize}
 
-La figure \ref{term39} montre comment enregistrer un signal. Les paramètres à configurer sont similaires à GQRX (choix de la SDR, fréquence, taux d'échantillonage, largeur de bande et gain). Comme URH est le principal outils d'analyse pour ce travail, les analyse avec ce dernier sont détaillées dans la section \ref{signallora}.
+La figure \ref{term39} montre comment enregistrer un signal. Les paramètres à configurer sont similaires à GQRX (choix de la SDR, fréquence, taux d'échantillonage, largeur de bande et gain). Comme URH est le principal outils d'analyse pour ce travail, les analyse avec ce dernier sont détaillées dans la section \ref{urh}.
 
 \begin{figure}[h]
 \centering
@@ -250,36 +250,97 @@ Le choix du langage pour l'implémentation du travail est Python (version 3.11.4
 
 \section{Géneration et réception d'un signal LoRa} \label{signallora}
 
-dans un premier temps les signaux sont généré manuellement sans automatisation, le but étant de reconnaitre et d'analyser la structure d'un signal Lora. le premier signal est généra via le module rn2483. Via python, il est possible d'utiliser la librairie \textit{Serial} pour se connecter au port usb reliant le module à l'ordinateur. Ensuite, via les différentes commandes, on configure le module en modifiant les paramètres suivant : 
+La première étape de l'expérimenation consiste a générer via un module un signal LoRa et à le capturer à l'aide d'une radio logicielle. Pour cette première étape, le module d'émission choisi est le module rn2483, car il est le plus facile et rapide à configurer.
+Via python, il est possible d'utiliser la librairie \textit{Serial} pour se connecter au port usb reliant le module à l'ordinateur. Ensuite, via les différentes commandes, on configure le module en modifiant les paramètres suivant : 
 
 \begin{itemize}
 \item la modulation, en LoRa.
-\item la fréquence. 868MHz, la fréquence de la bande ISM , la bande d'émission en Europe.
-\item la largeur de bande. Dans un premier but de visualiation, on souhaiterai que le message soit le plus long possible dans le temps pour pouvir l'observer facilement. Ainsi la largeur de bande choisie est de 125Khz, ce qui est la plus petite possible valeur que permet le module.
-\item la puissance du module, au maximum (14W).
-\item le spreading factor. Même raisonement que pour la largeur de bande, on souhaite que le \textit{time on air} soit le plus long possible, donc la valeur la plus grande possible est choisie (SF = 12)
+\item La fréquence. 868MHz, la fréquence de la bande ISM , la bande d'émission en Europe.
+\item La largeur de bande choisie est de 125Khz, ce qui est la plus petite valeur possible que permet le module.
+\item La puissance du module, au maximum (14W).
+\item Le spreading factor, la valeur la plus grande possible est choisie (SF = 12).
 \item le coding rate. Il y a 4 valeur possible:s 4/5, 4/6, 4/7 and 4/8. Cela signifie que tout les 4 bits seront codé par 4, 5, 6, 7 ou 8 bits de transmissions en fonction de cette valeur. Plus la valeur st faible (la plus faible étant 4/8), plus le time on air sera élevé, car cela prend plus de temps pour transmettre le message.
 \end{itemize}
 
-Les commandes relatives à la configuration sont disponibles en annexes.
-Une fois que le module est configurer, il faut paramètrer le recpeteur, la radio logicielle. La librairie pyrtlsdr permet de pouvoir configurer le récepteur, elle sera utlisée pour les expérmientations dans la section 3.4. Dans un premier temps, les logiciels comme gqrx ou urh permettent également de pouvoir configurer le récepteur. Leur utilisation a déja été décrite dans la section 3.1.3. Les paramètres à configurer sont les suivant : 
+Le choix des valeurs pour les différents paramètres est de maximiser le \textit{time on air}. Les commandes relatives à la configuration sont disponibles en annexes.
+
+\subsection{analyse avec GQRX}
+
+Une fois que le module est configuré, il faut paramètrer le recepteur, la radio logicielle. La SDR choisie est la RTL SDR T820R2. Voici les paramètres de la SDR:
 
 \begin{itemize}
-\item la fréquence. La fréquece d'écoute. Idéalement la même fréquence de celle de l'émetteur (868MHz). Cependant celle ci sera légèrement décalée pour contrer un effet
-\item le taux d'échantillonage. Il est possible de choisir la quantitté d'échantillons traitée chaque seconde. Un taux plus élevé donnera un signal plus complet. Le taux minimal ne doit jamais être inférieur à deux fois la largeur de bande. (Théorème de nyquist shannon : fe > 2fmax)
-\item le gain. Dépendant de la qualité du signal il peut être nécessaire d'ajouter du gain, c'est à dire d'amplifier la force du signal. Un gain trop élevé peut saturer le signal, quand l'amplitude dépasse la portée du récepteur.
+\item la fréquence. La fréquece d'écoute. Idéalement la même fréquence de celle de l'émetteur (868MHz).
+\item Le taux d'échantillonage. Il est possible de choisir la quantitté d'échantillons traitée chaque seconde. Un taux plus élevé donnera un signal plus complet. Le taux minimal ne doit jamais être inférieur à deux fois la largeur de bande. (Théorème de Nyquist Shannon : fe > 2fmax).
+\item Le gain. Dépendant de la qualité du signal il peut être nécessaire d'ajouter du gain, c'est à dire d'amplifier la force du signal. Un gain trop élevé peut saturer le signal, quand l'amplitude dépasse la portée du récepteur.
 \end{itemize}
 
-Une fois l'émetteur et le récepteur configuré, il est maintenant possible de visualiser des signaux Lora.
+La figure \ref{term301} montre la capture de deux signaux LoRa. On remarque que malgrés la configuration des paramètres pour maximier le TOA, il est difficile d'observer en détails le signal. On observe également que le signal se situe entre la fréquence 867,915MHz et 868,040MHz, ce qui correspond bien à la largeur de bande de 125Khz (0.125MHz) choisie.
 
-\subsection{analyse du signal}
+\begin{figure}[h]
+\centering
 
-affichage du signal capturé, d'abords sous forme analogique, puis en spectrogramme.
-Décomposition du signal, on observe des "chirps". En analogique, augmentation de la fréquence (unchirp) et diminution de la fréquence (downchirp). En spectrogramme, augmentation est plus visuelle encore, on voit de manière net les chirps.
+\includegraphics[scale=0.25]{images/gqrx4.png}
+\caption{capture module rn2483 sur GQRX avec RTLSDR t820r2 Sample rate = 1.8MHz}\label{term301}
+\end{figure}
 
-Dans le signal, on reconnait donc le préambule du signal composé de 10 upchirps et 2 downchirps (selon la théorie).
+Le module arduino, contrairement aux autres modules pycom et rn2483, permets d'utiliser une largeur de bande beaucoup plus faible. La figure \ref{term302} montre la capture d'un signal LoRa émis depuis le module arduino. La largeur de bande choisie est de 7.8Khz, les autres paramètres d'émissions (modulation, fréquence, spreading factor) sont similaires à ceux de la capture précédente. Cette fois ci, on clairement sur l'affichage en spectre un pic à 868,070MHz. Sur l'affichage en cascade, le signal se dessine sous forme de traits (les chirps). Cela correspond bien à la théorie de la modulation LoRa ou le signal modulé est composé de upchirp et downchirp. Il y a de part et d'autres du signals des silhouettes. C'est du à la sensibilité de la SDR, si on observe les pics de fréquences dans l'affichage en spectre, on constate qu'ils sont négligeables car leur échelles de puissances est bien inférieure (environ -60dB plus faible) à celle du pic principal. GQRX permet de visualiser le signal, mais pour pousser l'analyse plus en détails d'utilisation d'Universal Radio Hacker est nécessaire.
 
-Attention, la fréquence d'écoute des sdr ne doit pas être exactement à 868Mhz. En effet, voilà à quoi ressemble si la fréquence d'écout est la même que la fréquence d'émission. Il faut prendre en compte la largeur de bande du signal, dans le cas ou le singal a une largeur de bande de 125KHz, il faut décaler la fréquence d'écoute pour recentrer le signal, ainsi on évite d'avoir des fréquence qui sont interprétée comme "négatives" par URH. Dans la figure, la fréquence est décalé de 125/2 soit 867,935Mhz.
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=0.18]{images/gqrx5.png}
+\caption{capture module arduino Uno sur GQRX avec RTLSDR t820r2 Sample rate = 1.8MHz}\label{term302}
+\end{figure}
+
+\subsection{analyse avec URH}\label{urh}
+
+GQRX permet de zoomer sur les fréquence mais pas sur le temps, ce qui demande donc de générer un signal dont le TOA doit être le plus élevé possible. URH offre plus de flexibilité sur l'analyse ce qui permet de ne pas devoir utiliser des largeur de bande aussi faible que celle du module arduino. Ainsi, pour l'analyse avec URH, les modules pycom et rn2483 sont utilisés. La figure \ref{term305} montre la capture et la sauvegarde d'un signal LoRa. Le module utilisé est rn2483, la SDR est la R820T2. les paramètres d'émission sont les suivants : BW = 125KHz, SF = 8, freq = 868MHz, Mode = LoRa, cr = 4/8, pwr = 14. Les paramètres du récepteurs sont les suivants : freq = 868MHz, SR = 1.8MHz, gain = 0dB
+
+\begin{figure}[h]
+    \centering
+    \begin{minipage}[t]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/urh2n.png}
+        \caption{Capture du signal}
+        \label{term303}
+    \end{minipage}
+    
+    \vspace{1cm}
+    
+    \begin{minipage}[t]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/urh3n.png}
+        \caption{Sauvegarde du signal}
+        \label{term304}
+    \end{minipage}
+    \caption{Capture et sauvegarde du signal LoRa}
+    \label{term305}
+\end{figure}
+
+A partir de la figure \ref{term304}, il est possible de couper une partie de l'enregistrement, notamment celle qui ne contient pas le signal. URH permet également d'afficher le signal sous forme de spectrogramme, la figure \ref{term306} montre le signal sous sa forme analogique et sous spectrogramme. On constate cependant que les deux affichages ne correspondent pas. En effet si on se fie au spectrogramme, la fréquence devrait augmenter surant le premier chirp, or quand on zoom sur le signal sur l'affichage analogique, celle ci diminue dans un premier temps. (voir figure \ref{term307}).
+
+\begin{figure}[h]
+\centering
+
+\includegraphics[width=\textwidth]{images/urh4.png}
+\caption{Signal LoRa sous forme spectrogramme et analogique}\label{term306}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+
+\includegraphics[width=\textwidth]{images/urh5.png}
+\caption{Zoom d'un upchirp du signal LoRa capturé}\label{term307}
+\end{figure}
+
+Ce phénomène est due à une interprétation faussée par URH. La fréquence du récepteur choisie étant la même que celle de l'émetteur, URH va interpréter 868Mhz comme étant la fréquence centrale ayant pour valeur 0, ce qui signifie que pour un signal reçu à 868Mhz, la moitié des échantillons est interprété comme ayant une fréquence "négative". Autrement dit, URH affiche la position inverse des échantillons qu'il considère comme négatifs. Pour éviter cette erreur, il suffit de décaler la fréquence d'écoute proportionnellement à la moitié de la taille de la largeur de bande du signal émis. Dans ce cas, le signal émis à une largeur de bande de 125Khz, il aut ajuster la fréquence d'écoute :
+
+\begin{align}
+    F_{recepteur} = F_{emetteur} - \frac{BW}{2} soit: \\
+    868Mhz - \frac{125KHz}{2} = 867,9375MHz
+\end{align}
+
+
 
 \subsection{automatisation du signal et preprocessing}
 
