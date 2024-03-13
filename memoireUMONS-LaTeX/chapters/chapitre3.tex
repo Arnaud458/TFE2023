@@ -292,9 +292,13 @@ Le module arduino, contrairement aux autres modules pycom et rn2483, permets d'u
 \caption{capture module arduino Uno sur GQRX avec RTLSDR t820r2 Sample rate = 1.8MHz}\label{term302}
 \end{figure}
 
+\newpage
+
 \subsection{analyse avec URH}\label{urh}
 
-GQRX permet de zoomer sur les fréquence mais pas sur le temps, ce qui demande donc de générer un signal dont le TOA doit être le plus élevé possible. URH offre plus de flexibilité sur l'analyse ce qui permet de ne pas devoir utiliser des largeur de bande aussi faible que celle du module arduino. Ainsi, pour l'analyse avec URH, les modules pycom et rn2483 sont utilisés. La figure \ref{term305} montre la capture et la sauvegarde d'un signal LoRa. Le module utilisé est rn2483, la SDR est la R820T2. les paramètres d'émission sont les suivants : BW = 125KHz, SF = 8, freq = 868MHz, Mode = LoRa, cr = 4/8, pwr = 14. Les paramètres du récepteurs sont les suivants : freq = 868MHz, SR = 1.8MHz, gain = 0dB
+GQRX permet de zoomer sur les fréquence mais pas sur le temps, ce qui demande donc de générer un signal dont le TOA doit être le plus élevé possible. URH offre plus de flexibilité sur l'analyse ce qui permet de ne pas devoir utiliser des largeur de bande aussi faible que celle du module arduino. Ainsi, pour l'analyse avec URH, les modules pycom et rn2483 sont utilisés. La figure \ref{term305} montre la capture et la sauvegarde d'un signal LoRa. Le module utilisé est rn2483, la SDR est la R820T2. les paramètres d'émission sont les suivants : BW = 125KHz, SF = 8, freq = 868MHz, Mode = LoRa, cr = 4/8, pwr = 14. Les paramètres du récepteurs sont les suivants : freq = 868MHz, SR = 1.8MHz, gain = 0dB. Pour des raisons de sipmlicité, le signal capturé avec ses paramètres sera utilisé comme référence pour toute la partie analyse à partir de ce point jusqu'à la fin de la section \ref{signallora}.
+
+\newpage
 
 \begin{figure}[h]
     \centering
@@ -340,9 +344,46 @@ Ce phénomène est due à une interprétation faussée par URH. La fréquence du
     868Mhz - \frac{125KHz}{2} = 867,9375MHz
 \end{align}
 
+\newpage
+
+Selon la section \ref{packetlora}, la structure du packet LoRa devrait contenir d'abords les symboles du préambule, soit 8 upchirp suivis de 4.25 chirps. La figure \ref{term308} montre le spectrogramme su signal complet, dont la partie fixe du préambule (les 8 upchirps par défaut) ont été mis ne évidence sous forme analogique. Pouvoir identifier et récupérer le préambule du signal LoRa est crucial pour son identification. 
 
 
-\subsection{automatisation du signal et preprocessing}
+\begin{figure}[h]
+\centering
+
+\includegraphics[width=\textwidth]{images/urh6.png}
+\caption{Identification du préambule LoRa}\label{term308}
+\end{figure}
+
+Cependant, l'utilisation d'intermédiaire comme URH ou GQRX n'est pas efficace pour traiter un grand nombre de signaux. La dernière étape avant de commencer l'identification des noeuds à partir des signaux est d'automatiser le processus complet de la capture du signal.
+
+\newpage
+
+\subsection{analyse avec matplotlib}
+
+Une information importante que les deux logiciels de visualisation ont occulltée, c'est la composition du signal. En effet, la visualisation analogique du signal avec URH montre une seule onde continue. Cependant il s'agit d'un signal complexe composé de deux deux ondes distinctes. Les échantillons du signal capturés par la SDR sont composé de deux composantes : la composante \textit{I (In phase}) et la composante \textit{Q (Quadrature)}. La composante I représente l'amplitude du signal à un point spécifique du temps, cela correspond à la partie rérlle du signal. La composante Q représente le déplacement de phase du signal en fontion de I, ce qui correspond à la partie imaginaire du signal. URH combine les deux pour générer la vue analogique.
+
+La librairie \textit{matplotlib} de python permet d'afficher le contenu du signal capturé. La figure  \ref{term309} est un plot des échantillons dont la partie réelle (orange) et imaginaire (bleue) ont été séparée. Le signal a été capturé avec un taux d'échantillonage de 1.8MHz, magré un TOA relativement court (quelques centième de secondes) la quantité d'échantillons capturée est tèrs grande (plus de 130000 échantillons). Matplotlib permet également le zoom, la figure \ref{term310} fait un zoom sur les 4000 premiers échantillons. Les deux ondes sont clairement visibles
+
+\begin{figure}[h]
+\centering
+
+\includegraphics[width=\textwidth]{images/iq1.png}
+\caption{Plot des échantillons I/Q avec matplotlib}\label{term309}
+\end{figure}
+
+\newpage
+
+\begin{figure}[h]
+\centering
+
+\includegraphics[width=\textwidth]{images/iq2.png}
+\caption{zoom sur les 4000 premiers échantillons I/Q}\label{term310}
+\end{figure}
+
+\subsection{Automatisation du signal et preprocessing}
+
 
 Dans un second temps, besoin d'automatiser la génération et l'enregistrement des signaux afin de pouvoir travailler avec un grand nombre d'échantillons. La librairie python pytlsdr permet de ne pas devoir passer par un logiciel comme urh pour sauvegarder les échantillons. La méthode d'enregistrement est la suivate :
 
