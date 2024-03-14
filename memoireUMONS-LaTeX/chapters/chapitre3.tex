@@ -384,6 +384,39 @@ La librairie \textit{matplotlib} de python permet d'afficher le contenu du signa
 
 \subsection{Automatisation du signal et preprocessing}
 
+Afin de pouvoir effectuer l'identification des appareils, il faut que l'environement de test soit identique pour chaque module, donc tout les paramètres d'émissions sont identiques. La même SDR est utilisé avec les mêmes paramètres de réception pour les mêmes raisons. Avec des paramètres d'émission et de réception fixe, il est possible d'automatiser le processus d'enregistrement d'échantillons LoRa.
+
+La librairie PyRTLSDR permet de configurer la radio logicielle depuis un script python. La partie du signal que l'on cherche à conserver est le préambule (soit les 8 premiers chirps fixes ou les 12.25 premiers chirp). Si le taux d'échantillonage et fixe et que le préambule est toujours de la même taille, alors il est possible de calculer le nombre d'échantillons à capturer. 
+
+Par exemple, la figure \ref{term311} indique que un préambule complet (12.25 chirp) contient environ 49000 échantillons. Sachant que le taux d'échantillonnage est de 2MHz pour cette example, alors le time on air du signal vaut :
+
+\begin{align}
+    Time On Air (TOA) = \frac{N_{samples}}{sample rate} = 0.0245
+\end{align}
+
+Maintenant que la durée de l'enregistrement est calculée, il reste à fixer le moment à partir duquel l'enregistrement commence. La méthode la plus facile est d'implémenter un treshold qui détermine si un signal est reçu durant l'écoute. Voici en résumé comment toute l'opération se déroule :
+
+\begin{itemize}
+\item 
+\end{itemize}
+
+
+
+\begin{figure}[h]
+\centering
+
+\includegraphics[width=\textwidth]{images/iq3.png}
+\caption{Préambule LoRa (sampel rate = 2MHz)}\label{term311}
+\end{figure}
+
+
+treshold enclenche l'enregistrement
+
+découpage su signal
+
+sauvegarde au format .complex
+
+
 
 Dans un second temps, besoin d'automatiser la génération et l'enregistrement des signaux afin de pouvoir travailler avec un grand nombre d'échantillons. La librairie python pytlsdr permet de ne pas devoir passer par un logiciel comme urh pour sauvegarder les échantillons. La méthode d'enregistrement est la suivate :
 
