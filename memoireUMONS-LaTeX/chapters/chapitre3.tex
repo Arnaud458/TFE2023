@@ -394,14 +394,6 @@ Par exemple, la figure \ref{term311} indique que un préambule complet (12.25 ch
     Time On Air (TOA) = \frac{N_{samples}}{sample rate} = 0.0245
 \end{align}
 
-Maintenant que la durée de l'enregistrement est calculée, il reste à fixer le moment à partir duquel l'enregistrement commence. La méthode la plus facile est d'implémenter un treshold qui détermine si un signal est reçu durant l'écoute. Voici en résumé comment toute l'opération se déroule :
-
-\begin{itemize}
-\item 
-\end{itemize}
-
-
-
 \begin{figure}[h]
 \centering
 
@@ -409,29 +401,30 @@ Maintenant que la durée de l'enregistrement est calculée, il reste à fixer le
 \caption{Préambule LoRa (sampel rate = 2MHz)}\label{term311}
 \end{figure}
 
-
-treshold enclenche l'enregistrement
-
-découpage su signal
-
-sauvegarde au format .complex
-
-
-
-Dans un second temps, besoin d'automatiser la génération et l'enregistrement des signaux afin de pouvoir travailler avec un grand nombre d'échantillons. La librairie python pytlsdr permet de ne pas devoir passer par un logiciel comme urh pour sauvegarder les échantillons. La méthode d'enregistrement est la suivate :
+Maintenant que la durée de l'enregistrement est calculée, il reste à fixer le moment à partir duquel l'enregistrement commence. La méthode la plus facile est d'implémenter un treshold qui détermine si un signal est reçu durant l'écoute. Voici en résumé comment toute l'opération se déroule :
 
 \begin{itemize}
-\item d'abords, configurer la module et la rtlsdr avec les différent paramètre
-\item ensuite l'antenne commence a enregistrer. L'émetteur est informé que la radio logiciel est en écoute et envoie un signal. 
-\item dès que la radio reçoit le signal, elle informe l'émetteur de se mettre en attente car le preprocessing commence.
-\item Le signal reçu est découpé pour ne conserver que le preambule, et puis enregistrer dans un fichier.
-\item dès que l'enregistrement est terminé, le cycle recommence.
+\item Les paramètres de l'émetteur sont configurés. 
+\item Dès que l'émetteur est prêt à envoyer un signal, le récepteur commence à écouter.
+\item le récepteur informe l'émetteur que il est en écoute, l'émetteur envoie un signal.
+\item Grâce au treshold, le récepteur commence à enregistrer le TOA du signal dès que le treshold est franchi. L'émetteur est en attente pendant que le signal est enregistré dans un fichier.
+\item Le récepteur se remet sur écoute et informe l'émetteur qu'il peut envoyer un nouveau signal.
 \end{itemize}
 
-la code source est disponible en annexe.
+Finalement, il reste une dernière étape avant de pouvoir commencer l'identification des modules. Malgré que les prises d'échantillons soient en intétieur avec une faible distance entre l'émetteur et le recepteur (voir figure \ref{term312}), les signaux sont parfois fortement atténué. Il faut donc normaliser les données pour contrer les différence d'amplitude. Les données sont normalisée en utilisant \textit{Root means square (RMS)}.
+
+L'implémentation de l'automatisation et de la normalisation est disponible en annexe.
+
+\begin{figure}[h]
+\centering
+
+\includegraphics[width=\textwidth]{images/conf1.png}
+\caption{Préambule LoRa (sampel rate = 2MHz)}\label{term312}
+\end{figure}
 
 
-\section{Méthode "Constellation traces"}
+
+\section{Méthode DCTF}
 
 objectif, identification du device via son frequecy offset.
 
