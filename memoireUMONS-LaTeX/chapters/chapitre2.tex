@@ -78,19 +78,26 @@ La dernière approche se concentre sur l'analyse des charactéristiques uniques 
 
 radio frequency finguerprinting identification (RFFI). trouver des charactéristiques hardware pour identifier des devices.
 
-\subsection{RFFI avec DCTFs}
+\subsection{RFFI avec DCTFs}\label{DCTF}
 
-L'analyse suivante est basé sur l'article publié par Yu Jiang, Linning Peng, Aiqun Hu, Sheng Wang, Yi Huang et Lu Zhang \cite{loraDCTF}. L'objectif de cette analyse est de pouvoir identifier un appareil LoRa uniquement en se fiant à l'analyse des signaux générés par ce dernier. 
+objectif, identification du device via son frequecy offset.
 
-Cette analyse est séparée en plusieurs étapes. 
+selon l'article (citer article), possible de performer la méthode soit uniquement sur le  préambule, soit sur l'intégralité du singal. 
 
-aquisition des données. On s'intéresse uniquement au préambule du singal car cette partie est fixe peu importe le signal envoyé. Ensuite, on extrait les échantillons IQ du preambule lora.
+idée: le received singal contient le baseband singal ainsi qu'un rotation factor instable. pour pouvoir recover cette partie du signal, besoin d'effctuer une opération différentielle suivante :
 
-Preprocessing des données. Si on plot les échantillons tel quel, on n'observe un cercle mais on en apprend pas plus. A cause du CFO (carrier frequency offset), les données dévies et couvre l'information importante sur le graphe. Il faut appliquer une méthode différentielle pour recalculer les données (equation dt).
+\begin{equation}\label{eq1}
+	x(t) . x(t+n) e -j2\pi on
+\end{equation} 
 
-Une fois que les donnés sont recaculée, on observe via un gradient coloré une zone dense dans le cercle. On calcule le centre de la manière suivante. On calcule le ploint le plus dense ainsi que les points au moins 90 pourcent aussi dense. Ensuite, on calcul le centre euclidien  entre tout les point éligibles. On répète cette opération pour chaque échantillons.
+apparation d'un nouveau rotation factor, mais stable. Besoin de trouver deux inconnue,\textit{delta f} et \textit{n}. n est le differential interval. il se calcule de la manière suivante :
 
-Une fois qu'on a obtenu le centre pour chaque échantillons, on plot pour chaque module le cluster de point, permettant ainsi d'utiliser une méthode classification. La méthode kmeans convient pour cette nalyse car on connait à l'avance la valeur de k (le nombre de module).
+\begin{equation}\label{eq2}
+ Rs = BW / 2sf \\
+ N = fs / Rs
+\end{equation}
 
-\subsection{RFFI avec spectrogrammes}
-article sur les spectogrammes.
+carrier frequency offset :
+\begin{equation}\label{eq3}
+ CFO
+\end{equation}

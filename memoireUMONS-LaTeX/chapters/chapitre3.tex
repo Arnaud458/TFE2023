@@ -426,19 +426,57 @@ L'implémentation de l'automatisation et de la normalisation est disponible en a
 
 \section{Méthode DCTF}
 
-objectif, identification du device via son frequecy offset.
+L'analyse suivante est basé sur l'article publié par Yu Jiang, Linning Peng, Aiqun Hu, Sheng Wang, Yi Huang et Lu Zhang \cite{loraDCTF}. L'objectif de cette analyse est de pouvoir identifier un appareil LoRa uniquement en se fiant à l'analyse des signaux générés par ce dernier. 
 
-selon l'article (citer article), possible de performer la méthode soit uniquement sur le  préambule, soit sur l'intégralité du singal. 
-
-idée: le received singal contient le baseband singal ainsi qu'un rotation factor instable. pour pouvoir recover cette partie du signal, besoin d'effctuer une opération différentielle suivante : $$ x(t) . x(t+n) e -j2\pi on $$
-apparation d'un nouveau rotation factor, mais stable. Besoin de trouver deux inconnue,\textit{delta f} et \textit{n}. n est le differential interval. il se calcule de la manière suivante : $$ Rs = BW / 2sf $$ 
-$$ N = fs / Rs $$
-
-delta f est la difference entre le transmitter carrier frequency et le receiver carrier frequecy.
-
-application : récupérer les samples I/Q du signal n ayant au préalable "clean" le signal. utilisation d'un gradiant pour observer la dentsité sur le plot. noramlement des zones plus denses apparaissent.
-coloration : utilisation de la librairie data shader. 
+Le signal test pour cette analyse est le signal contenant les paramètres suivants :
+\begin{itemize}
+\item émetteur : module rn2483, modulation : LoRa, SF = 8, BW = 125KHz, f = 868MHz, pwr = 14, cr = 4/8.
+\item Récepteur : RTL SDR R820T2, f = 867,9375MHz, SR = 2MHz, gain = 5dB.
+\end{itemize}
+Ce signal a été normalisé avec \textit{Root Means Square}.
 
 
-clustering, le but de conserver les parties les plus dense (95pourcent du point le plus dense) plot avec les différents appareils.
-librairie panda et numpy. découpage en zones (bins?) sous forme d'une grille, calcul de nobre de points dans chaque zone, la zone avec le plus grand nombre de point sers de maximum. 
+
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=0.08]{images/dctf2.png}
+\caption{LoRa signal}\label{term313}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=0.18]{images/dctf1.png}
+\caption{Diagramme de constellation}\label{term314}
+\end{figure}
+
+
+La méthode DCTF se base sur l'utilisation de constellations traces pour pouvoir identifier sur base de propiétées uniques un appareil. Un diagramme de constellations est une représentation dans le plan complexe de la distribution spaciale des points du signal. La figure \ref{term313} montre la représentation dans le temps du signal test et sa représentation dans sous forme de constellation est donnée par la figure \ref{term314}.
+
+Selon la section \ref{DTCF}, le diagramme de constellation seul n'est pas suffisant pour pouvoir identifier des composantes uniques au signal. Pour pouvoir observer l'émergence de signature, il faut appliquer la méthode différentielle décrite dans \ref{DCTF} ainsi que dans l'article \cite{loraDCTF}. La figure \ref{term316} montre le diagramme differentiel de constellation \textit{DCTF} du signal. L'équation \ref{eq1} possède deux paramètres à calculer. Le \textit{différential interval (N)} se calcule via \ref{eq2} et vaut 4096. Le \textit{Carrier Frequency Offset (CFO)} peut être estimé via \ref{eq3}. Dans un premier temps on estime sa valeur à 0.
+
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=0.18]{images/dctf3.png}
+\caption{DCTF du signal test}\label{term316}
+\end{figure}
+
+On remarque que la forme de la constellation est similaire, mais l'application de la méthode différentielle juxtapose les points les uns sur les autres à tel point qu'il devient difficile d'analyser en détail sa composition. Pour pouvoir observer une composante suceptible d'être une signature, il faut appliquer un gradient coloré pour évaluer la densité des points de la constellations. La figure \ref{term317} montre le même diagramme qu'à la figure \ref{term316} mais avec l'utilisation de la librairie python datashader, qui ajoute une échelle de densité (en poucentage, ou 100 représente la zone la plus dense du diagramme). On observe que dans le coin supérieur droit la densité de point est un peu plus élevé que dans le reste de la constellation.
+
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=0.18]{images/dctf4.png}
+\caption{DCTF du signal test}\label{term317}
+\end{figure}
+
+Jusqu'à présent, l'analyse a été faite en utilisant l'intégralité du signal comme donnée. Cependant l'article \cite{loraDTCF} a montré qu'il est possible de filtrer une partie des données et ainsi ne conserver qu'une partie du signal suffisante pour déterminer sa signature. Premièrement, d'un point de vue physique, le signal possède une partie appelée \textit{transient part}, c'est la portion initiale du signal qui contient la transition d'un état vers un autre. Cette partie se caractérise sur la figure \ref{term317} par les points qui ne se situent pas sur le la constellation mais entre la constellation et le centre du plot. Dans ce domaine, cette partie concerne le moment ou le module s'enclenche, occasionant des irrégularité dans la réception des données. Cette partie seule étant instable, elle est écarté des données analysée. Ensuite, l'intégralité du signal n'est pas nécessaire. En effet, le contenu du message est sujet à modification  et n'est pas pertinent pour l'analyse, seule la partie incluant le préambule est conservée. Ainsi, du signal complet on ne conserve que le préambule (12.25 chirps) auquel on coupe la \textit{trasient part} au début des données. La figure \ref{term318} permet de distinguer clairement la région dense dans le coin supérieur droit.
+
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=0.18]{images/dctf5.png}
+\caption{DCTF du signal test}\label{term318}
+\end{figure}
