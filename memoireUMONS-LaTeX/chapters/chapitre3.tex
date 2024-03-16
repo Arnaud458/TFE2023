@@ -480,3 +480,13 @@ Jusqu'à présent, l'analyse a été faite en utilisant l'intégralité du signa
 \includegraphics[scale=0.18]{images/dctf5.png}
 \caption{DCTF du signal test}\label{term318}
 \end{figure}
+
+Maintenant que la région d'intéret est indetifiée, il faut l'extraire. C'est ce qui sera extrait de cette DCTF qui sera la signature du signal, et donc permettra l'identification du module. Pour déterminer la meilleur valeur dans le plan à récuperer, la méthode suivante permet de récupérer le centre de la zone dense. La librairie Numpy de python permet de créer un histogram en deux dimension de la DCTF. Afin d'extraire la valeur la plus pertinente (le centre de la zone dense), le point le plus dense de l'histogramme sert de référentielle. Sa valeur de densité est calculée (c'est à dire le nombre d'échantillons présent dans cette zone définie par l'histogramme). Afin de mieux refléter le centre de la zone dense, tous les points ayant une valeur de densité au moins égale à 90 pourcent de la zone la plus dense dont également considéré. La figure \ref{term319} montre les points sélectionné pour le signal test dans la DCTF. Le cenrtre euclidien est calculé à partir des points éligible, sa valeur est la signature du signal.
+
+
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=0.18]{images/dctf6.png}
+\caption{DCTF du signal test}\label{term319}
+\end{figure}
