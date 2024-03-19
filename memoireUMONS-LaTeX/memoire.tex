@@ -6,6 +6,7 @@
 \usepackage[utf8]{inputenc}
 %\usepackage[T1]{fontenc}
 \usepackage{amsmath}
+\usepackage{listings}
 %\usepackage{amsfonts}
 %\usepackage{amscd}
 %\usepackage{amstext}
@@ -37,6 +38,21 @@
 \newenvironment{demonstration}{\begin{proof}[\textnormal{\textbf{Preuve.}}]}{\end{proof}}
 \definecolor{gris}{gray}{0.45}
 \setlength{\parindent}{1cm}
+
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny,
+    breaklines=true,
+    frame=single,
+    captionpos=b,
+    tabsize=4
+}
 
 \newcommand{\textcalli}[1]{{\small{\textbf{$\negmedspace$\calligra #1}}}}
 
@@ -134,13 +150,7 @@ Nous remercions ...\\
 \appendix
 \addcontentsline{toc}{chapter}{Annexes}
 
-\chapter{Premi\`ere annexe}
-\renewcommand{\leftmark}{ANNEXE \thechapter.~~Premi\`ere annexe}
-\label{annexe1}
-
-\chapter{Deuxi\`eme annexe}
-\renewcommand{\leftmark}{ANNEXE \thechapter.~~Deuxi\`eme annexe}
-\label{annexe2}
+\include{chapters/annexes}
 
 %%%%%%%FIN-ANNEXES%%%%%%%%%%
 \end{document}
