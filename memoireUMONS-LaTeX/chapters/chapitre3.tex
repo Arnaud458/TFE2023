@@ -399,7 +399,7 @@ La librairie \textit{Matplotlib} de python permet d'afficher le contenu du signa
 
 Afin de pouvoir effectuer l'identification des appareils, il faut que l'environement de test soit identique pour chaque module, donc tous les paramètres d'émissions sont identiques. La même SDR est utilisé avec les mêmes paramètres de réception pour les mêmes raisons. Avec des paramètres d'émission et de réception fixes, il est possible d'automatiser le processus d'enregistrement d'échantillons LoRa.
 
-La librairie PyRTLSDR permet de configurer la radio logicielle depuis un script python. La partie du signal que l'on cherche à conserver est le préambule (soit les 8 premiers chirps fixes ou les 12.25 premiers chirp). Si le taux d'échantillonage et fixe et que le préambule est toujours de la même taille, alors il est possible de calculer le nombre d'échantillons à capturer. 
+La librairie PyRTLSDR permet de configurer la radio logicielle depuis un script python (voir annexe \ref{antenne}. La partie du signal que l'on cherche à conserver est le préambule (soit les 8 premiers chirps fixes ou les 12.25 premiers chirp). Si le taux d'échantillonage et fixe et que le préambule est toujours de la même taille, alors il est possible de calculer le nombre d'échantillons à capturer. 
 
 Par exemple, la figure \ref{term311} indique qu'un préambule complet (12.25 chirp) contient environ 49000 échantillons. Sachant que le taux d'échantillonnage est de 2MHz pour cette example, alors le TOA du préambule vaut :
 

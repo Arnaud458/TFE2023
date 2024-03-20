@@ -1,69 +1,235 @@
-\chapter{Annexe A :Code module Arduino}\label{codearduino}
+\section{Annexe A :Code module Arduino}\label{codearduino}
+
+\begin{lstlisting}[style=cppstyle, caption={Module Arduino}, label={lst:cpp}]
+
+#define LED_BUILTIN 3
+
+#define SX1276_NSS   10
+#define SX1276_RESET 9
+#define SX1276_DIO0  2
+
+// the setup function runs once when you press reset or power the board
+void setup() {
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(LED_BUILTIN, OUTPUT);
+  Serial.begin(57600);
+  while (!Serial);
+
+  LoRa.setPins(10, 9, 2);
+
+  if (!LoRa.begin(868.1E6)) {
+    Serial.println("Lora init failed. Check your connections.");
+    while (true);
+  }
+
+  Serial.println("LoRa setup");
+  //LoRa.setSyncWord(0x12); // private
+  LoRa.setSyncWord(0x34); // LoRaWAN
+  Serial.println("  Sync Word = 0x34 (LoRaWAN)");
+  LoRa.setSpreadingFactor(12);
+  Serial.println("  SF = SF12");
+  LoRa.setSignalBandwidth(7.8E3);
+  Serial.println("  BW = 7.8kHz");
+  LoRa.dumpRegisters(Serial);
+
+}
+
+int counter = 0;
+
+// the loop function runs over and over again forever
+void loop() {
+
+  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+  delay(1000);                       // wait for a second
+  digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+  delay(1000);                       // wait for a second
+  Serial.println("Sending frame...");
+
+  unsigned long t0 = micros();
+  LoRa.beginPacket(0); // 0 = explicit header, 1 = implicit header
+  LoRa.print("B");
+  //LoRa.print(counter);
+  LoRa.endPacket(0); // 0 = wait for end of packet transmission
+
+  // Time on Air as calculated per https://loratools.nl/#/airtime
+  // should be around 13 seconds, but measurements give around 10 seconds (why ?)
+  Serial.print("ToA ~ ");
+  Serial.println(micros()-t0);
+
+  //LoRa.idle(); // Warning, further transmission do not work; need to reset module ?
+  //LoRa.setSyncWord(0xFF); /* LoRaWAN */
 
 
-\renewcommand{\leftmark}{Annexes}
-
-\begin{lstlisting}[caption={Example Python code}, label={lst:example}]
-# This is a Python function
-def my_function(x, y):
-    """
-    This function computes the sum of two numbers.
-    
-    Parameters:
-    x (int): The first number.
-    y (int): The second number.
-    
-    Returns:
-    int: The sum of x and y.
-    """
-    return x + y
-
-# Example usage of the function
-result = my_function(3, 4)
-print("The result is:", result)
+  counter++;
+}
 \end{lstlisting}
 
+\newpage
 
-\chapter{Annexe B :Code module RN2483}\label{codern}
+\section{Annexe B :Code module RN2483}\label{codern}
 
-\begin{lstlisting}[caption={Example Python code}, label={lst:example}]
-# This is a Python function
-def my_function(x, y):
-    """
-    This function computes the sum of two numbers.
-    
-    Parameters:
-    x (int): The first number.
-    y (int): The second number.
-    
-    Returns:
-    int: The sum of x and y.
-    """
-    return x + y
+\begin{lstlisting}[style=pythonstyle, caption={Configuration module RN2483}, label={lst:python}]
+import serial
+import time
+from utils import read_file, write_file
 
-# Example usage of the function
-result = my_function(3, 4)
-print("The result is:", result)
+SERIAL_PORT = '/dev/ttyUSB0'
+BAUD_RATE = 57600
+SPREADING_FACTOR = 8
+
+config_commands = [
+    "sys get ver\r\n",
+    "radio set mod lora\r\n",
+    "radio set freq 868000000\r\n",
+    "radio set pwr 14\r\n",
+    f"radio set sf sf{SPREADING_FACTOR}\r\n",
+    "radio set cr 4/8\r\n",
+    "radio set bw 125\r\n"
+]
+
+MESSAGE_COMMAND = "radio tx 1509ACf\r\n"
+
+
+def config(ser: serial.Serial):
+    # Send commands and read responses
+    for command in config_commands:
+       write_command(ser, command)
+
+
+def send_signal(ser: serial.Serial):
+    write_command(ser, MESSAGE_COMMAND)
+
+
+def write_command(ser: serial.Serial, command: str):
+    ser.write(command.encode())
+    response = ser.read(100)
+    print("Command:", command.strip())
+    print("Response:", response.decode().strip())
+    print("------------")
 \end{lstlisting}
 
-\chapter{Annexe C :Implémentation émission réception automatisé}\label{codeauto}
+\newpage
 
-\begin{lstlisting}[caption={Example Python code}, label={lst:example}]
-# This is a Python function
-def my_function(x, y):
-    """
-    This function computes the sum of two numbers.
-    
-    Parameters:
-    x (int): The first number.
-    y (int): The second number.
-    
-    Returns:
-    int: The sum of x and y.
-    """
-    return x + y
+\section{Annexe C :Implémentation de la configuration RTL SDR via PyRTLSDR}\label{antenne}
 
-# Example usage of the function
-result = my_function(3, 4)
-print("The result is:", result)
+\begin{lstlisting}[style=pythonstyle, caption={Configuration RTL SDR}, label={lst:python}]
+import math
+import time
+import numpy as np
+from rtlsdr import RtlSdr
+import hackrf
+from utils import cut_preamble, save_signal_old, read_file, write_file
+from find_centers import SAMPLES_FOLDER
+
+
+SAMPLE_RATE = 2_000_000
+
+
+def capture_signal_rtlsdr():
+    # Configure RTL-SDR parameters
+    sdr = RtlSdr()
+    sdr.sample_rate = SAMPLE_RATE
+    #sdr.bandwitdh = 250000
+    sdr.center_freq = 867937500
+    sdr.gain = 5
+
+    # Start signal capture
+    capture_duration = 2.5  # in seconds
+
+    print(f"Capturing signal for {capture_duration} seconds...")
+    nb_samples = math.ceil(capture_duration * sdr.sample_rate /16384)*16384
+    #samples = sdr.read_samples(5046272)
+    samples = sdr.read_samples(nb_samples)
+
+    sdr.close()
+    samples = np.array(samples, dtype=np.complex64)
+    return samples
+\end{lstlisting}
+
+\newpage
+
+\section{Annexe D :Implémentation de l'automatisation des captures de signaux}\label{codeauto}
+
+\begin{lstlisting}[style=pythonstyle, caption={Emetteur}, label={lst:python}]
+if name == 'main':
+    SER = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1)
+    for i in range(5):
+        time.sleep(1)
+        config(SER)
+        write_file('tmp.txt','0')
+        time.sleep(1.5)
+        send_signal(SER)
+        while read_file('tmp.txt')[-1] != '1':
+            print('emmeteur is waiting')
+            time.sleep(1)
+    #config(SER)
+    #send_signal(SER)
+    SER.close()
+\end{lstlisting}
+
+\begin{lstlisting}[style=pythonstyle, caption={Récepteur}, label={lst:python}]
+
+if name == "main":
+    PREAMBLEDURATION = 0.0245
+    for i in range(2):
+        while read_file('tmp.txt')[-1] != '0':
+            print('recepteur is waiting')
+            time.sleep(0.2)
+
+        SIGNAL = capture_signal_rtlsdr()
+        #SIGNAL = capture_signal_hackrf()
+        PREAMBLE = cut_preamble(SIGNAL, 0.03, int(PREAMBLE_DURATION*SAMPLE_RATE))
+
+        if len(PREAMBLE) > 0:
+            save_signal_old(PREAMBLE,f'{SAMPLES_FOLDER}sample{i+1}', np.complex64)
+            print(f'signal {i+1} saved')
+        else:
+            print(f"no signal found for {i+1}")
+
+        write_file('tmp.txt', '1')
+\end{lstlisting}
+
+\begin{lstlisting}[style=pythonstyle, caption={Preprocessing}, label={lst:python}]
+
+import numpy as np
+
+
+def read_file(filename: str):
+    with open(filename, 'r',encoding='utf8') as reader:
+        return reader.readlines()
+
+def write_file(filename: str, content: str):
+    with open(filename, 'a',encoding='utf8') as writer:
+        writer.write('\n' +content)
+        
+        def save_signal(signal: np.ndarray, filepath: str, dtype) -> None:
+    signal_to_save = np.array(signal, dtype=dtype)
+    print(f"Saving captured signal to {filepath}.npz")
+    np.savez_compressed(filepath, signal_to_save)
+
+
+def load_signal(filepath: str, dtype) -> np.ndarray:
+    if filepath.endswith('.npz'):
+        return np.load(filepath)['arr_0']
+    return np.fromfile(filepath, dtype=dtype)
+    
+def cut_preamble(signal, treshold, preamble_size):
+    start_index = 0
+    consecutive_start = 0
+    while start_index < len(signal) and consecutive_start <3:
+        if abs(np.real(signal[start_index])) > treshold or abs(np.imag(signal[start_index])) > treshold:
+            consecutive_start += 1
+        else :
+            consecutive_start = 0
+        start_index += 1
+
+    if start_index + preamble_size > len(signal) -1:
+        return []
+
+    return signal[start_index:start_index+preamble_size]
+
+def rms_normalize(samples: np.ndarray) -> np.ndarray:
+    rms_values = np.sqrt(np.mean(np.abs(samples)**2, axis=0))  # Compute RMS values
+    normalized_samples = samples / rms_values  # Normalize samples
+    return normalized_samples
 \end{lstlisting}

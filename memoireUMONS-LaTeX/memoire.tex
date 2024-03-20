@@ -13,6 +13,7 @@
 %\usepackage{amssymb}
 %\usepackage{bar}
 \usepackage{color}
+\usepackage{xcolor}
 %\usepackage{mathrsfs}
 \usepackage{graphicx}
 %\usepackage{calligra}
@@ -39,19 +40,44 @@
 \definecolor{gris}{gray}{0.45}
 \setlength{\parindent}{1cm}
 
-\lstset{
+\lstdefinestyle{pythonstyle}{
     language=Python,
-    basicstyle=\ttfamily,
+    basicstyle=\small\ttfamily,
     keywordstyle=\color{blue},
-    commentstyle=\color{green},
-    stringstyle=\color{red},
-    showstringspaces=false,
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{orange},
     numbers=left,
     numberstyle=\tiny,
+    numbersep=5pt,
     breaklines=true,
-    frame=single,
+    frame=tb,
+    columns=fullflexible,
+    backgroundcolor=\color{gray!10},
+    linewidth=\linewidth,
+    xleftmargin=0pt,
+    xrightmargin=0pt,
+    showstringspaces=false,
     captionpos=b,
-    tabsize=4
+}
+
+\lstdefinestyle{cppstyle}{
+    language=C++,
+    basicstyle=\small\ttfamily,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{orange},
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt,
+    breaklines=true,
+    frame=tb,
+    columns=fullflexible,
+    backgroundcolor=\color{gray!10},
+    linewidth=\linewidth,
+    xleftmargin=0pt,
+    xrightmargin=0pt,
+    showstringspaces=false,
+    captionpos=b,
 }
 
 \newcommand{\textcalli}[1]{{\small{\textbf{$\negmedspace$\calligra #1}}}}
