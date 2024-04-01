@@ -79,7 +79,7 @@ La modulation en amplitude est plus ancienne et est encore utilisée dans beauco
 Soient $u(t)$ un baseband signal et $v(t)$ un carrier signal, la modulation en amplitude s'effectue en multipliant les deux signaux pour obtenir le signal modulé 
 
 \begin{equation}\label{eq2}
-s(t) = u(t) . v(t)
+s_{am}(t) = u(t) . v(t)
 \end{equation}
 
 Prenons par exemple 
@@ -100,7 +100,7 @@ La Figure \ref{term1} montre le signal modulé $s(t)$ via la modulation en ampli
 \end{figure}
 
 
-La modulation en fréquence permet d'obtenir des transmissions de meilleures qualités plus résistantes à leur environement tout en gardent une puissance d'émission constante. 
+La modulation en fréquence encode les informations dans les caractéristiques temporelles du signal transmis, ce qui la rend plus robuste aux interférence lié liés à l'amplitude qur la modulation AM. La fréquence d'un signal ne peut pas être modifiée par le bruit ou la distorsion. Cepdendant, d'autres types de distortions comme le \textit{frequency drift} (un changement non désiré de la fréquence dans le temps) peuvent affecter la qualité d'un signal modulé en fréquence.
 
 \vspace{0.1cm}
 
@@ -114,17 +114,13 @@ Soient $u(t)$ un baseband signal et $v(t)$ un carrier signal, le signal modulé 
 
 \vspace{0.1cm}
 
-Prenons par exemple
-
-\vspace{0.1cm}
-
-$u(t)$ = $sin(2\pi f_{u}t)$ avec $f_{u}t$ = 5 Hz,
-
+Reprennons le même signal en bande de base 
+$u(t)$ = $sin(2\pi f_{u}t)$ avec $f_{u}t$ = 5 Hz et la même porteuse 
 $v(t)$ = $cos(2\pi f_{c}t + \phi_{c})$ où $f_{c}t$ = 50 Hz.
 
 \vspace{0.1cm}
 
-La Figure \ref{term2} montre le signal modulé $s_{fm}(t)$ via la modulation en fréquence pour une phase initale ddu carrier signal $\phi_{c}$ = 0 avec une dérivation en fréquence $\Delta f$ = 10Hz.
+La Figure \ref{term2} montre le signal modulé $s_{fm}(t)$ via la modulation en fréquence pour une phase initale du carrier signal $\phi_{c}$ = 0 avec une dérivation en fréquence $\Delta f$ = 5Hz.
 
 \newpage
 
@@ -135,7 +131,7 @@ La Figure \ref{term2} montre le signal modulé $s_{fm}(t)$ via la modulation en 
 \caption{Exemple de modulation en fréquence}\label{term2}
 \end{figure}
 
-La modulation en phase permet généralement d'obtenir une meilleur utilisation de la bande passante que les autres modulations car les variations de phase peut encoder plus d'informations, ce qui augmente la quantité de données transmises.
+La modulation en phase permet généralement d'obtenir une meilleur utilisation de la bande passante que les autres modulations car les variations de phase peuvent encoder plus d'informations, ce qui augmente la quantité de données transmises. La modulation en phase est souvent associée à celle en fréquence. En effet les concpets sont liées par leur dépendance à la porteuse. Peu importe l'argument de la fonction de modulation choisi, il n'est plus une fonction linéaire du temps. La modulation en fréquence s'accompagne nécessairement d'une modulation de phase (présence du $\phi_{c}$). 
 
 Soient $u(t)$ un baseband signal et $v(t)$ un carrier signal, le signal modulé en phase $s_{pm}(t)$ est le résultat suivant :
 
@@ -167,6 +163,9 @@ La Figure \ref{term3} montre le signal modulé $s_{pm}(t)$ en phase pour une pha
 \includegraphics[scale=0.5]{images/PM_mod.PNG}
 \caption{Exemple de modulation en phase}\label{term3}
 \end{figure}
+
+On constate que pour un signal sinusoidale il est assez difficile de différencier la modulation en fréquence de celle en phase. La différence a lieue à l'emplacement des variations de la vitesse d'oscillation. Pour la modulation en fréquence, on constante que l'oscillation accélère jusqu'à atteindre le maximum quand l'amplitude du signal en bande de base est maximale, et inversément quand l'amplitude est au minimum. Les concpets de modulation de phase et de frénquences sont généralement regroupés sous le terme de modulation angulaire.
+
 
 \subsection{Gestion du bruit}
 
