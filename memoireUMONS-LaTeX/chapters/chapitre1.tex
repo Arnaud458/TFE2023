@@ -46,7 +46,7 @@ le \textit{Bit rate}, ou le taux de transmission mesure la quantité de donnée 
 
 \section{Traitement du signal}
 
-\subsection{Modulation}
+\subsection{Modulation}\label{mod}
 
 La réception d'un signal radio nécessite une antenne dont les dimensions dépendent de la longueur d'onde du signal. La longueur d'onde d'un signal représente la distance entre deux points consécutifs de même phase dans l'onde. La longueur d'onde s'obtient par la formule suivante :
 
@@ -109,18 +109,18 @@ Soient $u(t)$ un baseband signal et $v(t)$ un carrier signal, le signal modulé 
 \begin{align}
     u(t) &= \sin(2\pi f_{u}t) \\
     v(t) &= \cos(2\pi f_{c}t + \phi_{c}) \\
-    s_{fm}(t) &= \cos\left(2\pi f_{c}t + \Delta f \cdot u(t) \cdot t + \phi_{c}\right)
+    s_{fm}(t) &= \cos\left(2\pi f_{c}t + \Delta f \cdot u(t) + \phi_{c}\right)
 \end{align}
 
 \vspace{0.1cm}
 
 Reprennons le même signal en bande de base 
-$u(t)$ = $sin(2\pi f_{u}t)$ avec $f_{u}t$ = 5 Hz et la même porteuse 
-$v(t)$ = $cos(2\pi f_{c}t + \phi_{c})$ où $f_{c}t$ = 50 Hz.
+$u(t)$ = $sin(2\pi f_{u}t)$ avec $f_{u}$ = 5 Hz et la même porteuse 
+$v(t)$ = $cos(2\pi f_{c}t + \phi_{c})$ où $f_{c}$ = 50 Hz.
 
 \vspace{0.1cm}
 
-La Figure \ref{term2} montre le signal modulé $s_{fm}(t)$ via la modulation en fréquence pour une phase initale du carrier signal $\phi_{c}$ = 0 avec une dérivation en fréquence $\Delta f$ = 5Hz.
+La Figure \ref{term2} montre le signal modulé $s_{fm}(t)$ via la modulation en fréquence pour une phase initale du carrier signal $\phi_{c}$ = 0 avec une dérivation en fréquence $\Delta f$ = 5Hz. Attention, pour aligner le signal en bande de base à celui modulé, celui ci a subi un décalage de phase de 90°. La fonction sinus et cosinus sont liées en trigonométrie par un décalage de 90° (ou $\frac{\pi}{2} $radian) car $\sin(\theta) = \cos(\theta-\frac{\pi}{2})$
 
 \newpage
 
@@ -175,21 +175,47 @@ des mécanismes statistiques de la conduction électrique. Il est possible de r�
 
 \subsection{Transformée de Fourier}
 
-Pour effectuer une analyse de signal, sa représentation est capitale. Les Figure 1 et 2 représentent des signaux en fonction du temps écoulé. Il est possible de représenter des signaux selon une autre composante, la fréquence.
+Pour effectuer une analyse de signal, sa représentation est capitale. Les Figure 1 et 2 représentent des signaux en fonction du temps écoulé, soit dans le domaine temporel. Il est possible de représenter des signaux selon une autre composante, la fréquence, c'est à dire dans le domaine fréquenciel.
 
 \vspace{0.1cm}
 
-La transformée de Fourier est un outil fondamental utilisé pour analyser et décomposer des signaux complexes en composantes fréquentielles. En transformant un signal dans le domaine temporel en sa représentation dans le domaine fréquentiel, la transformée de Fourier révèle les différentes composantes fréquentielles présentes dans le signal. En fonction du type de signal, la transformée de Fourier est adaptée.
+La transformée de Fourier est un outil fondamental utilisé pour analyser et décomposer des signaux complexes en composantes fréquentielles. En transformant un signal dans le domaine temporel en sa représentation dans le domaine fréquentiel, la transformée de Fourier révèle les différentes composantes fréquentielles présentes dans le signal.
 
 \vspace{0.1cm}
 
-Pour les signaux continus, la \textit{CFT} (Transformée de Fourier continue) convertit une fonction du temps en fonction de la fréquence en intégrant le signal par rapport aux sinusoïdes de toutes les fréquences possibles. Cette transformation fournit les informations d'amplitude et de phase pour chaque composante de fréquence présente dans le signal.
+Pour les signaux continus, la \textit{CFT} (Transformée de Fourier continue ou juste Tranformée de Fourier) convertit une fonction du temps en fonction de la fréquence en intégrant le signal par rapport aux sinusoïdes de toutes les fréquences possibles. Cette transformation fournit les informations d'amplitude et de phase pour chaque composante de fréquence présente dans le signal. La Transformée de Fourier Continue peut être calculée de la manière suivante :  
+
+\begin{equation}
+F(\omega) = \int_{-\infty}^{\infty} f(t)e^{-j\omega t} dt
+\end{equation}
+où : $F(\omega)$ est la Transformée de Fourier du signal $f(t)$. $\omega$ représente la fréquence angulaire $(2 \pi f)$.
+
+Reprenons la modulation en amplitude de la section \ref{mod}. En utilisant la CFT sur les trois signaux (bande de base, porteuse et modulé) de la figure \ref{term1}, la figure montre leurs CFT respectives.
+
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=0.5]{images/CFT.PNG}
+\caption{Exemple de CFT}\label{term8}
+\end{figure}
+
+La première chose que l'on constate, c'est que pour le singal en bande de base et la porteuse, on observe deux pics. Ces pics correspondent à la fréquence des différents signaux (pour rappel $f_u$ = 5Hz et $f_v$ = 50Hz) mais aussi à leur fréquence négatives. Cette duplication est due au fait que la Tranformée de Fourier produit un spectre symétrique par rapport à l'origine (dans notre cas, le centre où la fréquence vaut 0Hz). La CFT d'un signal réel possède deux valeurs (positives et négatives) pour chaques composantes du signal. On constate également que sur la CFT du signal modulé il y a 6 pics dont 4 qui ont la moitié de la magnitude des deux autres. Ces pics sont expliqués par un décalage en fréquence du à la modulation. En effet le troisième signal est un produit de deux signaux, dans le domaine fréquenciel ce produit apparait comme un décalage de la fréquence du signal en bande de base de part et d'autre de la fréquence du signal de la porteuse. C'est le théorème de la modulation. Pour un signal $u(t)$ et $v(t)$ ayant pour CFT respective $U(f)$ et $V(f)$, alors leur relation peut être exprimée de la manière suivante :
+
+\begin{equation}
+u(t)v(t) = \int_{-\infty}^{\infty} U(f)V(t - f) df
+\end{equation}
+
+Ainsi, par l'identité trigonométrique, 
+
+\begin{equation}
+sin(a)cos(b) = \frac{1}{2} sin(a+b) + sin(a-b)
+\end{equation}
+
+Le signal modulé possède un pic à 50Hz selon la porteuse, mais également la moitié d'un pics à 50 - 5 Hz et à 50 + 5 Hz selon le signal en bande de base. Comme le signal est réel, les mêmes pics sont observés à l'opposé du centre de la symétrie.
 
 \vspace{0.1cm}
 
 Pour les signaux discrets et échantillonnés, la \textit{DFT} (Transformée de Fourier discrète) calcule un ensemble fini de composantes de fréquence. Il est calculé à l’aide d’un nombre fini d’échantillons, ce qui donne des composantes de fréquence discrètes. Il existe un méthode simplifiée pour les signaux discrets appelé \textit{FFT (Fast Fourier Transform)}\cite{fft}. Il s'agit d'un moyen plus rapide de calculer la transformée de Fourier, en particulier pour les signaux numériques comportant un grand nombre de points de données. L'avantage principal de cet algorithme permet de réduire le temps de calcul en divisant la DFT en sous problèmes. La FFT est une méthode très utilisée pour l'analyse de signaux.
-
-\newpage
 
 \section{LoRa}
 
