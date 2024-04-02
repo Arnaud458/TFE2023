@@ -185,10 +185,19 @@ La transformée de Fourier est un outil fondamental utilisé pour analyser et d�
 
 Pour les signaux continus, la \textit{CFT} (Transformée de Fourier continue ou juste Tranformée de Fourier) convertit une fonction du temps en fonction de la fréquence en intégrant le signal par rapport aux sinusoïdes de toutes les fréquences possibles. Cette transformation fournit les informations d'amplitude et de phase pour chaque composante de fréquence présente dans le signal. La Transformée de Fourier Continue peut être calculée de la manière suivante :  
 
-\begin{equation}
-F(\omega) = \int_{-\infty}^{\infty} f(t)e^{-j\omega t} dt
+\begin{equation}\label{eq11}
+G(\omega) = \int_{-\infty}^{\infty} g(t)e^{-j\omega t} dt
 \end{equation}
-où : $F(\omega)$ est la Transformée de Fourier du signal $f(t)$. $\omega$ représente la fréquence angulaire $(2 \pi f)$.
+
+où : $G(\omega)$ est la Transformée de Fourier du signal $g(t)$. $\omega$ représente la fréquence angulaire $(2 \pi f)$.
+Il est également possible de revenir dans le domaine temporelle, grâce à la Transformée de Fourier inverse (IFT) :
+
+\begin{equation}\label{eq12}
+g(t) = \int_{-\infty}^{\infty} G(f)e^{j2\pi ft} df
+\end{equation}
+Les deux équations \ref{eq11} et \ref{eq12} sont le complexe conjugué l'une de d'autre.
+
+\vspace{0.1cm}
 
 Reprenons la modulation en amplitude de la section \ref{mod}. En utilisant la CFT sur les trois signaux (bande de base, porteuse et modulé) de la figure \ref{term1}, la figure montre leurs CFT respectives.
 
@@ -215,7 +224,7 @@ Le signal modulé possède un pic à 50Hz selon la porteuse, mais également la 
 
 \vspace{0.1cm}
 
-Pour les signaux discrets et échantillonnés, la \textit{DFT} (Transformée de Fourier discrète) calcule un ensemble fini de composantes de fréquence. Il est calculé à l’aide d’un nombre fini d’échantillons, ce qui donne des composantes de fréquence discrètes. Il existe un méthode simplifiée pour les signaux discrets appelé \textit{FFT (Fast Fourier Transform)}\cite{fft}. Il s'agit d'un moyen plus rapide de calculer la transformée de Fourier, en particulier pour les signaux numériques comportant un grand nombre de points de données. L'avantage principal de cet algorithme permet de réduire le temps de calcul en divisant la DFT en sous problèmes. La FFT est une méthode très utilisée pour l'analyse de signaux.
+Pour les signaux discrets et échantillonnés, la \textit{DFT} (Transformée de Fourier discrète) calcule un ensemble fini de composantes de fréquence. Il est calculé à l’aide d’un nombre fini d’échantillons, ce qui donne des composantes de fréquence discrètes. Il existe un méthode optimisée pour les signaux discrets appelé \textit{FFT (Fast Fourier Transform)}\cite{fft}. Il s'agit d'un moyen plus rapide et moins couteux de calculer la transformée de Fourier, en particulier pour les signaux numériques comportant un grand nombre de points de données. La DFT calcule la transformé de Fourier pour une séquence de N échantillons en $O(N^2$) tandis que la FFT optimise le temps de calcul en $O(N log N)$ pour la même séquence. Il existe diverses variante de la FFT (par example le Cooley-Tukey FFT\cite{fft1}) ce qui peut varier les performances dépendant de l'algorithme utilisé. Les logiciels utilisés pour l'analyse de signaux dans la section \ref{fft} utilisent des algorithmes de FFT pour leur affichage dans le domaine fréquenciel.
 
 \section{LoRa}
 
