@@ -1,7 +1,7 @@
 import numpy as np
 
 
-DIFFERENTIAL_INTERVAL = 2048
+DIFFERENTIAL_INTERVAL = 4096
 FREQUENCY_OFFSET = -0.5
 
 
@@ -15,16 +15,17 @@ def write_file(filename: str, content: str):
 
 def compute_differential(
         data: np.ndarray,
-        differential_interval: int=DIFFERENTIAL_INTERVAL,
-        frequency_offset: int=FREQUENCY_OFFSET
+        differential_interval: int=DIFFERENTIAL_INTERVAL
     ) -> np.array:
 
-    differential_data = np.zeros_like(data)
+    differential_data = np.zeros(data.shape[0]-differential_interval, dtype= data.dtype)
 
-    for i in range(differential_interval, len(data)):
-        rotation_factor = np.exp(-2j * np.pi * frequency_offset * differential_interval)
-        differential_data[i] = data[i] * np.conj(data[i - differential_interval]) * rotation_factor
-        # differential_data[i] = DATA[i] * np.conj(DATA[i - n]) * np.exp(-1j * 2 * np.pi * delta_f * n)
+    for i in range(data.shape[0] - differential_interval):
+        a = np.real(data[i])
+        b = np.imag(data[i])
+        c = np.real(data[i+differential_interval])
+        d = np.imag(data[i+differential_interval])
+        differential_data[i] = a * c + b * d + 1j * (b * c - a *d)
 
     return differential_data
 

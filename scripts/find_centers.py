@@ -13,6 +13,7 @@ DENSITY_THRESHOLD = 0.8
 
 MODULE = "RN1_norm"
 SAMPLES_FOLDER = f'preambles/{MODULE}/'
+#SAMPLES_FOLDER = 'sample_data/test/'
 
 
 def not_close_to_zero(arr: np.array):
@@ -54,10 +55,9 @@ def display_preamble(density, x_edges, y_edges, differential_i, differential_q, 
 def find_preamble_center(data: np.array, filename: str="") -> Tuple[int, int]:
     n = 4096
     delta_f = 0.5
-    differential_data = compute_differential(data, n, delta_f)
+    differential_data = compute_differential(data, n)
     #differential_data = data
-    
-    differential_data = differential_data[not_close_to_zero(differential_data)]
+    #differential_data = differential_data[not_close_to_zero(differential_data)]
     differential_i = np.real(differential_data)
     differential_q = np.imag(differential_data)
 
