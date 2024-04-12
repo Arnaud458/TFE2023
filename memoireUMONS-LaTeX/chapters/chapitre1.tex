@@ -69,7 +69,29 @@ Il est donc possible d'adapter les charactéristiques d'un signal pour le rendre
 
 \vspace{0.1cm}
 
-La modulation en amplitude (\textit{Amplitude modulation, AM}) est plus ancienne et est encore utilisée dans beaucoup de systèmes. Cette technique consiste à encoder l'information en faisant varier l'amplitude en maitenant la fréquence constante. Elle possède moins de contrainte et est notamment plus simple à implémenter que les deux autres modulations citées.
+La modulation est au final un décalage du signal en bande de base sur une porteuse de fréquence plus élevée. Cette relation peut s'exprimer de la façon suivante : 
+
+\begin{equation}\label{eq110}
+m(t) = Re( g(t).e^{-j2\pi f_c t})
+\end{equation}
+
+où $m(t)$ représente le signal modulé , $g(t)$ représente l'enveloppe complexe du signal en bande de base, $f$ est la fréquence porteuse et $e^{-j2\pi f_c t}$ est le signal porteur dans sa forme complexe. Le signal porteur peut être représenté autrement :
+
+\begin{equation}\label{eq111}
+e^{-j2\pi f_c t} = \cos(2 \pi f_c t) + j \sin(2 \pi f_c t)
+\end{equation}
+
+Comme on ne considère que la partie réelle, le signal modulé $U_c(t)$ est équivalent à :
+
+\begin{equation}\label{eq111}
+U_c(t) = U_c . \cos(2 \pi f_c t + \theta_c)
+\end{equation}
+
+où $Uc$ est l'amplitude du signal porteur, $f_c$ sa fréquence et $\theta_c$ son décalage de phase. Ainsi les différentes modulations consistent à faire varier ses paramètres.
+
+\vspace{0.1cm}
+
+La modulation en amplitude (\textit{Amplitude modulation, AM}) est plus ancienne et est encore utilisée dans beaucoup de systèmes. Cette technique consiste à encoder l'information en faisant varier l'amplitude ($U_c$ de l'équation \ref{eq111}) en maitenant la fréquence constante. Elle possède moins de contrainte et est notamment plus simple à implémenter que les deux autres modulations citées.
 
 \vspace{0.1cm}
 
