@@ -49,7 +49,7 @@ où $P_{signal}$ et $P_{noise}$ sont respectivement la puissance du signal et du
 
 \section{Traitement du signal}
 
-\subsection{Modulation}\label{mod}
+\subsection{Principe de la modulation}\label{mod}
 
 Les différentes approches de modulations et les choix de notations ont été repris du livre \textit{An introduction to analog and digital communication} de S. Haykin\cite{book1}.
 
@@ -72,44 +72,77 @@ Il est donc possible d'adapter les charactéristiques d'un signal pour le rendre
 La modulation est au final un décalage du signal en bande de base sur une porteuse de fréquence plus élevée. Cette relation peut s'exprimer de la façon suivante : 
 
 \begin{equation}\label{eq110}
-m(t) = Re( g(t).e^{-j2\pi f_c t})
+m(t) = Re\{ g(t).e^{-j2\pi f_c t}\}
 \end{equation}
 
-où $m(t)$ représente le signal modulé , $g(t)$ représente l'enveloppe complexe du signal en bande de base, $f$ est la fréquence porteuse et $e^{-j2\pi f_c t}$ est le signal porteur dans sa forme complexe. Le signal porteur peut être représenté autrement :
+où $m(t)$ représente le signal modulé , $g(t)$ représente l'enveloppe complexe du signal en bande de base, $f$ est la fréquence porteuse et $e^{-j2\pi f_c t}$ est le signal porteur dans sa forme complexe. $Re()$ signifie qu'on s'intéresse à la partie réelle de l'équation. Le signal porteur peut être représenté autrement (formule d'Euler):
 
 \begin{equation}\label{eq111}
-e^{-j2\pi f_c t} = \cos(2 \pi f_c t) + j \sin(2 \pi f_c t)
+e^{-j2\pi f_c t} = \cos(2 \pi f_c t) + j \sin(2 \pi f_c t).
 \end{equation}
 
-Comme on ne considère que la partie réelle, le signal modulé $U_c(t)$ est équivalent à :
+$m(t)$ peut donc être exprimé par la relation suivante :
 
-\begin{equation}\label{eq111}
-U_c(t) = U_c . \cos(2 \pi f_c t + \theta_c)
+\begin{align}
+    \begin{split}
+    m(t) &= \operatorname{Re} \{ x(t) \cos(2 \pi f_c t) + j x(t) \sin(2 \pi f_c t) \\
+         &\quad + j y(t) \cos(2 \pi f_c t) - y(t) \sin(2 \pi f_c t)\}
+    \end{split} \\
+    m(t) &= x(t) \cos(2 \pi f_c t) - y(t) \sin(2 \pi f_c t)
+\end{align}
+
+car l'enveloppe complexe $g(t)$ peut être exprimée selon ses composantes \textit{In Phase} et \textit{Quadrature}. Dans le plan complexe, la composante \textit{In phase (I)} est représenté par l'axe des réels, tanids que la composante \textbf{Quadrature (Q)} est représentée sur l'axe imaginaire. Un nombre complexe $z$ peut être représentée selon les composantes ainsi :
+
+\begin{equation}\label{eq115}
+z = I + jQ.
 \end{equation}
 
-où $Uc$ est l'amplitude du signal porteur, $f_c$ sa fréquence et $\theta_c$ son décalage de phase. Ainsi les différentes modulations consistent à faire varier ses paramètres.
+Ainsi, l'enveloppe complexe d'un signal modulé $g(t)$ peut être interprétée comme la somme de ses composantes formulée comme \ref{eq115} c'est à dire :
 
-\vspace{0.1cm}
+\begin{equation}\label{eq116}
+g(t) = I(t) + jQ(t) = x(t) + jy(t).
+\end{equation}
 
-La modulation en amplitude (\textit{Amplitude modulation, AM}) est plus ancienne et est encore utilisée dans beaucoup de systèmes. Cette technique consiste à encoder l'information en faisant varier l'amplitude ($U_c$ de l'équation \ref{eq111}) en maitenant la fréquence constante. Elle possède moins de contrainte et est notamment plus simple à implémenter que les deux autres modulations citées.
+On peut donc interpréter \textit{I} comme étant aligné avec le cosinus dans le plan complexe, et \textit{Q} aligné en quadrature avec le cosinus.
+
+\subsection{Modulation en amplitude}
+
+La modulation en amplitude (\textit{Amplitude modulation, AM}) est plus ancienne et est encore utilisée dans beaucoup de systèmes. Cette technique consiste à encoder l'information en faisant varier l'amplitude en maitenant la fréquence constante. Elle possède moins de contrainte et est notamment plus simple à implémenter que les deux autres modulations citées. En effet on peut représenter le signal modulé $m(t)$ de la façon suivante :
+
+\begin{equation}\label{eq112}
+m(t) = s(t) . \cos(2 \pi f_c t)
+\end{equation}
+
+où s(t) est le signal en bande de base $\cos(2 \pi f_1 t)$. le signal modulé est équivalent à :
+
+\begin{equation}\label{eq113}
+m(t) = U_c(t) = U_c . \cos(2 \pi f_c t + \theta_c)
+\end{equation}
+
+car par l'indentité trigonométrique :
+
+\begin{equation}\label{eq114}
+sin(a)cos(b) = \frac{1}{2} sin(a+b) + sin(a-b).
+\end{equation}
+
+$U_c$ est donc l'attribut de l'amplitude à faire varier pour la modulation AM.
 
 \vspace{0.1cm}
 
 Soient $u(t)$ un baseband signal et $v(t)$ un carrier signal, la modulation en amplitude s'effectue en multipliant les deux signaux pour obtenir le signal modulé 
 
 \begin{equation}\label{eq2}
-s_{am}(t) = u(t) . v(t)
+s_\mathrm{AM}(t) = u(t) . v(t) 
 \end{equation}
 
 Prenons par exemple 
 
-$u(t)$ = $sin(2\pi f_{u}t)$ avec $f_{u}t$ = 5 Hz,
+$u(t)$ = $\cos(2\pi f_{u}t)$ avec $f_{u}$ = 5 Hz,
 
-$v(t)$ = $cos(2\pi f_{c}t)$ où $f_{c}t$ = 50 Hz.
+$v(t)$ = $\cos(2\pi f_{c}t)$ où $f_{c}$ = 50 Hz.
 
-La Figure \ref{term1} montre le signal modulé $s(t)$ via la modulation en amplitude.
+La Figure \ref{term1} montre le signal modulé $s\mathrm{AM}(t)$ via la modulation en amplitude.
 
-\newpage
 
 \begin{figure}[h]
 \centering
@@ -118,8 +151,13 @@ La Figure \ref{term1} montre le signal modulé $s(t)$ via la modulation en ampli
 \caption{Exemple de modulation en amplitude}\label{term1}
 \end{figure}
 
+\subsection{Modulation en fréquence}
 
-La modulation en fréquence (\textit{Frequency modulation, FM}) encode les informations dans les caractéristiques temporelles du signal transmis, ce qui la rend plus robuste aux interférences liés à l'amplitude que la modulation AM. La fréquence d'un signal ne peut pas être modifiée par le bruit ou la distorsion. Cepdendant, d'autres types de distortions comme le \textit{frequency drift} (un changement non désiré de la fréquence dans le temps) peuvent affecter la qualité d'un signal modulé en fréquence.
+La modulation en fréquence (\textit{Frequency modulation, FM}) encode les informations dans les caractéristiques temporelles du signal transmis, ce qui la rend plus robuste aux interférences liés à l'amplitude que la modulation AM. La fréquence d'un signal ne peut pas être modifiée par le bruit ou la distorsion. Cepdendant, d'autres types de distortions comme le \textit{frequency drift} (un changement non désiré de la fréquence dans le temps) peuvent affecter la qualité d'un signal modulé en fréquence. Selon l'équation \ref{eq113}, le paramètre à faire varier est $f_c$. Dans \ref{eq113}, la phase $\phi(t)$ vaut $2 \pi f_ct + \theta_c$ où $\theta_c$ est une constante. Pour déterminer la fréquence instantanée, il faut dériver la phase instantanée c'est à dire :
+
+\begin{equation}\label{eq120}
+f_i(t) = \frac{1}{2\pi} \frac{d\phi_i(t)}{dt}
+\end{equation}
 
 \vspace{0.1cm}
 
@@ -141,7 +179,6 @@ $v(t)$ = $cos(2\pi f_{c}t + \phi_{c})$ où $f_{c}$ = 50 Hz.
 
 La Figure \ref{term2} montre le signal modulé $s_{fm}(t)$ via la modulation en fréquence pour une phase initale du carrier signal $\phi_{c}$ = 0 avec une dérivation en fréquence $\Delta f$ = 5Hz. Attention, pour aligner le signal en bande de base à celui modulé, celui ci a subi un décalage de phase de 90°. La fonction sinus et cosinus sont liées en trigonométrie par un décalage de 90° (ou $\frac{\pi}{2} $radian) car $\sin(\theta) = \cos(\theta-\frac{\pi}{2})$
 
-\newpage
 
 \begin{figure}[h]
 \centering
@@ -149,6 +186,8 @@ La Figure \ref{term2} montre le signal modulé $s_{fm}(t)$ via la modulation en 
 \includegraphics[scale=0.5]{images/FM_mod.PNG}
 \caption{Exemple de modulation en fréquence}\label{term2}
 \end{figure}
+
+\subsection{Modulation en phase}
 
 La modulation en phase (\textit{Phase Modulation, PM)} permet généralement d'obtenir une meilleur utilisation de la bande passante que les autres modulations car les variations de phase peuvent encoder plus d'informations, ce qui augmente la quantité de données transmises. La modulation en phase est souvent associée à celle en fréquence. En effet les concpets sont liées par leur dépendance à la porteuse. Peu importe l'argument de la fonction de modulation choisi, il n'est plus une fonction linéaire du temps. La modulation en fréquence s'accompagne nécessairement d'une modulation de phase (présence du $\phi_{c}$).
 
@@ -174,7 +213,6 @@ $v(t)$ = $cos(2\pi f_{c}t + \phi_{c})$ où $f_{c}$ = 50 Hz.
 
 La Figure \ref{term3} montre le signal modulé $s_{pm}(t)$ en phase pour une phase initale ddu carrier signal $\phi_{c}$ = 0 avec un index de modulation de phase $K_{p}$ = 8.
 
-\newpage
 
 \begin{figure}[h]
 \centering
@@ -184,12 +222,6 @@ La Figure \ref{term3} montre le signal modulé $s_{pm}(t)$ en phase pour une pha
 \end{figure}
 
 On constate que pour un signal sinusoidal il est assez difficile de différencier la modulation en fréquence de celle en phase. La différence a lieue à l'emplacement des variations de la vitesse d'oscillation. Pour la modulation en fréquence, on constante que l'oscillation accélère jusqu'à atteindre le maximum quand l'amplitude du signal en bande de base est maximale, et inversément quand l'amplitude est au minimum. Les concepts de modulation de phase et de frénquences sont généralement regroupés sous le terme de modulation angulaire (source : \href{http://www.telecom.ulg.ac.be/teaching/notes/total1/elen008/node39_mn.html}{http://www.telecom.ulg.ac.be/teaching/notes/total1/elen008/node39mn.html})
-
-\subsection{Démodulation}
-
-In phase : aligné avec le $\cos$
-
-Quadrature : aligné en quadrature avec le $\cos$
 
 
 \subsection{Gestion du bruit}
@@ -243,11 +275,7 @@ La première chose que l'on constate, c'est que pour le singal en bande de base 
 u(t)v(t) = \int_{-\infty}^{\infty} U(f)V(t - f) df
 \end{equation}
 
-Ainsi, par l'identité trigonométrique, 
-
-\begin{equation}
-sin(a)cos(b) = \frac{1}{2} sin(a+b) + sin(a-b)
-\end{equation}
+Ainsi, par l'identité trigonométrique \ref{eq114}, 
 
 Le signal modulé possède un pic à 50Hz selon la porteuse, mais également la moitié d'un pic à 50 - 5 Hz et à 50 + 5 Hz selon le signal en bande de base. Comme le signal est réel, les mêmes pics sont observés à l'opposé du centre de la symétrie.
 
