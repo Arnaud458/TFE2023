@@ -91,13 +91,13 @@ $m(t)$ peut donc être exprimé par la relation suivante :
     m(t) &= x(t) \cos(2 \pi f_c t) - y(t) \sin(2 \pi f_c t)
 \end{align}
 
-car l'enveloppe complexe $g(t)$ peut être exprimée selon ses composantes \textit{In Phase} et \textit{Quadrature}. Dans le plan complexe, la composante \textit{In phase (I)} est représenté par l'axe des réels, tanids que la composante \textbf{Quadrature (Q)} est représentée sur l'axe imaginaire. Un nombre complexe $z$ peut être représentée selon les composantes ainsi :
+car l'enveloppe complexe $g(t)$ peut être exprimée selon ses composantes \textit{In Phase} et \textit{Quadrature}. Dans le plan complexe, la composante \textit{In phase (I)} est représentée par l'axe des réels, tanids que la composante \textit{Quadrature (Q)} est représentée sur l'axe imaginaire. Un nombre complexe $z$ peut être représentée selon ces composantes tel que:
 
 \begin{equation}\label{eq115}
 z = I + jQ.
 \end{equation}
 
-Ainsi, l'enveloppe complexe d'un signal modulé $g(t)$ peut être interprétée comme la somme de ses composantes formulée comme \ref{eq115} c'est à dire :
+Ainsi, l'enveloppe complexe d'un signal modulé $g(t)$ peut être interprétée comme la somme de ses composantes formulées comme \ref{eq115} c'est à dire :
 
 \begin{equation}\label{eq116}
 g(t) = I(t) + jQ(t) = x(t) + jy(t).
@@ -132,7 +132,7 @@ $U_c$ est donc l'attribut de l'amplitude à faire varier pour la modulation AM.
 Soient $u(t)$ un baseband signal et $v(t)$ un carrier signal, la modulation en amplitude s'effectue en multipliant les deux signaux pour obtenir le signal modulé 
 
 \begin{equation}\label{eq2}
-s_\mathrm{AM}(t) = u(t) . v(t) 
+s_\mathrm{AM}(t) = u(t) . v(t)
 \end{equation}
 
 Prenons par exemple 
@@ -153,10 +153,16 @@ La Figure \ref{term1} montre le signal modulé $s\mathrm{AM}(t)$ via la modulati
 
 \subsection{Modulation en fréquence}
 
-La modulation en fréquence (\textit{Frequency modulation, FM}) encode les informations dans les caractéristiques temporelles du signal transmis, ce qui la rend plus robuste aux interférences liés à l'amplitude que la modulation AM. La fréquence d'un signal ne peut pas être modifiée par le bruit ou la distorsion. Cepdendant, d'autres types de distortions comme le \textit{frequency drift} (un changement non désiré de la fréquence dans le temps) peuvent affecter la qualité d'un signal modulé en fréquence. Selon l'équation \ref{eq113}, le paramètre à faire varier est $f_c$. Dans \ref{eq113}, la phase $\phi(t)$ vaut $2 \pi f_ct + \theta_c$ où $\theta_c$ est une constante. Pour déterminer la fréquence instantanée, il faut dériver la phase instantanée c'est à dire :
+La modulation en fréquence (\textit{Frequency modulation, FM}) encode les informations dans les caractéristiques temporelles du signal transmis, ce qui la rend plus robuste aux interférences liés à l'amplitude que la modulation AM. La fréquence d'un signal ne peut pas être modifiée par le bruit ou la distorsion. Cepdendant, d'autres types de distortions comme le \textit{frequency drift} (un changement non désiré de la fréquence dans le temps) peuvent affecter la qualité d'un signal modulé en fréquence. Selon l'équation \ref{eq113}, le paramètre à faire varier est $f_c$. Contrairement à la modulation en amplitude, le signal porteur et modulé ne sont pas similaires ($m(t) \neq U_c(t)$). Dans \ref{eq113}, la phase $\phi(t)$ vaut $2 \pi f_ct + \theta_c$ où $\theta_c$ est une constante. Pour déterminer la fréquence instantanée, il faut dériver la phase instantanée c'est à dire :
 
 \begin{equation}\label{eq120}
 f_i(t) = \frac{1}{2\pi} \frac{d\phi_i(t)}{dt}
+\end{equation}
+
+Ainsi, il est possible de représenter l'accumulation de la phase due à la modulation par l'équation :
+
+\begin{equation}\label{eq121}
+U_c(t) = U_c.\cos(2 \pi \int_{0}^{t} f_i(\tau) \, d\tau +  \theta_c)
 \end{equation}
 
 \vspace{0.1cm}
@@ -177,8 +183,17 @@ $v(t)$ = $cos(2\pi f_{c}t + \phi_{c})$ où $f_{c}$ = 50 Hz.
 
 \vspace{0.1cm}
 
-La Figure \ref{term2} montre le signal modulé $s_{fm}(t)$ via la modulation en fréquence pour une phase initale du carrier signal $\phi_{c}$ = 0 avec une dérivation en fréquence $\Delta f$ = 5Hz. Attention, pour aligner le signal en bande de base à celui modulé, celui ci a subi un décalage de phase de 90°. La fonction sinus et cosinus sont liées en trigonométrie par un décalage de 90° (ou $\frac{\pi}{2} $radian) car $\sin(\theta) = \cos(\theta-\frac{\pi}{2})$
+La Figure \ref{term2} montre le signal modulé $s_{fm}(t)$ via la modulation en fréquence pour une phase initale du carrier signal $\phi_{c}$ = 0 avec une dérivation en fréquence $\Delta f$ = 5Hz. On remarque la présence d'une constante représentant un décalage de phase. La modulation en fréquence n'est pas détachée de la modulation en phase. Les deux modulations fonctionnent à partir de la phase instantannée $\phi_i(t)$. La modulation en fréquence fait varier linéairement la fréquence instantanée $f_i(t)$ (qui dépent de $\phi_i(t)$ par \ref{eq120}) tandis que la modulation en phase fait varier linéairement la phase instantannée $\phi_i(t)$. Ajouté à cela, $u(t)$ est un sinus, or 
 
+\begin{equation}\label{eq122}
+\int_{0}^{t} \sin(2 \pi f \tau \, d\tau) = \frac{1 - \cos(2\pi f t)}{2 \pi f}
+\end{equation}
+
+Ce qui implique que le signal modulé a subi un décalage de $\frac{\pi}{2}$ radian car l'identitée trigonométrique indique que :
+
+\begin{equation}\label{eq122}
+\cos(x+\frac{\pi}{2}) = \sin(x)
+\end{equation}
 
 \begin{figure}[h]
 \centering
@@ -189,7 +204,7 @@ La Figure \ref{term2} montre le signal modulé $s_{fm}(t)$ via la modulation en 
 
 \subsection{Modulation en phase}
 
-La modulation en phase (\textit{Phase Modulation, PM)} permet généralement d'obtenir une meilleur utilisation de la bande passante que les autres modulations car les variations de phase peuvent encoder plus d'informations, ce qui augmente la quantité de données transmises. La modulation en phase est souvent associée à celle en fréquence. En effet les concpets sont liées par leur dépendance à la porteuse. Peu importe l'argument de la fonction de modulation choisi, il n'est plus une fonction linéaire du temps. La modulation en fréquence s'accompagne nécessairement d'une modulation de phase (présence du $\phi_{c}$).
+La modulation en phase (\textit{Phase Modulation, PM)} permet généralement d'obtenir une meilleur utilisation de la bande passante que les autres modulations car les variations de phase peuvent encoder plus d'informations, ce qui augmente la quantité de données transmises. La modulation en phase est associée à celle en fréquence. En effet les concpets sont liées par leur dépendance à $\phi_i(t)$ . Peu importe l'argument de la fonction de modulation choisi, il n'est plus une fonction linéaire du temps.
 
 Soient $u(t)$ un baseband signal et $v(t)$ un carrier signal, le signal modulé en phase $s_{pm}(t)$ est le résultat suivant :
 
@@ -269,15 +284,13 @@ Reprenons la modulation en amplitude de la section \ref{mod}. En utilisant la CF
 \caption{Exemple de CFT}\label{term8}
 \end{figure}
 
-La première chose que l'on constate, c'est que pour le singal en bande de base et la porteuse, on observe pour chacun d'entre eux deux pics. Ces pics correspondent à la fréquence des différents signaux (pour rappel $f_u$ = 5Hz et $f_v$ = 50Hz) mais aussi à leur fréquence négatives. Cette duplication est due au fait que la Tranformée de Fourier produit un spectre symétrique par rapport à l'origine (dans notre cas, le centre où la fréquence vaut 0Hz). La CFT d'un signal réel possède deux valeurs (positives et négatives) pour chaques composantes du signal. On constate également que sur la CFT du signal modulé il y a 6 pics dont 4 qui ont la moitié de la magnitude des deux autres. Ces pics sont expliqués par un décalage en fréquence du à la modulation. En effet le troisième signal est un produit de deux signaux, dans le domaine fréquenciel ce produit apparait comme un décalage de la fréquence du signal en bande de base de part et d'autre de la fréquence du signal de la porteuse. C'est le théorème de la modulation. Pour des signaux $u(t)$ et $v(t)$ ayant pour CFT respectives $U(f)$ et $V(f)$, alors leur relation peut être exprimée de la manière suivante :
+La première chose que l'on constate, c'est que pour le singal en bande de base et la porteuse, on observe pour chacun d'entre eux deux pics. Ces pics correspondent à la fréquence des différents signaux (pour rappel $f_u$ = 5Hz et $f_v$ = 50Hz) mais aussi à leur fréquence négatives. Cette duplication est due au fait que la Tranformée de Fourier produit un spectre symétrique par rapport à l'origine (dans notre cas, le centre où la fréquence vaut 0Hz). La CFT d'un signal réel possède deux valeurs (positives et négatives) pour chaques composantes du signal. On constate également que sur la CFT du signal modulé il y a 4 pics. Ces pics sont expliqués par un décalage en fréquence du à la modulation. En effet le troisième signal est un produit de deux signaux, dans le domaine fréquenciel ce produit apparait comme un décalage de la fréquence du signal en bande de base de part et d'autre de la fréquence du signal de la porteuse. C'est le théorème de la modulation. Pour des signaux $u(t)$ et $v(t)$ ayant pour CFT respectives $U(f)$ et $V(f)$, alors leur relation peut être exprimée de la manière suivante :
 
 \begin{equation}
 u(t)v(t) = \int_{-\infty}^{\infty} U(f)V(t - f) df
 \end{equation}
 
-Ainsi, par l'identité trigonométrique \ref{eq114}, 
-
-Le signal modulé possède un pic à 50Hz selon la porteuse, mais également la moitié d'un pic à 50 - 5 Hz et à 50 + 5 Hz selon le signal en bande de base. Comme le signal est réel, les mêmes pics sont observés à l'opposé du centre de la symétrie.
+Ainsi, par l'identité trigonométrique \ref{eq114}, le signal modulé possède un pic à 50 - 5 Hz et à 50 + 5 Hz selon le signal en bande de base. Comme le signal est réel, les mêmes pics sont observés à l'opposé du centre de la symétrie.
 
 \vspace{0.1cm}
 
