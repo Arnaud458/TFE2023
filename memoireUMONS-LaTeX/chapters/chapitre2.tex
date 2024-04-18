@@ -16,10 +16,31 @@ Les SDR peuvent jouer le rôle d'émetteur ou de récepteur ou les deux. Différ
 
 \newpage
 
-\subsubsection{RTL SDR dvb-T}
+\subsubsection{RTL SDR dvb-T}\label{dvbt}
 
 La \textit{RTL SDR dvb-T} est la version la moins chère des radios utilisées. Cette radio est initialemnt utilisée pour recevoir des signaux dvb-T (\textit{Digital video broadcasting Terrestrial} télévisés. La figure \ref{term31} montre la radio, qui est un device USB qui inclu un \textit{chipset RTL2832U} et un \textit{RF tuner chip}. Le chipset RTL2832U digitalise les signaux RF et les evnoie à l'ordinateur. Le tuner permet d'ajuster la fréquence pour couvrir une larger portée.
-La radio est raccordé à l'ordianteur via le port USB.
+La radio est raccordé à l'ordianteur via le port USB. Le site RTL SDR (\href{https://www.rtl-sdr.com/about-rtl-sdr/}{https://www.rtl-sdr.com/about-rtl-sdr/}) ajoute quelques informations sur l'origine de l'utilisation de DVB-T tuner en tant que SDR. Le schéma bloc de la sdr est représenté sur la figure \ref{term3000}. Le tuner comporte les différentes éléments :
+\begin{itemize}
+\item \textbf{Low Noise Amplifier (LNA)}. le LNA amplifie le signal tout en minimisant l'ajout de bruit, afin de maintenir un SNR faible.
+\item \textbf{Radio Frequency Filter (RF Filter)}. Le filtre permettant d'isoler la fréquence désirée.
+\item \textbf{Local oscillator (LO)}. La fréquence de l'oscillateur local est généralement de 28.8MHz. Cela permet à la SDR d'opérer sur une portée de fréquence approximative entre 24MHz et 1.7GHz. L'utilisation du LO couplée au signal reçu produit un signal à une fréquence intermédiaire.
+\item \textbf{Itermediate Frequency Filter (IF Filter)}. Ce filtre permet d'isoler le signal à fréquence intermédiaire. L'utilisation d'une fréquence intermédiaire est importante pour pouvoir opérer sur le signal. Par exemple la démodulation est bien plus abordable sur un signal possèdant une fréquence réduite que sa valeur originale.
+\item \textbf{Variable Gain Amplifier (VGA)}. Le VGA ajuste l'amplitude du signal pour maintenir un niveau constant.
+\end{itemize}
+
+\vspace{0.1cm}
+
+Le chipset contient les éléments suivants :
+\begin{itemize}
+\item \textbf{Analog to Digital Converter (ADC)} Le signal sortant du tuner est échantilloné par l'ADC à une fréquence d'échantillonage de 28.8MHz. L'ADC permet de convertir un signal analogique en signal numérique.
+\item \textbf{Digital Down Converter (DDC)} Le signal est ramenée en bande de base grâce au DDC. Le Digital Down Converter  mixe le signal avec une sinusoide complexe et ensuite applique un filtre \textbf{Low Pass Filter (LPF)}. 
+\item \textbf{Decimator} La dernière étape utilise la décimation pour réduire le taux d'échantillonage du signal.
+\item \textbf{USB control} Le signal est réduit uniquement aux échantillons complexes I et Q. Ils sont récupérés depuis l'USB de la SDR.
+\end{itemize}
+
+\vspace{0.1cm}
+
+Une description détaillée du déroulement de la récupération du signal par la sdr est disponible au lien suivant : \textit{Ajoo's blog} \href{https://ajoo-github-blog-old.pages.dev/intro-to-rtl-sdr-part-i-principles-and-hardware}{https://ajoo-github-blog-old.pages.dev/intro-to-rtl-sdr-part-i-principles-and-hardware}
 
 \begin{figure}[h]
 \centering
@@ -28,11 +49,18 @@ La radio est raccordé à l'ordianteur via le port USB.
 \caption{RTL SDR Dvb-T dongle}\label{term31}
 \end{figure}
 
-\newpage
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=0.5]{images/SB-rtlsdr.png}
+\caption{Schema bloc de la RTL SDR\cite{SBrtlsdr}}\label{term3000}
+\end{figure}
+
+
 
 \subsubsection{RTL-SDR R820T2}
 
-La deuxième radio logicielle utilisée est la \textit{RTL SDR R820T2}. Il y a deux différences majeures avec la radio dvb-T. L'antenne de cette radio logicielle est de meilleure qualité et le tuner chip de cette SDR est un r820t2 tuner. Cette version est une version améliorée du tuner qui se trouve dans la dvb-T, ce qui a pour impact une réduction du bruit, une meilleure sensibilité et une couverturee de fréquence plus large. La figure \ref{term32} montre la SDR en question.
+La deuxième radio logicielle utilisée est la \textit{RTL SDR R820T2}. Il y a deux différences majeures avec la radio dvb-T. L'antenne de cette radio logicielle est de meilleure qualité et le tuner chip de cette SDR est un r820t2 tuner. Cette version est une version améliorée du tuner qui se trouve dans la dvb-T, ce qui a pour impact une réduction du bruit, une meilleure sensibilité et une couverturee de fréquence plus large. La figure \ref{term32} montre la SDR en question. Le schéma bloc de la SDR présentée à la section \ref{dvbt} est le même que pour celui-ci. En effet la différence entre le tuner T et T2 ne sont pas visibles sur la description du shéma. Une description du registre de la RTL-SDR R820T2 est disponible au lien suivant : \href{http://superkuh.com/R820T2_Register_Description.pdf}{http://superkuh.com/R820T2RegisterDescription.pdf}
 
 
 \begin{figure}[h]
@@ -42,12 +70,12 @@ La deuxième radio logicielle utilisée est la \textit{RTL SDR R820T2}. Il y a d
 \caption{RTL SDR R820T2}\label{term32}
 \end{figure}
 
-\newpage
+
 
 
 \subsubsection{HackRF One}
 
-La dernière radio logicielle utilisée est la \textit{HackRF One}. Au dela du prix plus élevé, cette dernière radio est différente des deux autres. Elle est notament capable de gérer la transmission et la réception de signaux, là ou les deux autres sont uniquement des récepteurs. Si la R820T2 offrait déja une qualité de signal supérieure à la dvb-T, celui de la hack rf est encore plus net. La figure \ref{bothimages} montre la SDR avec l'antenne utilisée posée sur un trepied.
+La dernière radio logicielle utilisée est la \textit{HackRF One}. Au dela du prix plus élevé, cette dernière radio est différente des deux autres. Elle est notament capable de gérer la transmission et la réception de signaux, là ou les deux autres sont uniquement des récepteurs. Si la R820T2 offrait déja une qualité de signal supérieure à la dvb-T, celui de la hack rf est encore plus net. La figure \ref{bothimages} montre la SDR avec l'antenne utilisée montée sur un trepied.
 
 \begin{figure}[h]
 \centering
@@ -69,7 +97,18 @@ La dernière radio logicielle utilisée est la \textit{HackRF One}. Au dela du p
 \end{figure}
 
 
-\newpage
+Le shéma bloc de la SDR est affiché sur la figure \ref{term3001}. Ce dernier est beaucoup plus complexe que celui de la RDT SDR. Il y a d'une part que la HackRF est un transceiver, donc elle possède les étapes nécessaires à l'émission que la rtl sdr ne possède pas. Ensuite, il y a plusieurs étapes de fréquences intermédiaire. L'architecture de la hackRF permets d'utiliser plusieurs étapes de mixeur pour atteindre la fréquence désirée. Chaque étape possède sa fréquence intermédiaire. Le schéma bloc ainsi que les caractéristiques de la sdr sont disponibles au lien suivant : \href{https://www.hb9afo.ch/articles/HackRF/default.htm}{https://www.hb9afo.ch/articles/HackRF/default.htm}
+
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=0.8]{images/SBhackrf.png}
+\caption{Schema bloc de la RTL SDR\cite{SBrtlsdr}}\label{term3001}
+\end{figure}
+
+\subsubsection{comparatifs des radios logicielles}
+
+
 
 \subsection{Module d'émission Lora}
 
