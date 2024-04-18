@@ -194,7 +194,14 @@ L'utilisation du module RN2483 est détaillée dans la section \ref{signallora}.
 \caption{Un module Pycom lopy avec une antenne}\label{term35}
 \end{figure}
 
-Le module \textit{Pycom lopy} est un appareil programmable en micro python. Il comprend un microcontrolleur ainsi qu'une série de pins digitaux input/output,  des composantes de connectivité sans fil et un port micro USB. La figure \ref{term35} montre le module  connecté à une antenne.
+Le module \textit{Pycom lopy}\cite{sitepycom} est un appareil programmable en micro python. Il comprend un microcontrolleur ainsi qu'une série de pins digitaux input/output,  des composantes de connectivité sans fil et un port micro USB. La figure \ref{term35} montre le module  connecté à une antenne. Le shéma bloc (disponible dans les datasheets du module à l'adresse : \href{https://docs.pycom.io/gitbook/assets/specsheets/Pycom_002_Specsheets_LoPy_v2.pdf}{https://docs.pycom.io/gitbook/assets/specsheets/Pycom002SpecsheetsLoPyv2.pdf} est représenté à la figure \ref{term3003}. Contrairement au module RN2483, on remarque que le module LoPy possède des fonctions supplèmentaires 
+(qui ne sont pas intéressante pour l'expérimentation) comme une connexion Wifi ou Bluetooth. Le microcontrolleur possède aussi plusieurs interfaces autres que UART (qui est la seul disponible sur le module RN42483).
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=1]{images/SBlopy.png}
+\caption{Shéma bloc du module Pycom LoPy}\label{term3003}
+\end{figure}
 
 \subsubsection{Module Arduino}\label{arduino}
 
@@ -205,7 +212,7 @@ Le module \textit{Pycom lopy} est un appareil programmable en micro python. Il c
 \caption{Un module Arduino}\label{term36}
 \end{figure}
 
-L'avantage principal du module \textit{Arduino} est qu'il est possible de configurer une largeur de bande bien plus faible que les autres modules. Les modules RN2483 ou lopy ont une largeur de bande minimal de 125KHz, tandis qu'avec l'arduino il est possible de descendre jusqu'à quelques Khz à peine. Pour rappel, une largeur de bande plus faible permet un \textit{time on air (TOA)} plus grand, ce qui est très utile pour analyser les signaux. 
+L'avantage principal du module \textit{Arduino} est qu'il est possible de configurer une largeur de bande bien plus faible que les autres modules. Les modules RN2483 ou lopy ont une largeur de bande minimal de 125KHz, tandis qu'avec l'arduino il est possible de descendre jusqu'à 7.8 KHz. Pour rappel, une largeur de bande plus faible permet un \textit{time on air (TOA)} plus grand, ce qui est très utile pour analyser les signaux. 
 
 \subsection{Logiciels}\label{fft}
 
@@ -349,6 +356,23 @@ Le choix du langage pour l'implémentation du travail est Python (version 3.11.4
 \item \textit{Serial}. La manipulation des modules rn2483 est possible grave à la librairie serial. Cette librairie permet d'intéragir avec les apparails connecté via USB.
 \end{itemize}
 
+
+\begin{table}[h]
+\centering
+\begin{adjustbox}{width=1\textwidth}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\multicolumn{1}{|c|}{Caractéristiques importantes} & \multicolumn{1}{c|}{GQRX} & \multicolumn{1}{c|}{URH} & \multicolumn{1}{c|}{Python}\\
+\hline
+Portée (Fréquence) & \multicolumn{2}{c|}{24MHz - 1.7GHz} & 1MHz - 6GHz \\
+\hline
+
+\hline
+\end{tabular}
+\end{adjustbox}
+\caption{Table comparatives des logiciels utilisés}
+\label{table2}
+\end{table}
 
 \section{Géneration et réception d'un signal LoRa} \label{signallora}
 
