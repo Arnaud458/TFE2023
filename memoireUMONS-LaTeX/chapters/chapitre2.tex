@@ -103,10 +103,45 @@ Le shéma bloc de la SDR est affiché sur la figure \ref{term3001}. Ce dernier e
 \centering
 
 \includegraphics[scale=0.8]{images/SBhackrf.png}
-\caption{Schema bloc de la RTL SDR\cite{SBrtlsdr}}\label{term3001}
+\caption{Schema bloc de la HackRF One}\label{term3001}
 \end{figure}
 
-\subsubsection{comparatifs des radios logicielles}
+
+La table  \ref{table1} résume les différents critères pertinents pour les trois rados logicielles. Ces critères permettront de sélectionner la SDR la plus adéquate pour les expérimentations.
+
+
+\begin{table}[h]
+\centering
+\begin{adjustbox}{width=1.2\textwidth}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\multicolumn{1}{|c|}{Caractéristiques importantes} & \multicolumn{1}{c|}{RTL SDR DVB-T} & \multicolumn{1}{c|}{RTL SDR R820T2} & \multicolumn{1}{c|}{HackRF One}\\
+\hline
+Portée (Fréquence) & \multicolumn{2}{c|}{24MHz - 1.7GHz} & 1MHz - 6GHz \\
+\hline
+Taux d'échantillonage & \multicolumn{2}{c|}{jusqu'à 3.2MHz} & jusqu'à 20MHz \\
+\hline
+Largeur de bande & \multicolumn{2}{c|}{jusqu'à 2.4MHz} & jusqu'à 20MHz  \\
+\hline
+Résolutions de l'ADC & \multicolumn{3}{c|}{8 bits} \\
+\hline
+Transceiver & \multicolumn{2}{c|}{seulement receiver} & oui \\
+\hline
+Modulations supportéées & \multicolumn{3}{c|}{supporte LoRa ainsi qu'un grande variété d'autres modulations} \\
+\hline
+compatibilié logicielle & \multicolumn{3}{c|}{oui, notamment avec ceux décrits dans la section \ref{fft}} \\
+\hline
+qualité du signal & mauvaise &\multicolumn{2}{c|}{très bonne}\\
+\hline
+Prix & envrion 20 euros & environ 30 euros & minimum 250 euros \\
+\hline
+Simplicité de transport & \multicolumn{2}{c|}{facile à transporter} & antenne encombrante \\
+\hline
+\end{tabular}
+\end{adjustbox}
+\caption{Table comparatives des radios logicielles utilisées}
+\label{table1}
+\end{table}
 
 
 
@@ -122,9 +157,18 @@ Le shéma bloc de la SDR est affiché sur la figure \ref{term3001}. Ce dernier e
 \end{figure}
 
 
-Le \textit{microchip RN2483} est un module de technologie spécifique à LoRa. Bien que Microchip soit une compagnie qui produit de nombreux microcontrolleurs, cet appareil n'en est pas un. Le module RN2483 de la figure \ref{term34} est un simple \textit{transceiver (transmitter and receiver)} radio permetant de communiquer à longue portée et à faible coup. La documentation sur cet appareil est disponible au lien suivant : \href{https://ww1.microchip.com/downloads/en/DeviceDoc/40001784B.pdf}{https://ww1.microchip.com/downloads/en/DeviceDoc/40001784B.pdf}. 
+Le \textit{microchip RN2483} est un module de technologie spécifique à LoRa permetant de communiquer à longue portée et à faible coup. La documentation sur cet appareil est disponible au lien suivant : \href{https://ww1.microchip.com/downloads/en/DeviceDoc/40001784B.pdf}{https://ww1.microchip.com/downloads/en/
+DeviceDoc/40001784B.pdf}. Le Schéma bloc (disponible à l'adresse \href{https://www.mouser.be/new/microchip/microchip-rn2483-module/}{https://www.
+mouser.be/new/microchip/microchip-rn2483-module/} du module est représenté à la figure \ref{term3002}. Le module RN2483 de la figure \ref{term34} est un simple \textit{transceiver (transmitter and receiver)} radio de type SX127x couplé à un microcontroleur. Les informations relatives à ce type de transceivers sont disponibles sur le site de Semtech : \href{https://www.semtech.com/products/wireless-rf/lora-connect/sx1278}{https://www.semtech.com/products/wireless-rf/lora-connect/sx1278}.
 
-\vspace{0.1cm}
+
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=0.8]{images/SBrn2483.png}
+\caption{3 modules RN2483}\label{term3002}
+\end{figure}
+
 
 Voici quelques spécificités sur le module:
 \vspace{0.1cm}
@@ -133,7 +177,7 @@ Voici quelques spécificités sur le module:
 \item Il comprend la technologie de modulation LoRa, ce qui lui donne son atout de faible consommation et de longue portée. Il gère également les modulations \textit{FSK (frequency shift keying)} et \textit{GFSK (Gaussian frequency shift keying)}.
 \item Une faible consommation induit une faible puissance, le module possède un amplificateur de puissance maximale de 14dBm.
 \item Les bandes de fréquences disponibles sont compatibles avec la bande ISM. Le module couvre de 863Mhz à 870Mhz pour la région européenne.
-\item Le data rate maximum en modulant avec LoRa est de 10937 bps (bit par seconde).
+\item Le data rate maximum en modulant avec LoRa est de 27343.75 bps (bit par seconde) pour un largeur de bande de 125KHz et un facteur d'étalement de 7.
 \item tous les paramètres TX sont configurables.
 \end{itemize}
 
