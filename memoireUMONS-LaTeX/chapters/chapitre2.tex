@@ -371,7 +371,7 @@ Le choix du langage pour l'implémentation du travail est Python (version 3.11.4
 
 \begin{table}[h]
 \centering
-\begin{tabular}{|p{4cm}|p{2cm}|p{2cm}|p{3cm}|}
+\begin{tabular}{|p{4cm}|p{2cm}|p{2cm}|p{3.5cm}|}
 \hline
 \multicolumn{1}{|c|}{Caractéristiques importantes} & \multicolumn{1}{c|}{GQRX} & \multicolumn{1}{c|}{URH} & \multicolumn{1}{c|}{Python}\\
 \hline
@@ -411,9 +411,10 @@ Via python, il est possible d'utiliser la librairie \textit{Serial} pour se conn
 \item la modulation, en LoRa.
 \item La fréquence. 868MHz, la fréquence de la bande ISM , la bande d'émission en Europe.
 \item La largeur de bande choisie est de 125Khz, ce qui est la plus petite valeur possible que permet le module.
-\item La puissance du module, au maximum (14W).
+\item La puissance du module, au maximum (14dBm).
 \item Le spreading factor, la valeur la plus grande possible est choisie (SF = 12).
-\item Le coding rate. Il y a 4 valeur possible:s 4/5, 4/6, 4/7 and 4/8. Cela signifie que tout les 4 bits seront codé par 4, 5, 6, 7 ou 8 bits de transmissions en fonction de cette valeur. Plus la valeur est faible (la plus faible étant 4/8), plus le TOA sera élevé, car cela prend plus de temps pour transmettre le message.
+\item Le coding rate. Il y a 4 valeur possibles: 4/5, 4/6, 4/7 and 4/8. Cela signifie que tout les 4 bits seront codé par 4, 5, 6, 7 ou 8 bits de transmissions en fonction de cette valeur. Plus la valeur est faible (la plus faible étant 4/8), plus le TOA sera élevé, car cela prend plus de temps pour transmettre le message.
+\item Le message à envoyer. Le but de cette expérimentation n'est pas de récupérer l'information initiale (le contenu du message), il n'a donc pas un grand intérêt. Le message à envoyer est un nombre héxadécimal : $0x1509ACF$.
 \end{itemize}
 
 \vspace{0.1cm}
@@ -496,6 +497,10 @@ Ce phénomène est due à une interprétation faussée par URH. La fréquence du
     868Mhz - \frac{125KHz}{2} = 867,9375MHz
 \end{align}
 
+On observe également au début du premier chirp une période où l'amplitude est en train de s'ajuster. Ce phénomène appelé \textit{période transitoire (transcient part)} est un état instable durant lequel différentes propriétés du signal peuvent subir des changements. Sur la figure \ref{term307} cela survient au début de la réception, ce qui peut s'expliquer par le fait que le module d'émission change d'état au moment de débuter la transmission.
+
+\vspace{0.1cm}
+
 Selon la section \ref{packetlora}, la structure du paquet LoRa devrait contenir d'abord les symboles du préambule, soit 8 upchirps suivis de 4.25 chirps. La figure \ref{term308} montre le spectrogramme du signal complet, dont la partie fixe du préambule (les 8 upchirps par défaut) ont été mis en évidence sous forme analogique. Pouvoir identifier et récupérer le préambule du signal LoRa est crucial pour l'identification de l'appareil qui l'a émis.
 
 
@@ -506,13 +511,13 @@ Selon la section \ref{packetlora}, la structure du paquet LoRa devrait contenir 
 \caption{Identification du préambule LoRa}\label{term308}
 \end{figure}
 
-Cependant, l'utilisation d'intermédiaire comme URH ou GQRX n'est pas efficace pour traiter un grand nombre de signaux. La dernière étape avant de commencer l'identification des noeuds à partir des signaux est d'automatiser le processus complet de la capture du signal.
+Cependant, l'utilisation d'intermédiaire comme URH ou GQRX n'est pas efficace pour traiter un grand nombre de signaux. La dernière étape avant de commencer l'identification des noeuds à partir des signaux est d'automatiser le processus complet de la capture du signal. Bien qu'URH et GQRX ne soit pas nécessaire pour réaliser l'indentification, leur utilisation a été d'une grande utilité. Par exemple pour l'apprentissage de la reconnaissance de signaux LoRa et de leur représentation, mais également pour l'observation de la partie transitoire d'un signal. Ils ont également permis de visualiser l'impact de paramètres comme le taux d'échantillonage, le facteur d'étalement ou encore la largeur de bande d'un signal.
 
 \subsection{Analyse avec python}
 
-Une information importante que les deux logiciels de visualisation ont occultée, c'est la composition du signal. En effet, la visualisation analogique du signal avec URH montre une seule onde continue. Cependant il s'agit d'un signal complexe composé de deux deux ondes distinctes. Les échantillons du signal capturés par la SDR sont composé de deux composantes : la composante \textit{I (In phase}) et la composante \textit{Q (Quadrature)}. La composante I représente l'amplitude du signal à un point spécifique du temps, cela correspond à la partie réelle du signal. La composante Q représente le déplacement de phase du signal en fontion de I, ce qui correspond à la partie imaginaire du signal. URH combine les deux pour générer la vue analogique.
+Une information importante que les deux logiciels de visualisation ont occultée, c'est la composition du signal. En effet, la visualisation analogique du signal avec URH montre une seule onde continue. Cependant il s'agit d'un signal complexe composé de deux deux ondes distinctes. Les échantillons du signal capturés par la SDR sont composé de deux composantes : la composante \textit{I (In phase}) et la composante \textit{Q (Quadrature)} (voir section \ref{mod}). URH combine les deux pour générer la vue analogique.
 
-La librairie \textit{Matplotlib} de python permet d'afficher le contenu du signal capturé. La figure  \ref{term309} est un plot des échantillons dont la partie réelle (orange) et imaginaire (bleue) ont été séparées. Le signal a été capturé avec un taux d'échantillonnage de 1.8MHz, malgré un TOA relativement court (quelques centièmes de secondes) la quantité d'échantillons capturés est très grande (plus de 130000 échantillons). Matplotlib permet également le zoom, la figure \ref{term310} fait un zoom sur les 4000 premiers échantillons. Les deux ondes apparaissent grâce au zoom.
+La librairie \textit{Matplotlib} de python permet d'afficher le contenu du signal capturé. La figure  \ref{term309} est un plot des échantillons dont la partie réelle (orange) et imaginaire (bleue) ont été séparées. Le signal a été capturé avec un taux d'échantillonnage de 1.8MHz, malgré un TOA relativement court (quelques centièmes de secondes, le calcul du TOA est donné par l'équation \ref{toa}) la quantité d'échantillons capturés est très grande (plus de 130000 échantillons). Matplotlib permet également le zoom, la figure \ref{term310} fait un zoom sur les 4000 premiers échantillons. Les deux ondes apparaissent grâce au zoom.
 
 \begin{figure}[h]
 \centering
@@ -536,7 +541,7 @@ La librairie PyRTLSDR permet de configurer la radio logicielle depuis un script 
 
 Par exemple, la figure \ref{term311} indique qu'un préambule complet (12.25 chirp) contient environ 49000 échantillons. Sachant que le taux d'échantillonnage est de 2MHz pour cette example, alors le TOA du préambule vaut :
 
-\begin{align}
+\begin{align}\label{toa}
     Time On Air (TOA) = \frac{N_{samples}}{sample rate} = 0.0245
 \end{align}
 
