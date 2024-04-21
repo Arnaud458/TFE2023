@@ -309,19 +309,31 @@ Universal Radio Hacker est un logiciel open source similaire à GQRX. Son role p
 
 \vspace{0.1cm}
 
-\begin{itemize}
-\item \textit{.complex (ou .complex64)}: c'est le format par défaut. Les échantillons sont représenté par des float de 32bits pour les symboles I et Q respectivement (donc 64 bits au total)
- 
-\item  \textit{.complex16u}: la représentation en utilisant 2  entiers de 8 bits non signés pour I et Q.
+\begin{table}[h]
+\centering
+\begin{adjustbox}{width=1\textwidth}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{Taille I (bits)} &\multicolumn{1}{c|}{Taille Q (bits)} & \multicolumn{1}{c|}{Type}\\
+\hline
+.complex & 32 & 32 & float \\
+\hline
+.complex64 & 32 & 32 & float\\
+\hline
+.complex16u & 8 & 8 & unsigned int\\
+\hline
+.complex16s &  8 & 8 & int\\
+\hline
+.complex32u & 16 & 16 & unsigned int \\
+\hline
+.complex32s & 16 & 16 & int  \\
+\hline
+\end{tabular}
+\end{adjustbox}
+\caption{Table des formats supportés par URH}
+\label{format}
+\end{table}
 
-\item  \textit{.complex16s}: la représentation en utilisant 2  entiers de 8 bits signés pour I et Q.
-
-\item  \textit{.complex32u}: la représentation en utilisant 2  entiers de 16 bits non signés pour I et Q. 
-
-\item  \textit{.complex32s}: la représentation en utilisant 2 entiers de 16 bits signés pour I et Q.
-\end{itemize}
-
-\vspace{0.1cm}
 
 La figure \ref{term39} montre comment enregistrer un signal. Les paramètres à configurer sont similaires à GQRX (le choix de la SDR, le fréquence, le taux d'échantillonage, la largeur de bande et le gain). Comme URH est le principal outil d'analyse pour ce travail, les analyse avec ce dernier sont détaillées dans la section \ref{urh}.
 
@@ -359,20 +371,34 @@ Le choix du langage pour l'implémentation du travail est Python (version 3.11.4
 
 \begin{table}[h]
 \centering
-\begin{adjustbox}{width=1\textwidth}
-\begin{tabular}{|c|c|c|c|}
+\begin{tabular}{|p{4cm}|p{2cm}|p{2cm}|p{3cm}|}
 \hline
 \multicolumn{1}{|c|}{Caractéristiques importantes} & \multicolumn{1}{c|}{GQRX} & \multicolumn{1}{c|}{URH} & \multicolumn{1}{c|}{Python}\\
 \hline
-Portée (Fréquence) & \multicolumn{2}{c|}{24MHz - 1.7GHz} & 1MHz - 6GHz \\
+Interface Utilisateur & GUI avec affichage en temps réel & GUI avec outils plus poussés pour analise & / \\
 \hline
-
+Réception de signaux & \multicolumn{3}{c|}{oui} \\
+\hline
+Génération de signaux & non & \multicolumn{2}{c|}{oui} \\
+\hline
+Sauvegarde des données & pas de sauvegarde possible & \multicolumn{2}{c|}{sauvegarde et chargement possible} \\
+\hline
+Format des donnée & / & voir table \ref{format} & .complex64 jusqu'à .complex512 \\
+\hline
+Démodulation &  &  & toutes\\
+\hline
+Courbe d'apprentissage & prise en main très rapide & prise en main rapide & plus de possibilités donc plus de temps d'apprentissage \\
+\hline
+Customisation & concentré sur le temps réel & \multicolumn{2}{c|}{concentrée sur l'analyse en profondeur} \\
+\hline
+SDR supportées & \multicolumn{3}{c|}{toutes les SDR présentées} \\
 \hline
 \end{tabular}
-\end{adjustbox}
 \caption{Table comparatives des logiciels utilisés}
 \label{table2}
 \end{table}
+
+GQRX offre globalement de meilleurs outils pour la visualisation en temps réel, là où URH permet l'analyse de manière plus précise et avec plus de possibilité. Python permet une customisation encore plus poussée à condition de manuellement rajouter ces possibilités.
 
 \section{Géneration et réception d'un signal LoRa} \label{signallora}
 
