@@ -82,7 +82,7 @@ Après avoir effectué l'opération différentielle, le factor de rotation toujo
 \end{figure}
 
  
-\section{Méthode DCTF en pratique}
+\section{Méthode DCTF en pratique}\label{pra}
 
 L'analyse suivante est basée sur la section \ref{DCTF}. Cette section a pour but de présenter la méthode DCTF sur le matériel qui a été présenté dans le chapitre précédant. Cette section détaille toute les étapes de la méthode pour un seul appareil avec un seul set de paramètres. Afin de rendre pertinente la méthode, les résultats (cette fois sans les étapes intermédiaires) sont présentés dans la section \ref{result}.
 
@@ -138,7 +138,9 @@ Jusqu'à présent, l'analyse a été faite en utilisant l'intégralité du signa
 \caption{DCTF du signal test}\label{term318}
 \end{figure}
 
-Maintenant que la région d'intérêt est indetifiée, il faut l'extraire. C'est ce qui sera extrait de cette DCTF qui sera la signature du signal, et donc permettra l'identification du module. Pour déterminer la meilleure valeur dans le plan à récuperer, la méthode suivante permet de récupérer le centre de la zone dense. La librairie Numpy de python permet de créer un histogramme en deux dimension de la DCTF. Afin d'extraire la valeur la plus pertinente (le centre de la zone dense), le point le plus dense de l'histogramme sert de référentiel. Sa valeur de densité est calculée (c'est à dire le nombre d'échantillons présent dans cette zone définie par l'histogramme). Afin de mieux refléter le centre de la zone dense, tous les points ayant une valeur de densité au moins égale à 90 pourcent (valeur choisie dans \cite{loraDCTF}) de la zone la plus dense sont également considérés. La figure \ref{term319} montre les points sélectionnés pour le signal test dans la DCTF. Le centre euclidien est calculé à partir des points éligibles, sa valeur est la signature du signal. 
+Maintenant que la région d'intérêt est indetifiée, il faut l'extraire. C'est ce qui sera extrait de cette DCTF qui sera la signature du signal, et donc permettra l'identification du module. Pour déterminer la meilleure valeur dans le plan à récuperer, la méthode suivante permet de récupérer le centre de la zone dense. La librairie Numpy de python permet de créer un histogramme en deux dimension de la DCTF. Afin d'extraire la valeur la plus pertinente (le centre de la zone dense), le point le plus dense de l'histogramme sert de référentiel. Sa valeur de densité est calculée (c'est à dire le nombre d'échantillons présent dans cette zone définie par l'histogramme). Afin de mieux refléter le centre de la zone dense, tous les points ayant une valeur de densité au moins égale à 90 pourcent (valeur choisie dans \cite{loraDCTF}) de la zone la plus dense sont également considérés. La figure \ref{term319} montre les points sélectionnés pour le signal test dans la DCTF. Les coordonnées centre sont calculés à partir des points éligibles, sa valeur est la signature du signal. 
+
+
 
 
 \begin{figure}[h]
@@ -148,8 +150,59 @@ Maintenant que la région d'intérêt est indetifiée, il faut l'extraire. C'est
 \caption{Points de haute densité dans la DCTF du signal test}\label{term319}
 \end{figure}
 
+
+Finalement, pour obtenir un cluster permettant l'identification de chaque signaux provenant ou non du module d'émission, il faut répéter cette opération pour chaque nouveau signaux. Selon l'article, la position géographique des centres sont relativement proche ce qui permet de former le cluster de points. Ainsi, en concervant les mêmes paramètres d'émission, 24 autres signaux sont générés et la figure \ref{term320} montre les points de chaque signaux dans le plan cartésien.
+
+
+
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=0.3]{images/cluster.png}
+\caption{Répartition des centres des signaux normalisés}\label{term319}
+\end{figure}
+
+On remqarque que contrairement à l'article et à la figure \ref{term4000}, les points ne forment pas un cluster mais sont en revanche dispersés tout le long du cercle. Afin de déterminer les causes de cette différence de résultats, la section \ref{result} va présenter des alternatives et également tester la méthode sur plusieurs appareils.
+
 \section{Résultats}\label{result}
 
+Les résultats obtenu lors de la démonstration à la section  \ref{pra} ne coincident pas avec ceux de la section \ref{DCTF}. Cette section va dans un premier temps proposer différents paramètrages et appareils afin de confirmer les résultats, ou constater des variations en fonction de différents critères. Ensuite, des alternatives à l'article sont évoqués mais encore basées sur la signature mise en évidence dans la section \ref{DCTF}.
+
+La table \ref{set} donne tout les set qui ont été testés. 
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Set \# & BW & SF & Device & SR & SNR \\
+\hline
+1 & 125 & 7 & 1 & 2 MHz & High \\
+2 & 250 & 7 & 1 & 2 MHz & High \\
+% Add more rows here as needed
+\hline
+\end{tabular}
+\caption{Table of parameters}
+\label{set}
+\end{table}
+
+La table \ref{signature} montre pour chaque set de la table \ref{set} si il est possible de pouvoir identifier l'appareil émetteur selon la méthode de l'article. La table fournit  également des informations supplémentaires.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Set \# & signature identifiable & position de la signature & forme de la signature & cluster possible ?\\
+\hline
+1 & oui & variable & image & non \\
+2 & oui & variable & image & non \\
+% Add more rows here as needed
+\hline
+\end{tabular}
+\caption{Table of parameters}
+\label{signature}
+\end{table}
+
+  
 \section{Autres approches d'identification dans l'iot}\label{identification}
 
 Comme tout appareil au sein d'un réseau, un appareil connecté dans l'iot possède de base différents moyens d'authentification. Son adresse MAC, son adresse IP, des informations relatives à sa manufacturation comme un numéro de série par example. De manière plus spécifiques, les noeuds au sein d'un réseau LoraWAN possède un DevEUI, un numéro unique accordé par le réseau à l'appareil. Cependant ses informations peuvent être compromises si appareils sont victimes de \textit{devices spoofing}, c'est à dire qu'un appareil malveillant usurpe l'indentité de sa cible, afin d'accéder au sein du réseau. D'autres attaques comme \textit{Man in The Middle} ou \textit{Replay attacks} peuvent également compromettre l'identité d'un appareil si on se base uniquement sur ses identifiant classiques\cite{attack}. Il faut donc pouvoir identifier les appareils mais sans se fier à leur informations. Il éxiste diverse méthodes basée sur différentes approches pour pouvoir indentifier un appareil. 
