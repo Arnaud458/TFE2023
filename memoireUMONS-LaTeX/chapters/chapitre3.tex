@@ -1,16 +1,22 @@
 \chapter{Identification d'appareils LoRa par la méthode des constellations traces figures}
 
-Ce chapitre a pour but d'approfondir la méthode des \textit{differential constellations traces figures (DCTF)} developpé dans l'article \cite{loraDCTF} par Yu Jiang, Linning Peng, Aiqun Hu, Sheng Wang, Yi Huang et Lu Zhang. Dans un premier temps la méthode de l'article est présentée de manière théorique avant d'être appliquée sur les appareils afin de réaliser l'objectif du mémoire. Cependant, plusieurs modifications ont été ajoutées afin de pousser plus loin les possibilitées de la méthode.
+Ce chapitre a pour but d'approfondir l'analyse des charactéristiques uniques des fréquences radios. Plutot que de s'intéresser au routine entre les communication ou la distance d'où elles ont lieu, le \textit{Radio Frequency Finguerprinting} se concentre sur les propriétés physiques des signaux. Différentes techniques sont montrées par N. Soltanieh, Y. Norouzi et Y. Yang\cite{rffi1}. L'approche principale choisie se base la méthode des \textit{differential constellations traces figures (DCTF)} developpé dans l'article \cite{loraDCTF} par Yu Jiang, Linning Peng, Aiqun Hu, Sheng Wang, Yi Huang et Lu Zhang. Dans un premier temps la méthode de l'article est présentée de manière théorique avant d'être appliquée sur les appareils afin de réaliser l'objectif du mémoire. Cependant, plusieurs modifications ont été ajoutées afin de pousser plus loin les possibilitées de la méthode.
 
-\section{Fadio Frequency Fingerprinting avec DCTF}\label{DCTF}
+\section{Radio Frequency Fingerprinting avec DCTF}\label{DCTF}
 
-L'approche se concentre sur l'analyse des charactéristiques uniques des fréquences radios. Plutot que de s'intéresser au routine entre les communication ou la distance d'où elles ont lieu, le \textit{Radio Frequency Finguerprinting} se concentre sur les propriétés physiques des signaux. Différentes techniques sont montrées par N. Soltanieh, Y. Norouzi et Y. Yang\cite{rffi1}.
+Cette section se base sur l'article \cite{loraDCTF}. L'objectif principale de la méthode consiste à révéler la signature radio d'un signal, permettant ainsi à partir de cette signature de retrouver l'appareil émetteur.
 
-radio frequency finguerprinting identification (RFFI). trouver des charactéristiques hardware pour identifier des devices.
+La méthode des diagrammes de constellations est une projection des échantillons I/Q dans le plan complexe. Cette projection permet en théorie d'extraire des features comme :
 
-objectif, identification du device via son frequecy offset.
+\begin{itemize}
+\item des erreurs ou offset de fréquences. Cela peut être une déviation de la fréquence du signal par rapport à la fréquence attendue. Cela se représente sur le diagramme de constellation par un décalage des échantillons. 
+\item Une mauvaise synchronisation. Si le récepteur est mal synchronisé (sur la phase, le temps ou encore la fréquence) cela peut faire apparaitre des distorsions sur le diagramme.
+\item I/Q origin offset. Un décalage entre les composante I et Q peut provoquer un décalage des donnée par rapport à l'origine sur le diagramme de constellation.
+\item Des erreurs de magnitude. Des variations sur l'amplitude du signal altèrent la densité du diagramme de constellation.
+\end{itemize}
 
-selon l'article (citer article), possible de performer la méthode soit uniquement sur le  préambule, soit sur l'intégralité du singal. 
+Ajouté à toutes ces possibles features, l'article mentionne la possibilités de trouver via le diagrame de constellations \textit{l'unique caractéristique physique du signal}. Cepepant cette caractéristique n'est pas immédiatement visible. L'influence de l'offset de fréquence fait dévier les symboles de leur positions originales, ce qui couvre l'information tout le long du diagramme de constellation.
+
 
 idée: le received singal contient le baseband singal ainsi qu'un rotation factor instable. pour pouvoir recover cette partie du signal, besoin d'effctuer une opération différentielle suivante :
 
