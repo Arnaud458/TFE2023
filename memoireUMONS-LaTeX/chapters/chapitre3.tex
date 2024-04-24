@@ -111,7 +111,7 @@ La méthode DCTF se base sur l'utilisation de constellations traces pour pouvoir
 
 
 
-Selon la section \ref{DTCF}, le diagramme de constellation seul n'est pas suffisant pour pouvoir identifier des composantes uniques au signal. Pour pouvoir observer l'émergence d'une signature, il faut appliquer la méthode différentielle décrite par l'équation \ref{eq4003}. La figure \ref{term316} montre le diagramme differentiel de constellation \textit{DCTF} du signal. L'équation \ref{eq1} possède une inconnue, $n$. L'interval différentiel se calcule via \ref{eq4006} et vaut 4096.
+Selon la section \ref{DCTF}, le diagramme de constellation seul n'est pas suffisant pour pouvoir identifier des composantes uniques au signal. Pour pouvoir observer l'émergence d'une signature, il faut appliquer la méthode différentielle décrite par l'équation \ref{eq4003}. La figure \ref{term316} montre le diagramme differentiel de constellation \textit{DCTF} du signal. L'équation \ref{eq1} possède une inconnue, $n$. L'interval différentiel se calcule via \ref{eq4006} et vaut 4096.
 
 \begin{figure}[h]
 \centering
@@ -172,12 +172,21 @@ La table \ref{set} donne tout les set qui ont été testés.
 
 \begin{table}[h]
 \centering
-\begin{tabular}{|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
-Set \# & BW & SF & Device & SR & SNR \\
+Set \# & Device & BW & SF & SR & qualité du signal & \# d'échantillons \\
 \hline
-1 & 125 & 7 & 1 & 2 MHz & High \\
-2 & 250 & 7 & 1 & 2 MHz & High \\
+1 & RN2483 \#1 & 125kHz & 7 & 2 MHz & High & 25\\
+\hline
+2 & RN2483 \#1 & 125kHz & 8 & 2 MHz & High & 25\\
+\hline
+3 & RN2483 \#1 & 125kHz & 9 & 2 MHz & High & 25\\
+\hline
+4 & RN2483 \#1 & 125kHz & 10 & 2 MHz & High & 25\\
+\hline
+5 & RN2483 \#1 & 125kHz & 11 & 2 MHz & High & 25\\
+\hline
+6 & RN2483 \#1 & 125kHz & 12 & 2 MHz & High & 25\\
 % Add more rows here as needed
 \hline
 \end{tabular}
@@ -185,20 +194,28 @@ Set \# & BW & SF & Device & SR & SNR \\
 \label{set}
 \end{table}
 
-La table \ref{signature} montre pour chaque set de la table \ref{set} si il est possible de pouvoir identifier l'appareil émetteur selon la méthode de l'article. La table fournit  également des informations supplémentaires.
+La table \ref{signature} montre pour chaque set de la table \ref{set} si il est possible de pouvoir identifier l'appareil émetteur selon la méthode de l'article. La table fournit  des informations concernant la position et la forme de la signature si cette dernière est identifiable.
 
 \begin{table}[h]
 \centering
 \begin{tabular}{|c|c|c|c|c|}
 \hline
-Set \# & signature identifiable & position de la signature & forme de la signature & cluster possible ?\\
+Set \# & identifiable & position & forme & cluster possible\\
 \hline
-1 & oui & variable & image & non \\
-2 & oui & variable & image & non \\
-% Add more rows here as needed
+1 & oui & variable & \includegraphics[scale=0.2]{images/set1.png} & non \\
+\hline
+2 & oui & variable & \includegraphics[scale=0.2]{images/set2.png} & non \\
+\hline
+3 & oui & variable & \includegraphics[scale=0.2]{images/set3.png} & non \\
+\hline
+4 & oui & variable & \includegraphics[scale=0.2]{images/set4.png} & non \\
+\hline
+5 & oui & variable & \includegraphics[scale=0.2]{images/set5.png} & non \\
+\hline
+6 & oui & variable & \includegraphics[scale=0.2]{images/set6.png} & non \\
 \hline
 \end{tabular}
-\caption{Table of parameters}
+\caption{Table des caractéristiques de la signature pour chaque set}
 \label{signature}
 \end{table}
 
