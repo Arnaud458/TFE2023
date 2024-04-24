@@ -172,35 +172,44 @@ La table \ref{set} donne tout les set qui ont été testés.
 
 \begin{table}[h]
 \centering
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|p{3cm}|c|}
 \hline
-Set \# & Device & BW & SF & SR & qualité du signal & \# d'échantillons \\
+Set \# & BW & SF & SR & qualité du signal & nombre d'échantillon\\
 \hline
-1 & RN2483 \#1 & 125kHz & 7 & 2 MHz & High & 25\\
+1  & 125kHz & 7 & 2 MHz & High & 25\\
 \hline
-2 & RN2483 \#1 & 125kHz & 8 & 2 MHz & High & 25\\
+2  & 125kHz & 8 & 2 MHz & High & 25\\
 \hline
-3 & RN2483 \#1 & 125kHz & 9 & 2 MHz & High & 25\\
+3  & 125kHz & 9 & 2 MHz & High & 25\\
 \hline
-4 & RN2483 \#1 & 125kHz & 10 & 2 MHz & High & 25\\
+4  & 125kHz & 10 & 2 MHz & High & 25\\
 \hline
-5 & RN2483 \#1 & 125kHz & 11 & 2 MHz & High & 25\\
+5  & 125kHz & 11 & 2 MHz & High & 25\\
 \hline
-6 & RN2483 \#1 & 125kHz & 12 & 2 MHz & High & 25\\
-% Add more rows here as needed
+6  & 125kHz & 12 & 2 MHz & High & 25\\
+\hline
+7  & 250kHz & 8 & 2 MHz & High & 25\\
+\hline
+8  & 250kHz & 8 & 500 kHz & High & 25\\
+\hline
+9  &  125kHz & 8 & 2 MHz & faible (saturation par gain) & 25\\
+\hline
+10  & 125kHz & 8 & 2 MHz & faible (perte de 50\% du signal) & 5\\
+\hline
+11  & 125kHz & 8 & 2 MHz & faible (variation de l'amplitude) & 5\\
 \hline
 \end{tabular}
 \caption{Table of parameters}
 \label{set}
 \end{table}
 
-La table \ref{signature} montre pour chaque set de la table \ref{set} si il est possible de pouvoir identifier l'appareil émetteur selon la méthode de l'article. La table fournit  des informations concernant la position et la forme de la signature si cette dernière est identifiable.
+La table \ref{signature} montre pour chaque set de la table \ref{set} si il est possible de pouvoir un cluster de point pour chaque set de paramètre défini à la table \ref{set}. La table fournit  des informations concernant la position et la forme de la signature si cette dernière est identifiable.
 
 \begin{table}[h]
 \centering
 \begin{tabular}{|c|c|c|c|c|}
 \hline
-Set \# & identifiable & position & forme & cluster possible\\
+Set \# & signature identifiable & position & forme & cluster possible\\
 \hline
 1 & oui & variable & \includegraphics[scale=0.2]{images/set1.png} & non \\
 \hline
@@ -214,9 +223,43 @@ Set \# & identifiable & position & forme & cluster possible\\
 \hline
 6 & oui & variable & \includegraphics[scale=0.2]{images/set6.png} & non \\
 \hline
+7 & oui & variable & \includegraphics[scale=0.2]{images/set7.png} & non \\
+\hline
+8 & oui & variable & \includegraphics[scale=0.2]{images/set8.png} & non \\
+\hline
+9 & oui & variable & variable & non \\
+\hline
+10 & non & inconnu & inconnu  & non \\
+\hline
+11 & oui & variable & \includegraphics[scale=0.2]{images/set11.png}  & non \\
+\hline
 \end{tabular}
-\caption{Table des caractéristiques de la signature pour chaque set}
-\label{signature}
+\caption{Table des caractéristiques de la signature pour le device RN2483 \#1}
+\label{signature1}
+\end{table}
+
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Set \# & signature identifiable & position & forme & cluster possible\\
+\hline
+1 & oui & variable & \includegraphics[scale=0.2]{images/set12.png}  & non \\
+\hline
+2 & oui & variable & \includegraphics[scale=0.2]{images/set13.png}  & non \\
+\hline
+3 & oui & variable & \includegraphics[scale=0.2]{images/set14.png}  & non \\
+\hline
+4 & oui & variable & \includegraphics[scale=0.2]{images/set15.png}  & non \\
+\hline
+5 & oui & variable & \includegraphics[scale=0.2]{images/set16.png}  & non \\
+\hline
+6 & non & multiples & \includegraphics[scale=0.2]{images/set17.png}  & non \\
+\hline
+\end{tabular}
+\caption{Table des caractéristiques de la signature pour le device RN2483 \#2}
+\label{signature2}
 \end{table}
 
   
