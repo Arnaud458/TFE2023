@@ -1,5 +1,9 @@
 \chapter{Identification d'appareils LoRa par la méthode des constellations traces figures}
 
+Comme tout appareil au sein d'un réseau, un appareil connecté dans l'iot possède de base différents moyens d'authentification. Son adresse MAC, son adresse IP, des informations relatives à sa manufacturation comme un numéro de série par example. De manière plus spécifiques, les noeuds au sein d'un réseau LoRaWAN possèdent un DevEUI, un numéro unique accordé par le réseau à l'appareil. Cependant ses informations peuvent être compromises si appareils sont victimes de \textit{devices spoofing}, c'est à dire qu'un appareil malveillant usurpe l'indentité de sa cible, afin d'accéder au sein du réseau. D'autres attaques comme \textit{Man in The Middle} ou \textit{Replay attacks} peuvent également compromettre l'identité d'un appareil si on se base uniquement sur ses identifiant classiques\cite{attack}. Il faut donc pouvoir identifier les appareils mais sans se fier à leur informations d'authentification.
+
+\vspace{0.1cm}
+
 Ce chapitre a pour but d'approfondir l'analyse des charactéristiques uniques des fréquences radios. Plutot que de s'intéresser au routine entre les communication ou la distance d'où elles ont lieu, le \textit{Radio Frequency Finguerprinting} se concentre sur les propriétés physiques des signaux. Différentes techniques sont montrées par N. Soltanieh, Y. Norouzi et Y. Yang\cite{rffi1}. L'approche principale choisie se base la méthode des \textit{differential constellations traces figures (DCTF)} developpé dans l'article \cite{loraDCTF} par Yu Jiang, Linning Peng, Aiqun Hu, Sheng Wang, Yi Huang et Lu Zhang. Dans un premier temps la méthode de l'article est présentée de manière théorique avant d'être appliquée sur les appareils afin de réaliser l'objectif du mémoire. Cependant, plusieurs modifications ont été ajoutées afin de pousser plus loin les possibilitées de la méthode.
 
 \section{Radio Frequency Fingerprinting avec DCTF}\label{DCTF}
@@ -109,7 +113,7 @@ Ce signal a été normalisé avec RMS.
 
 La méthode DCTF se base sur l'utilisation de constellations traces pour pouvoir identifier sur base de propiétées uniques un appareil. Un diagramme de constellations est une représentation dans le plan complexe de la distribution spaciale des points du signal. La figure \ref{term314} montre la représentation  du signal sous forme de constellation
 
-
+\vspace{0.1cm}
 
 Selon la section \ref{DCTF}, le diagramme de constellation seul n'est pas suffisant pour pouvoir identifier des composantes uniques au signal. Pour pouvoir observer l'émergence d'une signature, il faut appliquer la méthode différentielle décrite par l'équation \ref{eq4003}. La figure \ref{term316} montre le diagramme differentiel de constellation \textit{DCTF} du signal. L'équation \ref{eq1} possède une inconnue, $n$. L'interval différentiel se calcule via \ref{eq4006} et vaut 4096.
 
@@ -159,7 +163,7 @@ Finalement, pour obtenir un cluster permettant l'identification de chaque signau
 \centering
 
 \includegraphics[scale=0.3]{images/cluster.png}
-\caption{Répartition des centres des signaux normalisés}\label{term319}
+\caption{Répartition des centres des signaux normalisés}\label{term320}
 \end{figure}
 
 On remqarque que contrairement à l'article et à la figure \ref{term4000}, les points ne forment pas un cluster mais sont en revanche dispersés tout le long du cercle. Afin de déterminer les causes de cette différence de résultats, la section \ref{result} va présenter des alternatives et également tester la méthode sur plusieurs appareils.
@@ -168,7 +172,7 @@ On remqarque que contrairement à l'article et à la figure \ref{term4000}, les 
 
 Les résultats obtenu lors de la démonstration à la section  \ref{pra} ne coincident pas avec ceux de la section \ref{DCTF}. Cette section va dans un premier temps proposer différents paramètrages et appareils afin de confirmer les résultats, ou constater des variations en fonction de différents critères. Ensuite, des alternatives à l'article sont évoqués mais encore basées sur la signature mise en évidence dans la section \ref{DCTF}.
 
-La table \ref{set} donne tout les set qui ont été testés. 
+La table \ref{set} donne tout les set de paramètres qui ont été testés. Les variations impliquent le facteur d'étalement, la largeur de bande du signal ainsi que le taux d'échantillonage. Afin de tenter d'analyser le comportement de la DCTF, des dégradations sur le signal sont aussi ajoutées. Une dégradation basée sur la saturation du signal par un gain trop élevé, une autre basé sur une perte importante d'une partie des donnés et une dernière basé sur des variations de l'amplitude du signal.
 
 \begin{table}[h]
 \centering
@@ -238,6 +242,7 @@ Set \# & signature identifiable & position & forme & cluster possible\\
 \label{signature1}
 \end{table}
 
+On remarque dans la table \ref{signature1} qu'augmenter le spreading factor altère fortement la forme de la signature. Elle s'apparente à une comète tournant le long de la DTCF dont la queue s'étent avec le spreading factor. Sa position est variable dans le diagramme, mais sa forme est similaire pour un SF fixé. Modifier la lageur de bande n'a pas d'impact sur la signature (sa position ou sa forme). Réduire le taux d'échantillonage réduit la netteté de la constallation, donc le taux d'échantillonage affecte la densité de la DTCF sans modfier sa forme ou sa position. La déterioration du signal a des conséquences variables sur la DCTF. Saturer le signal provoque une dégradation importante du cercle, à tel point que la forme de la signature devient également variable. Une perte trop importante du signal entrainement tout simplement la disparation de la signature. Finalement, les variations d'amplitude font converger les points vers le centre de la DTCF, ce qui donne une projection de la signature étirée vers le centre. Cette anomalie, citée à la section \ref{DCTF} est bien confirmée dans les expérimentations.
 
 \begin{table}[h]
 \centering
@@ -257,21 +262,22 @@ Set \# & signature identifiable & position & forme & cluster possible\\
 \hline
 6 & non & multiples & \includegraphics[scale=0.2]{images/set17.png}  & non \\
 \hline
-7 & oui & multiples & \includegraphics[scale=0.2]{images/set18.png}  & non \\
+7 & oui & variable & \includegraphics[scale=0.2]{images/set18.png}  & non \\
 \hline
-8 & oui & multiples & \includegraphics[scale=0.2]{images/set19.png}  & non \\
+8 & oui & variable & \includegraphics[scale=0.2]{images/set19.png}  & non \\
 \hline
 9 & non & inconnu & inconnu & non \\
 \hline
 10 & non & inconnu & inconnu  & non \\
 \hline
-11 & non & multiples & \includegraphics[scale=0.2]{images/set22.png}  & non \\
+11 & non & variable & \includegraphics[scale=0.2]{images/set22.png}  & non \\
 \hline
 \end{tabular}
 \caption{Table des caractéristiques de la signature pour le device RN2483 \#2}
 \label{signature2}
 \end{table}
 
+La plupart des commentaires sur la première tables sont similaires ici. Cepandant, dans la table \ref{signature2}, on constate qu'un spreading factor maximal (SF = 12) génère une seconde signature. On remarque également que la signature se trouve à l'extérieur du cercle.
 
 \begin{table}[h]
 \centering
@@ -289,7 +295,7 @@ Set \# & signature identifiable & position & forme & cluster possible\\
 \hline
 5 & oui & multiples & \includegraphics[scale=0.2]{images/set27.png}  & non \\
 \hline
-6 & non & multiples & \includegraphics[scale=0.2]{images/set28.png}  & non \\
+6 & oui & variable & \includegraphics[scale=0.2]{images/set28.png}  & non \\
 \hline
 7 & non & inconnu & inconnu & non \\
 \hline
@@ -306,11 +312,8 @@ Set \# & signature identifiable & position & forme & cluster possible\\
 \label{signature3}
 \end{table}
 
-  
-\section{Autres approches d'identification dans l'iot}\label{identification}
+La dernière table \ref{signature3} confirme les éléments analysé dans les tables \ref{signature1} et \ref{signature2}. Les signaux de ce modules sont cependant moins net, ce qui entraine des signatures moins dense, plus difficile à repérer, voir carément absente.
 
-Comme tout appareil au sein d'un réseau, un appareil connecté dans l'iot possède de base différents moyens d'authentification. Son adresse MAC, son adresse IP, des informations relatives à sa manufacturation comme un numéro de série par example. De manière plus spécifiques, les noeuds au sein d'un réseau LoraWAN possède un DevEUI, un numéro unique accordé par le réseau à l'appareil. Cependant ses informations peuvent être compromises si appareils sont victimes de \textit{devices spoofing}, c'est à dire qu'un appareil malveillant usurpe l'indentité de sa cible, afin d'accéder au sein du réseau. D'autres attaques comme \textit{Man in The Middle} ou \textit{Replay attacks} peuvent également compromettre l'identité d'un appareil si on se base uniquement sur ses identifiant classiques\cite{attack}. Il faut donc pouvoir identifier les appareils mais sans se fier à leur informations. Il éxiste diverse méthodes basée sur différentes approches pour pouvoir indentifier un appareil. 
+\vspace{0.1cm}
 
-La première approche possible est de fier non pas à l'appareil directement ni aux données qu'il reçoit car celles ci pourraient également être compromises, mais à la routine sur sa communication. Cette approche, appelée \textit{Traffic related pattern} où s'intéresse au comportement d'un appareil au sein d'un réseau. L'article publié par H. Kawai, S. Ata et N. Nakamura \cite{pattern} propose notament d'analyser via machine learning le \textit{traffic pattern} c'est à dire le comportement du traffic.
-
-Une autre approche s'intéresse à la position géographique d'un appareil. En effet il est possible de mesure la qualité de la réception d'un signal, le \textit{Received Signal strengh Indicator} ou RSSI. Un étude a été menée sur des appareils lora par M. Anjum, MA. Khan et SA. Hassan\cite{rssi}. L'article utilise le \textit{Path Loss} pour estimer le RSSI. Via machine learning ils sont capables de recréer un système de positionement permettant l'identification d'appareil Lora.
+Selon les résultats des tables \ref{signature1}, \ref{signature2} et \ref{signature3}, il n'est pas possible de pouvoir identifier un noeud émetteur LoRa basé sur la position de la signature dans la DTCF du signal analysé. Cependant, une autre possibilté non mentionnée par l'article s'est rélévée durant les expérimentations. Si la position de la signature pour un même set de paramètres est variable, sa forme en revanche, est similaire. Mieux encore, pour deux noeuds différent ayant les mêmes paramètres, on peut constater des différences dans la forme des signatures. Il existe donc bel et bien une propriété physique unique associé à chaque signal qui permettrait d'identifier son noeud émetteur.
