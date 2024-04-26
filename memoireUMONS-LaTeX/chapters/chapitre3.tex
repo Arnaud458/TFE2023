@@ -4,7 +4,7 @@ Comme tout appareil au sein d'un réseau, un appareil connecté dans l'iot poss�
 
 \vspace{0.1cm}
 
-Ce chapitre a pour but d'approfondir l'analyse des charactéristiques uniques des fréquences radios. Plutot que de s'intéresser au routine entre les communication ou la distance d'où elles ont lieu, le \textit{Radio Frequency Finguerprinting} se concentre sur les propriétés physiques des signaux. Différentes techniques sont montrées par N. Soltanieh, Y. Norouzi et Y. Yang\cite{rffi1}. L'approche principale choisie se base la méthode des \textit{differential constellations traces figures (DCTF)} developpé dans l'article \cite{loraDCTF} par Yu Jiang, Linning Peng, Aiqun Hu, Sheng Wang, Yi Huang et Lu Zhang. Dans un premier temps la méthode de l'article est présentée de manière théorique avant d'être appliquée sur les appareils afin de réaliser l'objectif du mémoire. Cependant, plusieurs modifications ont été ajoutées afin de pousser plus loin les possibilitées de la méthode.
+Ce chapitre a pour but d'approfondir l'analyse des charactéristiques uniques des fréquences radios. Plutôt que de s'intéresser aux routines entre les communications ou la distance d'où elles ont lieu, le \textit{Radio Frequency Finguerprinting} se concentre sur les propriétés physiques des signaux. Différentes techniques sont montrées par N. Soltanieh, Y. Norouzi et Y. Yang\cite{rffi1}. L'approche principale choisie se base la méthode des \textit{differential constellations traces figures (DCTF)} developpée dans l'article \cite{loraDCTF} par Yu Jiang, Linning Peng, Aiqun Hu, Sheng Wang, Yi Huang et Lu Zhang. Dans un premier temps la méthode de l'article est présentée de manière théorique avant d'être appliquée sur les appareils afin de réaliser l'objectif du mémoire. Cependant, plusieurs modifications ont été ajoutées afin de pousser plus loin les possibilitées de la méthode.
 
 \section{Radio Frequency Fingerprinting avec DCTF}\label{DCTF}
 
@@ -13,13 +13,13 @@ Cette section se base sur l'article \cite{loraDCTF}. Les choix de notations des 
 \begin{itemize}
 \item des erreurs ou offset de fréquences. Cela peut être une déviation de la fréquence du signal par rapport à la fréquence attendue. Cela se représente sur le diagramme de constellation par un décalage des échantillons. 
 \item Une mauvaise synchronisation. Si le récepteur est mal synchronisé (sur la phase, le temps ou encore la fréquence) cela peut faire apparaitre des distorsions sur le diagramme.
-\item I/Q origin offset. Un décalage entre les composante I et Q peut provoquer un décalage des donnée par rapport à l'origine sur le diagramme de constellation.
+\item I/Q origin offset. Un décalage entre les composantes I et Q peut provoquer un décalage des données par rapport à l'origine sur le diagramme de constellation.
 \item Des erreurs de magnitude. Des variations sur l'amplitude du signal altèrent la densité du diagramme de constellation.
 \end{itemize}
 
 \vspace{0.1cm}
 
-Ajouté à toutes ces possibles features, l'article mentionne la possibilités de trouver via le diagrame de constellations \textit{l'unique caractéristique physique du signal}. Cepepant cette caractéristique n'est pas immédiatement visible. L'influence de l'offset de fréquence fait dévier les symboles de leur positions originales, ce qui couvre l'information tout le long du diagramme de constellation.
+Ajouté à toutes ces possibles features, l'article mentionne la possibilités de trouver via le diagrame de constellations \textit{l'unique caractéristique physique du signal}. Cependant cette caractéristique n'est pas immédiatement visible. L'influence de l'offset de fréquence fait dévier les symboles de leur positions originales, ce qui couvre l'information tout le long du diagramme de constellation.
 
 \vspace{0.1cm}
 
@@ -41,7 +41,7 @@ avec $f_{ct2}$ la fréquence porteuse du récepteur et $\phi$ l'offset de phase.
 	Y(t) = X(t) . e^{-j2\pi f_{ct1} t} . e^{j2(\pi f_{ct2} t+ \phi)} = X(t) . e^{j(2\pi \Delta f t + \phi)}
 \end{equation} 
 
-Le signal reçu contient donc un facteur de rotation $e^{j2\pi \Delta f t}$. Comme les points sont également positionnée en rond, ce facteur occulte la présence de la signature du signal.
+Le signal reçu contient donc un facteur de rotation $e^{j2\pi \Delta f t}$. Comme les points sont également positionnés en rond, ce facteur occulte la présence de la signature du signal.
 Pour supprimer l'effet du facteur de rotation, les données sont traitées différentiellement, en effectuant l'opération suivante:
 
 \begin{align}\label{eq4003}
@@ -50,7 +50,7 @@ Pour supprimer l'effet du facteur de rotation, les données sont traitées diff�
  		 &= X(t) . X^{*}(t+n) . e^{j2\pi \Delta f n}
 \end{align}
 
-où $X^{*}(t)$ est le complexe conjugué de $X(t)$ et $n$ l'interval différentiel. $X(t)$ représente le signal en bande de base, celui est inconnu car la SDR ne reproduit pas l'intégralité du processus de démodulation. En effet on ne récupère pas l'information, juste le signal tranmis ramenée en bande de base $Y(t)$. Selon l'équation \ref{eq115}, $Y(t)$ peut être exprimé de la façon suivante : 
+où $X^{*}(t)$ est le complexe conjugué de $X(t)$ et $n$ l'interval différentiel. $X(t)$ représente le signal en bande de base, celui est inconnu car la SDR ne reproduit pas l'intégralité du processus de démodulation. En effet on ne récupère pas l'information, juste le signal transmis ramené en bande de base $Y(t)$. Selon l'équation \ref{eq115}, $Y(t)$ peut être exprimé de la façon suivante : 
 
 \begin{equation}\label{eq4004}
 	Y(t) = Y_I(t) + jY_Q(t)
@@ -64,7 +64,7 @@ Il est donc possible d'exprimer le traitement différentiel en fonction des comp
  		 &= Y_I(t)Y_I(t+n) + Y_Q(t)Y_Q(t+n) + j(Y_Q(t)Y_I(t+n) - Y_I(t)Y_Q(t+n))
 \end{align}
 
-La dernière inconnu reste l'interval différentiel $n$. Il représente le nombre de points échantillonés pour chaque symbol de LoRa. Il peut être calculé par :
+La dernière inconnu reste l'interval différentiel $n$. Il représente le nombre de points échantillonés pour chaque symbole de LoRa. Il peut être calculé par :
 
 \begin{align}\label{eq4006}
 	R_s &= \frac{BW}{2^{SF}} \\
@@ -75,7 +75,7 @@ où $R_s$ est le taux de symbole de LoRa, calculé par la division de la largeur
 
 \vspace{0.1cm}
 
-Après avoir effectué l'opération différentielle, le factor de rotation toujours présent dans l'équation \ref{eq4003} reflète directement l'offset de fréquence du signal dans le diagramme de constellation. Cette anomalie dans la DCTF est donc la signature unique du signal qui permet l'identification. L'article s'intéresse ensuite à la position géographique de l'offset de fréquence sur la DCTF pour permettre la disctinction entre les différents appareils émetteurs. Ainsi, les coordonnées du centre de l'offset (représenté par la zone de densité élevée sur la DCTF). La figure \ref{term4000} montre les résultats obtenus dans l'article. Pour chaque module, la position du centre de la signature permet de former des clusters de points, ce qui permet l'identifications des différents appareils. Chaque nouveau point est évalué selon sa distance à un cluster, un point trop éloigné d'un cluster est associé à un appareil inconnu.
+Après avoir effectué l'opération différentielle, le facteur de rotation toujours présent dans l'équation \ref{eq4003} reflète directement l'offset de fréquence du signal dans le diagramme de constellation. Cette anomalie dans la DCTF est donc la signature unique du signal qui permet l'identification. L'article s'intéresse ensuite à la position géographique de l'offset de fréquence sur la DCTF pour permettre la disctinction entre les différents appareils émetteurs. Ainsi, les coordonnées du centre de l'offset (représenté par la zone de densité élevée sur la DCTF) sont récupérées. La figure \ref{term4000} montre les résultats obtenus dans l'article. Pour chaque module, la position du centre de la signature permet de former des clusters de points, ce qui permet l'identifications des différents appareils. Chaque nouveau point est évalué selon sa distance à un cluster, un point trop éloigné d'un cluster est associé à un appareil inconnu.
 
 
 \begin{figure}[h]
@@ -88,7 +88,7 @@ Après avoir effectué l'opération différentielle, le factor de rotation toujo
  
 \section{Méthode DCTF en pratique}\label{pra}
 
-L'analyse suivante est basée sur la section \ref{DCTF}. Cette section a pour but de présenter la méthode DCTF sur le matériel qui a été présenté dans le chapitre précédant. Cette section détaille toute les étapes de la méthode pour un seul appareil avec un seul set de paramètres. Afin de rendre pertinente la méthode, les résultats (cette fois sans les étapes intermédiaires) sont présentés dans la section \ref{result}.
+L'analyse suivante est basée sur la section \ref{DCTF}. Cette section a pour but de présenter la méthode DCTF sur le matériel qui a été présenté dans le chapitre précédant. Cette section détaille toutes les étapes de la méthode pour un seul appareil avec un seul set de paramètres. Afin de rendre pertinente la méthode, les résultats (sans les étapes intermédiaires) sont présentés dans la section \ref{result}.
 
 Le signal test pour cette analyse est le signal contenant les paramètres suivants :
 
@@ -96,7 +96,7 @@ Le signal test pour cette analyse est le signal contenant les paramètres suivan
 
 \begin{itemize}
 \item émetteur : module RN2483, modulation : LoRa, SF = 8, BW = 125KHz, frequency = 868MHz, pwr = 14, cr = 4/8.
-\item Récepteur : RTL SDR R820T2, f = 867,9375MHz, SR = 2MHz, gain = 5dB.
+\item Récepteur : RTL SDR R820T2, f = 866MHz, SR = 2MHz, gain = 5dB.
 \end{itemize}
 
 \vspace{0.1cm}
@@ -111,11 +111,13 @@ Ce signal a été normalisé avec RMS.
 \end{figure}
 
 
-La méthode DCTF se base sur l'utilisation de constellations traces pour pouvoir identifier sur base de propiétées uniques un appareil. Un diagramme de constellations est une représentation dans le plan complexe de la distribution spaciale des points du signal. La figure \ref{term314} montre la représentation  du signal sous forme de constellation
+La méthode DCTF se base sur l'utilisation de constellations traces pour pouvoir identifier sur base de propiétées uniques un appareil. Un diagramme de constellations est une représentation dans le plan complexe de la distribution spaciale des points du signal. La figure \ref{term314} montre la représentation  du signal sous forme de constellation. On remarque que le diagramme forme un cercle contenant la majorité des points. Cependant certains points dévient vers le centre, ce sont les échantillons correspondant à la partie transitoire (observée à la figure \ref{term307}).
 
 \vspace{0.1cm}
 
-Selon la section \ref{DCTF}, le diagramme de constellation seul n'est pas suffisant pour pouvoir identifier des composantes uniques au signal. Pour pouvoir observer l'émergence d'une signature, il faut appliquer la méthode différentielle décrite par l'équation \ref{eq4003}. La figure \ref{term316} montre le diagramme differentiel de constellation \textit{DCTF} du signal. L'équation \ref{eq1} possède une inconnue, $n$. L'interval différentiel se calcule via \ref{eq4006} et vaut 4096.
+Selon la section \ref{DCTF}, le diagramme de constellation seul n'est pas suffisant pour pouvoir identifier des composantes uniques au signal. Pour pouvoir observer l'émergence d'une signature, il faut appliquer la méthode différentielle décrite par l'équation \ref{eq4003}. La figure \ref{term316} montre le diagramme differentiel de constellation \textit{DCTF} du signal. L'équation \ref{eq1} possède une inconnue, $n$. L'interval différentiel se calcule via \ref{eq4006} et vaut 4096 (pour ces paramètres uniquement).
+
+\newpage
 
 \begin{figure}[h]
 \centering
@@ -126,14 +128,18 @@ Selon la section \ref{DCTF}, le diagramme de constellation seul n'est pas suffis
 
 On remarque que la forme de la constellation est similaire, mais l'application de la méthode différentielle juxtapose les points les uns sur les autres à tel point qu'il devient difficile d'analyser en détail sa composition. Pour pouvoir observer une composante susceptible d'être une signature, il faut appliquer un gradient coloré pour évaluer la densité des points de la constellations. La figure \ref{term317} montre le même diagramme qu'à la figure \ref{term316} mais avec l'utilisation de la librairie python Datashader, qui ajoute une échelle de densité (en poucentage, ou 100 représente la zone la plus dense du diagramme). On observe que dans le coin supérieur droit la densité de point est un peu plus élevé que dans le reste de la constellation.
 
+\vspace{0.1cm}
+
+Jusqu'à présent, l'analyse a été faite en utilisant l'intégralité du signal comme donnée. Cependant l'article \cite{loraDCTF} a montré qu'il est possible de filtrer une partie des données et ainsi ne conserver qu'une partie suffisante du signal pour déterminer sa signature. Premièrement, d'un point de vue physique, le signal possède une partie appelée \textit{transient part}, c'est la portion initiale du signal qui contient la transition d'un état vers un autre.
+
+\newpage
+
 \begin{figure}[h]
 \centering
 
 \includegraphics[scale=0.3]{images/dctf4.png}
 \caption{DCTF du signal test}\label{term317}
 \end{figure}
-
-Jusqu'à présent, l'analyse a été faite en utilisant l'intégralité du signal comme donnée. Cependant l'article \cite{loraDCTF} a montré qu'il est possible de filtrer une partie des données et ainsi ne conserver qu'une partie suffisante du signal pour déterminer sa signature. Premièrement, d'un point de vue physique, le signal possède une partie appelée \textit{transient part}, c'est la portion initiale du signal qui contient la transition d'un état vers un autre. Cette partie se caractérise sur la figure \ref{term317} par les points qui ne se situent pas sur la constellation mais entre la constellation et le centre du plot. La partie transitoire a déja été discutée dans la section \ref{urh}. Cette partie seule étant instable, elle est écarté des données analysées. Ensuite, l'intégralité du signal n'est pas nécessaire. En effet, le contenu du message (dans la partie payload du paquet LoRa) est sujet à modifications et n'est pas pertinent pour l'analyse, seule la partie incluant le préambule est conservée. Ainsi, du signal complet on ne conserve que le préambule (12.25 chirps) auquel on coupe la \textit{transient part} au début des données. La figure \ref{term318} permet de distinguer clairement la région de plus haute densité dans le coin supérieur droit après avoir supprimé les données jugées non pertinentes.
 
 \begin{figure}[h]
 \centering
@@ -142,22 +148,24 @@ Jusqu'à présent, l'analyse a été faite en utilisant l'intégralité du signa
 \caption{DCTF du signal test}\label{term318}
 \end{figure}
 
+Cette partie se caractérise sur la figure \ref{term317} par les points qui ne se situent pas sur la constellation mais entre la constellation et le centre du plot. La partie transitoire a déja été discutée dans la section \ref{urh}. Cette partie seule étant instable, elle est écarté des données analysées. Ensuite, l'intégralité du signal n'est pas nécessaire. En effet, le contenu du message (dans la partie payload du paquet LoRa) est sujet à modifications et n'est pas pertinent pour l'analyse, seule la partie incluant le préambule est conservée. Ainsi, du signal complet on ne conserve que le préambule (12.25 chirps) auquel on coupe la \textit{transient part} au début des données. La figure \ref{term318} permet de distinguer clairement la région de plus haute densité dans le coin supérieur droit après avoir supprimé les données jugées non pertinentes.
+
+
+
 Maintenant que la région d'intérêt est indetifiée, il faut l'extraire. C'est ce qui sera extrait de cette DCTF qui sera la signature du signal, et donc permettra l'identification du module. Pour déterminer la meilleure valeur dans le plan à récuperer, la méthode suivante permet de récupérer le centre de la zone dense. La librairie Numpy de python permet de créer un histogramme en deux dimension de la DCTF. Afin d'extraire la valeur la plus pertinente (le centre de la zone dense), le point le plus dense de l'histogramme sert de référentiel. Sa valeur de densité est calculée (c'est à dire le nombre d'échantillons présent dans cette zone définie par l'histogramme). Afin de mieux refléter le centre de la zone dense, tous les points ayant une valeur de densité au moins égale à 90 pourcent (valeur choisie dans \cite{loraDCTF}) de la zone la plus dense sont également considérés. La figure \ref{term319} montre les points sélectionnés pour le signal test dans la DCTF. Les coordonnées centre sont calculés à partir des points éligibles, sa valeur est la signature du signal. 
 
+\vspace{0.1cm}
 
+Finalement, pour obtenir un cluster permettant l'identification de chaque signaux provenant ou non du module d'émission, il faut répéter cette opération pour chaque nouveau signal. Selon l'article, la position géographique des centres est relativement proche ce qui permet de former le cluster de points. Ainsi, en concervant les mêmes paramètres d'émission, 24 autres signaux sont générés et la figure \ref{term320} montre les points de chaque signaux dans le plan cartésien.
 
+\newpage
 
 \begin{figure}[h]
 \centering
 
-\includegraphics[scale=0.35]{images/dctf6.png}
+\includegraphics[scale=0.3]{images/dctf6.png}
 \caption{Points de haute densité dans la DCTF du signal test}\label{term319}
 \end{figure}
-
-
-Finalement, pour obtenir un cluster permettant l'identification de chaque signaux provenant ou non du module d'émission, il faut répéter cette opération pour chaque nouveau signaux. Selon l'article, la position géographique des centres sont relativement proche ce qui permet de former le cluster de points. Ainsi, en concervant les mêmes paramètres d'émission, 24 autres signaux sont générés et la figure \ref{term320} montre les points de chaque signaux dans le plan cartésien.
-
-
 
 \begin{figure}[h]
 \centering
@@ -166,35 +174,36 @@ Finalement, pour obtenir un cluster permettant l'identification de chaque signau
 \caption{Répartition des centres des signaux normalisés}\label{term320}
 \end{figure}
 
+
 On remqarque que contrairement à l'article et à la figure \ref{term4000}, les points ne forment pas un cluster mais sont en revanche dispersés tout le long du cercle. Afin de déterminer les causes de cette différence de résultats, la section \ref{result} va présenter des alternatives et également tester la méthode sur plusieurs appareils.
 
 \section{Résultats}\label{result}
 
-Les résultats obtenu lors de la démonstration à la section  \ref{pra} ne coincident pas avec ceux de la section \ref{DCTF}. Cette section va dans un premier temps proposer différents paramètrages et appareils afin de confirmer les résultats, ou constater des variations en fonction de différents critères. Ensuite, des alternatives à l'article sont évoqués mais encore basées sur la signature mise en évidence dans la section \ref{DCTF}.
+Les résultats obtenus lors de la démonstration à la section  \ref{pra} ne coincident pas avec ceux de la section \ref{DCTF}. Cette section va dans un premier temps proposer différents paramètrages et appareils afin de confirmer les résultats, ou constater des variations en fonction de différents critères. Ensuite, une alternative à l'article est évoquée mais encore basée sur la signature mise en évidence dans la section \ref{DCTF}.
 
-La table \ref{set} donne tout les set de paramètres qui ont été testés. Les variations impliquent le facteur d'étalement, la largeur de bande du signal ainsi que le taux d'échantillonage. Afin de tenter d'analyser le comportement de la DCTF, des dégradations sur le signal sont aussi ajoutées. Une dégradation basée sur la saturation du signal par un gain trop élevé, une autre basé sur une perte importante d'une partie des donnés et une dernière basé sur des variations de l'amplitude du signal.
+La table \ref{set} donne tous les sets de paramètres qui ont été testés. Les variations impliquent le facteur d'étalement, la largeur de bande du signal ainsi que le taux d'échantillonage. Afin de tenter d'analyser le comportement de la DCTF, des dégradations sur le signal sont aussi ajoutées. Une dégradation basée sur la saturation du signal par un gain trop élevé, une autre basée sur une perte importante d'une partie des donnés et une dernière basée sur des variations de l'amplitude du signal.
 
 \begin{table}[h]
 \centering
 \begin{tabular}{|c|c|c|c|p{3cm}|c|}
 \hline
-Set \# & BW & SF & SR & qualité du signal & nombre d'échantillon\\
+Set \# & BW & SF & SR & Qualité du signal & Nombre d'échantillons\\
 \hline
-1  & 125kHz & 7 & 2 MHz & High & 25\\
+1  & 125kHz & 7 & 2 MHz & Elevée & 25\\
 \hline
-2  & 125kHz & 8 & 2 MHz & High & 25\\
+2  & 125kHz & 8 & 2 MHz & Elevée & 25\\
 \hline
-3  & 125kHz & 9 & 2 MHz & High & 25\\
+3  & 125kHz & 9 & 2 MHz & Elevée & 25\\
 \hline
-4  & 125kHz & 10 & 2 MHz & High & 25\\
+4  & 125kHz & 10 & 2 MHz & Elevée & 25\\
 \hline
-5  & 125kHz & 11 & 2 MHz & High & 25\\
+5  & 125kHz & 11 & 2 MHz & Elevée & 25\\
 \hline
-6  & 125kHz & 12 & 2 MHz & High & 25\\
+6  & 125kHz & 12 & 2 MHz & Elevée & 25\\
 \hline
-7  & 250kHz & 8 & 2 MHz & High & 25\\
+7  & 250kHz & 8 & 2 MHz & Elevée & 25\\
 \hline
-8  & 250kHz & 8 & 1 MHz & High & 25\\
+8  & 250kHz & 8 & 1 MHz & Elevée & 25\\
 \hline
 9  &  125kHz & 8 & 2 MHz & faible (saturation par gain) & 25\\
 \hline
@@ -203,11 +212,13 @@ Set \# & BW & SF & SR & qualité du signal & nombre d'échantillon\\
 11  & 125kHz & 8 & 2 MHz & faible (variation de l'amplitude) & 5\\
 \hline
 \end{tabular}
-\caption{Table of parameters}
+\caption{Table des paramètres}
 \label{set}
 \end{table}
 
-Les tables \ref{signature1}, \ref{signature2} et \ref{signature3} montre pour chaque set de la table \ref{set} si il est possible de pouvoir obtenir un cluster de point pour chaque module. La table fournit  des informations concernant la position et la forme de la signature si cette dernière est identifiable.
+Les tables \ref{signature1}, \ref{signature2} et \ref{signature3} montrent pour chaque set de la table \ref{set} s'il est possible de pouvoir obtenir un cluster de point pour chaque module. Les tables fournissent des informations concernant la position et la forme de la signature si cette dernière est identifiable.
+
+\newpage
 
 \begin{table}[h]
 \centering
@@ -277,7 +288,9 @@ Set \# & signature identifiable & position & forme & cluster possible\\
 \label{signature2}
 \end{table}
 
-La plupart des commentaires sur la première tables sont similaires ici. Cepandant, dans la table \ref{signature2}, on constate qu'un spreading factor maximal (SF = 12) génère une seconde signature. On remarque également que la signature se trouve à l'extérieur du cercle.
+La plupart des commentaires sur la première tables sont similaires pour la table \ref{signature2}. Cepandant, on constate qu'un spreading factor maximal (SF = 12) génère une seconde signature. On remarque également que la signature se trouve à l'extérieur du cercle.
+
+\newpage
 
 \begin{table}[h]
 \centering
@@ -295,7 +308,7 @@ Set \# & signature identifiable & position & forme & cluster possible\\
 \hline
 5 & oui & multiples & \includegraphics[scale=0.2]{images/set27.png}  & non \\
 \hline
-6 & oui & variable & \includegraphics[scale=0.2]{images/set28.png}  & non \\
+6 & oui & variable & \includegraphics[scale=0.1]{images/set28.png}  & non \\
 \hline
 7 & non & inconnu & inconnu & non \\
 \hline
@@ -312,7 +325,7 @@ Set \# & signature identifiable & position & forme & cluster possible\\
 \label{signature3}
 \end{table}
 
-La dernière table \ref{signature3} confirme les éléments analysé dans les tables \ref{signature1} et \ref{signature2}. Les signaux de ce modules sont cependant moins net, ce qui entraine des signatures moins dense, plus difficile à repérer, voir carément absente.
+La dernière table \ref{signature3} confirme les éléments analysés dans les tables \ref{signature1} et \ref{signature2}. Les signaux de ce modules sont cependant moins net, ce qui entraine des signatures moins dense, plus difficile à repérer, voir carément absente.
 
 \vspace{0.1cm}
 
