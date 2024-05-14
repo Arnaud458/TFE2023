@@ -5,7 +5,7 @@
 
 \section{Signal radio}
 
-Les concepts suivants peuvent être retrouvés dans le chapitre 2 du livre \textit{The Scientist and Engineer's guide to Digital Signal Processing}\cite{book2} ainsi que dans le cours de \textit{Communications analogiques et numériques} donné par le professeur Véronique Moeyaertà l'université de Mons.
+Les concepts suivants peuvent être retrouvés dans le chapitre 2 du livre \textit{The Scientist and Engineer's guide to Digital Signal Processing} \cite{book2} ainsi que dans le cours de \textit{Communications analogiques et numériques} donné par le professeur Véronique Moeyaert à l'université de Mons.
 
 \vspace{0.1cm}
 
@@ -34,7 +34,7 @@ En télécommunication, les signaux sont des ondes électromagnétiques. Ses ond
 
 \item La puissance. C'est la force du signal, mesurée en \textit{Watt (W)}, un attribut important pour la réception du signal notamment. Bien que le Watt soit utilisé pour décrire la puissance à l'émission ou la réception, les variations de puissances sont généralement exprimées en décibels (dB). Le décibel est une unité logarithmique permettant de mesurer plus facilement les realtions entre les différents niveaux de puissance.
 
-\item le \textit{Signal to Noise Ratio (SNR)}. Cet attribut exprimé en décibel mesure la qualité du signal. Le SNR peut se calculer de la façon suivante : 
+\item Le \textit{Signal to Noise Ratio (SNR)}. Cet attribut exprimé en décibel mesure la qualité du signal. Le SNR peut se calculer de la façon suivante : 
 
 \begin{equation}\label{eq0}
 SNR(dB) = 10log_{10} \frac{P_{signal}}{P_{noise}}
@@ -42,7 +42,7 @@ SNR(dB) = 10log_{10} \frac{P_{signal}}{P_{noise}}
 où $P_{signal}$ et $P_{noise}$ sont respectivement la puissance du signal et du bruit. Une valeur élevée indique que le pourcentage de bruit est faible. 
 
 
-\item le \textit{Bit rate}. C'est le taux de transmission, une mesure de la quantité de donnée transmise en bit par seconde. Cet attribut est exclusif aux signaux numériques. On parle de \textit{Baud rate} pour mesurer la quantité de symboles transmise par seconde. Ce n'est pas excatement l'équivalent du bit rate car un symbole peut contenit plusieurs bits, mais le Baud rate est utilisé pour les signaux numériques et analogiques.
+\item Le \textit{Bit rate}. C'est le taux de transmission, une mesure de la quantité de donnée transmise en bit par seconde. Cet attribut est exclusif aux signaux numériques. On parle de \textit{Baud rate} pour mesurer la quantité de symboles transmise par seconde. Ce n'est pas excatement l'équivalent du bit rate car un symbole peut contenit plusieurs bits, mais le Baud rate est utilisé pour les signaux numériques et analogiques.
 
 \end{itemize}
 
@@ -55,7 +55,7 @@ Les différentes approches de modulations et les choix de notations ont été re
 
 \vspace{0.1cm}
 
-La réception et l'émission d'un signal radio nécessitent une antenne dont les dimensions dépendent de la longueur d'onde du signal. La longueur d'onde d'un signal représente la distance entre deux points consécutifs de même phase dans l'onde. La longueur d'onde s'obtient par la formule suivante :
+La réception et l'émission d'un signal radio nécessitent une antenne dont les dimensions dépendent de la longueur d'onde du signal. La longueur d'onde d'un signal représente la distance entre deux points de l'espace consécutifs de même phase dans l'onde. La longueur d'onde s'obtient par la formule suivante :
 
 \begin{equation}\label{eq1}
 c = f \lambda
@@ -65,7 +65,7 @@ où $c$ est la vitesse de la lumière, $f$ est la fréquence et $\lambda$ est la
 
 \vspace{0.1cm}
 
-Il est donc possible d'adapter les charactéristiques d'un signal pour le rendre compatible à différentes antennes, via la modulation. La modulation est le procédé par lequel un ou plusieurs attributs du signal en bande de base \textit{(baseband signal)} soit le signal modulant, contenant l'information à transmettre vont être altéré par le \textit{carrier signal}, un signal porteur, utilisé pour être combiné avec le signal modulant. La combinaison des deux devient alors un signal modulé, le \textit{modulated signal}. Les trois modulations les plus utilisés sont basées sur les attributs de la fréquence, de l'amplitude et de la phase.
+Il est donc possible d'adapter les caractéristiques d'un signal pour le rendre compatible à différentes antennes, via la modulation. La modulation est le procédé par lequel un ou plusieurs attributs du signal en bande de base \textit{(baseband signal)} soit le signal modulant, contenant l'information à transmettre vont être altéré par le \textit{carrier signal}, un signal porteur, utilisé pour être combiné avec le signal modulant. La combinaison des deux devient alors un signal modulé, le \textit{modulated signal}. Les trois modulations les plus utilisés sont basées sur les attributs de la fréquence, de l'amplitude et de la phase.
 
 \vspace{0.1cm}
 
@@ -75,7 +75,7 @@ La modulation est au final un décalage du signal en bande de base sur une porte
 m(t) = Re\{ g(t).e^{-j2\pi f_c t}\}
 \end{equation}
 
-où $m(t)$ représente le signal modulé , $g(t)$ représente l'enveloppe complexe du signal en bande de base, $f$ est la fréquence porteuse et $e^{-j2\pi f_c t}$ est le signal porteur dans sa forme complexe. $Re$\{\} signifie qu'on s'intéresse à la partie réelle de l'équation. Le signal porteur peut être représenté autrement (formule d'Euler):
+où $m(t)$ représente le signal modulé , $g(t)$ représente l'enveloppe complexe du signal en bande de base, $f_c$ est la fréquence porteuse et $e^{-j2\pi f_c t}$ est le signal porteur dans sa forme complexe. $Re$\{\} signifie qu'on s'intéresse à la partie réelle de l'équation. Le signal porteur peut être représenté autrement (formule d'Euler):
 
 \begin{equation}\label{eq111}
 e^{-j2\pi f_c t} = \cos(2 \pi f_c t) + j \sin(2 \pi f_c t).
@@ -91,7 +91,7 @@ $m(t)$ peut donc être exprimé par la relation suivante :
     m(t) &= x(t) \cos(2 \pi f_c t) - y(t) \sin(2 \pi f_c t)
 \end{align}
 
-car l'enveloppe complexe $g(t)$ peut être exprimée selon ses composantes \textit{In Phase} et \textit{Quadrature}. Dans le plan complexe, la composante \textit{In phase (I)} est représentée par l'axe des réels, tanids que la composante \textit{Quadrature (Q)} est représentée sur l'axe imaginaire. Un nombre complexe $z$ peut être représentée selon ces composantes tel que:
+car l'enveloppe complexe $g(t)$ peut être exprimée selon ses composantes \textit{In Phase} $x(t)$ et \textit{Quadrature} $y(t)$. Dans le plan complexe, la composante \textit{In phase (I)} est représentée par l'axe des réels, tandis que la composante \textit{Quadrature (Q)} est représentée sur l'axe imaginaire. Un nombre complexe $z$ peut être représentée selon ces composantes tel que:
 
 \begin{equation}\label{eq115}
 z = I + jQ.
@@ -141,7 +141,7 @@ $u(t)$ = $\cos(2\pi f_{u}t)$ avec $f_{u}$ = 5 Hz,
 
 $v(t)$ = $\cos(2\pi f_{c}t)$ où $f_{c}$ = 50 Hz.
 
-La Figure \ref{term1} montre le signal modulé $s\mathrm{AM}(t)$ via la modulation en amplitude.
+La Figure \ref{term1} montre le signal modulé $s_\mathrm{AM}(t)$ via la modulation en amplitude.
 
 
 \begin{figure}[h]
@@ -294,7 +294,7 @@ Ainsi, par l'identité trigonométrique \ref{eq114}, le signal modulé possède 
 
 \vspace{0.1cm}
 
-Pour les signaux discrets et échantillonnés, la \textit{DFT} (Transformée de Fourier discrète) calcule un ensemble fini de composantes de fréquence. Il est calculé à l’aide d’un nombre fini d’échantillons, ce qui donne des composantes de fréquence discrètes. Il existe un méthode optimisée pour les signaux discrets appelé \textit{FFT (Fast Fourier Transform)}\cite{fft}. Il s'agit d'un moyen plus rapide et moins couteux de calculer la transformée de Fourier, en particulier pour les signaux numériques comportant un grand nombre de points de données. La DFT calcule la transformé de Fourier pour une séquence de N échantillons en $O(N^2$) tandis que la FFT optimise le temps de calcul en $O(N log N)$ pour la même séquence. Il existe diverses variante de la FFT (par example le Cooley-Tukey FFT\cite{fft1}) ce qui peut légèrement faire varier les performances dépendant de l'algorithme utilisé. Les logiciels utilisés pour l'analyse de signaux dans la section \ref{fft} utilisent des algorithmes de FFT pour leurs affichages dans le domaine fréquenciel.
+Pour les signaux discrets et échantillonnés, la \textit{DFT} (Transformée de Fourier discrète) calcule un ensemble fini de composantes de fréquence. Il est calculé à l’aide d’un nombre fini d’échantillons, ce qui donne des composantes de fréquence discrètes. Il existe un méthode optimisée pour les signaux discrets appelé \textit{FFT (Fast Fourier Transform)}\cite{fft}. Il s'agit d'un moyen plus rapide et moins couteux de calculer la transformée de Fourier, en particulier pour les signaux numériques comportant un grand nombre de points de données. La DFT calcule la transformé de Fourier pour une séquence de N échantillons en $O(N^2$) tandis que la FFT optimise le temps de calcul en $O(N log N)$ pour la même séquence. Il existe diverses variante de la FFT (par example le Cooley-Tukey FFT\cite{fft1}) ce qui peut légèrement faire varier les performances en fonction de l'algorithme utilisé. Les logiciels utilisés pour l'analyse de signaux dans la section \ref{fft} utilisent des algorithmes de FFT pour leurs affichages dans le domaine fréquenciel.
 
 \newpage
 
@@ -336,7 +336,7 @@ La technologie LoRa utilise également une technique de multiplexage en temps pa
 
 \vspace{0.1cm}
 
-En plus de sa portée étendue et de sa faible consommation d'énergie, LoRa se distingue par sa sécurité de transmission via LoRaWAN, qui est assurée grâce à l'utilisation de codes de sécurité uniques et à la possibilité de chiffrer les données transmises. Lora n'est pas exclusivement lié au protocole LoRaWAN. Ce protocole est décrit en détails à la section \ref{lorawan}. Si LoRa opère à un niveau plus bas que la plupart des protocoles réseau, LoRaWAN via son infrastructure (notament les \textit{gateways}) permet entre autre aux appareils LoRa de pouvoir servir d'intermédiaire avec différents protocoles et d'être compatibles avec un grand nombre de protocoles de communications comme \textit{TCP/IP (transport layer protocol), HTTP (hypertext transfer protocol ou MQTT(message queuing telmetry transport)}.
+En plus de sa portée étendue et de sa faible consommation d'énergie, LoRa se distingue par sa sécurité de transmission via LoRaWAN, qui est assurée grâce à l'utilisation de codes de sécurité uniques et à la possibilité de chiffrer les données transmises. Lora n'est pas exclusivement lié au protocole LoRaWAN. Ce protocole est décrit en détails à la section \ref{lorawan}. Si LoRa opère à un niveau plus bas que la plupart des protocoles réseau, LoRaWAN via son infrastructure (notament les \textit{gateways}) permet entre autre aux appareils LoRa de pouvoir servir d'intermédiaire avec différents protocoles et d'être compatibles avec un grand nombre de protocoles de communications comme \textit{TCP/IP (transport layer protocol), HTTP (hypertext transfer protocol ou MQTT (message queuing telmetry transport)}.
 
 \vspace{0.1cm}
 
@@ -351,7 +351,7 @@ LoRa se compose de deux éléments principaux : la couche physique de la technol
 \centering
 
 \includegraphics[scale=1]{images/physical_lora_rx.PNG}
-\caption{Etapes de la transformation des données dans un émetteur LoRa\cite{loraphy}}\label{term4}
+\caption{Etapes de la transformation des données dans un émetteur LoRa \cite{loraphy}}\label{term4}
 \end{figure}
 
 
@@ -398,12 +398,12 @@ alors la figure \ref{term5} montre $s_{chirp}$ en fonction du temps où $f_0$ = 
 
 \vspace{0.1cm}
 
-Supposons que la bande passante du canal soit $\beta$, LoRa impose qu'un échantillon soit transmis tout les $T$ = $\frac{1}{\beta}$. Un symbole $s(nT_s)$ est envoyé a l'entré de la modulation tout les $T_s$ = $\frac{2^{SF}}{B}$ où \textit{SF (spreading factor)} est le facteur d'étalement. le symbole $s(nT_s$) est un nombre réel formé en utilisant un vecteur de chiffres binaires du facteur d'étalement. Les valeurs de SF pour LoRa sont comprises entre 7 et 12. Lora utilise donc au total $2^{SF}-1$ symboles. L'onde transmise en bande de base pour une durée $T_s$ pour un certain $s(nT_s)$ vaut :
+Supposons que la bande passante du canal soit $\beta$, LoRa impose qu'un échantillon soit transmis tout les $T$ = $\frac{1}{\beta}$. Un symbole $s(nT_s)$ est envoyé a l'entré de la modulation tout les $T_s$ = $\frac{2^{SF}}{\beta}$ où \textit{SF (spreading factor)} est le facteur d'étalement. le symbole $s(nT_s$) est un nombre réel formé en utilisant un vecteur de chiffres binaires du facteur d'étalement. Les valeurs de \textit{SF} pour LoRa sont comprises entre 7 et 12. Lora utilise donc au total $2^{SF}$ symboles. L'onde transmise en bande de base pour une durée $T_s$ pour un certain $s(nT_s)$ vaut :
 
 \begin{equation}
 c(nT_s + kT) = \frac{1}{\sqrt{2^{SF}}} e^{j2\pi ((s(nT_s) +k )mod 2^{SF})kT \frac{\beta}{2^{SF}}}
 \end{equation}
-pour $0 \leq k \leq 2^{SF}-1$ et $0 \leq s(nT_s) \leq 2^{SF}$.
+pour $0 \leq k \leq 2^{SF}-1$ et $0 \leq s(nT_s) < 2^{SF}$.
 Le signal modulé est donc une onde composée de chirps. Chaque fragment de l'onde diffère de l'onde possèdant une fréquence initiale à 0, par un décalage de fréquence $s(nT_s)$. Cette caractéristique est la raison de l'appellation FCSM.
 
 
