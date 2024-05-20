@@ -2,24 +2,23 @@
 \addcontentsline{toc}{chapter}{Conclusion}
 \renewcommand{\leftmark}{CONCLUSION}
 
-L'objectif du travail était de pouvoir identifier des noeuds de l'Internet Of Things utilisant la technologie LoRa en se basant uniquement sur leur signal radio.
+L'objectif du travail était de pouvoir identifier des noeuds de l'Internet of Things utilisant la technologie LoRa en se basant uniquement sur les caractéristiques spécifiques de leur signal radio, différenciées par une dispersion sensible de la performance des composants électroniques intégrés dans chaque émetteur.
+\vspace{0.1cm}
+
+Cette étude, le Radio Frequency Fingerprinting Indentification a notamment été réalisée par Yu Jiang, Linning Peng, Aiqun Hu, Sheng Wang, Yi Huang et Lu Zhang dans \cite{loraDCTF} via l'utilisation de diagrammes de constellations. Ils ont montré qu'il était possible en analysant les coordonées géographiques d'une signature radio dans une DCTF de pouvoir retrouver l'appareil LoRa émetteur. Ces auteurs se sont concentrés sur la fréquence de transmission unique des émetteurs LoRa, de leur déviation spécifique vis-à-vis de la fréquence théorique comme signature. Les diagrammes de constellation ont ainsi été générés à partir des composantes ‘I/Q’ (en phase et en quadrature de phase) des signaux modulés transmis par ces émetteurs selon leur caractéristiques fréquentielles différenciées.
 
 \vspace{0.1cm}
 
-Cette étude, le Radio Frequency Finguerprinting Indentification a été réalisé par Yu Jiang, Linning Peng, Aiqun Hu, Sheng Wang, Yi Huang et Lu Zhang dans \cite{loraDCTF} via l'utilisation de diagrammes de constellations. Ils ont montré qu'il était possible en analysant les coordonées géographiques d'une signature radio dans une DCTF de pouvoir retrouver l'appareil LoRa émetteur.
+Afin de reproduire cette étude, il a fallu dans un premier temps apprendre en détail le fonctionnement de la technologie LoRa et  de la modulation qu'emploient les émetteurs LoRa. Ensuite, maitriser le fonctionnement et l'utilisation d'une radio logicielle avant de finalement commencer à capturer des signaux radio.
 
 \vspace{0.1cm}
 
-Afin de reproduire cette étude, il a fallu dans un premier temps apprendre le fonctionnement de la technologie LoRa et  de la modulation qu'emploient les émetteurs LoRa. Ensuite, maitriser la le fonctionnement et l'utilisation d'une radio logicielle avant de finalement commencer à captuer des signaux.
+L'analyse des signaux a été possible grace à des logiciels open source et flexibles comme GQRX et URH, avant d'avoir recours à des librairies Python pour pouvoir étudier plus en profondeur les caractéristiques de ces signaux.
 
 \vspace{0.1cm}
 
-L'analyse des signaux a été possible grace à des logiciels faciles d'utilisaton et flexibles comme GQRX et URH, avant d'avoir recours à des librairies Python pour pouvoir étudier plus en profondeur les caractéristiques de ces signaux.
+Finalement, la reproduction de l'étude aura révélé des résultats qui ne s'alignent pas avec les affirmations de l'article \cite{loraDCTF}. Mes résultats montrent cependant qu'une identification basée sur le RFFI est bien possible, non pas selon les coordonnées géographiques de la signature, mais plutôt selon sa forme géométrique.
 
 \vspace{0.1cm}
 
-Finalement, la reproduction de l'étude aura révélé des résultats qui contredisent les affirmations de l'article \cite{loraDCTF}. Ces résultats montrent cependant qu'une identification basée sur le RFFI est bien possible, mais pas selon les coordonnées géographiques de la signature, mais plutôt sur sa forme géométrique.
-
-\vspace{0.1cm}
-
-Ainsi, une nouvelle piste dans l'indentification de noeuds LoRa basé sur la méthode des diagrammes de constellation pourrait se concentrer sur la reconaissance d'image afin de retrouver pour des paramètres d'émission fixes une image correspodant à la signature du signal. L'utlisation des réseaux de neurones convolutifs est déja présente dans le RFFI. Son ajout à la méthode des DTCF pourrait permettre de facilement reconnaitre la signature.
+Ainsi, une nouvelle piste dans l'indentification de noeuds LoRa basé sur la méthode des diagrammes de constellation pourrait se concentrer sur la reconaissance d'images afin de retrouver pour des paramètres d'émission fixes une image correspodant à la signature du signal. L'utlisation des réseaux de neurones convolutifs est déja présente dans le RFFI. Son ajout à la méthode des DTCF pourrait permettre de facilement reconnaitre la signature.
