@@ -9,12 +9,12 @@ Les concepts suivants peuvent être retrouvés dans le chapitre 2 du livre \text
 
 \vspace{0.1cm}
 
-Un signal est une variation dans l'espace ou dans le temps d'une quantité physique contenant de l'information. Un signal peut être continu ou discret, on le nomme alors respectivement analogique ou numérique. Le type de signal dépend notamment de l'information qu'il contient. Un signal analogique est continu en amplitude, ce qui veut dire qu'il peut contenir un nombre infini de valeur, ainsi que prendre toutes les valeurs possibles, là où un signal numérique contient généralement un nombre fini de valeurs (par exemple des 0 et 1).
-Les deux catégories ne sont pas incompatibles car il est souvent nécessaire en télécommunication de pouvoir passer de l'un à l'autre.
+Un signal est une variation dans l'espace ou dans le temps d'une quantité physique contenant de l'information. Un signal peut être continu ou discret. On le nomme alors respectivement analogique ou numérique. Le type de signal dépend notamment de l'information qu'il contient. Un signal analogique est continu en amplitude, ce qui veut dire qu'il peut contenir un nombre infini de valeurs, ainsi que prendre toutes les valeurs possibles, là où un signal numérique contient généralement un nombre fini de valeurs (par exemple des 0 et 1).
+Les deux catégories ne sont pas incompatibles car il est souvent nécessaire en télécommunications de pouvoir passer de l'un à l'autre.
 
 \vspace{0.1cm}
 
-L'utilisation de signaux radio en télécommunication confère de nombreux avantages, comme la portée, la vitesse de transmission  ou encore le coût de propagation. Pouvoir transporter de l'information sans avoir recours à du support matériel complet (pas besoin de câble ni de fibre optique, le signal passe dans l'espace libre) réduit considérablement le cout de la transmission. Il est possible d'adapter un signal pour le rendre compatible avec diverse canaux de transmission et de réception, grâce à la modulation. La modulation est une technique permettant de modifier les propriétés du signal lui permettant de transporter de l'information.
+L'utilisation de signaux radio en télécommunication confère de nombreux avantages, comme la portée, la vitesse de transmission  ou encore le coût non récurrant d'utilisation. Pouvoir transporter de l'information sans avoir recours à du support matériel complet (pas besoin de câble ni de fibre optique, le signal passe dans l'espace libre) réduit considérablement le cout de la transmission. Il est possible d'adapter un signal pour le rendre compatible avec divers canaux de transmission et de réception, grâce à la modulation. La modulation est une technique permettant de modifier les propriétés du signal lui permettant de transporter de l'information.
 
 \newpage
 
@@ -91,7 +91,7 @@ $m(t)$ peut donc être exprimé par la relation suivante :
     m(t) &= x(t) \cos(2 \pi f_c t) - y(t) \sin(2 \pi f_c t)
 \end{align}
 
-car l'enveloppe complexe $g(t)$ peut être exprimée selon ses composantes \textit{In Phase} $x(t)$ et \textit{Quadrature} $y(t)$. Dans le plan complexe, la composante \textit{In phase (I)} est représentée par l'axe des réels, tandis que la composante \textit{Quadrature (Q)} est représentée sur l'axe imaginaire. Un nombre complexe $z$ peut être représentée selon ces composantes tel que:
+car l'enveloppe complexe $g(t)$ peut être exprimée selon ses composantes \textit{In Phase} $x(t)$ et \textit{Quadrature} $y(t)$. Dans le plan complexe, la composante \textit{In phase (I)} est représentée par l'axe des réels, tandis que la composante \textit{Quadrature (Q)} est représenté sur l'axe imaginaire. Un nombre complexe $z$ peut être représentée selon ces composantes tel que:
 
 \begin{equation}\label{eq115}
 z = I + jQ.
@@ -375,7 +375,7 @@ Chacune des étapes décrites doit être inversément réalisée pour le récept
 
 \subsubsection{Modulation CSS}\label{css}
 
-Le principe de la modulation LoRa est détaillé en profondeur dans l'article \textit{Frequency Shift Chirp Modulation: The LoRa Modulation}\cite{loraCSS} de Lorenzo Vangelista.
+Le principe de la modulation LoRa est détaillé en profondeur dans l'article \textit{Frequency Shift Chirp Modulation: The LoRa Modulation} \cite{loraCSS} de Lorenzo Vangelista.
 
 \vspace{0.1cm}
 
@@ -387,7 +387,7 @@ Dans un upchirp la fréquence augmente avec le temps tandis que dans un downchir
 s_{chirp}(t) = sin(2\pi(f_0 + (\frac{f_1 - f_0}{2T_s})t)t)
 \end{equation}
 
-alors la figure \ref{term5} montre $s_{chirp}$ en fonction du temps où $f_0$ = 10Hz, $f_1$ = 100Hz et $T$ = 1 seconde. On observe que le signal oscille de plus en vite plus vite au fur et à mesure que le temps augmente.
+alors la figure \ref{term5} montre $s_{chirp}$ en fonction du temps où $f_0$ = 10Hz, $f_1$ = 100Hz et $T_s$ = 1 seconde. On observe que le signal oscille de plus en vite plus vite au fur et à mesure que le temps augmente.
 
 \begin{figure}[h]
 \centering
@@ -398,7 +398,7 @@ alors la figure \ref{term5} montre $s_{chirp}$ en fonction du temps où $f_0$ = 
 
 \vspace{0.1cm}
 
-Supposons que la bande passante du canal soit $\beta$, LoRa impose qu'un échantillon soit transmis tout les $T$ = $\frac{1}{\beta}$. Un symbole $s(nT_s)$ est envoyé à l'entrée de la modulation tout les $T_s$ = $\frac{2^{SF}}{\beta}$ où \textit{SF (spreading factor)} est le facteur d'étalement. le symbole $s(nT_s$) est un nombre réel formé en utilisant un vecteur de chiffres binaires du facteur d'étalement. Les valeurs de \textit{SF} pour LoRa sont comprises entre 7 et 12. Lora utilise donc au total $2^{SF}$ symboles. L'onde transmise en bande de base pour une durée $T_s$ pour un certain $s(nT_s)$ vaut :
+Supposons que la bande passante du canal soit $\beta$, LoRa impose qu'un échan\-tillon soit transmis tout les $T$ = $\frac{1}{\beta}$. Un symbole $s(nT_s)$ est envoyé à l'entrée de la modulation tout les $T_s$ = $\frac{2^{SF}}{\beta}$ où \textit{SF (spreading factor)} est le facteur d'étalement. le symbole $s(nT_s$) est un nombre réel formé en utilisant un vecteur de chiffres binaires du facteur d'étalement. Les valeurs de \textit{SF} pour LoRa sont comprises entre 7 et 12. Lora utilise donc au total $2^{SF}$ symboles. L'onde transmise en bande de base pour une durée $T_s$ pour un certain $s(nT_s)$ vaut :
 
 \begin{equation}
 c(nT_s + kT) = \frac{1}{\sqrt{2^{SF}}} e^{j2\pi ((s(nT_s) +k )mod 2^{SF})kT \frac{\beta}{2^{SF}}}
@@ -463,7 +463,7 @@ LoRaWAN opère sur une bande de fréquence qui ne nécessite pas de licence d'é
 
 \vspace{0.1cm}
 
-LoRaWAN possède des capacités de géolocalisation, permettant au réseau de détecter et de localiser précisément les appareils au sein de son domaine. LoRaWAn utilise différentes méthodes pour localiser ses appareils comme \textit{Received signal strengh indication (RSSI)}, \textit{Time difference on Arrival (TDOA)}, une triangulation ou alors une combinaison de plusieurs des méthodes. Certaines de ses méthodes seront détaillées dans la section \ref{identification}
+LoRaWAN possède des capacités de géolocalisation, permettant au réseau de détecter et de localiser précisément les appareils au sein de son domaine. LoRaWAn utilise différentes méthodes pour localiser ses appareils comme \textit{Received signal strengh indication (RSSI)}, \textit{Time difference on Arrival (TDOA)}, une triangulation ou alors une combinaison de plusieurs des méthodes.
 
 \vspace{0.1cm}
 

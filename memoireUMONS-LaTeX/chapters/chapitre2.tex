@@ -11,7 +11,7 @@ La radio logicielle \textit{(Software Defined Radio, SDR)} est une technologie q
 
 \vspace{0.1cm}
 
-Dans les systèmes de radio traditionnel, les différentes fonctions de la radio, comme l'accord sur une fréquence spécifique, la modulation et la démodulation du signal, et le filtrage du bruit, sont mises en œuvre à l'aide de composants matériels tels que des oscillateurs, des amplificateurs et des filtres. En revanche, les systèmes SDR utilisent des logiciels pour effectuer ces fonctions, ce qui les rend beaucoup plus flexible car chaque composante est reconfigurable. Les radios logicielles sont capables d'opérer sur une large portée de fréquences, aussi bien très basse fréquence comme haute fréquence.
+Dans les systèmes de radio traditionnel, les différentes fonctions de la radio, comme l'accord sur une fréquence spécifique, la modulation et la démodulation du signal, et le filtrage du bruit, sont mis en œuvre à l'aide de composants matériels tels que des oscillateurs, des amplificateurs et des filtres. En revanche, les systèmes SDR utilisent des logiciels pour effectuer ces fonctions, ce qui les rend beaucoup plus flexible car chaque composante est reconfigurable. Les radios logicielles sont capables d'opérer sur une large portée de fréquences, aussi bien très basse fréquence que haute fréquence.
 Les SDR peuvent jouer le rôle d'émetteur ou de récepteur ou les deux. Différentes radios logicielles sont testées pour ce travail, ce qui est motivé pour plusieurs raisons. Tout d'abord cela permet d'observer certaines variations (comme la qualité du signal, la distance) entre les différents récepteurs pour une même expérience et ainsi définir la SDR la plus adéquate. Ensuite, la diversité de radios logicielles permet d'approfondir l'apprentissage de cette technologie et de comprendre plus aisément le fonctionnement d'une radio logicielle. Une version plus simple permet d'assimiler les bases de la pratique avec une SDR, mais pouvoir utiliser des versions plus abouties permet d'expérimenter de manière plus précise les expériences.
 
 \newpage
@@ -44,7 +44,7 @@ Le tuner comporte les différentes éléments :
 \begin{itemize}
 \item \textbf{Low Noise Amplifier (LNA)}. le LNA amplifie le signal tout en minimisant l'ajout de bruit, afin de maintenir un SNR faible.
 \item \textbf{Radio Frequency Filter (RF Filter)}. Le filtre permettant d'isoler la fréquence désirée.
-\item \textbf{Local oscillator (LO)}. La fréquence de l'oscillateur local est généralement de 28.8MHz. Cela permet à la SDR d'opérer sur une portée de fréquence approximative entre 24MHz et 1.7GHz. L'utilisation du LO couplée au signal reçu produit un signal à une fréquence intermédiaire.
+\item \textbf{Local oscillator (LO)}. La fréquence de l'oscillateur local n'est pas fixe, mais elle est contrôlée par un circuit PLL qui utilise une horloge de référence de 28,8 MHz. Cela permet à la SDR d'opérer sur une plage de fréquence approximative entre 24 MHz et 1,7 GHz. L'utilisation de l'oscillateur local, réglable par le PLL, couplée au signal reçu, produit un signal à une fréquence intermédiaire..
 \item \textbf{Itermediate Frequency Filter (IF Filter)}. Ce filtre permet d'isoler le signal à fréquence intermédiaire. L'utilisation d'une fréquence intermédiaire est importante pour pouvoir opérer sur le signal. Par exemple la démodulation est bien plus abordable sur un signal possèdant une fréquence réduite que sa valeur originale.
 \item \textbf{Variable Gain Amplifier (VGA)}. Le VGA ajuste l'amplitude du signal pour maintenir un niveau constant.
 \end{itemize}
@@ -61,7 +61,8 @@ Le chipset contient les éléments suivants :
 
 \vspace{0.1cm}
 
-Une description détaillée du déroulement de la récupération du signal par la sdr est disponible au lien suivant : \textit{Ajoo's blog} \href{https://ajoo-github-blog-old.pages.dev/intro-to-rtl-sdr-part-i-principles-and-hardware}{https://ajoo-github-blog-old.pages.dev/intro-to-rtl-sdr-part-i-principles-and-hardware}
+Une description détaillée du déroulement de la récupération du signal par la SDR est disponible au lien suivant : \textit{Ajoo's blog} \href{https://ajoo-github-blog-old.pages.dev/intro-to-rtl-sdr-part-i-principles-and-hardware}{https://ajoo-github-blog-old.pages
+.dev/intro-to-rtl-sdr-part-i-principles-and-hardware}
 
 
 
@@ -75,12 +76,12 @@ Une description détaillée du déroulement de la récupération du signal par l
 \caption{RTL SDR R820T2}\label{term32}
 \end{figure}
 
-La deuxième radio logicielle utilisée est la \textit{RTL SDR R820T2}. Il y a deux différences majeures avec la radio dvb-T. L'antenne de cette radio logicielle est de meilleure qualité et le tuner chip de cette SDR est un r820t2 tuner. Cette version est une version améliorée du tuner qui se trouve dans la dvb-T, ce qui a pour impact une réduction du bruit, une meilleure sensibilité et une couverture de fréquence plus large. La figure \ref{term32} montre la SDR en question. Le schéma bloc de la SDR présentée à la section \ref{dvbt} est le même que pour celui-ci. En effet la différence entre le tuner T et T2 n'est pas visible sur la description du shéma. Une description du registre de la RTL-SDR R820T2 est disponible au lien suivant : \href{http://superkuh.com/R820T2_Register_Description.pdf}{http://superkuh.com/R820T2RegisterDescription.pdf}
+La deuxième radio logicielle utilisée est la \textit{RTL SDR R820T2}. Il y a deux différences majeures avec la radio DVB-T. L'antenne de cette radio logicielle est de meilleure qualité et le tuner chip de cette SDR est un R820T2. Cette version est une version améliorée du tuner qui se trouve dans la dvb-T, ce qui a pour impact une réduction du bruit, une meilleure sensibilité et une couverture de fréquence plus large. La figure \ref{term32} montre la SDR en question. Le schéma bloc de la SDR présentée à la section \ref{dvbt} est le même que pour celui-ci. En effet la différence entre le tuner T et T2 n'est pas visible sur la description du shéma. Une description du registre de la RTL-SDR R820T2 est disponible au lien suivant : \href{http://superkuh.com/R820T2_Register_Description.pdf}{http://superkuh.com/R820T2RegisterDescription.pdf}
 
 
 \subsubsection{HackRF One}
 
-La dernière radio logicielle utilisée est la \textit{HackRF One}. Au dela du prix plus élevé, cette dernière radio est différente des deux autres. Elle est notament capable de gérer la transmission et la réception de signaux, les deux autres sont uniquement des récepteurs. Si la R820T2 offrait déjà une qualité de signal supérieure à la DVB-T, celui de la HackRF est encore plus net. La figure \ref{bothimages} montre la SDR avec l'antenne utilisée montée sur un trépied.
+La dernière radio logicielle utilisée est la \textit{HackRF One}. Au dela du prix plus élevé, cette dernière radio est différente des deux autres. Elle est notamment capable de gérer la transmission et la réception de signaux, les deux autres sont uniquement des récepteurs. Si la R820T2 offrait déjà une qualité de signal supérieure à la DVB-T, celui de la HackRF est encore plus net. La figure \ref{bothimages} montre la SDR avec l'antenne utilisée montée sur un trépied.
 
 \begin{figure}[h]
 \centering
@@ -102,7 +103,7 @@ La dernière radio logicielle utilisée est la \textit{HackRF One}. Au dela du p
 \end{figure}
 
 
-Le schéma bloc de la SDR est affiché sur la figure \ref{term3001}. Ce dernier est beaucoup plus complexe que celui de la RTL SDR. Il y a d'une part que la HackRF est un transceiver, donc elle possède les étapes nécessaires à l'émission que la rtl sdr ne possède pas. Ensuite, il y a plusieurs étapes de fréquences intermédiaires. L'architecture de la HackRF permet d'utiliser plusieurs étapes de mixeur pour atteindre la fréquence désirée. Chaque étape possède sa fréquence intermédiaire. Le schéma bloc ainsi que les caractéristiques de la SDR sont disponibles au lien suivant : \href{https://www.hb9afo.ch/articles/HackRF/default.htm}{https://www.hb9afo.ch/articles/HackRF/default.htm}
+Le schéma bloc de la SDR est affiché sur la figure \ref{term3001}. Ce dernier est beaucoup plus complexe que celui de la RTL SDR. Il y a d'une part que la HackRF est un transceiver, donc elle possède les étapes nécessaires à l'émission que la RTL SDR ne possède pas. Ensuite, il y a plusieurs étapes de fréquences intermédiaires. L'architecture de la HackRF permet d'utiliser plusieurs étapes de mixeur pour atteindre la fréquence désirée. Chaque étape possède sa fréquence intermédiaire. Le schéma bloc ainsi que les caractéristiques de la SDR sont disponibles au lien suivant : \href{https://www.hb9afo.ch/articles/HackRF/default.htm}{https://www.hb9afo.ch/articles/HackRF/default.htm}
 
 \begin{figure}[h]
 \centering
@@ -117,14 +118,14 @@ La table \ref{table1} résume les différents critères pertinents pour les troi
 
 \begin{table}[h]
 \centering
-\begin{adjustbox}{width=1.2\textwidth}
+\begin{adjustbox}{width=1\textwidth}
 \begin{tabular}{|c|c|c|c|}
 \hline
 \multicolumn{1}{|c|}{Caractéristiques importantes} & \multicolumn{1}{c|}{RTL SDR DVB-T} & \multicolumn{1}{c|}{RTL SDR R820T2} & \multicolumn{1}{c|}{HackRF One}\\
 \hline
 Portée (Fréquence) & \multicolumn{2}{c|}{24MHz - 1.7GHz} & 1MHz - 6GHz \\
 \hline
-Taux d'échantillonage & \multicolumn{2}{c|}{jusqu'à 3.2MHz} & jusqu'à 20MHz \\
+Taux d'échantillonnage & \multicolumn{2}{c|}{jusqu'à 3.2MHz} & jusqu'à 20MHz \\
 \hline
 Largeur de bande & \multicolumn{2}{c|}{jusqu'à 2.4MHz} & jusqu'à 20MHz  \\
 \hline
@@ -138,9 +139,7 @@ Compatibilié logicielle & \multicolumn{3}{c|}{oui, notamment avec ceux décrits
 \hline
 Qualité du signal & mauvaise &\multicolumn{2}{c|}{très bonne}\\
 \hline
-Prix & envrion 20 euros & environ 30 euros & minimum 250 euros \\
-\hline
-Simplicité de transport & \multicolumn{2}{c|}{facile à transporter} & antenne encombrante \\
+Prix & + \- 20 euros & + \- 30 euros & \> 250 euros \\
 \hline
 \end{tabular}
 \end{adjustbox}
@@ -162,9 +161,9 @@ Simplicité de transport & \multicolumn{2}{c|}{facile à transporter} & antenne 
 \end{figure}
 
 
-Le \textit{microchip RN2483} est un module de technologie spécifique à LoRa permettant de communiquer à longue portée et à faible coup. La documentation sur cet appareil est disponible au lien suivant : \href{https://ww1.microchip.com/downloads/en/DeviceDoc/40001784B.pdf}{https://ww1.microchip.com/downloads/en/
-DeviceDoc/40001784B.pdf}. Le Schéma bloc (disponible à l'adresse \href{https://www.mouser.be/new/microchip/microchip-rn2483-module/}{https://www.
-mouser.be/new/microchip/microchip-rn2483-module/} du module est représenté à la figure \ref{term3002}. Le module RN2483 de la figure \ref{term34} est un simple \textit{transceiver (transmitter and receiver)} radio de type SX127x couplé à un microcontroleur. Les informations relatives à ce type de transceivers sont disponibles sur le site de Semtech : \href{https://www.semtech.com/products/wireless-rf/lora-connect/sx1278}{https://www.semtech.com/products/wireless-rf/lora-connect/sx1278}.
+Le \textit{microchip RN2483} est un module de technologie spécifique à LoRa permettant de communiquer à longue portée et à faible coup. La documentation sur cet appareil est disponible au lien suivant : \href{https://ww1.microchip.com/downloads/en/DeviceDoc/40001784B.pdf}{https://ww1.microchip.com/downloads
+/en/DeviceDoc/40001784B.pdf}. Le Schéma bloc (disponible à l'adresse \href{https://www.mouser.be/new/microchip/microchip-rn2483-module/}{https://www.
+mouser.be/new/microchip/microchip-rn2483-module/}) du module est représenté à la figure \ref{term3002}. Le module RN2483 de la figure \ref{term34} est un simple \textit{transceiver (transmitter and receiver)} radio de type SX127x couplé à un microcontroleur. Les informations relatives à ce type de transceivers sont disponibles sur le site de Semtech : \href{https://www.semtech.com/products/wireless-rf/lora-connect/sx1278}{https://www.semtech.com/products/wireless-rf/lora-connect/sx1278}.
 
 
 Voici quelques spécificités du module:
@@ -192,7 +191,7 @@ L'utilisation du module RN2483 est détaillée dans la section \ref{signallora}.
 
 
 
-Le module \textit{Pycom lopy}\cite{sitepycom} est un appareil programmable en micro python. Il comprend un microcontroleur ainsi qu'une série de pins digitaux input/output,  des composantes de connectivité sans fil et un port micro USB. La figure \ref{term35} montre le module  connecté à une antenne.
+Le module \textit{Pycom lopy} \cite{sitepycom} est un appareil programmable en micro python. Il comprend un microcontroleur ainsi qu'une série de pins digitaux input/output,  des composantes de connectivité sans fil et un port micro USB. La figure \ref{term35} montre le module  connecté à une antenne.
 
 \newpage
 
@@ -206,7 +205,7 @@ Le module \textit{Pycom lopy}\cite{sitepycom} est un appareil programmable en mi
 
 Le shéma bloc (disponible dans les datasheets du module à l'adresse : \href{https://docs.pycom.io/gitbook/assets/specsheets/Pycom_002_Specsheets_LoPy_v2.pdf}{https://
 docs.pycom.io/gitbook/assets/specsheets/Pycom002SpecsheetsLoPyv2.pdf} est re-
-présenté à la figure \ref{term3003}. Contrairement au module RN2483, on remarque que le module LoPy possède des fonctions supplèmentaires 
+présenté à la figure \ref{term3003}. Contrairement au module RN2483, on remarque que le module LoPy possède des fonctions supplémentaires 
 (qui ne sont pas intéressantes pour l'expérimentation) comme une connexion Wifi ou Bluetooth. Le microcontrolleur possède aussi plusieurs interfaces autres que UART (qui est la seul disponible sur le module RN42483).
 
 \newpage
@@ -227,7 +226,7 @@ présenté à la figure \ref{term3003}. Contrairement au module RN2483, on remar
 \caption{Un module Arduino}\label{term36}
 \end{figure}
 
-L'avantage principal du module \textit{Arduino} est qu'il est possible de configurer une largeur de bande bien plus faible que les autres modules. Les modules RN2483 ou lopy ont une largeur de bande minimal de 125KHz, tandis qu'avec l'arduino il est possible de descendre jusqu'à 7.8 KHz. Il est également possible de réduire le facteur d'étalement en dessous de la valeur imposée par LoRa (minimum de LoRa SF = 7, ici SF = 6 possible). Pour rappel, une largeur de bande plus faible permet un \textit{time on air (TOA)} plus grand, ce qui est très utile pour analyser les signaux. Le transceiver est de type SX127x (comme celui du RN2483).
+L'avantage principal du module \textit{Arduino} est qu'il est possible de configurer une largeur de bande bien plus faible que les autres modules. Les modules RN2483 ou LoPy ont une largeur de bande minimale de 125KHz, tandis qu'avec l'arduino il est possible de descendre jusqu'à 7.8 KHz. Il est également possible de réduire le facteur d'étalement en dessous de la valeur imposée par LoRa (minimum de LoRa SF = 7, ici SF = 6 possible). Pour rappel, une largeur de bande plus faible permet un \textit{time on air (TOA)} plus grand, ce qui est très utile pour analyser les signaux. Le transceiver est de type SX127x (comme celui du RN2483).
 
 \vspace{0.1cm}
 
@@ -267,7 +266,7 @@ La figure \ref{term331} demande de compléter les paramètres suivants:
 \begin{itemize}
 \item \textbf{Device}: il faut sélectionner la SDR dans la liste des appareils. Le \textit{Device String} fait référence à cet appareil dans GQRX.
 \item \textbf{Input rate}: le taux d'échantillonage capturé par la SDR, il apparait plus bas comme \textit{sample rate}.
-\item \textbf{Decimation}: c'est un procédé qui permet de réduire le nombre d'échantillons gérés par le logiciel, pour économiser des ressources.
+\item \textbf{Decimation}: c'est un procédé qui permet de réduire le nombre d'échan\-tillons gérés par le logiciel, pour économiser des ressources.
 \item \textbf{Bandwidth}: la largeur de bande supplémentaire que peut gérer la SDR.
 \item \textit{Low Noise Block Local Oscillator (\textbf{LNB LO})}: ce paramètre est spécifique à la réception satéllite et représénte le frequency offset aplliqué par l'oscillateur locale dans un LNB downconverter.
 \item L'\textbf{Audio output} concerne la sortie sonore du signal.
@@ -394,7 +393,7 @@ Le choix du langage pour l'implémentation du travail est Python (version 3.11.4
 
 \newpage
 
-L'environement de travail utilisé est Visual Studio Code (version 1.87.1). Cet IDE est open source et largement populaire ce qui permet un apprentissage pour des travaux spécifiques très rapide via Internet. L'utilisiation de VSCode est motivé par son système d'extension, qui contient plusieurs extensions qui permettent de manipuler directement les modules d'émission LoRa. Le module Lopy de Pycom est compatible avec VSCode via l'extension PyMakr. GitHub est également intégré dans VSCode, ce qui permet de simplifier la mise en ligne du travail.
+L'environement de travail utilisé est Visual Studio Code (version 1.87.1). Cet IDE est open source et largement populaire ce qui permet un apprentissage pour des travaux spécifiques très rapides via Internet. L'utilisation de VSCode est motivée par son système d'extension, qui contient plusieurs extensions qui permettent de manipuler directement les modules d'émission LoRa. Le module Lopy de Pycom est compatible avec VSCode via l'extension PyMakr. GitHub est également intégré dans VSCode, ce qui permet de simplifier la mise en ligne du travail.
 
 \begin{table}[h]
 \centering
@@ -402,21 +401,21 @@ L'environement de travail utilisé est Visual Studio Code (version 1.87.1). Cet 
 \hline
 \multicolumn{1}{|c|}{Caractéristiques importantes} & \multicolumn{1}{c|}{GQRX} & \multicolumn{1}{c|}{URH} & \multicolumn{1}{c|}{Python}\\
 \hline
-Interface Utilisateur & GUI avec affichage en temps réel & GUI avec outils plus poussés pour analise & / \\
+Interface Utilisateur & GUI avec affichage en temps réel & GUI avec outils plus poussés pour analyse & / \\
 \hline
 Réception de signaux & \multicolumn{3}{c|}{oui} \\
 \hline
 Génération de signaux & non & \multicolumn{2}{c|}{oui} \\
 \hline
-Sauvegarde des données & pas de sauvegarde possible & \multicolumn{2}{c|}{sauvegarde et chargement possible} \\
+Sauvegarde des données & pas de sauvegarde possible & \multicolumn{2}{c|}{sauvegarde et chargement possibles} \\
 \hline
-Format des donnée & / & voir table \ref{format} & .complex64 jusqu'à .complex512 \\
+Format des données & / & voir table \ref{format} & .complex64 jusqu'à .complex512 \\
 \hline
 Démodulation &  &  & toutes\\
 \hline
 Courbe d'apprentissage & prise en main très rapide & prise en main rapide & plus de possibilités donc plus de temps d'apprentissage \\
 \hline
-Customisation & concentrée sur le temps réel & \multicolumn{2}{c|}{concentrée sur l'analyse en profondeur} \\
+Analyse du signal & concentrée sur le temps réel & \multicolumn{2}{c|}{concentrée sur l'analyse en profondeur} \\
 \hline
 SDR supportées & \multicolumn{3}{c|}{toutes les SDR présentées} \\
 \hline
@@ -552,7 +551,7 @@ Une information importante que les deux logiciels de visualisation ont occultée
 
 \vspace{0.1cm}
 
-La librairie \textit{Matplotlib} de python permet d'afficher le contenu du signal capturé. La figure  \ref{term309} est un plot des échantillons dont la partie réelle (orange) et imaginaire (bleue) ont été séparées. Le signal a été capturé avec un taux d'échantillonnage de 1.8MHz, malgré un TOA relativement court (quelques centièmes de secondes, le calcul du TOA est donné par l'équation \ref{toa}) la quantité d'échantillons capturés est très grande (plus de 130000 échantillons). Matplotlib permet également le zoom, la figure \ref{term310} fait un zoom sur les 4000 premiers échantillons. Les deux ondes apparaissent grâce au zoom.
+La librairie \textit{Matplotlib} de python permet d'afficher le contenu du signal capturé. La figure  \ref{term309} est un plot des échantillons dont la partie réelle (orange) et imaginaire (bleue) ont été séparées. Le signal a été capturé avec un taux d'échantil\-lonnage de 1.8MHz, malgré un TOA relativement court (quelques centièmes de secondes, le calcul du TOA est donné par l'équation \ref{toa}) la quantité d'échantillons capturés est très grande (plus de 130000 échantillons). Matplotlib permet également le zoom, la figure \ref{term310} fait un zoom sur les 4000 premiers échantillons. Les deux ondes apparaissent grâce au zoom.
 
 \begin{figure}[h]
 \centering
@@ -609,7 +608,7 @@ Finalement, il reste une dernière étape avant de pouvoir commencer l'identific
     x_{RMS} = \sqrt{\frac{1}{n}(x_1^2 + x_2^2 + ... + x_n^2}
 \end{align}
 
-L'implémentation de l'automatisation et de la normalisation est disponible en annexe \ref{codeauto}
+L'implémentation de l'automatisation et de la normalisation est disponible en annexe \ref{codeauto}. L'application de RMS a lieu une fois que les données ont été sauvegardées en fichier. Pour chaque répertoire contenant différents signaux capturés, RMS est appliqué individuellement sur chacun des fichiers.
 
 \begin{figure}[h]
 \centering
