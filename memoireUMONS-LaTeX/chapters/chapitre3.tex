@@ -326,35 +326,32 @@ La dernière table \ref{signature3} confirme les éléments analysés dans les t
 
 \vspace{0.1cm}
 
-Selon les résultats des tables \ref{signature1}, \ref{signature2} et \ref{signature3}, il n'est pas possible de pouvoir identifier un noeud émetteur LoRa en se basant sur la position de la signature dans la DTCF du signal analysé. Cependant, une autre possibilté non mentionnée par l'article s'est rélévée durant les expérimentations. Si la position de la signature pour un même set de paramètres est variable, sa forme en revanche, est similaire. Mieux encore, pour deux noeuds différents ayant les mêmes paramètres, on peut constater des différences dans la forme des signatures. Il existe donc bel et bien une propriété physique unique associée à chaque signal qui permettrait d'identifier son noeud émetteur. La table \ref{compa} montre les signatures capturées de 10 échantillons différentes pour chacun des modules testés. Le set choisis pour la comparaison est le set \#4
+Selon les résultats des tables \ref{signature1}, \ref{signature2} et \ref{signature3}, il n'est pas possible de pouvoir identifier un noeud émetteur LoRa en se basant sur la position de la signature dans la DTCF du signal analysé. Cependant, une autre possibilté non mentionnée par l'article s'est rélévée durant les expérimentations. Si la position de la signature pour un même set de paramètres est variable, sa forme en revanche, est similaire. Mieux encore, pour deux noeuds différents ayant les mêmes paramètres, on peut constater des différences dans la forme des signatures. Il existe donc bel et bien une propriété physique unique associée à chaque signal qui permettrait d'identifier son noeud émetteur. La table \ref{compa} montre les signatures capturées de 6 échantillons différents pour chacun des modules testés. Le set choisis pour la comparaison est le set \#4
 
 \begin{table}[h]
 \centering
-\begin{tabular}{|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|}
 \hline
-echantillons \# & module \#1 & module \#2 & module \#3 & identification possible\\
+echantillons \# & module \#1 & module \#2 & module \#3\\
 \hline
-1 & oui & variable & \includegraphics[scale=0.25]{images/test1.png}  & non \\
+1 & \includegraphics[scale=0.4]{images/m11.png} & \includegraphics[scale=0.4]{images/m21.png} & \includegraphics[scale=0.4]{images/m31.png}  \\
 \hline
-2 & oui & variable & \includegraphics[scale=0.25]{images/test1.png}  & non \\
+2 & \includegraphics[scale=0.4]{images/m12.png} & \includegraphics[scale=0.4]{images/m22.png} & \includegraphics[scale=0.4]{images/m32.png}  \\
 \hline
-3 & oui & variable & \includegraphics[scale=0.25]{images/test1.png}  & non \\
+3 & \includegraphics[scale=0.4]{images/m13.png} & \includegraphics[scale=0.4]{images/m23.png} & \includegraphics[scale=0.4]{images/m33.png} \\
 \hline
-4 & oui & variable & \includegraphics[scale=0.25]{images/test1.png}  & non \\
+4 & \includegraphics[scale=0.4]{images/m14.png} & \includegraphics[scale=0.4]{images/m24.png} & \includegraphics[scale=0.4]{images/m34.png}  \\
 \hline
-5 & oui & multiples & \includegraphics[scale=0.25]{images/test1.png}  & non \\
+5 & \includegraphics[scale=0.4]{images/m15.png} & \includegraphics[scale=0.4]{images/m25.png} & \includegraphics[scale=0.4]{images/m35.png}  \\
 \hline
-6 & oui & variable & \includegraphics[scale=0.25]{images/test1.png}  & non \\
+6 & \includegraphics[scale=0.4]{images/m16.png} & \includegraphics[scale=0.4]{images/m26.png} & \includegraphics[scale=0.4]{images/m36.png}  \\
 \hline
-7 & non & inconnu & \includegraphics[scale=0.25]{images/test1.png} & non \\
 \hline
-8 & non & inconnu & \includegraphics[scale=0.25]{images/test1.png} & non \\
-\hline
-9 & non & inconnu & \includegraphics[scale=0.25]{images/test1.png} & non \\
-\hline
-10 & non & inconnu & \includegraphics[scale=0.25]{images/test1.png}  & non \\
+forme générale & \includegraphics[scale=0.2]{images/gen1.png} & \includegraphics[scale=0.2]{images/gen2.png} & \includegraphics[scale=0.2]{images/gen3.png} \\
 \hline
 \end{tabular}
 \caption{Table comparative des formes géométriques des signatures pour le set \#4}
 \label{compa}
 \end{table}
+
+Même si dans un premier temps les signatures ont des formes similaires, s'apparentant à des comètes, il y a cepedant des différentes notable entre chaque module. En effet, les signatures du premier module ont une tête de comète arrondie, là où celle du second module ont une finition pointue. La queue de la comète des signatures du second module est systématiquement détachée du reste du corps. La tête de la comète des signatures du troisème module est plus grosse que les deux autres, avec un corps plus étendu.

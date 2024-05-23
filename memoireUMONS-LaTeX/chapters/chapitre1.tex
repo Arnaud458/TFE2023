@@ -107,53 +107,119 @@ On peut donc interpréter \textit{I} comme étant aligné avec le cosinus dans l
 
 \subsection{Modulation en amplitude}
 
-La modulation en amplitude (\textit{Amplitude modulation, AM}) est plus ancienne et est encore utilisée dans beaucoup de systèmes. Cette technique consiste à encoder l'information en faisant varier l'amplitude en maintenant la fréquence constante. Elle possède moins de contraintes et est notamment plus simple à implémenter que les deux autres modulations citées. En effet on peut représenter le signal modulé $m(t)$ de la façon suivante :
-
-\begin{equation}\label{eq112}
-m(t) = s(t) . \cos(2 \pi f_c t)
-\end{equation}
-
-où s(t) est le signal en bande de base $\cos(2 \pi f_1 t)$. le signal modulé est équivalent à :
-
-\begin{equation}\label{eq113}
-m(t) = U_c(t) = U_c . \cos(2 \pi f_c t + \theta_c)
-\end{equation}
-
-car par l'indentité trigonométrique :
-
-\begin{equation}\label{eq114}
-sin(a)cos(b) = \frac{1}{2} sin(a+b) + sin(a-b).
-\end{equation}
-
-$U_c$ est donc l'attribut de l'amplitude à faire varier pour la modulation AM.
+La modulation en amplitude (\textit{Amplitude Modulation, AM}) est le plus ancienne et est encore utilisée dans beaucoup d'application en radio transmission. Cette technique consiste à encoder l'information en faisant varier l'amplitude en maintenant la fréquence constante. Elle possède moins de contraintes et est notamment plus simple à implémenter que les deux autres modulations citées. 
 
 \vspace{0.1cm}
 
-Soient $u(t)$ un baseband signal et $v(t)$ un carrier signal, la modulation en amplitude s'effectue en multipliant les deux signaux pour obtenir le signal modulé 
+Considérons,
 
-\begin{equation}\label{eq2}
-s_\mathrm{AM}(t) = u(t) . v(t)
+le signal porteur $c(t)$ :
+
+\begin{equation}\label{eq112}
+c(t) = A_c \cos(2 \pi f_c t + \theta_c)
 \end{equation}
 
-Prenons par exemple 
+Le signal modulé $m(t)$ en amplitude est par définition :
 
-$u(t)$ = $\cos(2\pi f_{u}t)$ avec $f_{u}$ = 5 Hz,
+\begin{equation}\label{eq112}
+m(t) = A_c s(t) \cos(2 \pi f_c t + \theta_c)
+\end{equation}
 
-$v(t)$ = $\cos(2\pi f_{c}t)$ où $f_{c}$ = 50 Hz.
+où $s(t)$ est le signal en bande de base. la phase du signal modulé :
 
-La Figure \ref{term1} montre le signal modulé $s_\mathrm{AM}(t)$ via la modulation en amplitude.
+\begin{equation}\label{eq113}
+\phi (t) = 2 \pi f_c t + \theta_c 
+\end{equation}
 
+est une fonction linéaire du temps, indépendante du message en bande de base $s(t)$. $\theta_c$ est une constante arbitraire.
+
+\vspace{0.1cm}
+
+Soient $s(t)$ un baseband signal et $c(t)$ un carrier signal, la modulation en amplitude s'effectue en multipliant les deux signaux pour obtenir le signal modulé 
+
+\begin{equation}\label{eq2}
+m_\mathrm{AM}(t) = s(t) . c(t)
+\end{equation}
+
+\newpage
 
 \begin{figure}[h]
 \centering
 
-\includegraphics[scale=0.5]{images/AM_mod.PNG}
+\includegraphics[scale=0.5]{images/AM_MOD.pdf}
 \caption{Exemple de modulation en amplitude}\label{term1}
 \end{figure}
 
+Prenons par exemple 
+
+$s(t)$ = $\cos(2\pi f_{s}t)$ avec $f_{s}$ = 5 Hz,
+
+$c(t)$ = $\cos(2\pi f_{c}t)$ où $f_{c}$ = 50 Hz.
+
+La Figure \ref{term1} montre le signal modulé $m_\mathrm{AM}(t)$ via la modulation en amplitude, représenté par l'équation suivante :
+
+\begin{equation}\label{eq1140}
+s(t) = \frac{A_c}{2} \cos(2\pi f_s + f_c t) + \frac{A_c}{2} \cos(2\pi f_s - f_c t)
+\end{equation}
+
+Pour rappel, l'indentité trigonométrique :
+
+\begin{equation}\label{eq114}
+cos(a)cos(b) = \frac{1}{2} (cos(a+b) + cos(a-b)).
+\end{equation}
+
+
+
+\subsection{Modulation en phase}
+
+La modulation en phase (\textit{Phase Modulation, PM)} permet généralement d'obtenir une meilleure utilisation de la bande passante que les autres modulations car les variations de phase peuvent encoder plus d'informations, ce qui augmente la quantité de données transmises. La modulation en phase est associée à celle en fréquence, celle ci sont dites "angulaires" \cite{angle}. Sous l’effet de ces modulations, la phase constante de la porteuse non modulée devient un angle de phase variable dans le temps, véhiculant l’information du message en bande de base.
+
+Le signal modulé $m(t)$ peut s'eprimer ainsi :
+
+\begin{equation}\label{eq1200}
+m(t) = A_c s(t) \cos(2 \pi f_c t + \theta(t) + \theta_c)
+\end{equation}
+
+La phase du signal modulé vaut :
+
+\begin{equation}\label{eq1201}
+\phi (t) = 2 \pi f_c t +\theta(t) + \theta_c 
+\end{equation}
+
+Contrairement à \ref{eq113}, $\phi(t)$ n'est plus une fonction linéaire du temps comme dans la modulation en amplitude. En modulation de phase, $\theta(t)$ est le produit du message $s(t)$ par une constante $K$ représentant la sensibilité du modulateur.
+Soient $s(t)$ un baseband signal et $c(t)$ un carrier signal, le signal modulé en phase $m_\mathrm{PM}(t)$ est le résultat suivant :
+
+\begin{align}
+    s(t) &= \sin(2\pi f_{s}t) \\
+    c(t) &= \cos(2\pi f_{c}t + \phi_{c}) \\
+    m_\mathrm{PM}(t) &= \cos\left(2\pi f_{c}t + K \cdot s(t)\right)
+\end{align}
+
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=0.5]{images/PM_MOD.pdf}
+\caption{Exemple de modulation en phase}\label{term3}
+\end{figure}
+
+Prenons par exemple
+
+\vspace{0.1cm}
+
+$s(t)$ = $sin(2\pi f_{s}t)$ avec $f_{s}$ = 5 Hz,
+
+$c(t)$ = $cos(2\pi f_{c}t + \phi_{c})$ où $f_{c}$ = 50 Hz.
+
+\vspace{0.1cm}
+
+La Figure \ref{term3} montre le signal modulé $m_\mathrm{PM}(t)$ en phase pour une phase initale ddu carrier signal $\phi_{c}$ = 0 avec un index de modulation de phase $K$ = 8.
+
+
+
+
 \subsection{Modulation en fréquence}
 
-La modulation en fréquence (\textit{Frequency modulation, FM}) encode les informations dans les caractéristiques temporelles du signal transmis, ce qui la rend plus robuste aux interférences liées à l'amplitude que la modulation AM. La fréquence d'un signal ne peut pas être modifiée par le bruit ou la distorsion. Cependant, d'autres types de distortions comme le \textit{frequency drift} (un changement non désiré de la fréquence dans le temps) peuvent affecter la qualité d'un signal modulé en fréquence. Selon l'équation \ref{eq113}, le paramètre à faire varier est $f_c$. Contrairement à la modulation en amplitude, le signal porteur et modulé ne sont pas similaires ($m(t) \neq U_c(t)$). Dans \ref{eq113}, la phase $\phi(t)$ vaut $2 \pi f_ct + \theta_c$ où $\theta_c$ est une constante. Pour déterminer la fréquence instantanée, il faut dériver la phase instantanée c'est à dire :
+La modulation en fréquence (\textit{Frequency modulation, FM}) encode les informations dans les caractéristiques temporelles du signal transmis, ce qui la rend plus robuste aux interférences liées à l'amplitude que la modulation AM. La fréquence d'un signal ne peut pas être modifiée par le bruit ou la distorsion. Cependant, d'autres types de distortions comme le \textit{frequency drift} (un changement non désiré de la fréquence dans le temps) peuvent affecter la qualité d'un signal modulé en fréquence. Cette modulation est également une modulation angulaire, mais en faisant varier cette fois la fréquence instantannée. Pour déterminer la fréquence instantanée, il faut dériver la phase instantanée c'est à dire :
 
 \begin{equation}\label{eq120}
 f_i(t) = \frac{1}{2\pi} \frac{d\phi_i(t)}{dt}
@@ -162,28 +228,28 @@ f_i(t) = \frac{1}{2\pi} \frac{d\phi_i(t)}{dt}
 Ainsi, il est possible de représenter l'accumulation de la phase due à la modulation par l'équation :
 
 \begin{equation}\label{eq121}
-U_c(t) = U_c.\cos(2 \pi \int_{0}^{t} f_i(\tau) \, d\tau +  \theta_c)
+m(t) = A_c.\cos(2 \pi \int_{0}^{t} f_i(\tau) \, d\tau +  \theta_c)
 \end{equation}
 
 \vspace{0.1cm}
 
-Soient $u(t)$ un baseband signal et $v(t)$ un carrier signal, le signal modulé en fréquence $s_{fm}(t)$ est le résultat suivant :
+Soient $s(t)$ un baseband signal et $c(t)$ un carrier signal, le signal modulé en fréquence $m_\mathrm{FM}(t)$ est le résultat suivant :
 
 \begin{align}
-    u(t) &= \sin(2\pi f_{u}t) \\
-    v(t) &= \cos(2\pi f_{c}t + \phi_{c}) \\
-    s_{fm}(t) &= \cos\left(2\pi f_{c}t + \Delta f \cdot u(t) + \phi_{c}\right)
+    s(t) &= \sin(2\pi f_{s}t) \\
+    c(t) &= \cos(2\pi f_{c}t + \phi_{c}) \\
+    m_\mathrm{FM}(t) &= \cos\left(2\pi f_{c}t + \Delta f \cdot u(t) + \phi_{c}\right)
 \end{align}
 
 \vspace{0.1cm}
 
 Reprennons le même signal en bande de base 
-$u(t)$ = $sin(2\pi f_{u}t)$ avec $f_{u}$ = 5 Hz et la même porteuse 
-$v(t)$ = $cos(2\pi f_{c}t + \phi_{c})$ où $f_{c}$ = 50 Hz.
+$s(t)$ = $sin(2\pi f_{s}t)$ avec $f_{s}$ = 5 Hz et la même porteuse 
+$c(t)$ = $cos(2\pi f_{c}t + \phi_{c})$ où $f_{c}$ = 50 Hz.
 
 \vspace{0.1cm}
 
-La Figure \ref{term2} montre le signal modulé $s_{fm}(t)$ via la modulation en fréquence pour une phase initale du carrier signal $\phi_{c}$ = 0 avec une dérivation en fréquence $\Delta f$ = 5Hz. On remarque la présence d'une constante représentant un décalage de phase. La modulation en fréquence n'est pas détachée de la modulation en phase. Les deux modulations fonctionnent à partir de la phase instantannée $\phi_i(t)$. La modulation en fréquence fait varier linéairement la fréquence instantanée $f_i(t)$ (qui dépent de $\phi_i(t)$ par \ref{eq120}) tandis que la modulation en phase fait varier linéairement la phase instantannée $\phi_i(t)$. Ajouté à cela, $u(t)$ est un sinus, or 
+La Figure \ref{term2} montre le signal modulé $m_\mathrm{FM}(t)$ via la modulation en fréquence pour une phase initale du carrier signal $\phi_{c}$ = 0 avec une dérivation en fréquence $\Delta f$ = 5Hz. On remarque la présence d'une constante représentant un décalage de phase. La modulation en fréquence n'est pas détachée de la modulation en phase. Les deux modulations fonctionnent à partir de la phase instantannée $\phi_i(t)$. La modulation en fréquence fait varier linéairement la fréquence instantanée $f_i(t)$ (qui dépent de $\phi_i(t)$ par \ref{eq120}) tandis que la modulation en phase fait varier linéairement la phase instantannée $\phi_i(t)$. Ajouté à cela, $u(t)$ est un sinus, or 
 
 \begin{equation}\label{eq122}
 \int_{0}^{t} \sin(2 \pi f \tau \, d\tau) = \frac{1 - \cos(2\pi f t)}{2 \pi f}
@@ -198,45 +264,13 @@ Ce qui implique que le signal modulé a subi un décalage de $\frac{\pi}{2}$ rad
 \begin{figure}[h]
 \centering
 
-\includegraphics[scale=0.5]{images/FM_mod.PNG}
+\includegraphics[scale=0.5]{images/FM_MOD.pdf}
 \caption{Exemple de modulation en fréquence}\label{term2}
 \end{figure}
 
-\subsection{Modulation en phase}
-
-La modulation en phase (\textit{Phase Modulation, PM)} permet généralement d'obtenir une meilleure utilisation de la bande passante que les autres modulations car les variations de phase peuvent encoder plus d'informations, ce qui augmente la quantité de données transmises. La modulation en phase est associée à celle en fréquence. En effet les concepts sont liés par leur dépendance à $\phi_i(t)$ . Peu importe l'argument de la fonction de modulation choisi, il n'est plus une fonction linéaire du temps.
-
-Soient $u(t)$ un baseband signal et $v(t)$ un carrier signal, le signal modulé en phase $s_{pm}(t)$ est le résultat suivant :
-
-\begin{align}
-    u(t) &= \sin(2\pi f_{u}t) \\
-    v(t) &= \cos(2\pi f_{c}t + \phi_{c}) \\
-    s_{pm}(t) &= \cos\left(2\pi f_{c}t + K_{p} \cdot u(t)\right)
-\end{align}
-
-\vspace{0.1cm}
-
-Prenons par exemple
-
-\vspace{0.1cm}
-
-$u(t)$ = $sin(2\pi f_{u}t)$ avec $f_{u}$ = 5 Hz,
-
-$v(t)$ = $cos(2\pi f_{c}t + \phi_{c})$ où $f_{c}$ = 50 Hz.
-
-\vspace{0.1cm}
-
-La Figure \ref{term3} montre le signal modulé $s_{pm}(t)$ en phase pour une phase initale ddu carrier signal $\phi_{c}$ = 0 avec un index de modulation de phase $K_{p}$ = 8.
 
 
-\begin{figure}[h]
-\centering
-
-\includegraphics[scale=0.5]{images/PM_mod.PNG}
-\caption{Exemple de modulation en phase}\label{term3}
-\end{figure}
-
-On constate que pour un signal sinusoidal il est assez difficile de différencier la modulation en fréquence de celle en phase. La différence a lieu à l'emplacement des variations de la vitesse d'oscillation. Pour la modulation en fréquence, on constante que l'oscillation accélère jusqu'à atteindre le maximum quand l'amplitude du signal en bande de base est maximale, et inversément quand l'amplitude est au minimum. Les concepts de modulation de phase et de fréquence sont généralement regroupés sous le terme de modulation angulaire (source : \href{http://www.telecom.ulg.ac.be/teaching/notes/total1/elen008/node39_mn.html}{http://www.telecom.ulg.ac.be/teaching/notes/total1/elen008/node39mn.html})
+On constate que pour un signal sinusoidal il est assez difficile de différencier la modulation en fréquence de celle en phase. La différence a lieu à l'emplacement des variations de la vitesse d'oscillation. Pour la modulation en fréquence, on constante que l'oscillation accélère jusqu'à atteindre le maximum quand l'amplitude du signal en bande de base est maximale, et inversément quand l'amplitude est au minimum.
 
 
 \subsection{Gestion du bruit}
