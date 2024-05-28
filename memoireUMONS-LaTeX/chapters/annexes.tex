@@ -7,7 +7,6 @@
 \begin{lstlisting}[style=cppstyle, caption={Module Arduino}, label={lst:cpp}]
 
 #define LED_BUILTIN 3
-
 #define SX1276_NSS   10
 #define SX1276_RESET 9
 #define SX1276_DIO0  2
@@ -18,7 +17,6 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   Serial.begin(57600);
   while (!Serial);
-
   LoRa.setPins(10, 9, 2);
 
   if (!LoRa.begin(868.1E6)) {
@@ -48,7 +46,6 @@ void loop() {
   digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
   delay(1000);                       // wait for a second
   Serial.println("Sending frame...");
-
   unsigned long t0 = micros();
   LoRa.beginPacket(0); // 0 = explicit header, 1 = implicit header
   LoRa.print("B");
@@ -62,7 +59,6 @@ void loop() {
 
   //LoRa.idle(); // Warning, further transmission do not work; need to reset module ?
   //LoRa.setSyncWord(0xFF); /* LoRaWAN */
-
 
   counter++;
 }

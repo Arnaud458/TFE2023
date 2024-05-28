@@ -1,3 +1,5 @@
+\renewcommand{\leftmark}{IDENTIFICATION}
+
 \chapter{Identification d'appareils LoRa par la méthode des constellations traces figures}
 
 Comme tout appareil au sein d'un réseau, un appareil connecté dans l'iot possède de base différents moyens d'authentification. Son adresse MAC, son adresse IP, des informations relatives à sa manufacturation comme un numéro de série par example. De manière plus spécifiques, les noeuds au sein d'un réseau LoRaWAN possèdent un DevEUI, un numéro unique accordé par le réseau à l'appareil. Cependant ses informations peuvent être compromises si appareils sont victimes de \textit{devices spoofing}, c'est à dire qu'un appareil malveillant usurpe l'indentité de sa cible, afin d'accéder au sein du réseau. D'autres attaques comme \textit{Man in The Middle} ou \textit{Replay attacks} peuvent également compromettre l'identité d'un appareil si on se base uniquement sur ses identifiant classiques\cite{attack}. Il faut donc pouvoir identifier les appareils mais sans se fier à leur informations d'authentification.
@@ -46,7 +48,7 @@ Pour supprimer l'effet du facteur de rotation, les données sont traitées diff�
 
 \begin{align}\label{eq4003}
 	D(t) &= Y(t) . Y^{*}(t+n) \\
-		 &= X(t) . e^{j2\pi \Delta f t+ \phi} .X^{*}(t+n) . e^{j(2\pi \Delta f (t + n) + \phi)} \\
+		 &= X(t) . e^{j2\pi \Delta f t+ \phi} .X^{*}(t+n) . e^{j(2\pi \Delta f (t + n) + \phi)} \nonumber \\
  		 &= X(t) . X^{*}(t+n) . e^{j2\pi \Delta f n}
 \end{align}
 
@@ -59,12 +61,12 @@ où $X^{*}(t)$ est le complexe conjugué de $X(t)$ et $n$ l'intervalle différen
 Il est donc possible d'exprimer le traitement différentiel en fonction des composantes I et Q du signal récupérées par la SDR :
 
 \begin{align}\label{eq4005}
-	D(t) &= Y(t) . Y(t+n) \\
-		 &= (Y_I(t) + jY_Q(t)) . (Y_I(t+n) - jY_Q(t+n)) \\
+	D(t) &= Y(t) . Y^{*}(t+n) \nonumber \\
+		 &= (Y_I(t) + jY_Q(t)) . (Y_I(t+n) - jY_Q(t+n)) \nonumber \\
  		 &= Y_I(t)Y_I(t+n) + Y_Q(t)Y_Q(t+n) + j(Y_Q(t)Y_I(t+n) - Y_I(t)Y_Q(t+n))
 \end{align}
 
-La dernière inconnue reste l'intervalle différentiel $n$. Il représente le nombre de points échantillonnés pour chaque symbole de LoRa. Il peut être calculé par :
+L'équation \ref{eq4005} peut donc être directement appliquées sur les données. Pour rappel, les signaux sont convervés dans des fichiers sous forme d'échantillons I/Q. La dernière inconnue reste l'intervalle différentiel $n$. Il représente le nombre de points échantillonnés pour chaque symbole de LoRa. Il peut être calculé par :
 
 \begin{align}\label{eq4006}
 	R_s &= \frac{BW}{2^{SF}} \\
