@@ -334,7 +334,7 @@ Pour les signaux discrets et échantillonnés, la \textit{DFT} (Transformée de 
 
 \section{LoRa}
 
-\textit{LoRa} (Long Range) est une technologie de communication sans fil qui permet de transmettre des données sur de longues distances avec une faible consommation d'énergie. Elle a été développée par la société française Cycleo (qui a été racheté par Semtech en 2012 \cite{sitesemtech}) et est maintenant gérée par la fondation LoRa Alliance, qui regroupe plusieurs entreprises et organisations du monde entier. Toutes les informations de base concernant LoRa sont disponibles sur le site LoRa Alliance (\href{https://lora-alliance.org}{https://lora-alliance.org})
+\textit{LoRa} (Long Range) est une technologie de communication sans fil qui permet de transmettre des données sur de longues distances avec une faible consommation d'énergie. Elle a été développée par la société française Cycleo (qui a été racheté par Semtech en 2012 \cite{sitesemtech}) et est maintenant gérée par la fondation LoRa Alliance, qui regroupe plusieurs entreprises et organisations du monde entier. Toutes les informations de base concernant LoRa sont disponibles sur le site LoRa Alliance \footnote{LoRa Alliance : \href{https://lora-alliance.org}{https://lora-alliance.org}}
 
 \begin{figure}[h]
 \centering
@@ -447,7 +447,7 @@ LoRa permet d'envoyer des paquets sur une longue distance à faible puissance. S
 
 \vspace{0.1cm}
 
-Le facteur d'étalement permet de déterminer le taux de variation de fréquence pour un signal. Modifier le spreading factor ajuste diffé \\ rentes propriétés de la communication (source : The Thing Network\cite{thethingsnetworkSF}). Par exemple, si on augmente le spreading factor, les quatre conséquences principales sont :
+Le facteur d'étalement permet de déterminer le taux de variation de fréquence pour un signal. Modifier le spreading factor ajuste diffé \\ rentes propriétés de la communication \footnote{The Thing Network\cite{thethingsnetworkSF}}. Par exemple, si on augmente le spreading factor, les quatre conséquences principales sont :
 
 \vspace{0.1cm}
 
@@ -501,19 +501,19 @@ LoRaWAN possède des capacités de géolocalisation, permettant au réseau de d�
 
 \vspace{0.1cm}
 
-LoRaWAN utilise des protocoles de sécurité \textit{end-to-end}, aussi bien dans un réseau public intégré que dans un réseau privé. L'architecture LoRaWAN (décrite en détails dans la section \ref{topolora}) contient plusieurs couches de sécurité. Au niveau des \textit{end devices}, une routine d'identification est imposée avant l'accès au réseau. Seul les appareils de confiance sont donc autorisés à communiquer. Ensuite, une fois la communication commencée, les données sont chiffrées avant d'être transmises dans le réseau. Le framework sécuritaire de LoRa ne se limite pas à l'autentification et au chiffrement. LoRaWAN gère également les mise à jour en continu par les airs, ainsi qu'une supervision continue sur d'éventuelles intrusions. Les caractéristiques générales de LoRaWAN sont disponibles sur le site The Thing Network (\href{https://www.thethingsnetwork.org/docs/lorawan/}{https://www.thethingsnetwork.org/docs/lorawan/}).
+LoRaWAN utilise des protocoles de sécurité \textit{end-to-end}, aussi bien dans un réseau public intégré que dans un réseau privé. L'architecture LoRaWAN (décrite en détails dans la section \ref{topolora}) contient plusieurs couches de sécurité. Au niveau des \textit{end devices}, une routine d'identification est imposée avant l'accès au réseau. Seul les appareils de confiance sont donc autorisés à communiquer. Ensuite, une fois la communication commencée, les données sont chiffrées avant d'être transmises dans le réseau. Le framework sécuritaire de LoRa ne se limite pas à l'autentification et au chiffrement. LoRaWAN gère également les mise à jour en continu par les airs, ainsi qu'une supervision continue sur d'éventuelles intrusions. Les caractéristiques générales de LoRaWAN sont disponibles sur le site The Thing Network \footnote{The Thing Network :\href{https://www.thethingsnetwork.org/docs/lorawan/}{https://www.thethingsnetwork.org/docs/lorawan/}}.
 
 \vspace{0.1cm}
 
-Avec toutes ces caractéristiques, LoRaWAN s'est développé dans de nombreux domaines aussi bien environementaux qu'industriels. Les principales utilisations de LoRaWAN actuelles sont les suivantes (liste des applications : \href{https://www.semtech.com/lora/lora-applications}{https:// \\ www.semtech.com/lora/lora-applications}):
+Avec toutes ces caractéristiques, LoRaWAN s'est développé dans de nombreux domaines aussi bien environementaux qu'industriels \footnote{liste des applications de LoRaWAN: \href{https://www.semtech.com/lora/lora-applications}{https://www.semtech.com/lora/lora-applications}}:
 
 \vspace{0.1cm}
 
 \begin{itemize}
 
-\item la surveillance environementale en général \cite{lorauc1}. LoRaWAN peut être déployé pour surveiller des niveaux de températures, d'humidité, de bruits ou encore d'autres paramètres dans n'importe quel milieu. Une compagnie Hollandaise, Sensoterra (\href{https://www.sensoterra.com/technology/global-lorawan-networks/}{https://www.sensoterra.com/techno \\ logy/global-lorawan-networks/}), utilise notamment LoraWan pour surveiller la qualité des sols.
+\item la surveillance environementale en général \cite{lorauc1}. LoRaWAN peut être déployé pour surveiller des niveaux de températures, d'humidité, de bruits ou encore d'autres paramètres dans n'importe quel milieu. Une compagnie Hollandaise, Sensoterra\footnote{Sensoterra : \href{https://www.sensoterra.com/technology/global-lorawan-networks/}{https://www.sensoterra.com/technology/global-lorawan-networks/}}, utilise notamment LoraWan pour surveiller la qualité des sols.
 \item Les \textit{smart cities} \cite{lorauc2}. LoRaWAN est actif sur différents aspects comme la gestion intelligente de l'éclairage, la gestion des déchets, la surveillance, etc.
-\item L'embarqué industriel \cite{lorauc3}. La maintenance et la surveillance de matériel et de l'équipement peut être gérée par LoRaWAN. TataSteel (\href{https://consulting.tatasteel.com/our_expertise/plant-infrastructure-and-logistics/}{https://cons \\ ulting.tatasteel.com/ourexpertise/plant-infrastructure-and-logistics/}), une compagnie indienne, utilise LoRaWAN pour ces équipements industriels.
+\item L'embarqué industriel \cite{lorauc3}. La maintenance et la surveillance de matériel et de l'équipement peut être gérée par LoRaWAN. TataSteel \footnote{TataSteel : \href{https://consulting.tatasteel.com/our_expertise/plant-infrastructure-and-logistics/}{https://consulting.tatasteel.com/ourexpertise/}}, une compagnie indienne, utilise LoRaWAN pour ces équipements industriels.
 \item La prévention de catastrophe naturelle. Que ce soit en prévision\cite{lorauc41} ou après\cite{lorauc43} d'éventuelles catastrophes naturelles, la longue portée et la surveillance en temps réel sont des atouts cruciaux pour ce genre d'évènement.
 \end{itemize}
 
@@ -535,7 +535,7 @@ La communication au sein d'un réseau LoRaWAN se fait en grande partie de maniè
 \centering
 
 \includegraphics[scale=0.1]{images/architecture.png}
-\caption{Topologie de l'infrastructure LoRaWAN (source : \href{https://www.thethingsnetwork.org/docs/lorawan/architecture/}{The Thing Newtork})}\label{term7}
+\caption{Topologie de l'infrastructure LoRaWAN \protect\footnote{Infrastructure de LoRaWAN : The Thing Newtork\href{https://www.thethingsnetwork.org/docs/lorawan/architecture/}{https://www.thethingsnetwork.org/docs/lorawan/architecture/}}}\label{term7}
 \end{figure}
 
 La figure \ref{term7} montre les 4 types d'appareils qui composent la topologie d'un infrastrucure LoRaWAN.
@@ -576,7 +576,7 @@ Les session keys sont des clés générées dynamiquement par le join server et 
 
 \subsubsection{Session}
 
-L'établissement d'une session entre un end devices et le réseau LoRaWAN peut se faire de deux façons différentes. Le procédé des sessions est disponible sur le site The Thing Network : \href{https://www.thethingsnetwork.org/docs/lorawan/end-device-activation/}{https://www.thethingsnetwork.org/docs/lorawan/end-device-activation/}
+L'établissement d'une session entre un end devices et le réseau LoRaWAN peut se faire de deux façons différentes. Le procédé des sessions est disponible sur le site The Thing Network \footnote{End device Activation : \href{https://www.thethingsnetwork.org/docs/lorawan/end-device-activation/}{https://www.thethingsnetwork.org/docs/lorawan/end-device-activation/}}.
 
 La première méthode est une méthode dynamique appelée \textit{Over the Air Activation (OTAA)} et se déroule de la façon suivante: 
 \begin{itemize}

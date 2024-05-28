@@ -7,7 +7,7 @@
 
 \subsection{Radio logicielle}
 
-La radio logicielle \textit{(Software Defined Radio, SDR)} est une technologie qui permet de mettre en œuvre des systèmes de radio à l'aide de logiciels plutôt que de matériels. Le site RTL-SDR (\href{https://www.rtl-sdr.com/about-rtl-sdr/}{https://www.rtl-sdr.com/about-rtl-sdr/)} donne des informations sur le fonctionnement des radios logicielles, et mentionne également les SDRs utilisées pour ce travail.
+La radio logicielle \textit{(Software Defined Radio, SDR)} est une technologie qui permet de mettre en œuvre des systèmes de radio à l'aide de logiciels plutôt que de matériels. Le site RTL-SDR \footnote{RTL-SDR : \href{https://www.rtl-sdr.com/about-rtl-sdr/}{https://www.rtl-sdr.com/about-rtl-sdr/}} donne des informations sur le fonctionnement des radios logicielles, et mentionne également les SDRs utilisées pour ce travail.
 
 \vspace{0.1cm}
 
@@ -28,7 +28,7 @@ La \textit{RTL SDR DVB-T} est la version la moins chère des radios utilisées. 
 \end{figure}
 
 Le chipset RTL2832U digitalise les signaux RF et les envoie à l'ordinateur. Le tuner permet d'ajuster la fréquence pour couvrir une large portée.
-La radio est raccordée à l'ordinateur via le port USB. Le site RTL SDR (\href{https://www.rtl-sdr.com/about-rtl-sdr/}{https://www.rtl-sdr.com/about-rtl-sdr/}) ajoute quelques informations sur l'origine de l'utilisation de DVB-T tuner en tant que SDR. Le schéma bloc de la sdr est représenté sur la figure \ref{term3000}. 
+La radio est raccordée à l'ordinateur via le port USB. Le site RTL SDR \footnote{RTL-SDR : \href{https://www.rtl-sdr.com/about-rtl-sdr/}{https://www.rtl-sdr.com/about-rtl-sdr/}} ajoute quelques informations sur l'origine de l'utilisation de DVB-T tuner en tant que SDR. Le schéma bloc de la sdr est représenté sur la figure \ref{term3000}. 
 
 \newpage
 
@@ -61,8 +61,8 @@ Le chipset contient les éléments suivants :
 
 \vspace{0.1cm}
 
-Une description détaillée du déroulement de la récupération du signal par la SDR est disponible au lien suivant : \textit{Ajoo's blog} \href{https://ajoo-github-blog-old.pages.dev/intro-to-rtl-sdr-part-i-principles-and-hardware}{https://ajoo-github-blog-old.pages
-.dev/intro-to-rtl-sdr-part-i-principles-and-hardware}
+Une description détaillée du déroulement de la récupération du signal par la SDR est disponible sur le site \textit{Ajoo's blog}\footnote{Ajoo's blog : \href{https://ajoo-github-blog-old.pages.dev/intro-to-rtl-sdr-part-i-principles-and-hardware}{https://ajoo-github-blog-old.pages
+.dev/intro-to-rtl-sdr-part-i-principles-and-hardware}}.
 
 
 
@@ -76,7 +76,7 @@ Une description détaillée du déroulement de la récupération du signal par l
 \caption{RTL SDR R820T2}\label{term32}
 \end{figure}
 
-La deuxième radio logicielle utilisée est la \textit{RTL SDR R820T2}. Il y a deux différences majeures avec la radio DVB-T. L'antenne de cette radio logicielle est de meilleure qualité et le tuner chip de cette SDR est un R820T2. Cette version est une version améliorée du tuner qui se trouve dans la dvb-T, ce qui a pour impact une réduction du bruit, une meilleure sensibilité et une couverture de fréquence plus large. La figure \ref{term32} montre la SDR en question. Le schéma bloc de la SDR présentée à la section \ref{dvbt} est le même que pour celui-ci. En effet la différence entre le tuner T et T2 n'est pas visible sur la description du shéma. Une description du registre de la RTL-SDR R820T2 est disponible au lien suivant : \href{http://superkuh.com/R820T2_Register_Description.pdf}{http://superkuh.com/R820T2RegisterDescription.pdf}
+La deuxième radio logicielle utilisée est la \textit{RTL SDR R820T2}. Il y a deux différences majeures avec la radio DVB-T. L'antenne de cette radio logicielle est de meilleure qualité et le tuner chip de cette SDR est un R820T2. Cette version est une version améliorée du tuner qui se trouve dans la dvb-T, ce qui a pour impact une réduction du bruit, une meilleure sensibilité et une couverture de fréquence plus large. La figure \ref{term32} montre la SDR en question. Le schéma bloc de la SDR présentée à la section \ref{dvbt} est le même que pour celui-ci. En effet la différence entre le tuner T et T2 n'est pas visible sur la description du shéma. Une description détaillée de la RTL-SDR R820T2 est disponible sur le site RTL-SDR \footnote{Datasheet R820T2 : \href{https://www.rtl-sdr.com/wp-content/uploads/2013/04/R820T_datasheet-Non_R-20111130_unlocked1.pdf}{https://www.rtl-sdr.com/wp-content/uploads/2013/04/R820T-datasheet-Non-R-20111130-unlocked1.pdf}}
 
 
 \subsubsection{HackRF One}
@@ -103,16 +103,17 @@ La dernière radio logicielle utilisée est la \textit{HackRF One}. Au dela du p
 \end{figure}
 
 
-Le schéma bloc de la SDR est affiché sur la figure \ref{term3001}. Ce dernier est beaucoup plus complexe que celui de la RTL SDR. Il y a d'une part que la HackRF est un transceiver, donc elle possède les étapes nécessaires à l'émission que la RTL SDR ne possède pas. Ensuite, il y a plusieurs étapes de fréquences intermédiaires. L'architecture de la HackRF permet d'utiliser plusieurs étapes de mixeur pour atteindre la fréquence désirée. Chaque étape possède sa fréquence intermédiaire. Le schéma bloc ainsi que les caractéristiques de la SDR sont disponibles au lien suivant : \href{https://www.hb9afo.ch/articles/HackRF/default.htm}{https://www.hb9afo.ch/articles/HackRF/default.htm}
+Le schéma bloc de la SDR est affiché sur la figure \ref{term3001}. Ce dernier est beaucoup plus complexe que celui de la RTL SDR. Il y a d'une part que la HackRF est un transceiver, donc elle possède les étapes nécessaires à l'émission que la RTL SDR ne possède pas. Ensuite, il y a plusieurs étapes de fréquences intermédiaires. L'architecture de la HackRF \footnotemark[10] permet d'utiliser plusieurs étapes de mixeur pour atteindre la fréquence désirée. Chaque étape possède sa fréquence intermédiaire.
 
 \begin{figure}[h]
 \centering
 
 \includegraphics[scale=0.8]{images/SBhackrf.png}
-\caption{Schéma bloc de la HackRF One}\label{term3001}
+\caption{Schéma bloc de la HackRF One\protect\footnotemark[10]}\label{term3001}
 \end{figure}
 
-
+\footnotetext[10]{HackRF One : \href{https://www.hb9afo.ch/articles/HackRF/default.htm}{https://www.hb9afo.ch/articles/HackRF/default.htm}}
+ 
 La table \ref{table1} résume les différents critères pertinents pour les trois radios logicielles. Ces critères permettront de sélectionner la SDR la plus adéquate pour les expérimentations.
 
 
@@ -131,15 +132,15 @@ Largeur de bande & \multicolumn{2}{c|}{jusqu'à 2.4MHz} & jusqu'à 20MHz  \\
 \hline
 Résolutions de l'ADC & \multicolumn{3}{c|}{8 bits} \\
 \hline
-Transceiver & \multicolumn{2}{c|}{seulement receiver} & oui \\
+RX & \multicolumn{3}{c|}{oui} \\
 \hline
-Modulations supportéées & \multicolumn{3}{c|}{supporte LoRa et d'autres modulations} \\
+TX & \multicolumn{2}{c|}{non} & oui \\
 \hline
 Compatibilié logicielle & \multicolumn{3}{c|}{oui, notamment avec ceux décrits dans la section \ref{fft}} \\
 \hline
 Qualité du signal & mauvaise &\multicolumn{2}{c|}{très bonne}\\
 \hline
-Prix & + \- 20 euros & + \- 30 euros & \> 250 euros \\
+Prix & $+-$ 20 euros & $+-$ 30 euros & $>$ 250 euros \\
 \hline
 \end{tabular}
 \end{adjustbox}
@@ -151,6 +152,8 @@ Prix & + \- 20 euros & + \- 30 euros & \> 250 euros \\
 
 \subsection{Module d'émission Lora}
 
+La transmission de signaux via la technologie LoRa est un aspect essentiel du travail. Afin de garantir la meilleure qualité de transmission possible, différents modules sont testés. Cela permet de distinguer les variations de performance et de capacitées entre les modules. Certains modules sont plus facilement configurable que d'autres, et d'autres nécessitent des composants hardware ou software spécifiques.
+
 \subsubsection{Module RN2483}
 
 \begin{figure}[h]
@@ -161,9 +164,8 @@ Prix & + \- 20 euros & + \- 30 euros & \> 250 euros \\
 \end{figure}
 
 
-Le \textit{microchip RN2483} est un module de technologie spécifique à LoRa permettant de communiquer à longue portée et à faible coup. La documentation sur cet appareil est disponible au lien suivant : \href{https://ww1.microchip.com/downloads/en/DeviceDoc/40001784B.pdf}{https://ww1.microchip.com/downloads
-/en/DeviceDoc/40001784B.pdf}. Le Schéma bloc (disponible à l'adresse \href{https://www.mouser.be/new/microchip/microchip-rn2483-module/}{https://www.
-mouser.be/new/microchip/microchip-rn2483-module/}) du module est représenté à la figure \ref{term3002}. Le module RN2483 de la figure \ref{term34} est un simple \textit{transceiver (transmitter and receiver)} radio de type SX127x couplé à un microcontroleur. Les informations relatives à ce type de transceivers sont disponibles sur le site de Semtech : \href{https://www.semtech.com/products/wireless-rf/lora-connect/sx1278}{https://www.semtech.com/products/wireless-rf/lora-connect/sx1278}.
+Le \textit{microchip RN2483}\footnote{Datasheet RN2483 :\href{https://ww1.microchip.com/downloads/en/DeviceDoc/40001784B.pdf}{https://ww1.microchip.com/downloads
+/en/DeviceDoc/}} est un module de technologie spécifique à LoRa permettant de communiquer à longue portée et à faible coup. Le Schéma bloc \footnote{Shéma bloc rn2483 : \href{https://www.mouser.be/new/microchip/microchip-rn2483-module/}{https://www.mouser.be/new/microchip/microchip-rn2483-module/}} du module est représenté à la figure \ref{term3002}. Le module RN2483 de la figure \ref{term34} est un simple \textit{transceiver (transmitter and receiver)} radio de type SX127x couplé à un microcontroleur. Les informations relatives à ce type de transceivers sont disponibles sur le site de Semtech \footnote{Semtech : \href{https://www.semtech.com/products/wireless-rf/lora-connect/sx1278}{https://www.semtech.com/products/wireless-rf/lora-connect/sx1278}}.
 
 
 Voici quelques spécificités du module:
@@ -191,7 +193,7 @@ L'utilisation du module RN2483 est détaillée dans la section \ref{signallora}.
 
 
 
-Le module \textit{Pycom lopy} \cite{sitepycom} est un appareil programmable en micro python. Il comprend un microcontroleur ainsi qu'une série de pins digitaux input/output,  des composantes de connectivité sans fil et un port micro USB. La figure \ref{term35} montre le module  connecté à une antenne.
+Le module \textit{Pycom LoPy} \footnotemark[11] est un appareil programmable en micro python. Il comprend un microcontroleur ainsi qu'une série de pins digitaux input/output,  des composantes de connectivité sans fil et un port micro USB. La figure \ref{term35} montre le module  connecté à une antenne.
 
 \newpage
 
@@ -203,9 +205,7 @@ Le module \textit{Pycom lopy} \cite{sitepycom} est un appareil programmable en m
 \end{figure}
 
 
-Le shéma bloc (disponible dans les datasheets du module à l'adresse : \href{https://docs.pycom.io/gitbook/assets/specsheets/Pycom_002_Specsheets_LoPy_v2.pdf}{https://
-docs.pycom.io/gitbook/assets/specsheets/Pycom002SpecsheetsLoPyv2.pdf} est re-
-présenté à la figure \ref{term3003}. Contrairement au module RN2483, on remarque que le module LoPy possède des fonctions supplémentaires 
+Le shéma bloc \footnotemark[11]  est représenté à la figure \ref{term3003}. Contrairement au module RN2483, on remarque que le module LoPy possède des fonctions supplémentaires 
 (qui ne sont pas intéressantes pour l'expérimentation) comme une connexion Wifi ou Bluetooth. Le microcontrolleur possède aussi plusieurs interfaces autres que UART (qui est la seul disponible sur le module RN42483).
 
 \newpage
@@ -214,8 +214,10 @@ présenté à la figure \ref{term3003}. Contrairement au module RN2483, on remar
 \centering
 
 \includegraphics[scale=1]{images/SBlopy.png}
-\caption{Schéma bloc du module Pycom LoPy}\label{term3003}
+\caption{Schéma bloc du module Pycom LoPy \protect\footnotemark[11]}\label{term3003}
 \end{figure}
+
+\footnotetext[11]{Datasheet Pycom LoPy : \href{https://docs.pycom.io/gitbook/assets/specsheets/Pycom_002_Specsheets_LoPy_v2.pdf}{https://docs.pycom.io/gitbook/assets/specsheets/Pycom002SpecsheetsLoPyv2.pdf}}
 
 \subsubsection{Module Arduino couplé à un transceiver LoRa}\label{arduino}
 
@@ -351,7 +353,6 @@ Les fichiers qu'URH peut interpréter ou enregistrer sont au format \textit{.com
 
 \begin{table}[h]
 \centering
-\begin{adjustbox}{width=1\textwidth}
 \begin{tabular}{|c|c|c|c|}
 \hline
 \multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{Taille I (bits)} &\multicolumn{1}{c|}{Taille Q (bits)} & \multicolumn{1}{c|}{Type}\\
@@ -369,7 +370,6 @@ Les fichiers qu'URH peut interpréter ou enregistrer sont au format \textit{.com
 .complex32s & 16 & 16 & int  \\
 \hline
 \end{tabular}
-\end{adjustbox}
 \caption{Table des formats supportés par URH}
 \label{format}
 \end{table}
