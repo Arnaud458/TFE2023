@@ -1,4 +1,8 @@
-\section{Annexe A :Code module Arduino}\label{codearduino}
+\renewcommand{\leftmark}{ANNEXES}
+
+\chapter{Annexes}
+
+\section{Code module Arduino}\label{codearduino}
 
 \begin{lstlisting}[style=cppstyle, caption={Module Arduino}, label={lst:cpp}]
 
@@ -66,7 +70,7 @@ void loop() {
 
 \newpage
 
-\section{Annexe B :Code module RN2483}\label{codern}
+\section{Code module RN2483}\label{codern}
 
 \begin{lstlisting}[style=pythonstyle, caption={Configuration module RN2483}, label={lst:python}]
 import serial
@@ -110,7 +114,7 @@ def write_command(ser: serial.Serial, command: str):
 
 \newpage
 
-\section{Annexe C :Implémentation de la configuration RTL SDR via PyRTLSDR}\label{antenne}
+\section{Configuration RTL SDR via PyRTLSDR}\label{antenne}
 
 \begin{lstlisting}[style=pythonstyle, caption={Configuration RTL SDR}, label={lst:python}]
 import math
@@ -148,7 +152,8 @@ def capture_signal_rtlsdr():
 
 \newpage
 
-\section{Annexe D :Implémentation de l'automatisation des captures de signaux}\label{codeauto}
+\section{Automatisation des captures de signaux}\label{codeauto}
+
 
 \begin{lstlisting}[style=pythonstyle, caption={Emetteur}, label={lst:python}]
 if name == 'main':
@@ -234,15 +239,26 @@ def rms_normalize(samples: np.ndarray) -> np.ndarray:
     return normalized_samples
 \end{lstlisting}
 
-\newpage
+\section{Implémentation de la méthode DCTF}\label{codedctf}
 
-\section{Annexe E :Implémentation de la méthode DCTF}\label{codedctf}
-
-
-\begin{lstlisting}[style=pythonstyle, caption={Preprocessing}, label={lst:python}]
+\begin{lstlisting}[style=pythonstyle, caption={Méthode DCTF}, label={lst:python}]
 
 import numpy as np
 
+def compute_differential(
+        data: np.ndarray,
+        differential_interval: int=DIFFERENTIAL_INTERVAL
+    ) -> np.array:
 
+    differential_data = np.zeros(data.shape[0]-differential_interval, dtype= data.dtype)
+
+    for i in range(data.shape[0] - differential_interval):
+        a = np.real(data[i])
+        b = np.imag(data[i])
+        c = np.real(data[i+differential_interval])
+        d = np.imag(data[i+differential_interval])
+        differential_data[i] = a * c + b * d + 1j * (b * c - a *d)
+
+    return differential_data
 
 \end{lstlisting}

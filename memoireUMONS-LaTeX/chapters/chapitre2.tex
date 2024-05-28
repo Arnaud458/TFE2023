@@ -122,7 +122,7 @@ La table \ref{table1} résume les différents critères pertinents pour les troi
 \begin{adjustbox}{width=1\textwidth}
 \begin{tabular}{|c|c|c|c|}
 \hline
-\multicolumn{1}{|c|}{Caractéristiques importantes} & \multicolumn{1}{c|}{RTL SDR DVB-T} & \multicolumn{1}{c|}{RTL SDR R820T2} & \multicolumn{1}{c|}{HackRF One}\\
+\multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{RTL SDR DVB-T} & \multicolumn{1}{c|}{RTL SDR R820T2} & \multicolumn{1}{c|}{HackRF One}\\
 \hline
 Portée (Fréquence) & \multicolumn{2}{c|}{24MHz - 1.7GHz} & 1MHz - 6GHz \\
 \hline
@@ -228,7 +228,7 @@ Le shéma bloc \footnotemark[11]  est représenté à la figure \ref{term3003}. 
 \caption{Un module Arduino}\label{term36}
 \end{figure}
 
-L'avantage principal du module \textit{Arduino} est qu'il est possible de configurer une largeur de bande bien plus faible que les autres modules. Les modules RN2483 ou LoPy ont une largeur de bande minimale de 125KHz, tandis qu'avec l'arduino il est possible de descendre jusqu'à 7.8 KHz. Il est également possible de réduire le facteur d'étalement en dessous de la valeur imposée par LoRa (minimum de LoRa SF = 7, ici SF = 6 possible). Pour rappel, une largeur de bande plus faible permet un \textit{time on air (TOA)} plus grand, ce qui est très utile pour analyser les signaux. Le transceiver est de type SX127x (comme celui du RN2483).
+L'avantage principal du module \textit{Arduino}\footnote{Arduino Pro Micro : \href{https://docs.arduino.cc/retired/boards/lilypad-arduino-usb/}{https://docs.arduino.cc/retired/boards/lilypad-arduino-usb/}} est qu'il est possible de configurer une largeur de bande bien plus faible que les autres modules. Les modules RN2483 ou LoPy ont une largeur de bande minimale de 125KHz, tandis qu'avec l'arduino il est possible de descendre jusqu'à 7.8 KHz. Il est également possible de réduire le facteur d'étalement en dessous de la valeur imposée par LoRa (minimum de LoRa SF = 7, ici SF = 6 possible). Pour rappel, une largeur de bande plus faible permet un \textit{time on air (TOA)} plus grand, ce qui est très utile pour analyser les signaux. Le transceiver est de type SX127x (comme celui du RN2483).
 
 \vspace{0.1cm}
 
@@ -393,15 +393,15 @@ Le choix du langage pour l'implémentation du travail est Python (version 3.11.4
 
 \newpage
 
-L'environement de travail utilisé est Visual Studio Code (version 1.87.1). Cet IDE est open source et largement populaire ce qui permet un apprentissage pour des travaux spécifiques très rapides via Internet. L'utilisation de VSCode est motivée par son système d'extension, qui contient plusieurs extensions qui permettent de manipuler directement les modules d'émission LoRa. Le module Lopy de Pycom est compatible avec VSCode via l'extension PyMakr. GitHub est également intégré dans VSCode, ce qui permet de simplifier la mise en ligne du travail.
+L'environement de travail utilisé est Visual Studio Code (version 1.87.1). Cet IDE est open source et largement populaire ce qui permet un apprentissage pour des travaux spécifiques très rapides via Internet. L'utilisation de VSCode est motivée par son système d'extension, qui contient plusieurs extensions qui permettent de manipuler directement les modules d'émission LoRa. Le module Lopy de Pycom est compatible avec VSCode via l'extension PyMakr. GitHub est également intégré dans VSCode, ce qui permet de simplifier la mise en ligne du travail. La table \ref{table2} donne une comparaison des différents logiciels basée sur plusieurs critètes.
 
 \begin{table}[h]
 \centering
 \begin{tabular}{|p{4cm}|p{2cm}|p{2cm}|p{3.5cm}|}
 \hline
-\multicolumn{1}{|c|}{Caractéristiques importantes} & \multicolumn{1}{c|}{GQRX} & \multicolumn{1}{c|}{URH} & \multicolumn{1}{c|}{Python}\\
+\multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{GQRX} & \multicolumn{1}{c|}{URH} & \multicolumn{1}{c|}{Python}\\
 \hline
-Interface Utilisateur & GUI avec affichage en temps réel & GUI avec outils plus poussés pour analyse & / \\
+Interface Utilisateur & GUI avec affichage en temps réel & GUI avec outils plus poussés pour analyse & Pas de GUI \\
 \hline
 Réception de signaux & \multicolumn{3}{c|}{oui} \\
 \hline
@@ -411,7 +411,7 @@ Sauvegarde des données & pas de sauvegarde possible & \multicolumn{2}{c|}{sauve
 \hline
 Format des données & / & voir table \ref{format} & .complex64 jusqu'à .complex512 \\
 \hline
-Démodulation &  &  & toutes\\
+Démodulation &  \multicolumn{2}{c|}{les plus communes\footnotemark[12]}  & toutes\\
 \hline
 Courbe d'apprentissage & prise en main très rapide & prise en main rapide & plus de possibilités donc plus de temps d'apprentissage \\
 \hline
@@ -423,6 +423,8 @@ SDR supportées & \multicolumn{3}{c|}{toutes les SDR présentées} \\
 \caption{Table comparative des logiciels utilisés}
 \label{table2}
 \end{table}
+
+\footnotetext[12]{AM, FM, PM, ASK, FSK, PSK, CW, CSS}
 
 GQRX offre globalement de meilleurs outils pour la visualisation en temps réel, là où URH permet l'analyse de manière plus précise et avec plus de possibilités. Python permet une customisation encore plus poussée à condition de manuellement rajouter ces fonctionnalités.
 
