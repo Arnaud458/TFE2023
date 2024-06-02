@@ -1,46 +1,51 @@
-from typing import List, Tuple
-
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import datashader as ds
 from datashader.mpl_ext import dsshow
-from utils import load_signal , compute_differential
 
 
-def display_quadrature(*signals: List[Tuple[np.ndarray, str]]) -> None:
+def display_quadrature(data) -> None:
     plt.figure(figsize=(8, 6))
     plt.xlabel('In-phase')
     plt.ylabel('Quadrature')
-    plt.title('I/Q Samples')
+    plt.title('Constellation Trace')
+
+    i = np.real(data)
+    q = np.imag(data)
+    plt.scatter(i, q, s=5, alpha=0.5)
     plt.grid(True)
-    for signal, signal_label in signals:
-        i = np.real(signal)
-        q = np.imag(signal)
-        plt.scatter(i, q, s=5, alpha=0.5, label=signal_label)
     plt.legend()
     plt.show()
 
-def fft(data) -> None:
-    fft_result = np.fft.fft(data)
 
-    # Calculate the frequencies corresponding to FFT result
-    sampling_rate = 2000000 
-    freqs = np.fft.fftfreq(len(fft_result), 1 / sampling_rate)
 
-    # Plot the frequency-domain data
-    """plt.specgram(data, Fs=2000000)
-    plt.xlabel('Time (s)')
-    plt.ylabel('Frequency (Hz)')
-    plt.title('Spectrogram')
-    plt.colorbar(label='Magnitude (dB)')"""
-    plt.plot(freqs, np.abs(fft_result))
-    plt.xlabel('Frequency (Hz)')
-    plt.ylabel('Magnitude')
-    plt.title('Frequency Domain Plot')
+def display_density(data: np.array, filename: str="") -> None:
+    """Display a density graph in the complex plan of an array of complex points
+
+    Parameters
+    ----------
+    data : np.array
+        An array of complex
+    filename : str, optional
+        Used in the title of the plot
+    """
+    fig, ax = plt.subplots()
+    #fig = plt.figure(figsize=(8, 6))
+    #ax = fig.add_subplot(1, 1, 1, projection='scatter_density')
+    i = np.real(data)
+    q = np.imag(data)
+    using_datashader(ax, i, q)
+    #using_hist2d(ax, differential_i, differential_q)
+    #plt.scatter(differential_i, differential_q, s=1, c='red', alpha=0.5)
+    plt.xlabel('Differential In-phase')
+    plt.ylabel('Differential Quadrature')
+    plt.title('Differential I/Q Samples'+ filename)
+    #plt.grid(True)
     plt.show()
 
-def display(data) -> None:
+
+def display(data: np.array) -> None:
     """
     Display the real part of the signal in orange and the imaginary part in blue
     """
@@ -57,17 +62,13 @@ def display(data) -> None:
     plt.show()
 
 
-def using_hist2d(ax, x, y, bins=(300, 300)):
-    ax.hist2d(x, y, bins, cmap=plt.cm.jet)
-
-
 def using_datashader(ax, x, y):
     df = pd.DataFrame(dict(x=x, y=y))
     dsartist = dsshow(
         df,
         ds.Point("x", "y"),
         ds.count(),
-        vmin=0,
+        vmin=10,
         vmax=100,
         norm="linear",
         aspect="auto",
@@ -75,9 +76,3 @@ def using_datashader(ax, x, y):
     )
 
     plt.colorbar(dsartist)
-
-
-if __name__ == "__main__":
-    display(load_signal('preambles/RN1_norm/sample_1_normalized', np.complex64))
-    #display_quadrature((load_signal('sample_data/test_64_1MHz', dtype=np.complex64)),'data')
-    #fft(load_signal('preambles/RN1_norm/sample_1_normalized', np.complex64))
