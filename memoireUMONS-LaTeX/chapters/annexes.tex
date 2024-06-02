@@ -154,7 +154,7 @@ def capture_signal_rtlsdr():
 \begin{lstlisting}[style=pythonstyle, caption={Emetteur}, label={lst:python}]
 if name == 'main':
     SER = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1)
-    for i in range(5):
+    for i in range(25):
         time.sleep(1)
         config(SER)
         write_file('tmp.txt','0')
@@ -163,8 +163,6 @@ if name == 'main':
         while read_file('tmp.txt')[-1] != '1':
             print('emmeteur is waiting')
             time.sleep(1)
-    #config(SER)
-    #send_signal(SER)
     SER.close()
 \end{lstlisting}
 
@@ -172,7 +170,7 @@ if name == 'main':
 
 if name == "main":
     PREAMBLEDURATION = 0.0245
-    for i in range(2):
+    for i in range(25):
         while read_file('tmp.txt')[-1] != '0':
             print('recepteur is waiting')
             time.sleep(0.2)
@@ -203,7 +201,7 @@ def write_file(filename: str, content: str):
     with open(filename, 'a',encoding='utf8') as writer:
         writer.write('\n' +content)
         
-        def save_signal(signal: np.ndarray, filepath: str, dtype) -> None:
+def save_signal(signal: np.ndarray, filepath: str, dtype) -> None:
     signal_to_save = np.array(signal, dtype=dtype)
     print(f"Saving captured signal to {filepath}.npz")
     np.savez_compressed(filepath, signal_to_save)
