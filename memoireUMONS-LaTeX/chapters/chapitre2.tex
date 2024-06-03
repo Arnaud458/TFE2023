@@ -11,14 +11,14 @@ La radio logicielle ou \ac{SDR} est une technologie qui permet de mettre en œuv
 
 \vspace{0.1cm}
 
-Dans les systèmes de radio traditionnels, les différentes fonctions de la radio, comme l'accord sur une fréquence spécifique, la modulation et la démodulation du signal, et le filtrage du bruit, sont mis en œuvre à l'aide de composants matériels tels que des oscillateurs, des amplificateurs et des filtres. En revanche, les systèmes \ac{SDR} utilisent des logiciels pour effectuer ces fonctions, ce qui les rend beaucoup plus flexibles car chaque composante est reconfigurable. Les radios logicielles sont capables d'opérer sur une large portée de fréquences, aussi bien très basse que haute fréquence.
+Dans les systèmes de radio traditionnels, les différentes fonctions de la radio, comme l'accord sur une fréquence spécifique, la modulation et la démodulation du signal, et le filtrage du bruit, sont mis en œuvre à l'aide de composants matériels tels que des oscillateurs, des amplificateurs et des filtres. En revanche, les systèmes \ac{SDR} utilisent des logiciels pour effectuer ces fonctions, ce qui les rend beaucoup plus flexibles car chaque composante est reconfigurable. Les radios logicielles sont capables d'opérer sur une large portée de fréquences, aussi bien très basses que hautes fréquences.
 Les \ac{SDR}s peuvent jouer le rôle d'émetteur ou de récepteur ou les deux. Différentes radios logicielles sont testées pour ce travail, ce qui est motivé par plusieurs raisons. Cela permet tout d'abord d'observer certaines variations (comme la qualité du signal, la distance) entre les différents récepteurs pour une même expérience et ainsi définir la \ac{SDR} la plus adéquate. Ensuite, la diversité de radios logicielles permet d'approfondir l'apprentissage de cette technologie et de comprendre plus aisément le fonctionnement d'une radio logicielle. Une version plus simple permet d'assimiler les bases de la pratique avec une \ac{SDR}, mais pouvoir utiliser des versions plus abouties permet d'expérimenter de manière plus précise les expériences.
 
 \newpage
 
 \subsubsection{RTL SDR DVB-T}\label{dvbt}
 
-La \textit{RTL SDR DVB-T} est la version la moins chère des radios utilisées. Cette radio est initialemnt utilisée pour recevoir des signaux \ac{DVB-T} télévisés. La figure \ref{term31} montre la radio, qui est un device \ac{USB} qui inclu un \textit{chipset RTL2832U} et un \textit{RF tuner chip}.
+La \textit{RTL SDR DVB-T} est la version la moins chère des radios utilisées. Cette radio est initialemnt utilisée pour recevoir des signaux \ac{DVB-T} télévisés. La figure \ref{term31} montre la radio, qui est un device \ac{USB} qui inclut un \textit{chipset RTL2832U} et un \textit{RF tuner chip}.
 
 \begin{figure}[h]
 \centering
@@ -28,7 +28,7 @@ La \textit{RTL SDR DVB-T} est la version la moins chère des radios utilisées. 
 \end{figure}
 
 Le chipset RTL2832U digitalise les signaux RF et les envoie à l'ordinateur. Le tuner permet d'ajuster la fréquence pour couvrir une large portée.
-La radio est raccordée à l'ordinateur via le port \ac{USB}. Le site RTL SDR \footnote{RTL-SDR : \href{https://www.rtl-sdr.com/about-rtl-sdr/}{https://www.rtl-sdr.com/about-rtl-sdr/}} ajoute quelques informations sur l'origine de l'utilisation de \ac{DVB-T} tuner en tant que \ac{SDR}. Le schéma bloc de la sdr est représenté sur la figure \ref{term3000}. 
+La radio est raccordée à l'ordinateur via le port \ac{USB}. Le site RTL SDR \footnote{RTL-SDR : \href{https://www.rtl-sdr.com/about-rtl-sdr/}{https://www.rtl-sdr.com/about-rtl-sdr/}} ajoute quelques informations sur l'origine de l'utilisation de \ac{DVB-T} tuner en tant que \ac{SDR}. Le schéma bloc de la \ac{SDR} est représenté sur la figure \ref{term3000}. 
 
 \newpage
 
@@ -42,10 +42,10 @@ La radio est raccordée à l'ordinateur via le port \ac{USB}. Le site RTL SDR \f
 
 Le tuner comporte les éléments suivants:
 \begin{itemize}
-\item \textbf{\ac{LNA}}. le \ac{LNA} amplifie le signal tout en minimisant l'ajout de bruit, afin de maintenir un SNR faible.
+\item \textbf{\ac{LNA}}. le \ac{LNA} amplifie le signal tout en minimisant l'ajout de bruit, afin de maintenir un \ac{SNR} faible.
 \item \textbf{\ac{RF} Filter}. Le filtre permettant d'isoler la fréquence désirée.
-\item \textbf{\ac{LO}}. La fréquence du \ac{LO} n'est pas fixe, mais elle est contrôlée par un circuit \ac{PLL} qui utilise une horloge de référence de 28,8 MHz. Cela permet à la \ac{SDR} d'opérer sur une plage de fréquence approximative entre 24 MHz et 1,7 GHz. L'utilisation de l'oscillateur local, réglable par le \ac{PLL}, couplée au signal reçu, produit un signal à une fréquence intermédiaire.
-\item \textbf{\ac{IF} Filter}. Ce filtre permet d'isoler le signal à fréquence intermédiaire. L'utilisation d'une fréquence intermédiaire est importante pour pouvoir opérer sur le signal. Par exemple, la démodulation est bien plus abordable sur un signal possèdant une fréquence réduite que sa valeur originale.
+\item \textbf{\ac{LO}}. La fréquence du \ac{LO} n'est pas fixe, mais elle est contrôlée par un circuit \ac{PLL} qui utilise une horloge de référence de 28.8 MHz. Cela permet à la \ac{SDR} d'opérer sur une plage de fréquence approximative entre 24 MHz et 1.7 GHz. L'utilisation de l'oscillateur local, réglable par le \ac{PLL}, couplée au signal reçu, produit un signal à une fréquence intermédiaire.
+\item \textbf{\ac{IF} Filter}. Ce filtre permet d'isoler le signal à fréquence intermédiaire. L'utilisation d'une fréquence intermédiaire est importante pour pouvoir opérer sur le signal. Par exemple, la démodu\-lation est bien plus abordable sur un signal possédant une fréquence réduite que sa valeur originale.
 \item \textbf{\ac{VGA}}. Le \ac{VGA} ajuste l'amplitude du signal pour maintenir un niveau constant.
 \end{itemize}
 
@@ -55,7 +55,7 @@ Le chipset contient les éléments suivants :
 \begin{itemize}
 \item \textbf{\ac{ADC}} Le signal sortant du tuner est échantillonné par l'ADC à une fréquence d'échantillonnage de 28.8MHz. L'\ac{ADC} permet de convertir un signal analogique en signal numérique.
 \item \textbf{\ac{DDC}} Le signal est ramené en bande de base grâce au DDC. Le Digital Down Converter mixe le signal avec une sinusoïde complexe et applique ensuite un filtre \ac{LPF}. 
-\item \textbf{Decimator}. La dernière étape utilise la décimation pour réduire le taux d'échantillonage du signal.
+\item \textbf{Decimator}. La dernière étape utilise la décimation pour réduire le taux d'échantillonnage du signal.
 \item \textbf{\ac{USB}} control. Le signal est réduit uniquement aux échantillons complexes \ac{I/Q}. Ils sont récupérés depuis l'\ac{USB} de la \ac{SDR}.
 \end{itemize}
 
@@ -76,12 +76,12 @@ Une description détaillée du déroulement de la récupération du signal par l
 \caption{RTL SDR R820T2}\label{term32}
 \end{figure}
 
-La deuxième radio logicielle utilisée est la \textit{RTL SDR R820T2}. Il y a deux différences majeures avec la radio \ac{DVB-T}. L'antenne de cette radio logicielle est de meilleure qualité et le tuner chip de cette SDR est un R820T2. Cette version est une version améliorée du tuner qui se trouve dans la \ac{DVB-T}, ce qui a pour impact une réduction du bruit, une meilleure sensibilité et une couverture de fréquence plus large. La figure \ref{term32} montre la SDR en question. Le schéma bloc de la SDR présentée à la section \ref{dvbt} est le même que pour celui-ci. En effet la différence entre le tuner T et T2 n'est pas visible sur la description du schéma. Une description détaillée de la RTL-SDR R820T2 est disponible sur le site RTL-SDR \footnote{Datasheet R820T2 : \href{https://www.rtl-sdr.com/wp-content/uploads/2013/04/R820T_datasheet-Non_R-20111130_unlocked1.pdf}{https://www.rtl-sdr.com/wp-content/uploads/2013/04/R820T-datasheet-Non-R-20111130-unlocked1.pdf}}
+La deuxième radio logicielle utilisée est la \textit{RTL SDR R820T2}. Il y a deux différences majeures avec la radio \ac{DVB-T}. L'antenne de cette radio logicielle est de meilleure qualité et le tuner chip de cette \ac{SDR} est un R820T2. Cette version est une version améliorée du tuner qui se trouve dans la \ac{DVB-T}, ce qui a pour impact une réduction du bruit, une meilleure sensibilité et une couverture de fréquence plus large. La figure \ref{term32} montre la \ac{SDR} en question. Le schéma bloc de la \ac{SDR} présentée à la section \ref{dvbt} est le même que pour celui-ci. En effet la différence entre le tuner T et T2 n'est pas visible sur la description du schéma. Une description détaillée de la RTL-SDR R820T2 est disponible sur le site RTL-SDR \footnote{Datasheet R820T2 : \href{https://www.rtl-sdr.com/wp-content/uploads/2013/04/R820T_datasheet-Non_R-20111130_unlocked1.pdf}{https://www.rtl-sdr.com/wp-content/uploads/2013/04/R820T-datasheet-Non-R-20111130-unlocked1.pdf}}
 
 
 \subsubsection{HackRF One}
 
-La dernière radio logicielle utilisée est la \textit{HackRF One}. Au dela du prix plus élevé, cette dernière radio est différente des deux autres. Elle est notamment capable de gérer la transmission et la réception de signaux, les deux autres sont uniquement des récepteurs. Si la R820T2 offrait déjà une qualité de signal supérieure à la \ac{DVB-T}, celui de la HackRF est encore plus net. La figure \ref{bothimages} montre la \ac{SDR} avec l'antenne utilisée montée sur un trépied.
+La dernière radio logicielle utilisée est la \textit{HackRF One}. Au-delà du prix plus élevé, cette dernière radio est différente des deux autres. Elle est notamment capable de gérer la transmission et la réception de signaux, les deux autres sont uniquement des récepteurs. Si la R820T2 offrait déjà une qualité de signal supérieure à la \ac{DVB-T}, celui de la HackRF est encore plus net. La figure \ref{bothimages} montre la \ac{SDR} avec l'antenne utilisée montée sur un trépied.
 
 \begin{figure}[h]
 \centering
@@ -103,7 +103,7 @@ La dernière radio logicielle utilisée est la \textit{HackRF One}. Au dela du p
 \end{figure}
 
 
-Le schéma bloc de la \ac{SDR} est affiché sur la figure \ref{term3001}. Ce dernier est beaucoup plus complexe que celui de la RTL-SDR. Il y a d'une part que la HackRF est un transceiver (transmitter and receiver), donc elle possède les étapes nécessaires à l'émission que la RTL-SDR ne possède pas. Ensuite, il y a plusieurs étapes de fréquences intermédiaires. L'architecture de la HackRF \footnotemark[10] permet d'utiliser plusieurs étapes de mixeur pour atteindre la fréquence désirée. Chaque étape possède sa fréquence intermédiaire.
+Le schéma bloc de la \ac{SDR} est affiché sur la figure \ref{term3001}. Ce dernier est beaucoup plus complexe que celui de la RTL-SDR. La HackRF est un transceiver (transmitter and receiver), donc elle possède les étapes nécessaires à l'émission que la RTL-SDR ne possède pas. Ensuite, il y a plusieurs étapes de fréquences intermédiaires. L'architecture de la HackRF \footnotemark[10] permet d'utiliser plusieurs étapes de mixeur pour atteindre la fréquence désirée. Chaque étape possède sa fréquence intermédiaire.
 
 \begin{figure}[h]
 \centering
@@ -114,7 +114,7 @@ Le schéma bloc de la \ac{SDR} est affiché sur la figure \ref{term3001}. Ce der
 
 \footnotetext[10]{HackRF One : \href{https://www.hb9afo.ch/articles/HackRF/default.htm}{https://www.hb9afo.ch/articles/HackRF/default.htm}}
  
-La table \ref{table1} résume les différents critères pertinents pour les trois radios logicielles. Ces critères permettront de sélectionner la SDR la plus adéquate pour les expérimentations.
+La table \ref{table1} résume les différents critères pertinents pour les trois radios logicielles. Ces critères permettront de sélectionner la \ac{SDR} la plus adéquate pour les expérimentations.
 
 
 \begin{table}[h]
@@ -174,7 +174,7 @@ Voici quelques spécificités du module:
 \begin{itemize}
 \item il comprend la technologie de modulation \ac{LoRa}, ce qui lui donne son atout de faible consommation et de longue portée. Il gère également les modulations \ac{FSK} et \ac{GFSK}.
 \item Une faible consommation induit une faible puissance, le module possède un amplificateur de puissance maximale de 14dBm.
-\item Les bandes de fréquences disponibles sont compatibles avec la bande \ac{ISM}. Le module couvre de 863Mhz à 870Mhz pour la région européenne.
+\item Les bandes de fréquences disponibles sont compatibles avec la bande \ac{ISM}. Le module couvre de 863MHz à 870MHz pour la région européenne.
 \item Le data rate maximum en modulant avec LoRa est de 27343.75 bps (bits par seconde) pour un largeur de bande de 125KHz et un facteur d'étalement de 7.
 \item Tous les paramètres TX sont configurables.
 \end{itemize}
@@ -193,7 +193,7 @@ L'utilisation du module RN2483 est détaillée dans la section \ref{signallora}.
 
 
 
-Le module Pycom LoPy \footnotemark[11] est un appareil programmable en micro python. Il comprend un micro-contrôleur ainsi qu'une série de pins digitaux input/output,  des composantes de connectivité sans fil et un port micro \ac{USB}. La figure \ref{term35} montre le module  connecté à une antenne.
+Le module Pycom LoPy \footnotemark[11] est un appareil programmable en micro Python. Il comprend un micro-contrôleur ainsi qu'une série de pins digitaux input/output,  des composantes de connectivité sans fil et un port micro \ac{USB}. La figure \ref{term35} montre le module  connecté à une antenne.
 
 \newpage
 
@@ -206,7 +206,7 @@ Le module Pycom LoPy \footnotemark[11] est un appareil programmable en micro pyt
 
 
 Le shéma bloc \footnotemark[11]  est représenté à la figure \ref{term3003}. Contrairement au module RN2483, on remarque que le module LoPy possède des fonctions supplémentaires 
-(qui ne sont pas intéressantes pour l'expérimentation) comme une connexion Wifi ou Bluetooth. Le micro-contrôleur possède aussi plusieurs interfaces autres que UART (qui est la seul disponible sur le module RN42483).
+(qui ne sont pas intéressantes pour l'expérimentation) comme une connexion Wifi ou Bluetooth. Le micro-contrôleur possède aussi plusieurs interfaces autres que UART (qui est la seule disponible sur le module RN2483).
 
 \newpage
 
@@ -228,7 +228,7 @@ Le shéma bloc \footnotemark[11]  est représenté à la figure \ref{term3003}. 
 \caption{Un module Arduino}\label{term36}
 \end{figure}
 
-L'avantage principal du module Arduino \footnote{Arduino Pro Micro : \href{https://docs.arduino.cc/retired/boards/lilypad-arduino-usb/}{https://docs.arduino.cc/retired/boards/lilypad-arduino-usb/}} est qu'il est possible de configurer une largeur de bande bien plus faible que les autres modules. Les modules RN2483 ou LoPy ont une largeur de bande minimale de 125KHz, tandis qu'avec l'Arduino il est possible de descendre jusqu'à 7.8 KHz. Il est également possible de réduire le facteur d'étalement en dessous de la valeur imposée par LoRa (minimum de LoRa SF = 7, ici SF = 6 possible). Pour rappel, une largeur de bande plus faible permet un \ac{TOA} plus grand, ce qui est très utile pour analyser les signaux. Le transceiver est de type SX127x (comme celui du RN2483).
+L'avantage principal du module Arduino \footnote{Arduino Pro Micro : \href{https://docs.arduino.cc/retired/boards/lilypad-arduino-usb/}{https://docs.arduino.cc/retired/boards/lilypad-arduino-usb/}} est qu'il est possible de configurer une largeur de bande bien plus faible qu'avec les autres modules. Les modules RN2483 ou LoPy ont une largeur de bande minimale de 125KHz, tandis qu'avec l'Arduino il est possible de descendre jusqu'à 7.8KHz. Il est également possible de réduire le facteur d'étalement en dessous de la valeur imposée par LoRa (minimum de LoRa SF = 7, ici SF = 6 possible). Pour rappel, une largeur de bande plus faible permet un \ac{TOA} plus grand, ce qui est très utile pour analyser les signaux. Le transceiver est de type SX127x (comme celui du RN2483).
 
 \vspace{0.1cm}
 
@@ -240,7 +240,7 @@ Une fois les différents appareils choisis, il faut les accompagner avec les sof
 
 \subsubsection{GQRX}
 
-Le premier logiciel choisi est GQRX \footnote{GQRX : \href{https://www.gqrx.dk}{https://www.gqrx.dk}}. C'est un logiciel open source d'analyse de fréquences radio pour les SDR. La figure \ref{term37} montre comment configurer le logiciel.
+Le premier logiciel choisi est GQRX \footnote{GQRX : \href{https://www.gqrx.dk}{https://www.gqrx.dk}}. C'est un logiciel open source d'analyse de fréquences radio pour les \ac{SDR}. La figure \ref{term37} montre comment configurer le logiciel.
 
 \begin{figure}[h]
 \centering
@@ -266,22 +266,22 @@ La figure \ref{term331} demande de compléter les paramètres suivants:
 \vspace{0.1cm}
 
 \begin{itemize}
-\item \textbf{device}: il faut sélectionner la SDR dans la liste des appareils. Le Device String fait référence à cet appareil dans GQRX.
-\item \textbf{Input rate}: le taux d'échantillonage capturé par la \ac{SDR}, il apparait plus bas comme sample rate.
+\item \textbf{Device}: il faut sélectionner la \ac{SDR} dans la liste des appareils. Le Device String fait référence à cet appareil dans GQRX.
+\item \textbf{Input rate}: le taux d'échantillonnage capturé par la \ac{SDR}, il apparît plus bas comme sample rate.
 \item \textbf{Decimation}: c'est un procédé qui permet de réduire le nombre d'échan\-tillons gérés par le logiciel, pour économiser des ressources.
-\item \textbf{\ac{BW}}: la largeur de bande supplémentaire que peut gérer la SDR.
-\item \textbf{\ac{LNB LO}}: ce paramètre est spécifique à la réception satéllite et représente le frequency offset appliqué par l'oscillateur local dans un LNB downconverter.
+\item \textbf{\ac{BW}}: la largeur de bande supplémentaire que peut gérer la \ac{SDR}.
+\item \textbf{\ac{LNB LO}}: ce paramètre est spécifi\-que à la réception satellite et représente le frequency offset appliqué par l'oscillateur local dans un LNB downconverter.
 \item L'\textbf{Audio output} concerne la sortie sonore du signal.
 \end{itemize}
 
 \vspace{0.1cm}
 
-La figure \ref{term341} ajoute des paramètres pour le récepteur, c'est à dire pour l'interface de GQRX :
+La figure \ref{term341} ajoute des paramètres pour le récepteur, c'est-à-dire pour l'interface de GQRX :
 
 \vspace{0.1cm}
 
 \begin{itemize}
-\item \textbf{frequency}: la fréquence que l'on souhaite écouter.
+\item \textbf{Frequency}: la fréquence que l'on souhaite écouter.
 \item \textbf{Filter Width}: ce paramètre permet de changer la taille de la largeur de bande du filtre appliqué au signal.
 \item \textbf{Filter Shape}: contrairement au Filter Width, ce n'est pas la taille mais la forme du filtre que l'on peut modifier.
 \item \textbf{Mode}: le mode de démodulation.
@@ -316,27 +316,18 @@ L'axe horizontal représente la fréquence et l'axe vertical représente le temp
 \caption{Réception de la station radio Classic21}\label{term38}
 \end{figure}
 
-Durant la réception du signal, il est possible de modifier l'affichage. A droite de l'affichage en spectre et en cascade sur la figure \ref{term38}, il y a différents paramètres :
-
-Pour l'affichage en spectre, le paramètre \textbf{Panadapter dB} représente la force du signal des fréquences radio reçues affichées sur l'axe vertical du graphique du spectre. Pour l'affichage en cascade, le paramètre \textbf{Waterfall dB} modifie l'intensité utilisée pour afficher la force du signal, permettant ainsi d'ajuster le contraste ou la visibilité des signaux plus faibles ou plus forts. 
+Durant la réception du signal, il est possible de modifier l'affichage. A droite de l'affichage en spectre et en cascade sur la figure \ref{term38}, il y a différents paramètres : pour l'affichage en spectre, le paramètre \textbf{Panadapter dB} représente la force du signal des fréquences radio reçues affichées sur l'axe vertical du graphique du spectre. Pour l'affichage en cascade, le paramètre \textbf{Waterfall dB} modifie l'intensité utilisée pour afficher la force du signal, permettant ainsi d'ajuster le contraste ou la visibilité des signaux plus faibles ou plus forts. 
 
 \vspace{0.1cm}
 
-Les paramètres suivants sont communs et affectent les deux affichages :
+Les paramètres suivants sont communs et affectent les deux affichages : le paramètre \textbf{FFT size} détermine le nombre d'échantillons utilisés dans chaque calcul de la \ac{FFT}. Une valeur plus large donne un meilleure résolution, mais consomme plus de ressources. La valeur est une puissance de deux pour des raisons d'efficacité de calculs. Le paramètre \textbf{Rate} détermine le taux de rafraîchissement de l'affichage. Un taux relativement faible avec une taille de frame \ac{FFT} élevé induit un effet d'overlap, c'est-à-dire que des frames consécutives partagent des échantillons, ce qui donne un affichage plus lisse du spectre.
 
-\vspace{0.1cm}
-
-Le paramètre \textbf{FFT size} détermine le nombre d'échantillons utilisés dans chaque calcul de la \ac{FFT}. Une valeur plus large donne un meilleure résolution, mais consomme plus de ressources. La valeur est une puissance de deux pour des raisons d'efficacité de calculs.
-
-\vspace{0.1cm}
-
-Le paramètre \textbf{Rate} détermine le taux de rafraichissement de l'affichage. Un taux relativement faible avec une taille de frame \ac{FFT} élevé induit un effet d'overlap, c'est-à-dire que des frames consécutives partagent des échantillons, ce qui donne un affichage plus lisse du spectre.
-
+\newpage
 
 \subsubsection{Universal radio hacker, URH}
 
 
-\ac{URH} est un logiciel open source similaire à GQRX. Son rôle principal est l'analyse de signaux radio. Au-delà de l'écoute en temps réel, \ac{URH} peut sauvegarder des signaux et lire des enregistrements à partir de fichiers. La figure \ref{term39} montre comment enregistrer un signal. Les paramètres à configurer sont similaires à GQRX (le choix de la \ac{SDR}, la fréquence, le taux d'échantillonage, la largeur de bande et le gain). Comme \ac{URH} est le principal outil d'analyse pour ce travail, les analyses avec ce dernier sont détaillées dans la section \ref{urh}.
+\ac{URH} est un logiciel open source similaire à GQRX. Son rôle principal est l'analyse de signaux radio. Au-delà de l'écoute en temps réel, \ac{URH} peut sauvegarder des signaux et lire des enregistrements à partir de fichiers. La figure \ref{term39} montre comment enregistrer un signal. Les paramètres à configurer sont similaires à GQRX (le choix de la \ac{SDR}, la fréquence, le taux d'échantillonnage, la largeur de bande et le gain). Comme \ac{URH} est le principal outil d'analyse pour ce travail, les analyses avec ce dernier sont détaillées dans la section \ref{urh}.
 
 \begin{figure}[h]
 \centering
@@ -347,7 +338,7 @@ Le paramètre \textbf{Rate} détermine le taux de rafraichissement de l'affichag
 
 \newpage
 
-Les fichiers qu'\ac{URH} peut interpréter ou enregistrer sont au format \textit{.complex}. Ce format est utilisé pour sauvegarder les signaux sous forme d'échantillons \ac{I/Q}. Il existe plusieurs variantes de ce format supporté par \ac{URH} :
+Les fichiers qu'\ac{URH} peut interpréter ou enregistrer sont au format \textit{.complex}. Ce format est utilisé pour sauvegarder les signaux sous forme d'échantillons \ac{I/Q}. Il existe plusieurs variantes de ce format supportées par \ac{URH} :
 
 \vspace{0.1cm}
 
@@ -385,15 +376,15 @@ Le choix du langage pour l'implémentation du travail est Python (version 3.11.4
 \begin{itemize}
 \item Numpy. Cette librairie est fondamentale pour la gestion des arrays. Elle contient également de nombreuses fonctions et formats mathématiques utiles au projet.
 \item Matplotlib. Cette librairie permet d'effectuer des plots de données de manière simple et efficace.
-\item PyRTLSDR. La librairie PyRTLSDR est essentielle pour pouvoir manipuler la \ac{SDR} R820T2. Il est possible de configurer la SDR sans devoir passer par un software tiers comme GQRX ou \ac{URH} grâce à cette librairie.
-\item PyHackRf. L'équivalent de PyRTLSDR mais pour la SDR HackrF One.
+\item PyRTLSDR. La librairie PyRTLSDR est essentielle pour pouvoir manipuler la \ac{SDR} R820T2. Il est possible de configurer la \ac{SDR} sans devoir passer par un software tiers comme GQRX ou \ac{URH} grâce à cette librairie.
+\item PyHackRF. L'équivalent de PyRTLSDR mais pour la \ac{SDR} HackRF One.
 \item Datashader. Cette librairie permet la visualisation améliorée de grande quantité de données via l'ajout de gradient coloré.
 \item Serial. La manipulation des modules rn2483 est possible grâce à la librairie serial. Cette librairie permet d'interagir avec les appareils connectés via USB.
 \end{itemize}
 
 \newpage
 
-L'environnement de travail utilisé est Visual Studio Code (version 1.87.1). Cet \ac{IDE} est open source et largement populaire, ce qui permet un apprentissage pour des travaux spécifiques très rapides via Internet. L'utilisation de VSCode est motivée par son système d'extension, qui contient plusieurs extensions qui permettent de manipuler directement les modules d'émission \ac{LoRa}. Le module LoPy de Pycom est compatible avec VSCode via l'extension PyMakr. GitHub est également intégré dans VSCode, ce qui permet de simplifier la mise en ligne du travail. La table \ref{table2} donne une comparaison des différents logiciels basée sur plusieurs critères.
+L'environnement de travail utilisé est Visual Studio Code (version 1.87.1). Cet \ac{IDE} est open source et largement populaire, ce qui permet un apprentissage très rapide pour des travaux spécifiques via Internet. L'utilisation de VSCode est motivée par son système d'extension, qui contient plusieurs extensions qui permettent de manipuler directement les modules d'émission \ac{LoRa}. Le module LoPy de Pycom est compatible avec VSCode via l'extension PyMakr. GitHub est également intégré dans VSCode, ce qui permet de simplifier la mise en ligne du travail. La table \ref{table2} donne une comparaison des différents logiciels basée sur plusieurs critères.
 
 \begin{table}[h]
 \centering
@@ -440,7 +431,7 @@ Via Python, il est possible d'utiliser la librairie Serial pour se connecter au 
 \begin{itemize}
 \item la modulation, en LoRa.
 \item La fréquence. 868MHz, la fréquence de la bande \ac{ISM} , la bande d'émission en Europe.
-\item La largeur de bande ou \ac{BW} choisie est de 125Khz, ce qui est la plus petite valeur possible que permet le module.
+\item La largeur de bande ou \ac{BW} choisie est de 125KHz, ce qui est la plus petite valeur possible que permet le module.
 \item La puissance du module, au maximum (14dBm).
 \item Le spreading factor, la valeur la plus grande possible est choisie (SF = 12).
 \item Le \ac{CR}. Il y a 4 valeurs possibles: 4/5, 4/6, 4/7 and 4/8. Cela signifie que tout les 4 bits seront codés par 4, 5, 6, 7 ou 8 bits de transmission en fonction de cette valeur. Plus la valeur est faible (la plus faible étant 4/8), plus le \ac{TOA} sera élevé, car cela prend plus de temps pour transmettre le message.
@@ -453,19 +444,19 @@ Le choix des valeurs pour les différents paramètres a pour but de maximiser le
 
 \subsection{Analyse avec GQRX}
 
-Une fois que le module est configuré, il faut paramètrer le récepteur, la radio logicielle. La \ac{SDR} choisie est la RTL-SDR T820R2. Voici les paramètres de la \ac{SDR}:
+Une fois que le module est configuré, il faut paramétrer le récepteur, la radio logicielle. La \ac{SDR} choisie est la RTL-SDR T820R2. Voici les paramètres de la \ac{SDR}:
 
 \vspace{0.1cm}
 
 \begin{itemize}
 \item la fréquence. La fréquence d'écoute, idéalement la même fréquence de celle de l'émetteur (868MHz).
-\item Le taux d'échantillonage. Il est possible de choisir la quantité d'échantillons traités chaque seconde. Un taux plus élevé donnera un signal plus complet.
+\item Le taux d'échantillonnage. Il est possible de choisir la quantité d'échantillons traités chaque seconde. Un taux plus élevé donnera un signal plus complet.
 \item Le gain. Dépendant de la qualité du signal, il peut être nécessaire d'ajouter du gain, c'est à dire d'amplifier la force du signal. Un gain trop élevé peut saturer le signal, c'est-à-dire quand l'amplitude dépasse la portée du récepteur.
 \end{itemize}
 
 \vspace{0.1cm}
 
-La figure \ref{term301} montre la capture de deux signaux LoRa. On remarque que malgré la configuration des paramètres pour maximiser le \ac{TOA}, il est difficile d'observer en détail le signal. On observe également que le signal se situe entre la fréquence 867,915MHz et 868,040MHz, ce qui correspond bien à la largeur de bande de 125Khz (0.125MHz) choisie.
+La figure \ref{term301} montre la capture de deux signaux LoRa. On remarque que malgré la configuration des paramètres pour maximiser le \ac{TOA}, il est difficile d'observer en détail le signal. On observe également que le signal se situe entre la fréquence 867.915MHz et 868.040MHz, ce qui correspond bien à la largeur de bande de 125KHz choisie.
 
 \begin{figure}[h]
 \centering
@@ -474,7 +465,7 @@ La figure \ref{term301} montre la capture de deux signaux LoRa. On remarque que 
 \caption{capture module rn2483 sur GQRX avec RTL-SDR R820T2. Sample rate = 1.8MHz}\label{term301}
 \end{figure}
 
-Le module Arduino, contrairement aux modules Pycom et RN2483, permet d'utiliser une largeur de bande beaucoup plus faible. La figure \ref{term302} montre la capture d'un signal \ac{LoRa} émis depuis le module Arduino. La largeur de bande choisie est de 7.8Khz, les autres paramètres d'émission (la modulation, la fréquence et le spreading factor) sont similaires à ceux de la capture précédente. Cette fois-ci, on distingue clairement sur l'affichage en spectre un pic à 868,070MHz. Sur l'affichage en cascade, le signal se dessine sous forme de traits (les chirps). Cela correspond bien à la théorie de la modulation \ac{LoRa} où le signal modulé est composé de upchirps et downchirps. Il y a, de part et d'autre du signal, des silhouettes. Cela est dû à la sensibilité de la \ac{SDR}: si on observe les pics de fréquences dans l'affichage en spectre, on constate qu'ils sont négligeables car leurs échelles de puissances sont bien inférieures (environ 60dB plus faible) à celle du pic principal. GQRX permet de visualiser le signal, mais pour pousser l'analyse plus en détails, l'utilisation d'Universal Radio Hacker est nécessaire.
+Le module Arduino, contrairement aux modules Pycom et RN2483, permet d'utiliser une largeur de bande beaucoup plus faible. La figure \ref{term302} montre la capture d'un signal \ac{LoRa} émis depuis le module Arduino. La largeur de bande choisie est de 7.8KHz, les autres paramètres d'émission (la modulation, la fréquence et le spreading factor) sont similaires à ceux de la capture précédente. Cette fois-ci, on distingue clairement sur l'affichage en spectre un pic à 868.070MHz. Sur l'affichage en cascade, le signal se dessine sous forme de traits (les chirps). Cela correspond bien à la théorie de la modulation \ac{LoRa} où le signal modulé est composé de upchirps et downchirps. Il y a, de part et d'autre du signal, des silhouettes. Cela est dû à la sensibilité de la \ac{SDR}: si on observe les pics de fréquences dans l'affichage en spectre, on constate qu'ils sont négligeables car leurs échelles de puissances sont bien inférieures (environ 60dB plus faible) à celle du pic principal. GQRX permet de visualiser le signal, mais pour pousser l'analyse plus en détails, l'utilisation d'Universal Radio Hacker est nécessaire.
 
 \begin{figure}[h]
 \centering
@@ -486,7 +477,7 @@ Le module Arduino, contrairement aux modules Pycom et RN2483, permet d'utiliser 
 
 \subsection{Analyse avec URH}\label{urh}
 
-GQRX permet de zoomer sur les fréquences mais pas sur le temps, ce qui demande donc de générer un signal dont le \ac{TOA} doit être le plus élevé possible. \ac{URH} offre plus de flexibilité sur l'analyse ce qui permet de ne pas devoir utiliser des largeurs de bande aussi faibles que celles du module Arduino. Ainsi, pour l'analyse avec \ac{URH}, les modules Pycom et RN2483 sont utilisés. La figure \ref{term303} et \ref{term304} montre la capture et la sauvegarde d'un signal LoRa. Le module utilisé est rn2483, la SDR est la R820T2. les paramètres d'émission sont les suivants : \ac{BW} = 125KHz, \ac{SF} = 8, fréquence = 868MHz, Mode = \ac{LoRa}, \ac{CR} = 4/8, power = 14. Les paramètres du récepteur sont les suivants : fréquence = 868MHz, \ac{SR} = 1.8MHz, gain = 0dB. Pour des raisons de simplicité, le signal capturé avec ses paramètres sera utilisé comme référence pour toute la partie analyse jusqu'à la fin de la section \ref{signallora}.
+GQRX permet de zoomer sur les fréquences mais pas sur le temps, ce qui demande donc de générer un signal dont le \ac{TOA} doit être le plus élevé possible. \ac{URH} offre plus de flexibilité sur l'analyse ce qui permet de ne pas devoir utiliser des largeurs de bande aussi faibles que celles du module Arduino. Ainsi, pour l'analyse avec \ac{URH}, les modules Pycom et RN2483 sont utilisés. La figure \ref{term303} et \ref{term304} montre la capture et la sauvegarde d'un signal LoRa. Le module utilisé est rn2483, la \ac{SDR} est la R820T2. les paramètres d'émission sont les suivants : \ac{BW} = 125KHz, \ac{SF} = 8, fréquence = 868MHz, Mode = \ac{LoRa}, \ac{CR} = 4/8, power = 14. Les paramètres du récepteur sont les suivants : fréquence = 868MHz, \ac{SR} = 1.8MHz, gain = 0dB. Pour des raisons de simplicité, le signal capturé avec ses paramètres sera utilisé comme référence pour toute la partie analyse jusqu'à la fin de la section \ref{signallora}.
 
 \newpage
 
@@ -524,14 +515,14 @@ A partir de la figure \ref{term304}, il est possible de couper une partie de l'e
 \caption{Zoom d'un upchirp du signal LoRa capturé}\label{term307}
 \end{figure}
 
-Ce phénomène est dû à une interprétation faussée par \ac{URH}. La fréquence du récepteur choisie étant la même que celle de l'émetteur, \ac{URH} va interpréter 868Mhz comme étant la fréquence centrale ayant pour valeur 0, ce qui signifie que pour un signal reçu à 868Mhz, la moitié des échantillons sont interprétés comme ayant une fréquence "négative". Autrement dit, \ac{URH} affiche la position inverse des échantillons qu'il considère comme négatifs. Pour éviter cette erreur, il suffit de décaler la fréquence d'écoute proportionnellement à la moitié de la taille de la largeur de bande du signal émis. Dans ce cas, le signal émis à une largeur de bande de 125Khz, il faut ajuster la fréquence d'écoute :
+Ce phénomène est dû à une interprétation faussée par \ac{URH}. La fréquence du récepteur choisie étant la même que celle de l'émetteur, \ac{URH} va interpréter 868MHz comme étant la fréquence centrale ayant pour valeur 0, ce qui signifie que pour un signal reçu à 868MHz, la moitié des échantillons sont interprétés comme ayant une fréquence "négative". Autrement dit, \ac{URH} affiche la position inverse des échantillons qu'il considère comme négatifs. Pour éviter cette erreur, il suffit de décaler la fréquence d'écoute proportionnellement à la moitié de la taille de la largeur de bande du signal émis. Dans ce cas, le signal émis à une largeur de bande de 125KHz, il faut ajuster la fréquence d'écoute :
 
 \begin{align}
     F_{recepteur} = F_{emetteur} - \frac{BW}{2} soit: \\
-    868Mhz - \frac{125KHz}{2} = 867,9375MHz
+    868MHz - \frac{125KHz}{2} = 867.9375MHz
 \end{align}
 
-On observe également, au début du premier chirp, une période où l'amplitude est en train de s'ajuster. Ce phénomène, appelé période transitoire (transcient part), est un état instable durant lequel différentes propriétés du signal peuvent subir des changements. Sur la figure \ref{term307}, cela survient au début de la réception, ce qui peut s'expliquer par le fait que le module d'émission change d'état au moment de débuter la transmission.
+On observe également, au début du premier chirp, une période où l'amplitude est en train de s'ajuster. Ce phénomène, appelé période transitoire (transient part), est un état instable durant lequel différentes propriétés du signal peuvent subir des changements. Sur la figure \ref{term307}, cela survient au début de la réception, ce qui peut s'expliquer par le fait que le module d'émission change d'état au moment de débuter la transmission.
 
 \vspace{0.1cm}
 
@@ -545,15 +536,15 @@ Selon la section \ref{packetlora}, la structure du paquet \ac{LoRa} devrait cont
 \caption{Identification du préambule LoRa}\label{term308}
 \end{figure}
 
-Cependant, l'utilisation d'intermédiaire comme \ac{URH} ou GQRX n'est pas efficace pour traiter un grand nombre de signaux. La dernière étape avant de commencer l'identification des noeuds à partir des signaux est d'automatiser le processus complet de la capture du signal. Bien qu'\ac{URH} et GQRX ne soit pas nécessaire pour réaliser l'identification, leur utilisation a été d'une grande aide. Par exemple l'apprentissage de la reconnaissance de signaux \ac{LoRa} et de leur représentation, mais également l'observation de la partie transitoire d'un signal. Ils ont également permis de visualiser l'impact de paramètres comme le taux d'échantillonnage, le facteur d'étalement ou encore la largeur de bande d'un signal.
+Cependant, l'utilisation d'intermédiaires comme \ac{URH} ou GQRX n'est pas efficace pour traiter un grand nombre de signaux. La dernière étape avant de commencer l'identification des noeuds à partir des signaux est d'automatiser le processus complet de la capture du signal. Bien qu'\ac{URH} et GQRX ne soit pas nécessaires pour réaliser l'identification, leur utilisation a été d'une grande aide: par exemple pour l'apprentissage de la reconnaissance de signaux \ac{LoRa} et de leur représentation, mais également pour l'observation de la partie transitoire d'un signal. Ils ont également permis de visualiser l'impact de paramètres comme le taux d'échantillonnage, le facteur d'étalement ou encore la largeur de bande d'un signal.
 
-\subsection{Analyse avec python}
+\subsection{Analyse avec Python}
 
 Une information importante que les deux logiciels de visualisation ont occultée est la composition du signal. En effet, la visualisation analogique du signal avec \ac{URH} montre une seule onde continue. Cependant, il s'agit d'un signal complexe composé de deux ondes distinctes. Les échantillons du signal capturés par la \ac{SDR} sont constitués de deux composantes : la composante \textit{I} (In phase) et la composante \textit{Q} (Quadrature) (voir section \ref{mod}). \ac{URH} combine les deux pour générer la vue analogique.
 
 \vspace{0.1cm}
 
-La librairie \textit{Matplotlib} de python permet d'afficher le contenu du signal capturé. La figure  \ref{term309} est un plot des échantillons dont la partie réelle (orange) et imaginaire (bleue) ont été séparées. Le signal a été capturé avec un taux d'échantil\-lonnage de 1.8MHz, malgré un \ac{TOA} relativement court (quelques centièmes de secondes, le calcul du \ac{TOA} est donné par l'équation \ref{toa}) la quantité d'échantillons capturés est très grande (plus de 130000 échantillons). Matplotlib permet également le zoom, la figure \ref{term310} fait un zoom sur les 4000 premiers échantillons. Les deux ondes apparaissent grâce au zoom.
+La librairie \textit{Matplotlib} de Python permet d'afficher le contenu du signal capturé. La figure  \ref{term309} est un plot des échantillons dont la partie réelle (orange) et imaginaire (bleue) ont été séparées. Le signal a été capturé avec un taux d'échantil\-lonnage de 1.8MHz, malgré un \ac{TOA} relativement court (quelques centièmes de secondes, le calcul du \ac{TOA} est donné par l'équation \ref{toa}) la quantité d'échantillons capturés est très grande (plus de 130,000 échantillons). Matplotlib permet également le zoom, la figure \ref{term310} fait un zoom sur les 4000 premiers échantillons. Les deux ondes apparaissent grâce au zoom.
 
 \begin{figure}[h]
 \centering
@@ -575,11 +566,11 @@ La librairie \textit{Matplotlib} de python permet d'afficher le contenu du signa
 
 \subsection{Automatisation du signal et preprocessing}
 
-Afin de pouvoir effectuer l'identification des appareils, il faut que l'environnement de test soit identique pour chaque module, donc tous les paramètres d'émissions sont identiques. La même \ac{SDR} est utilisé avec les mêmes paramètres de réception pour les mêmes raisons. Avec des paramètres d'émission et de réception fixes, il est possible d'automatiser le processus d'enregistrement d'échantillons \ac{LoRa}.
+Afin de pouvoir effectuer l'identification des appareils, il faut que l'environnement de test soit identique pour chaque module, donc tous les paramètres d'émission sont identiques. La même \ac{SDR} est utilisée avec les mêmes paramètres de réception pour les mêmes raisons. Avec des paramètres d'émission et de réception fixes, il est possible d'automatiser le processus d'enregistrement d'échantillons \ac{LoRa}.
 
 La librairie PyRTLSDR permet de configurer la radio logicielle depuis un script Python (voir annexe \ref{antenne}). La partie du signal que l'on cherche à conserver est le préambule (soit les 8 premiers chirps fixes ou les 12.25 premiers chirps). Si le taux d'échantillonnage est fixe et que le préambule est toujours de la même taille, alors il est possible de calculer le nombre d'échantillons à capturer. 
 
-Par exemple, la figure \ref{term311} indique qu'un préambule complet (12.25 chirps) contient environ 49000 échantillons. Sachant que le taux d'échantillonnage est de 2MHz pour cet exemple, alors le \ac{TOA} du préambule vaut :
+Par exemple, la figure \ref{term311} indique qu'un préambule complet (12.25 chirps) contient environ 49,000 échantillons. Sachant que le taux d'échantillonnage est de 2MHz pour cet exemple, alors le \ac{TOA} du préambule vaut :
 
 \begin{align}\label{toa}
     Time On Air (TOA) = \frac{N_{samples}}{sample rate} = 0.0245
@@ -591,7 +582,7 @@ Par exemple, la figure \ref{term311} indique qu'un préambule complet (12.25 chi
 \centering
 
 \includegraphics[scale=0.14]{images/iq3.png}
-\caption{Préambule LoRa (sampel rate = 2MHz)}\label{term311}
+\caption{Préambule LoRa (sample rate = 2MHz)}\label{term311}
 \end{figure}
 
 Maintenant que la durée de l'enregistrement est calculée, il reste à fixer le moment à partir duquel l'enregistrement commence. La méthode la plus facile est d'implémenter un threshold qui détermine si un signal est reçu durant l'écoute. Voici en résumé comment toute l'opération se déroule :
@@ -607,7 +598,7 @@ Maintenant que la durée de l'enregistrement est calculée, il reste à fixer le
 Finalement, il reste une dernière étape avant de pouvoir commencer l'identification des modules. Bien que les prises d'échantillons soient en intérieur avec une faible distance entre l'émetteur et le récepteur (voir figure \ref{term312}), les signaux sont parfois fortement atténués. Il faut donc normaliser les données pour contrer les différences d'amplitude. Les données sont normalisées en utilisant \ac{RMS}. La valeur du \ac{RMS} pour un set $x$ de $n$ données ${x_1,x_2,...,x_n}$ vaut la racine carrée de la moyenne arithmétique des carrés des valeurs soit :
 
 \begin{align}
-    x_{RMS} = \sqrt{\frac{1}{n}(x_1^2 + x_2^2 + ... + x_n^2}
+    x_\mathrm{RMS} = \sqrt{\frac{1}{n}(x_1^2 + x_2^2 + ... + x_n^2}
 \end{align}
 
 L'implémentation de l'automatisation et de la normalisation est disponible en annexe \ref{codeauto}. L'application de \ac{RMS} a lieu une fois que les données ont été sauvegardées en fichier. Pour chaque répertoire contenant différents signaux capturés, \ac{RMS} est appliqué individuellement sur chacun des fichiers.
