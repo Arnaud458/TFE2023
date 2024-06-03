@@ -30,11 +30,11 @@ En télécommunication, les signaux sont des ondes électromagnétiques. Ses ond
 
 \item La largeur de spectre. Elle dépend de la fréquence car c'est l'écart entre la plus haute et la plus basse fréquence du signal. Une plus grande largeur permet de transmettre plus d'informations, mais consomme plus d'énergie.
 
-\item L'amplitude. Selon le type de signal l'attribut possède différentes fonctions. Dans le cas d'un signal analogique l'amplitude détermine la magnitude de l'onde pour n'importe quel point dans le temps. Dans un signal numérique, l'amplitude est interprétée différemment. Les signaux numériques sont encodés avec des valeurs discrètes, où chaque valeur repésente un niveau (par exemple 0 ou 1). L'amplitude permet de faire la disctinction entre ces niveaux.
+\item L'amplitude. Selon le type de signal, l'attribut possède différentes fonctions. Dans le cas d'un signal analogique l'amplitude détermine la magnitude de l'onde pour n'importe quel point dans le temps. Dans un signal numérique, l'amplitude est interprétée différemment. Les signaux numériques sont encodés avec des valeurs discrètes, où chaque valeur repésente un niveau (par exemple 0 ou 1). L'amplitude permet de faire la disctinction entre ces niveaux.
 
 \item La puissance. C'est la force du signal, mesurée en \textit{Watt (W)}, un attribut important pour la réception du signal notamment. Bien que le Watt soit utilisé pour décrire la puissance à l'émission ou la réception, les variations de puissance sont généralement exprimées en décibels (dB). Le décibel est une unité logarithmique permettant de mesurer plus facilement les relations entre les différents niveaux de puissance.
 
-\item Le \ac{SNR}. Cet attribut exprimé en décibel mesure la qualité du signal. Le SNR peut se calculer de la façon suivante : 
+\item Le \ac{SNR}. Cet attribut exprimé en décibels mesure la qualité du signal. Le SNR peut se calculer de la façon suivante : 
 
 \begin{equation}\label{eq0}
 SNR(dB) = 10log_{10} \frac{P_{signal}}{P_{noise}}
@@ -91,7 +91,7 @@ $m(t)$ peut donc être exprimé par la relation suivante :
     m(t) &= x(t) \cos(2 \pi f_c t) - y(t) \sin(2 \pi f_c t)
 \end{align}
 
-car l'enveloppe complexe $g(t)$ peut être exprimée selon ses composantes \ac{I/Q}. Dans le plan complexe, la composante \textit{I} est représentée par l'axe des réels, tandis que la composante \textit{Q} est représentée sur l'axe imaginaire. Un nombre complexe $z$ peut être représenté selon ses composantes, tel que:
+car l'enveloppe complexe $g(t)$ peut être exprimée selon ses composantes \ac{I/Q}. Dans le plan complexe, la composante \textit{I} est représentée par l'axe des réels, tandis que la composante \textit{Q} est représentée sur l'axe imaginaire. Un nombre complexe $z$ peut être représenté selon ses composantes, telles que:
 
 \begin{equation}\label{eq115}
 z = I + jQ.
@@ -159,7 +159,7 @@ $c(t)$ = $\cos(2\pi f_{c}t)$ où $f_{c}$ = 50 Hz.
 La Figure \ref{term1} montre le signal modulé $m_\mathrm{AM}(t)$ via la modulation en amplitude, représenté par l'équation suivante :
 
 \begin{equation}\label{eq1140}
-s(t) = \frac{A_c}{2} \cos(2\pi f_s + f_c t) + \frac{A_c}{2} \cos(2\pi f_s - f_c t)
+m_\mathrm{AM}(t) = \frac{A_c}{2} \cos(2\pi f_s + f_c t) + \frac{A_c}{2} \cos(2\pi f_s - f_c t)
 \end{equation}
 
 Pour rappel, l'identité trigonométrique :
@@ -172,7 +172,7 @@ cos(a)cos(b) = \frac{1}{2} (cos(a+b) + cos(a-b)).
 
 \subsection{Modulation en phase}
 
-La modulation en phase, \ac{PM}, permet généralement d'obtenir une meilleure utilisation de la bande passante que les autres modulations car les variations de phase peuvent encoder plus d'informations, ce qui augmente la quantité de données transmises. La modulation en phase est associée à celle en fréquence, celle ci sont dites "angulaires" \cite{angle}. Sous l’effet de ces modulations, la phase constante de la porteuse non modulée devient un angle de phase variable dans le temps, véhiculant l’information du message en bande de base.
+La modulation en phase, \ac{PM}, permet généralement d'obtenir une meilleure utilisation de la bande passante que les autres modulations car les variations de phase peuvent encoder plus d'informations, ce qui augmente la quantité de données transmises. La modulation en phase est associée à celle en fréquence, celles-ci sont dites "angulaires" \cite{angle}. Sous l’effet de ces modulations, la phase constante de la porteuse non modulée devient un angle de phase variable dans le temps, véhiculant l’information du message en bande de base.
 
 Le signal modulé $m(t)$ peut s'exprimer ainsi :
 
@@ -212,7 +212,7 @@ $c(t)$ = $cos(2\pi f_{c}t + \phi_{c})$ où $f_{c}$ = 50 Hz.
 
 \vspace{0.1cm}
 
-La Figure \ref{term3} montre le signal modulé $m_\mathrm{PM}(t)$ en phase pour une phase initale ddu carrier signal $\phi_{c}$ = 0 avec un index de modulation de phase $K$ = 8.
+La Figure \ref{term3} montre le signal modulé $m_\mathrm{PM}(t)$ en phase pour une phase initale du carrier signal $\phi_{c}$ = 0 avec un index de modulation de phase $K$ = 8.
 
 
 
@@ -270,13 +270,13 @@ Ce qui implique que le signal modulé a subi un décalage de $\frac{\pi}{2}$ rad
 
 
 
-On constate que pour un signal sinusoïdal il est assez difficile de différencier la modulation en fréquence de celle en phase. La différence a lieu à l'emplacement des variations de la vitesse d'oscillation. Pour la modulation en fréquence, on constante que l'oscillation accélère jusqu'à atteindre le maximum quand l'amplitude du signal en bande de base est maximale, et inversément quand l'amplitude est au minimum.
+On constate que, pour un signal sinusoïdal, il est assez difficile de différencier la modulation en fréquence de celle en phase. La différence a lieu à l'emplacement des variations de la vitesse d'oscillation. Pour la modulation en fréquence, on constante que l'oscillation accélère jusqu'à atteindre le maximum quand l'amplitude du signal en bande de base est maximale, et inversément quand l'amplitude est au minimum.
 
 
 \subsection{Gestion du bruit}
 
-L'un des attributs cité concerne le bruit. Un signal est toujours affecté de petites fluctuations plus ou moins importantes, et dont les origines peuvent être diverses. Ces perturbations, appelées bruit en télécommunication se définissent par l'altération non souhaitée de l'intégrité d'un signal. Le bruit peut prendre différentes formes, des perturbations essentiellement impulsionnelles engendrées par des commutations de courants ou alors du bruit de fond généré dans les câbles et les composants électroniques en raison
-des mécanismes statistiques de la conduction électrique. Il est possible de réduire voire d'éliminer l'influence des perturbations impulsionnelles. En revanche, le bruit de fond est lui irréductible. Tout signal sans bruit n'existe pas, même à l'émission. Il est cependant possible que le bruit devienne invisible si son niveau est très faible. L'attribut \ac{SNR} est donc un critère de la qualité du signal.
+L'un des attributs cité concerne le bruit. Un signal est toujours affecté de petites fluctuations plus ou moins importantes, et dont les origines peuvent être diverses. Ces perturbations, appelées "bruit" en télécommunication, se définissent par l'altération non souhaitée de l'intégrité d'un signal. Le bruit peut prendre différentes formes, des perturbations essentiellement impulsionnelles engendrées par des commutations de courants ou alors du bruit de fond généré dans les câbles et les composants électroniques en raison
+des mécanismes statistiques de la conduction électrique. Il est possible de réduire voire d'éliminer l'influence des perturbations impulsionnelles. En revanche, le bruit de fond est, lui, irréductible. Un signal sans bruit n'existe pas, même à l'émission. Il est cependant possible que le bruit devienne invisible si son niveau est très faible. L'attribut \ac{SNR} est donc un critère de la qualité du signal.
 
 
 \subsection{Transformée de Fourier}
@@ -285,7 +285,7 @@ Les notations sont également reprises du livre \textit{An introduction to analo
 
 \vspace{0.1cm}
 
-Pour effectuer une analyse de signal, sa représentation est capitale. Les Figures \ref{term1}, \ref{term2} et \ref{term3} représentent des signaux en fonction du temps écoulé, soit dans le domaine temporel. Il est possible de représenter des signaux selon une autre composante, la fréquence, c'est à dire dans le domaine fréquentiel.
+Pour effectuer une analyse de signal, sa représentation est capitale. Les Figures \ref{term1}, \ref{term2} et \ref{term3} représentent des signaux en fonction du temps écoulé, soit dans le domaine temporel. Il est possible de représenter des signaux selon une autre composante, la fréquence, c'est-à-dire dans le domaine fréquentiel.
 
 \vspace{0.1cm}
 
@@ -300,7 +300,7 @@ G(f) = \int_{-\infty}^{\infty} g(t)e^{-j\omega t} dt
 \end{equation}
 
 où : $G(f)$ est la Transformée de Fourier du signal $g(t)$ à la fréquence $f$. $\omega$ représente la fréquence angulaire $(2 \pi f)$.
-Il est également possible de revenir dans le domaine temporelle, grâce à la Transformée de Fourier inverse (IFT) :
+Il est également possible de revenir dans le domaine temporel, grâce à la Transformée de Fourier inverse (IFT) :
 
 \begin{equation}\label{eq12}
 g(t) = \int_{-\infty}^{\infty} G(f)e^{j\omega ft} df
@@ -309,7 +309,9 @@ Les deux équations \ref{eq11} et \ref{eq12} sont les complexes conjugués l'une
 
 \vspace{0.1cm}
 
-Reprenons la modulation en amplitude de la section \ref{mod}. En utilisant la \ac{CFT} sur les trois signaux (bande de base, porteuse et modulé) de la figure \ref{term1}, la figure \ref{term8} montre leurs CFT respectives.
+Reprenons la modulation en amplitude de la section \ref{mod}. En utilisant la \ac{CFT} sur les trois signaux (le signal en bande de base, la porteuse et le signal modulé) de la figure \ref{term1}, la figure \ref{term8} montre leurs CFT respectives.
+
+\newpage
 
 \begin{figure}[h]
 \centering
@@ -328,7 +330,7 @@ Ainsi, par l'identité trigonométrique \ref{eq114}, le signal modulé possède 
 
 \vspace{0.1cm}
 
-Pour les signaux discrets et échantillonnés, la \ac{DFT} calcule un ensemble fini de composantes de fréquence. Il est calculé à l’aide d’un nombre fini d’échantillons, ce qui donne des composantes de fréquence discrètes. Il existe un méthode optimisée pour les signaux discrets appelé \ac{FFT} \cite{fft}. Il s'agit d'un moyen plus rapide et moins coûteux de calculer la transformée de Fourier, en particulier pour les signaux numériques comportant un grand nombre de points de données. La DFT calcule la transformée de Fourier pour une séquence de N échantillons en $O(N^2$) tandis que la FFT optimise le temps de calcul en $O(N log N)$ pour la même séquence. Il existe diverses variantes de la FFT (par example le Cooley-Tukey FFT \cite{fft1}) ce qui peut légèrement faire varier les performances en fonction de l'algorithme utilisé. Les logiciels utilisés pour l'analyse de signaux dans la section \ref{fft} utilisent des algorithmes de \ac{FFT} pour leurs affichages dans le domaine fréquentiel.
+Pour les signaux discrets et échantillonnés, la \ac{DFT} calcule un ensemble fini de composantes de fréquence. Il est calculé à l’aide d’un nombre fini d’échantillons, ce qui donne des composantes de fréquence discrètes. Il existe un méthode optimisée pour les signaux discrets appelé \ac{FFT} \cite{fft}. Il s'agit d'un moyen plus rapide et moins coûteux de calculer la transformée de Fourier, en particulier pour les signaux numériques comportant un grand nombre de points de données. La \ac{DFT} calcule la transformée de Fourier pour une séquence de N échantillons en $O(N^2$) tandis que la \ac{FFT} optimise le temps de calcul en $O(N log N)$ pour la même séquence. Il existe diverses variantes de la \ac{FFT} (par exemple le Cooley-Tukey FFT \cite{fft1}) ce qui peut légèrement faire varier les performances en fonction de l'algorithme utilisé. Les logiciels utilisés pour l'analyse de signaux dans la section \ref{fft} utilisent des algorithmes de \ac{FFT} pour leurs affichages dans le domaine fréquentiel.
 
 \newpage
 
@@ -361,15 +363,15 @@ Pour les signaux discrets et échantillonnés, la \ac{DFT} calcule un ensemble f
 
 \vspace{0.1cm}
 
-La technologie LoRa utilise la modulation appelé \ac{CSS}. La modulation \ac{CSS} utilise un signal chirp, c'est à dire un signal modulé linéairement en fréquence. Ce signal a une amplitude constante mais balaie tout le spectre de la bande passante de manière linéaire dans une période de temps définie. Cette technique de modulation est détaillée à la section \ref{css}
+La technologie LoRa utilise la modulation appelée \ac{CSS}. La modulation \ac{CSS} utilise un signal chirp, c'est-à-dire un signal modulé linéairement en fréquence. Ce signal a une amplitude constante mais balaie tout le spectre de la bande passante de manière linéaire dans une période de temps définie. Cette technique de modulation est détaillée à la section \ref{css}
 
 \vspace{0.1cm}
 
-La technologie \ac{LoRa} utilise également une technique de multiplexage en temps partagé (Time Division Multiple Access) pour permettre à plusieurs appareils de partager la même bande de fréquences de manière à maximiser l'utilisation de la capacité de transmission. Elle utilise également une technique de diffusion de données (multicast) pour envoyer les mêmes données à plusieurs appareils simultanément, ce qui permet de réaliser des économies de bande passante et d'énergie \footnote{LoRa Alliance : \href{https://resources.lora-alliance.org/technical-trainings/lorawan-device-to-device-multicast-communications}{https://resources.lora-alliance.org/technical-trainings/lorawan-device-to-device-multicast-communications}}
+La technologie \ac{LoRa} utilise également une technique de multiplexage en temps partagé (Time Division Multiple Access) pour permettre à plusieurs appareils de partager la même bande de fréquences de manière à maximiser l'utilisation de la capacité de transmission. Elle utilise également une technique de diffusion de données (multicast)\footnote{LoRa Alliance : \href{https://resources.lora-alliance.org/technical-trainings/lorawan-device-to-device-multicast-communications}{https://resources.lora-alliance.org/technical-trainings/lorawan-device-to-device-multicast-communications}} pour envoyer les mêmes données à plusieurs appareils simultanément, ce qui permet de réaliser des économies de bande passante et d'énergie.
 
 \vspace{0.1cm}
 
-En plus de sa portée étendue et de sa faible consommation d'énergie, LoRa se distingue par sa sécurité de transmission via LoRaWAN, qui est assurée grâce à l'utilisation de codes de sécurité uniques et à la possibilité de chiffrer les données transmises. \ac{LoRa} n'est pas exclusivement lié au protocole LoRaWAN. Ce protocole est décrit en détail à la section \ref{lorawan}. Si \ac{LoRa} opère à un niveau plus bas que la plupart des protocoles réseau, LoRaWAN via son infrastructure (notamment les gateways) permet entre autre aux appareils LoRa de pouvoir servir d'intermédiaires avec différents protocoles et d'être compatibles avec un grand nombre de protocoles de communications comme \ac{TCP}, \ac{HTTP} ou \ac{MQTT}.
+En plus de sa portée étendue et de sa faible consommation d'énergie, LoRa se distingue par sa sécurité de transmission via LoRaWAN, qui est assurée grâce à l'utilisation de codes de sécurité uniques et à la possibilité de chiffrer les données transmises. \ac{LoRa} n'est pas exclusivement lié au protocole LoRaWAN. Ce protocole est décrit en détails à la section \ref{lorawan}. Si \ac{LoRa} opère à un niveau plus bas que la plupart des protocoles réseau, LoRaWAN via son infrastructure (notamment les gateways) permet, entre autres, aux appareils LoRa de pouvoir servir d'intermédiaires avec différents protocoles et d'être compatibles avec un grand nombre de protocoles de communications comme \ac{TCP}, \ac{HTTP} ou \ac{MQTT}.
 
 \vspace{0.1cm}
 
@@ -396,15 +398,15 @@ Les étapes de la conception de l'envoi de données dans la couche physique de \
 \item le blanchiment de canal (channel withening).
 Cette technique consiste à utiliser une transformation aléatoire ou pseudo-aléatoire des données avant de les transmettre, de manière à répartir le spectre des fréquences de la transmission sur une large gamme de fréquences. C'est une technique mathématique qui consiste à effectuer une transformation linéaire des données avec une matrice de covariance en un nouveau set de données. Le but du blanchiment est de réduire la corrélation entre les différentes composantes fréquentielles et assurer que le signal possède une puissance similaire tout le long de son spectre.
 \item Le codage de canal (channel coding) est une technique utilisée dans les systèmes de communication sans fil pour améliorer la robustesse et la fiabilité de la transmission des données. Dans le cas de LoRa, le codage de canal utilise le \ac{FEC} pour corriger les erreurs causées par du bruit. La méthode FEC ajoute de l'information redondante sur les données.
-\item Le mélange(interleaving) suit le codage de canal.  
-Cette technique consiste à réarranger les bits ou les symboles de données en les dispersant sur plusieurs canaux (ici on fait référence à des streams ou a des bandes de fréquences spécifiques plutôt qu'à des canaux physiques). Cela permet de réduire l'impact de burst errors, des erreurs consécutives.
+\item Le mélange (interleaving) suit le codage de canal.  
+Cette technique consiste à réarranger les bits ou les symboles de données en les dispersant sur plusieurs canaux (ici on fait référence à des streams ou à des bandes de fréquences spécifiques plutôt qu'à des canaux physiques). Cela permet de réduire l'impact de burst errors, des erreurs consécutives.
 \item Le Gray mapping. Le code de Gray est une méthode d'ordonnancement de symboles. Le principe de cette méthode est que dans la séquence ordonnée, chaque symbole ne diffère du précédent que d'un seul bit. Utiliser le code de Gray permet de réduire les erreurs dues au bruit ou aux interférences. Les erreurs les plus probables sont celles en deux symboles voisins, soit un bit d'erreur.
 \item La modulation \ac{CSS} est l'étape principale de LoRa. En effet, les étapes précédentes sont communes à de nombreuses technologies, mais la particularité de LoRa provient de la modulation. Cette étape est détaillée dans la section \ref{css}.
 \end{itemize}
 
 \vspace{0.1cm}
 
-Chacune des étapes décrites doit être inversément réalisée pour le récepteur. Ainsi pour la récupération de données à l'arrivée, l'appareil récepteur gère la démo\-dulation, le déblanchiment, le démêlement et le décodage.
+Chacune des étapes décrites doit être inversément réalisée pour le récepteur. Ainsi, pour la récupération de données à l'arrivée, l'appareil récepteur gère la démo\-dulation, le déblanchiment, le démêlement et le décodage.
 
 \subsubsection{Modulation CSS}\label{css}
 
@@ -413,25 +415,18 @@ Le principe de la modulation LoRa est détaillé en profondeur dans l'article \t
 \vspace{0.1cm}
 
 La modulation \ac{LoRa} repose sur le principe de \ac{FSCM}, qui est une combinaison de la modulation \ac{FSK} et \ac{CSS}.
-La modulation \ac{CSS} étale le signal sur une large bande de fréquences tandis que la modulation \ac{FSK} décale la fréquence périodiquement dans le temps. Le signal modulé est composé de chirps. Un chirp est un signal dont la fréquence change en continue tout en conservant une amplitude constante. Il existe deux types de chirps : les upchirps et downchirps.
+La modulation \ac{CSS} étale le signal sur une large bande de fréquences tandis que la modulation \ac{FSK} décale la fréquence périodiquement dans le temps. Le signal modulé est composé de chirps. Un chirp est un signal dont la fréquence change en continu tout en conservant une amplitude constante. Il existe deux types de chirps : les upchirps et downchirps.
 Dans un upchirp la fréquence augmente avec le temps tandis que dans un downchirp la fréquence diminue. Soit $s_{chirp}(t)$ un signal chirp avec
 
 \begin{equation}\label{eq3}
 s_{chirp}(t) = sin(2\pi(f_0 + (\frac{f_1 - f_0}{2T_s})t)t)
 \end{equation}
 
-alors la figure \ref{term5} montre $s_{chirp}$ en fonction du temps où $f_0$ = 10Hz, $f_1$ = 100Hz et $T_s$ = 1 seconde. On observe que le signal oscille de plus en vite plus vite au fur et à mesure que le temps augmente.
-
-\begin{figure}[h]
-\centering
-
-\includegraphics[scale=0.18]{images/CSSupchirp.png}
-\caption{Example d'un upchirp}\label{term5}
-\end{figure}
+alors la figure \ref{term5} montre $s_{chirp}$ en fonction du temps où $f_0$ = 10Hz, $f_1$ = 100Hz et $T_s$ = 1 seconde. On observe que le signal oscille de plus en plus vite au fur et à mesure que le temps augmente.
 
 \vspace{0.1cm}
 
-Supposons que la bande passante du canal soit $\beta$, \ac{LoRa} impose qu'un échan\-tillon soit transmis tout les $T$ = $\frac{1}{\beta}$. Un symbole $s(nT_s)$ est envoyé à l'entrée de la modulation tout les $T_s$ = $\frac{2^{SF}}{\beta}$ où \ac{SF} est le facteur d'étalement. Le symbole $s(nT_s$) est un nombre réel formé en utilisant un vecteur de chiffres binaires du facteur d'étalement. Les valeurs de \ac{SF} pour LoRa sont comprises entre 7 et 12. \ac{LoRa} utilise donc au total $2^{SF}$ symboles. L'onde transmise en bande de base pour une durée $T_s$ pour un certain $s(nT_s)$ vaut :
+Supposons que la bande passante du canal soit $\beta$, \ac{LoRa} impose qu'un échan\-tillon soit transmis tous les $T$ = $\frac{1}{\beta}$. Un symbole $s(nT_s)$ est envoyé à l'entrée de la modulation tous les $T_s$ = $\frac{2^{SF}}{\beta}$ où \ac{SF} est le facteur d'étalement. Le symbole $s(nT_s$) est un nombre réel formé en utilisant un vecteur de chiffres binaires du facteur d'étalement. Les valeurs de \ac{SF} pour LoRa sont comprises entre 7 et 12. \ac{LoRa} utilise donc au total $2^{SF}$ symboles. L'onde transmise en bande de base pour une durée $T_s$ pour un certain $s(nT_s)$ vaut :
 
 \begin{equation}
 c(nT_s + kT) = \frac{1}{\sqrt{2^{SF}}} e^{j2\pi ((s(nT_s) +k )mod 2^{SF})kT \frac{\beta}{2^{SF}}}
@@ -439,6 +434,12 @@ c(nT_s + kT) = \frac{1}{\sqrt{2^{SF}}} e^{j2\pi ((s(nT_s) +k )mod 2^{SF})kT \fra
 pour $0 \leq k \leq 2^{SF}-1$ et $0 \leq s(nT_s) < 2^{SF}$.
 Le signal modulé est donc une onde composée de chirps. Chaque fragment de l'onde diffère de l'onde possèdant une fréquence initiale à 0, par un décalage de fréquence $s(nT_s)$. Cette caractéristique est la raison de l'appellation \ac{FSCM}.
 
+\begin{figure}[h]
+\centering
+
+\includegraphics[scale=0.18]{images/CSSupchirp.png}
+\caption{Exemple d'un upchirp}\label{term5}
+\end{figure}
 
 \subsubsection{Spreading factor}
 
@@ -451,12 +452,11 @@ Le facteur d'étalement \footnote{The Thing Network on Spreading Factor :\href{h
 \vspace{0.1cm}
 
 \begin{itemize}
-\item l'augmentation de la portée. En effet augmenter le SF réduit le bitrate et augmente le processing gain (l'augmentation de la puissance du signal atteint en l'étalant sur une plus large bande).
-\item Augmentation de la résistance aux interférences. Comme le signal est étalé sur une bande plus large, il y a moins de risque de subir des interférences.
-\item Plus petit débit de données. Le spreading factor contrôle le taux de chirp, et du coup la vitesse de transmission de données. Augmenter le spreading factor signifie ralentir la vitesse d'émission des chirps. Pour chaque augmentation du spreading factor, le taux de transmission de données est réduit de moitié.
-\item Plus grande consommation. Les données transmises à un taux plus faible, la durée de transmission est donc plus longue ce qui prolonge le coût pour envoyer l'information.
+\item une augmentation de la portée. En effet augmenter le SF réduit le bitrate et augmente le processing gain (l'augmentation de la puissance du signal atteint en l'étalant sur une plus large bande).
+\item Une augmentation de la résistance aux interférences. Comme le signal est étalé sur une bande plus large, il y a moins de risque de subir des interférences.
+\item Un plus petit débit de données. Le spreading factor contrôle le taux de chirp, et du coup la vitesse de transmission de données. Augmenter le spreading factor signifie ralentir la vitesse d'émission des chirps. Pour chaque augmentation du spreading factor, le taux de transmission de données est réduit de moitié.
+\item Une plus grande consommation. Si les données sont transmises à un taux plus faible, la durée de transmission est donc plus longue ce qui prolonge le coût pour envoyer l'information.
 \end{itemize}
-
 Diminuer le spreading factor engendre l'effet inverse.
 
 
@@ -483,11 +483,11 @@ La figure \ref{term6} montre la structure d'un paquet \ac{LoRa}. Un paquet \ac{L
 \newpage
 \subsection{LoRaWAN}\label{lorawan}
 
-LoRaWAN est un protocol de type \ac{LPWAN} conçu pour la communication longue portée. Ce protocole opère avec la technologie \ac{LoRa} et lui fournit une infrastructure capable de maintenir une communication à longue portée et à faible coût dans l'\ac{IoT}.
+LoRaWAN est un protocole de type \ac{LPWAN} conçu pour la communication longue portée. Ce protocole opère avec la technologie \ac{LoRa} et lui fournit une infrastructure capable de maintenir une communication à longue portée et à faible coût dans l'\ac{IoT}.
 
 \subsubsection{Aspects généraux de la technologie}
 
-Le coeur de LoRaWAN réside dans la gestion de l'énergie, permettant aux appareils de fonctionner avec une consommation d'énergie minimale, prolongeant leur durée de vie tout en garantissant une fonctionnalité à long terme. Elle est également efficace dans différents environnements. Le signal est capable de pénétrer divers terrains et structures. Cela rend la technologie efficace aussi bien en milieu rurale qu'en milieu urbain.
+Le coeur de LoRaWAN réside dans la gestion de l'énergie, permettant aux appareils de fonctionner avec une consommation d'énergie minimale, prolongeant leur durée de vie tout en garantissant une fonctionnalité à long terme. Elle est également efficace dans différents environnements. Le signal est capable de pénétrer divers terrains et structures. Cela rend la technologie efficace aussi bien en milieu rural qu'en milieu urbain.
 Le déploiement d'une infrastructure \ac{LoRa} ne nécessite pas de licence, et son réseau peut être public ou privé.
 
 \vspace{0.1cm}
@@ -513,12 +513,12 @@ Avec toutes ces caractéristiques, LoRaWAN s'est développé dans de nombreux do
 \item la surveillance environnementale en général \cite{lorauc1}. LoRaWAN peut être déployé pour surveiller des niveaux de température, d'humidité, de bruits ou encore d'autres paramètres dans n'importe quel milieu. Une compagnie Hollandaise, Sensoterra\footnote{Sensoterra : \href{https://www.sensoterra.com/technology/global-lorawan-networks/}{https://www.sensoterra.com/technology/global-lorawan-networks/}}, utilise notamment LoRaWAN pour surveiller la qualité des sols.
 \item Les smart cities \cite{lorauc2}. LoRaWAN est actif sur différents aspects comme la gestion intelligente de l'éclairage, la gestion des déchets, la surveillance, etc.
 \item L'embarqué industriel \cite{lorauc3}. La maintenance et la surveillance de matériel et de l'équipement peuvent être gérées par LoRaWAN. TataSteel \footnote{TataSteel : \href{https://consulting.tatasteel.com/our_expertise/plant-infrastructure-and-logistics/}{https://consulting.tatasteel.com/ourexpertise/}}, une compagnie indienne, utilise LoRaWAN pour ces équipements industriels.
-\item La prévention de catastrophe naturelle. Que ce soit en prévision\cite{lorauc41} ou après\cite{lorauc43} d'éventuelles catastrophes naturelles, la longue portée et la surveillance en temps réel sont des atouts cruciaux pour ce genre d'évènement.
+\item La prévention de catastrophes naturelles. Que ce soit en prévision\cite{lorauc41} ou après\cite{lorauc43} d'éventuelles catastrophes naturelles, la longue portée et la surveillance en temps réel sont des atouts cruciaux pour ce genre d'évènement.
 \end{itemize}
 
 \vspace{0.1cm}
 
-Cependant, toutes ces caractéristiques entrainent un certain nombre de limitations. La restriction de la fréquence en fonction de la région peut rendre le déploiement d'une même infrastructure à différents endroits dans le monde plus difficile. Cela peut aussi entrainer des problèmes de compatibilité entre régions, notamment pour des chaines logistiques ou d'approvisionement qui en traversent plusieurs.
+Cependant, toutes ces caractéristiques entrainent un certain nombre de limitations. La restriction de la fréquence en fonction de la région peut rendre le déploiement d'une même infrastructure à différents endroits dans le monde plus difficile. Cela peut aussi entrainer des problèmes de compatibilité entre régions, notamment pour des chaines logistiques ou d'approvisionnement qui en traversent plusieurs.
 
 \vspace{0.1cm}
 
@@ -526,7 +526,7 @@ Une faible consommation de puissance avec une grande portée a un impact sur la 
 
 \vspace{0.1cm}
 
-La communication au sein d'un réseau LoRaWAN se fait en grande partie de manière asynchrone. La synchronisation dépend de la classe d'appareils, qui est détaillé dans la section \ref{topolora}. C'est un avantage pour maintenir une grande autonomie de batterie pour les appareils. LoRaWAN possède un système pour limiter les collisions entre messages si plusieurs appareils communiquent simultanément. Ce système est basé sur une combinaison entre \ac{LBT} et des délais aléatoires\cite{loracolision}. Il est néanmoins possible que dans un environnement très dense des collisions puissent encore se produire. La communication asynchrone et le système d'évitement de collisions entrainent une augmentation du temps entre les envois et la réception de messages.
+La communication au sein d'un réseau LoRaWAN se fait en grande partie de manière asynchrone. La synchronisation dépend de la classe d'appareils, qui est détaillé dans la section \ref{topolora}. C'est un avantage pour maintenir une grande autonomie de batterie pour les appareils. LoRaWAN possède un système pour limiter les collisions entre messages si plusieurs appareils communiquent simultanément. Ce système est basé sur une combinaison entre \ac{LBT} et des délais aléatoires\cite{loracolision}. Il est néanmoins possible que, dans un environnement très dense, des collisions puissent encore se produire. La communication asynchrone et le système d'évitement de collisions entrainent une augmentation du temps entre les envois et la réception de messages.
 
 \subsubsection{Topologie de LoRaWAN}\label{topolora}
 
@@ -538,7 +538,7 @@ La communication au sein d'un réseau LoRaWAN se fait en grande partie de maniè
 \end{figure}
 
 La figure \ref{term7} montre les 4 types d'appareils qui composent la topologie d'une infrastrucure LoRaWAN.
-Les end devices sont les noeuds qui collectent les informations à envoyer à travers le réseau. Ils sont catégorisés en trois sous classes : A, B et C. Les appareils de classe A sont les plus économes en énergie. Ils ont été créés pour conserver leur énergie et communiquent exclusivement en comunication asynchrone. Les appareils de classe A écoutent les messages provenant des serveurs uniquement après avoir eux-même transmis un message. Les appareils de classe B sont assez similaires à ceux de classe A, mais sont occasionnellement synchronisés avec les serveurs du réseau. Ils possèdent des capacités supérieures de réception leur permettant de se synchroniser avec le scheduler des serveurs, ce qui augmente considérablement l'efficacité du temps de réponse dans le réseau. Finalement, les appareils de classe C sont en écoute permanente de messages provenant des serveurs. Ils sont les plus réactifs mais également les plus énergivores. Les end devices sont donc classés selon deux paramètres : leur réactivité et leur consommation d'énergie. En fonction de leur classe, ils ont également la possibilité de recevoir des messages server après avoir transmis de l'information. L'envoi d'un message d'un end devices vers les serveurs est appelé uplink message et l'envoi d'un message depuis les serveurs vers les end devices est appelé downlink message.
+Les end devices sont les noeuds qui collectent les informations à envoyer à travers le réseau. Ils sont catégorisés en trois sous-classes : A, B et C. Les appareils de classe A sont les plus économes en énergie. Ils ont été créés pour conserver leur énergie et communiquent exclusivement en comunication asynchrone. Les appareils de classe A écoutent les messages provenant des serveurs uniquement après avoir eux-même transmis un message. Les appareils de classe B sont assez similaires à ceux de la classe A, mais sont occasionnellement synchronisés avec les serveurs du réseau. Ils possèdent des capacités supérieures de réception leur permettant de se synchroniser avec le scheduler des serveurs, ce qui augmente considérablement l'efficacité du temps de réponse dans le réseau. Finalement, les appareils de classe C sont en écoute permanente de messages provenant des serveurs. Ils sont les plus réactifs mais également les plus énergivores. Les end devices sont donc classés selon deux paramètres : leur réactivité et leur consommation d'énergie. En fonction de leur classe, ils ont également la possibilité de recevoir des messages server après avoir transmis de l'information. L'envoi d'un message d'un end devices vers les serveurs est appelé \textit{uplink message} et l'envoi d'un message depuis les serveurs vers les end devices est appelé \textit{downlink message}.
 
 \vspace{0.1cm}
 
@@ -547,11 +547,11 @@ et forwardent les messages vers le serveur réseau. Les gateways peuvent écoute
 
 \vspace{0.1cm}
 
-Le serveur réseau est la composante centrale de l'infrastructure. Il gère tout le réseau, que ce soit les données reçues des gateways, l'identification et l'activation des end devices dans le réseau, le routing ou encore l'adapation du data rate. Le serveur réseau supervise également l'aspect sécurité au sein du réseau en gèrant les clés de chiffrement et les protocoles de sécurité.
+Le serveur réseau est la composante centrale de l'infrastructure. Il gère tout le réseau, que ce soit les données reçues des gateways, l'identification et l'activation des end devices dans le réseau, le routing ou encore l'adapation du data rate. Le serveur réseau supervise également l'aspect sécurité au sein du réseau en gérant les clés de chiffrement et les protocoles de sécurité.
 
 \vspace{0.1cm}
 
-Le serveur application de LoRaWAN reçoit les données forwardées depuis le serveur réseau. C'est l'interface entre le réseau de LoRaWAN et les différents services ou applications d'utilisateurs finaux. Les utilisateurs intéragissent avec le serveur d'application pour n'importe quelle action à effectuer sur le réseau ou pour la récupération de données du réseau. Les données reçues par le serveur réseau sont traduites par le server d'application avant d'être interprétée par l'utilisateur final.
+Le serveur application de LoRaWAN reçoit les données transmises depuis le serveur réseau. C'est l'interface entre le réseau de LoRaWAN et les différents services ou applications d'utilisateurs finaux. Les utilisateurs intéragissent avec le serveur d'application pour n'importe quelle action à effectuer sur le réseau ou pour la récupération de données du réseau. Les données reçues par le serveur réseau sont traduites par le server d'application avant d'être interprétées par l'utilisateur final.
 
 \subsubsection{Sécurité}
 
@@ -569,9 +569,9 @@ La sécurité repose sur le chiffrement des données. Les données sont chiffré
 
 \vspace{0.1cm}
 
-Il y a deux types de clés utilisées dans LoRaWAN. La root key est la clé partagée entre un end device et le serveur réseau. Cette clé est utilisée pour l'authentification initiale et l'établissement d'une communication entre deux éléments du réseau. Cette clé n'est jamais transmise par les airs, elle est stockée dans un join server. Un join server est un serveur dédié au contenu sensible à l'activation du matériel dans un réseau LoRaWAN. Il authentifie le réseau et les applications du serveur. Il gère les root keys. il génère également le second type de clés de LoRaWAN, les session keys.
+Il y a deux types de clés utilisées dans LoRaWAN. La \textit{root key} est la clé partagée entre un end device et le serveur réseau. Cette clé est utilisée pour l'authentification initiale et l'établissement d'une communication entre deux éléments du réseau. Cette clé n'est jamais transmise par les airs, elle est stockée dans un join server. Un join server est un serveur dédié au contenu sensible à l'activation du matériel dans un réseau LoRaWAN. Il authentifie le réseau et les applications du serveur. Il gère les root keys et génère également le second type de clés de LoRaWAN, les session keys.
 
-Les session keys sont des clés générées dynamiquement par le join server et utilisées durant l'échange de données pendant une session. Il y a deux session keys différentes, la AppSKEY pour le chiffrement des payloads d'application, et la nwkSKEY pour les fonctionnalités du réseau (le chiffrement à la couche \ac{MAC}, les vérifications d'intégrité, etc).
+Les \textit{session keys} sont des clés générées dynamiquement par le join server et utilisées durant l'échange de données pendant une session. Il y a deux session keys différentes, la AppSKEY pour le chiffrement des payloads d'application, et la nwkSKEY pour les fonctionnalités du réseau (le chiffrement à la couche \ac{MAC}, les vérifications d'intégrité, etc).
 
 \subsubsection{Session}
 
@@ -596,4 +596,6 @@ La seconde méthode est hardcodée et permet à un end device de rejoindre direc
 \item Sans devoir initialiser de procédure join request, le end device transmet directement ses données au serveur en utilisant ses clés préconfigurées. L'échange de clés avec le serveur n'a pas lieu.
 \end{itemize}
 
-Cette seconde procédure a comme avantage d'être plus rapide à exécuter car toute la partie d'initialisation est passée. Le processus d'initialisation peut être contraignant en ressources ce qui rend la méthode \ac{ABP} moins énergivore. Cependant l'utilisation de clés hardcodées directement dans les devices est une pratique moins sécuritaire. Comme pour la taille de clés, il y a un équilibre entre consommation d'énergie et sécurité.
+\vspace{0.1cm}
+
+Cette seconde procédure a comme avantage d'être plus rapide à exécuter car toute la partie d'initialisation est passée. Le processus d'initialisation peut être contraignant en ressources ce qui rend la méthode \ac{ABP} moins énergivore. Cependant, l'utilisation de clés hardcodées directement dans les devices est une pratique moins sécuritaire: comme pour la taille de clés, il y a un équilibre entre consommation d'énergie et sécurité.
