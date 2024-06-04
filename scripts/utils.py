@@ -1,7 +1,7 @@
 import numpy as np
 
 
-DIFFERENTIAL_INTERVAL = 65536
+DIFFERENTIAL_INTERVAL = 4096
 
 
 def read_file(filename: str):

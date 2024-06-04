@@ -11,9 +11,8 @@ RS = 125_000 / (2**SPREADING_FACTOR)
 JSON_FILENAME = "centers.json"
 DENSITY_THRESHOLD = 0.8
 
-MODULE = "set36"
-SAMPLES_FOLDER = f'preambles/{MODULE}/'
-#SAMPLES_FOLDER = 'sample_data/test/'
+MODULE = "RN1"
+SAMPLES_FOLDER = f'sample_data/{MODULE}/'
 
 
 def display_preamble(density, x_edges, y_edges, differential_i, differential_q, markedx, markedy):
@@ -54,8 +53,8 @@ def find_preamble_center(data: np.array) -> Tuple[int, int]:
     markedy = [(y_edges[p[1]] + y_edges[p[1] + 1]) / 2 for p in highest_density_points]
 
     # Uncomment the display the graph of the highest density points in the complex plan
-    # display_preamble(density, x_edges, y_edges, differential_i, differential_q, markedx, markedy)
-
+    #display_preamble(density, x_edges, y_edges, differential_i, differential_q, markedx, markedy)
+    
     return np.mean(markedx), np.mean(markedy)
 
 
@@ -63,7 +62,7 @@ def find_preamble_centers(filepaths: List[str], module_data: dict) -> None:
     for filepath in filepaths:
         data = load_signal(filepath, dtype=np.complex64)
         # Uncomment to display density graph of the preamble
-        # display_density(data, filepath)
+        display_density(differential_data, filepath)
         center_x, center_y = find_preamble_center(data)
         filename = filepath.split('/')[-1]
         module_data[filename] = {
