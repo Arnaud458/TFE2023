@@ -4,18 +4,14 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 from utils import compute_differential, load_signal, DIFFERENTIAL_INTERVAL
-from utils_display import display_density
 from rn2483 import SPREADING_FACTOR
 
 RS = 125_000 / (2**SPREADING_FACTOR)
 JSON_FILENAME = "centers.json"
 DENSITY_THRESHOLD = 0.8
 
-MODULE = "RN1"
-SAMPLES_FOLDER = f'sample_data/{MODULE}/'
 
-
-def display_preamble(density, x_edges, y_edges, differential_i, differential_q, markedx, markedy):
+def display_highest_density_points(density, x_edges, y_edges, differential_i, differential_q, markedx, markedy):
     """Display the signal in the complex plan, following the search of highest density points.
         The area is divised in zones. The highest density zone is displayed in red, 
         the zones that have density over the threshold are displayed in orange.
@@ -34,13 +30,13 @@ def display_preamble(density, x_edges, y_edges, differential_i, differential_q, 
     plt.scatter(markedx, markedy, s=5, c='orange', marker='o', label='Highest Density Points')
     plt.xlabel('Differential In-phase')
     plt.ylabel('Differential Quadrature')
-    plt.title('Differential Constellation Trace Figure ')
+    plt.title('Differential Constellation Trace Figure')
     plt.legend()
     plt.grid(True)
     plt.show()
 
 
-def find_preamble_center(data: np.array) -> Tuple[int, int]:
+def find_highest_density_points(data: np.array, display: bool=False) -> Tuple[List, List]:
     # DCTF method
     differential_data = compute_differential(data, DIFFERENTIAL_INTERVAL)
     differential_i = np.real(differential_data)
@@ -52,17 +48,19 @@ def find_preamble_center(data: np.array) -> Tuple[int, int]:
     markedx = [(x_edges[p[0]] + x_edges[p[0] + 1]) / 2 for p in highest_density_points]
     markedy = [(y_edges[p[1]] + y_edges[p[1] + 1]) / 2 for p in highest_density_points]
 
-    # Uncomment the display the graph of the highest density points in the complex plan
-    #display_preamble(density, x_edges, y_edges, differential_i, differential_q, markedx, markedy)
-    
+    if display:
+        display_highest_density_points(density, x_edges, y_edges, differential_i, differential_q, markedx, markedy)
+    return markedx, markedy
+
+
+def find_preamble_center(data: np.array) -> Tuple[int, int]:
+    markedx, markedy = find_highest_density_points(data, False)
     return np.mean(markedx), np.mean(markedy)
 
 
 def find_preamble_centers(filepaths: List[str], module_data: dict) -> None:
     for filepath in filepaths:
         data = load_signal(filepath, dtype=np.complex64)
-        # Uncomment to display density graph of the preamble
-        display_density(differential_data, filepath)
         center_x, center_y = find_preamble_center(data)
         filename = filepath.split('/')[-1]
         module_data[filename] = {
@@ -72,6 +70,10 @@ def find_preamble_centers(filepaths: List[str], module_data: dict) -> None:
 
 
 if __name__ == "__main__":
+
+    MODULE = "set36"
+    SAMPLES_FOLDER = f'preambles/{MODULE}/'
+
 
     with open(JSON_FILENAME, 'r', encoding='utf8') as file_reader:
         centers_data = json.load(file_reader)
