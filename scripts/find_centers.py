@@ -71,8 +71,8 @@ def find_preamble_centers(filepaths: List[str], module_data: dict) -> None:
 
 if __name__ == "__main__":
 
-    MODULE = "set36"
-    SAMPLES_FOLDER = f'preambles/{MODULE}/'
+    MODULE = "RN1"
+    SAMPLES_FOLDER = f'sample_data/{MODULE}/'
 
 
     with open(JSON_FILENAME, 'r', encoding='utf8') as file_reader:
