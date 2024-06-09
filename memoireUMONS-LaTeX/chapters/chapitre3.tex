@@ -2,7 +2,7 @@
 
 \chapter{Identification d'appareils LoRa par la méthode des constellations traces figures}
 
-Comme tout appareil au sein d'un réseau, un appareil connecté dans l'\ac{IoT} possède, de base, différents moyens d'authentification: son adresse \ac{MAC}, son adresse IP, des informations relatives à sa manufacturation comme un numéro de série par exemple. De manière plus spécifique, les noeuds au sein d'un réseau LoRaWAN possèdent un DevEUI, un numéro unique accordé par le réseau à l'appareil. Cependant, ces informations peuvent être compromises si les appareils sont victimes de devices spoofing, c'est à dire qu'un appareil malveillant usurpe l'indentité de sa cible, afin d'accéder au sein du réseau. D'autres attaques comme Man in The Middle ou Replay attacks peuvent également compromettre l'identité d'un appareil si on se base uniquement sur ses identifiant classiques\cite{attack}. Il faut donc pouvoir identifier les appareils mais sans se fier à leurs informations d'authentification.
+Comme tout appareil au sein d'un réseau, un appareil connecté dans l'\ac{IoT} possède, de base, différents moyens d'authentification: son adresse \ac{MAC}, son adresse IP, des informations relatives à sa manufacturation comme un numéro de série par exemple. De manière plus spécifique, les noeuds au sein d'un réseau LoRaWAN possèdent un DevEUI, un numéro unique accordé par le réseau à l'appareil. Cependant, ces informations peuvent être compromises si les appareils sont victimes de devices spoofing, c'est à dire qu'un appareil malveillant usurpe l'indentité de sa cible, afin d'accéder au sein du réseau. D'autres attaques comme Man in The Middle ou Replay attacks peuvent également compromettre l'identité d'un appareil si on se base uniquement sur ses identifiants classiques\cite{attack}. Il faut donc pouvoir identifier les appareils mais sans se fier à leurs informations d'authentification.
 
 \vspace{0.1cm}
 
@@ -66,7 +66,7 @@ Il est donc possible d'exprimer le traitement différentiel en fonction des comp
  		 &= Y_I(t)Y_I(t+n) + Y_Q(t)Y_Q(t+n) + j(Y_Q(t)Y_I(t+n) - Y_I(t)Y_Q(t+n))
 \end{align}
 
-L'équation \ref{eq4005} peut donc être directement appliquée sur les données. Pour rappel, les signaux sont convervés dans des fichiers sous forme d'échantillons \ac{I/Q}. L'implémentation de l'équation \ref{eq4005} est disponible dans l'annexe \ref{codeDCTF}. La dernière inconnue reste l'intervalle différentiel $n$. Il représente le nombre de points échantillonnés pour chaque symbole de \ac{LoRa}. Il peut être calculé par :
+L'équation \ref{eq4005} peut donc être directement appliquée sur les données. Pour rappel, les signaux sont conservés dans des fichiers sous forme d'échantillons \ac{I/Q}. L'implémentation de l'équation \ref{eq4005} est disponible dans l'annexe \ref{codeDCTF}. La dernière inconnue reste l'intervalle différentiel $n$. Il représente le nombre de points échantillonnés pour chaque symbole de \ac{LoRa}. Il peut être calculé par :
 
 \begin{align}\label{eq4006}
 	R_s &= \frac{BW}{2^{SF}} \\
