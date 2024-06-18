@@ -1,0 +1,23 @@
+slide 1 : présentation
+slide 2 : plan de la présentation
+slide 3 : rappel contexte IoT/sécurité embarqué
+slide 4 : définir les objectifs du travail
+slide 5 : transition vers l'IoT et une technologie en particulier
+slide 6 : distinguer les technologie LPWAN (LoRa / LoRaWAN)
+slide 7 : présentation de LoRaWAN (infrastructure, devices, classe des end nodes, etc)
+slide 8 : sécurité dans LoRaWAN (via établissement d'une session notamment)
+slide 9 : transition sur l'aspect "physique" de la technologie
+slide 10 : description de LoRa en pratique
+slide 11 : description de LoRa en physique (la modulation, ces paramètres et comment elle opère)
+slide 12 : après avoir décrit la technologie, transition sur le RFFI soit le coeur du travail
+		mention de l'article de référence du travail
+slide 13 : introduction à une méthode de RFFI, les DCTFs. Description de la méthode et projection des
+		aperçu de l'article
+slide 14 : maintenant que tout les aspects nécessaires ont été introduits, transition vers le travail
+		 réalisé
+slide 15 : présentation du matériel sélectionné (mentionner le matériel utilisé non sélectionné)
+slide 16 : la configuration globale de l'expérimentation (via python)
+slide 17 : les premières étapes de l'application de la méthode sur le matériel
+slide 18 : le résultat de la méthode pour un appareil éméteur - résultats différents de l'article
+slide 19 : transition sur une piste d'identification, basée sur la forme géométrique
+slide 20 : conclusion du travail, l'objectif est atteint, mais avec des nuances
